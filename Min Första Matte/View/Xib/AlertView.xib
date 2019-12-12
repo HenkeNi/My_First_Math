@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="landscape" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertView" customModule="Min_Fo_rsta_Matte" customModuleProvider="target">
+            <connections>
+                <outlet property="alertView" destination="hwe-t4-kZt" id="0uk-ya-lFQ"/>
+                <outlet property="checkImage" destination="NEX-p3-YKZ" id="e1f-4r-fTb"/>
+                <outlet property="doneBtn" destination="Czp-At-5S2" id="41Y-sm-slo"/>
+                <outlet property="messageLabel" destination="QvY-uy-1sQ" id="nlb-3O-Wjw"/>
+                <outlet property="parentView" destination="iN0-l3-epB" id="aXk-hU-hi2"/>
+                <outlet property="titelLabel" destination="Uax-hx-zvX" id="CNw-Sq-XW3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRS-b1-G4B">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwe-t4-kZt">
+                            <rect key="frame" x="32" y="343" width="350" height="210"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uax-hx-zvX">
+                                    <rect key="frame" x="118.5" y="67.5" width="113" height="33"/>
+                                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="26"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You got it!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvY-uy-1sQ">
+                                    <rect key="frame" x="122" y="108.5" width="106" height="21.5"/>
+                                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Czp-At-5S2">
+                                    <rect key="frame" x="8" y="146" width="334" height="40"/>
+                                    <color key="backgroundColor" red="0.74117647060000003" green="0.59215686270000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="22"/>
+                                    <state key="normal" title="Done">
+                                        <color key="titleColor" red="1" green="0.90908854189999999" blue="0.57106809660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onClickDone:" destination="-1" eventType="touchUpInside" id="ByX-BK-QCa"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Czp-At-5S2" firstAttribute="centerX" secondItem="hwe-t4-kZt" secondAttribute="centerX" id="04R-Fp-gmT"/>
+                                <constraint firstAttribute="width" constant="350" id="3WD-dT-tBW"/>
+                                <constraint firstItem="QvY-uy-1sQ" firstAttribute="top" secondItem="Uax-hx-zvX" secondAttribute="bottom" constant="8" id="7vf-F4-uC6"/>
+                                <constraint firstAttribute="trailing" secondItem="Czp-At-5S2" secondAttribute="trailing" constant="8" id="BJ4-1I-gTj"/>
+                                <constraint firstItem="Uax-hx-zvX" firstAttribute="centerY" secondItem="hwe-t4-kZt" secondAttribute="centerY" multiplier="0.8" id="MYg-hS-BFt"/>
+                                <constraint firstItem="Czp-At-5S2" firstAttribute="top" secondItem="QvY-uy-1sQ" secondAttribute="bottom" constant="16" id="XNn-n6-0fw"/>
+                                <constraint firstItem="Czp-At-5S2" firstAttribute="leading" secondItem="hwe-t4-kZt" secondAttribute="leading" constant="8" id="ZP2-23-mtl"/>
+                                <constraint firstAttribute="height" constant="210" id="r8D-Kn-Fzz"/>
+                                <constraint firstItem="Uax-hx-zvX" firstAttribute="centerX" secondItem="hwe-t4-kZt" secondAttribute="centerX" id="tGv-6c-tq5"/>
+                                <constraint firstItem="QvY-uy-1sQ" firstAttribute="centerX" secondItem="hwe-t4-kZt" secondAttribute="centerX" id="vTM-kZ-rMn"/>
+                            </constraints>
+                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OkCheck" translatesAutoresizingMaskIntoConstraints="NO" id="NEX-p3-YKZ">
+                            <rect key="frame" x="147" y="276" width="120" height="120"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="mer-df-VEP"/>
+                                <constraint firstAttribute="width" secondItem="NEX-p3-YKZ" secondAttribute="height" multiplier="1:1" id="z1V-6x-ZLK"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="hwe-t4-kZt" firstAttribute="centerX" secondItem="GRS-b1-G4B" secondAttribute="centerX" id="4CY-fn-pY1"/>
+                        <constraint firstItem="NEX-p3-YKZ" firstAttribute="centerY" secondItem="GRS-b1-G4B" secondAttribute="centerY" multiplier="0.75" id="cOJ-l7-XXu"/>
+                        <constraint firstItem="NEX-p3-YKZ" firstAttribute="centerX" secondItem="GRS-b1-G4B" secondAttribute="centerX" id="qwp-eM-jBo"/>
+                        <constraint firstItem="hwe-t4-kZt" firstAttribute="centerY" secondItem="GRS-b1-G4B" secondAttribute="centerY" id="rmh-0Y-17B"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="GRS-b1-G4B" secondAttribute="trailing" id="9xr-II-Rwm"/>
+                <constraint firstItem="GRS-b1-G4B" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iFK-Ty-jsW"/>
+                <constraint firstAttribute="bottom" secondItem="GRS-b1-G4B" secondAttribute="bottom" id="mdN-1d-LD2"/>
+                <constraint firstItem="GRS-b1-G4B" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qcJ-fR-PyR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="45.877061469265371" y="33.600000000000001"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="OkCheck" width="120" height="120"/>
+    </resources>
+</document>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VXT-kB-IPD">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Test View Controller-->
+        <scene sceneID="o0w-ee-gCg">
+            <objects>
+                <viewController id="jhi-pI-OQ9" customClass="TestViewController" customModule="Min_Fo_rsta_Matte" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZJ0-UF-3Ex">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="skx-tr-mnk">
+                                <rect key="frame" x="90" y="369" width="180" height="180"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number1Back" translatesAutoresizingMaskIntoConstraints="NO" id="429-AO-i0K">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberTest" translatesAutoresizingMaskIntoConstraints="NO" id="8SI-Hg-yMM">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                    </imageView>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o18-UU-Xgb">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="swapButton:" destination="jhi-pI-OQ9" eventType="touchUpInside" id="NMW-yF-tNx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="429-AO-i0K" secondAttribute="bottom" id="Cyt-lY-Rqb"/>
+                                    <constraint firstItem="429-AO-i0K" firstAttribute="leading" secondItem="skx-tr-mnk" secondAttribute="leading" id="PYM-ZN-GwT"/>
+                                    <constraint firstAttribute="height" constant="180" id="Zqh-sI-2hp"/>
+                                    <constraint firstItem="8SI-Hg-yMM" firstAttribute="leading" secondItem="skx-tr-mnk" secondAttribute="leading" id="aXk-yK-hiG"/>
+                                    <constraint firstItem="429-AO-i0K" firstAttribute="top" secondItem="skx-tr-mnk" secondAttribute="top" id="cJF-8F-yNg"/>
+                                    <constraint firstItem="o18-UU-Xgb" firstAttribute="top" secondItem="skx-tr-mnk" secondAttribute="top" id="dAE-2W-SMu"/>
+                                    <constraint firstAttribute="bottom" secondItem="o18-UU-Xgb" secondAttribute="bottom" id="j96-Xt-Ee3"/>
+                                    <constraint firstItem="8SI-Hg-yMM" firstAttribute="top" secondItem="skx-tr-mnk" secondAttribute="top" id="mRR-ka-aO0"/>
+                                    <constraint firstAttribute="width" constant="180" id="p8O-KR-ExC"/>
+                                    <constraint firstAttribute="bottom" secondItem="8SI-Hg-yMM" secondAttribute="bottom" id="qLl-oD-Uq2"/>
+                                    <constraint firstAttribute="trailing" secondItem="o18-UU-Xgb" secondAttribute="trailing" id="rZl-9a-UbB"/>
+                                    <constraint firstAttribute="trailing" secondItem="8SI-Hg-yMM" secondAttribute="trailing" id="s4w-x6-SSo"/>
+                                    <constraint firstAttribute="trailing" secondItem="429-AO-i0K" secondAttribute="trailing" id="ura-47-OBl"/>
+                                    <constraint firstItem="o18-UU-Xgb" firstAttribute="leading" secondItem="skx-tr-mnk" secondAttribute="leading" id="yOp-kj-UeJ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpI-oW-A7F">
+                                <rect key="frame" x="336" y="369" width="180" height="180"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number2Back" translatesAutoresizingMaskIntoConstraints="NO" id="Zxa-Nc-sQz">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number8" translatesAutoresizingMaskIntoConstraints="NO" id="geG-BI-ibD">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                    </imageView>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVE-1U-I6g">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="swapButton:" destination="jhi-pI-OQ9" eventType="touchUpInside" id="IxM-t7-CrA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="Eua-5W-dK6"/>
+                                    <constraint firstItem="Zxa-Nc-sQz" firstAttribute="leading" secondItem="qpI-oW-A7F" secondAttribute="leading" id="J9D-7C-08l"/>
+                                    <constraint firstAttribute="trailing" secondItem="fVE-1U-I6g" secondAttribute="trailing" id="KHP-RZ-hWC"/>
+                                    <constraint firstItem="fVE-1U-I6g" firstAttribute="top" secondItem="qpI-oW-A7F" secondAttribute="top" id="Nod-O1-MYc"/>
+                                    <constraint firstAttribute="trailing" secondItem="geG-BI-ibD" secondAttribute="trailing" id="OtS-72-tjh"/>
+                                    <constraint firstItem="fVE-1U-I6g" firstAttribute="leading" secondItem="qpI-oW-A7F" secondAttribute="leading" id="Y9K-ol-4Io"/>
+                                    <constraint firstItem="geG-BI-ibD" firstAttribute="leading" secondItem="qpI-oW-A7F" secondAttribute="leading" id="bKR-EW-WP3"/>
+                                    <constraint firstItem="Zxa-Nc-sQz" firstAttribute="top" secondItem="qpI-oW-A7F" secondAttribute="top" id="mk5-RD-JVa"/>
+                                    <constraint firstItem="geG-BI-ibD" firstAttribute="top" secondItem="qpI-oW-A7F" secondAttribute="top" id="nLE-97-nhY"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zxa-Nc-sQz" secondAttribute="trailing" id="uWb-XF-0GG"/>
+                                    <constraint firstAttribute="bottom" secondItem="geG-BI-ibD" secondAttribute="bottom" id="vTW-G9-zuL"/>
+                                    <constraint firstAttribute="width" constant="180" id="xRT-Od-o8m"/>
+                                    <constraint firstAttribute="bottom" secondItem="fVE-1U-I6g" secondAttribute="bottom" id="y6c-Lq-Yls"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zxa-Nc-sQz" secondAttribute="bottom" id="ypF-5s-Wwe"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Gw-h0-CPw">
+                                <rect key="frame" x="824" y="369" width="180" height="180"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number3Back" translatesAutoresizingMaskIntoConstraints="NO" id="lzc-jD-Frj">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number10" translatesAutoresizingMaskIntoConstraints="NO" id="Wpv-Qz-ad0">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                    </imageView>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3CX-V7-SeB">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="swapButton:" destination="jhi-pI-OQ9" eventType="touchUpInside" id="Rqu-NU-9Um"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="lzc-jD-Frj" firstAttribute="top" secondItem="6Gw-h0-CPw" secondAttribute="top" id="1AC-xN-dB8"/>
+                                    <constraint firstItem="lzc-jD-Frj" firstAttribute="leading" secondItem="6Gw-h0-CPw" secondAttribute="leading" id="23G-KJ-2XZ"/>
+                                    <constraint firstItem="Wpv-Qz-ad0" firstAttribute="top" secondItem="6Gw-h0-CPw" secondAttribute="top" id="80q-Ul-jLv"/>
+                                    <constraint firstItem="3CX-V7-SeB" firstAttribute="top" secondItem="6Gw-h0-CPw" secondAttribute="top" id="H8R-sd-LNz"/>
+                                    <constraint firstAttribute="trailing" secondItem="lzc-jD-Frj" secondAttribute="trailing" id="JTD-Jn-TZH"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wpv-Qz-ad0" secondAttribute="trailing" id="KJl-V6-Goy"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wpv-Qz-ad0" secondAttribute="bottom" id="OKs-Or-29U"/>
+                                    <constraint firstItem="Wpv-Qz-ad0" firstAttribute="leading" secondItem="6Gw-h0-CPw" secondAttribute="leading" id="VfW-bv-VdP"/>
+                                    <constraint firstAttribute="height" constant="180" id="i4V-0I-ax7"/>
+                                    <constraint firstAttribute="bottom" secondItem="3CX-V7-SeB" secondAttribute="bottom" id="kv9-u0-5Zc"/>
+                                    <constraint firstAttribute="trailing" secondItem="3CX-V7-SeB" secondAttribute="trailing" id="mb0-LY-utk"/>
+                                    <constraint firstAttribute="bottom" secondItem="lzc-jD-Frj" secondAttribute="bottom" id="rlK-FA-hXs"/>
+                                    <constraint firstItem="3CX-V7-SeB" firstAttribute="leading" secondItem="6Gw-h0-CPw" secondAttribute="leading" id="uuv-BZ-BpC"/>
+                                    <constraint firstAttribute="width" constant="180" id="zBu-lW-tb6"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8HT-Jh-1aE">
+                                <rect key="frame" x="193" y="108" width="148" height="141"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Nb-cJ-jRs">
+                                <rect key="frame" x="744" y="108" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="testAlertBtn:" destination="jhi-pI-OQ9" eventType="touchUpInside" id="d5Q-OV-J1H"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qpI-oW-A7F" firstAttribute="leading" secondItem="skx-tr-mnk" secondAttribute="trailing" constant="66" id="8xw-i2-CoL"/>
+                            <constraint firstItem="sgZ-LY-yMT" firstAttribute="bottom" secondItem="qpI-oW-A7F" secondAttribute="bottom" constant="219" id="BQi-z6-1au"/>
+                            <constraint firstItem="sgZ-LY-yMT" firstAttribute="trailing" secondItem="6Gw-h0-CPw" secondAttribute="trailing" constant="20" id="JU5-rj-QO6"/>
+                            <constraint firstItem="sgZ-LY-yMT" firstAttribute="bottom" secondItem="skx-tr-mnk" secondAttribute="bottom" constant="219" id="L1S-sS-CH3"/>
+                            <constraint firstItem="sgZ-LY-yMT" firstAttribute="bottom" secondItem="6Gw-h0-CPw" secondAttribute="bottom" constant="219" id="LuH-UO-kyV"/>
+                            <constraint firstItem="skx-tr-mnk" firstAttribute="leading" secondItem="sgZ-LY-yMT" secondAttribute="leading" constant="90" id="aTG-9L-f1j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sgZ-LY-yMT"/>
+                    </view>
+                    <connections>
+                        <outlet property="numberOneBackImage" destination="429-AO-i0K" id="aqC-ec-ecM"/>
+                        <outlet property="numberOneImage" destination="8SI-Hg-yMM" id="CYI-5O-Pkn"/>
+                        <outlet property="numberThreeBackImage" destination="lzc-jD-Frj" id="IeQ-yP-Qqu"/>
+                        <outlet property="numberThreeImage" destination="Wpv-Qz-ad0" id="K6z-PV-0TT"/>
+                        <outlet property="numberTwoBackImage" destination="Zxa-Nc-sQz" id="HsH-wn-gYu"/>
+                        <outlet property="numberTwoImage" destination="geG-BI-ibD" id="4Yv-3y-8N4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0vH-fR-GNq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-584" y="1742"/>
+        </scene>
+        <!--Make View Appear View Controller-->
+        <scene sceneID="y7e-la-ERe">
+            <objects>
+                <viewController id="szl-X6-c5o" customClass="MakeViewAppearViewController" customModule="Min_Fo_rsta_Matte" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1yn-vG-YM3">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dAS-mI-IpW"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lZk-fD-ZMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="247" y="1741"/>
+        </scene>
+        <!--Pan GestVC-->
+        <scene sceneID="dRS-gv-0gw">
+            <objects>
+                <viewController id="VXT-kB-IPD" customClass="PanGestVC" customModule="Min_Fo_rsta_Matte" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Bv-Av-uXK">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ft-p7-h77">
+                                <rect key="frame" x="392" y="174" width="240" height="172"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZJH-94-r0e">
+                                <rect key="frame" x="746" y="358" width="240" height="172"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WaW-UY-3LT">
+                                <rect key="frame" x="293" y="409" width="240" height="172"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="BCm-Lx-cnc"/>
+                    </view>
+                    <connections>
+                        <outletCollection property="dragViews" destination="WaW-UY-3LT" collectionClass="NSMutableArray" id="xiE-Sg-QbW"/>
+                        <outletCollection property="dragViews" destination="0ft-p7-h77" collectionClass="NSMutableArray" id="HmA-ln-yqL"/>
+                        <outletCollection property="dragViews" destination="ZJH-94-r0e" collectionClass="NSMutableArray" id="8ZZ-iF-Tww"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6V9-aR-4W6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="271.875" y="2398.4375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Number10" width="180" height="180"/>
+        <image name="Number1Back" width="180" height="180"/>
+        <image name="Number2Back" width="180" height="180"/>
+        <image name="Number3Back" width="180" height="180"/>
+        <image name="Number8" width="180" height="180"/>
+        <image name="NumberTest" width="180" height="180"/>
+    </resources>
+</document>

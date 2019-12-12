@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="E49-sz-wdH">
+    <device id="ipad10_5" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Card GameVC-->
+        <scene sceneID="ifR-Hy-0Mv">
+            <objects>
+                <viewController id="E49-sz-wdH" customClass="CardGameVC" customModule="Min_Fo_rsta_Matte" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jdM-Ji-8VF">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4X-pN-q4C">
+                                <rect key="frame" x="466.5" y="292" width="179" height="250"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ssk-m8-aWa">
+                                <rect key="frame" x="466.5" y="22" width="179" height="250"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7m-6r-y5H">
+                                <rect key="frame" x="466.5" y="562" width="179" height="250"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="pZw-1Q-xWz"/>
+                                    <constraint firstAttribute="width" secondItem="X7m-6r-y5H" secondAttribute="height" multiplier="25:35" id="rk9-yp-X8b"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="RpA-nS-lyu" appends="YES" id="yft-5M-Wx7"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hgc-yN-Jf2">
+                                <rect key="frame" x="466.5" y="562" width="179" height="250"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="odV-GP-UN2" appends="YES" id="caQ-la-J15"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ouO-dA-mDY">
+                                <rect key="frame" x="36" y="562" width="179" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OVj-2p-9pc">
+                                <rect key="frame" x="253" y="564" width="179" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6c-5w-MyI">
+                                <rect key="frame" x="672" y="562" width="179" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5QM-la-bfm" firstAttribute="bottom" secondItem="Hgc-yN-Jf2" secondAttribute="bottom" constant="22" id="0Wz-6O-rGw"/>
+                            <constraint firstItem="Ssk-m8-aWa" firstAttribute="width" secondItem="X7m-6r-y5H" secondAttribute="height" multiplier="179:250" id="SAA-zA-HkM"/>
+                            <constraint firstItem="G4X-pN-q4C" firstAttribute="centerY" secondItem="jdM-Ji-8VF" secondAttribute="centerY" id="SBO-O7-S6U"/>
+                            <constraint firstItem="G4X-pN-q4C" firstAttribute="width" secondItem="X7m-6r-y5H" secondAttribute="height" multiplier="179:250" id="Tk9-BK-GPl"/>
+                            <constraint firstItem="G4X-pN-q4C" firstAttribute="centerX" secondItem="jdM-Ji-8VF" secondAttribute="centerX" id="fjT-QR-Yal"/>
+                            <constraint firstItem="Ssk-m8-aWa" firstAttribute="top" secondItem="5QM-la-bfm" secondAttribute="top" constant="22" id="jFK-57-bKB"/>
+                            <constraint firstItem="Hgc-yN-Jf2" firstAttribute="width" secondItem="X7m-6r-y5H" secondAttribute="height" multiplier="179:250" id="lBW-Gv-KpS"/>
+                            <constraint firstItem="G4X-pN-q4C" firstAttribute="height" secondItem="X7m-6r-y5H" secondAttribute="height" id="ov3-iy-45n"/>
+                            <constraint firstItem="Ssk-m8-aWa" firstAttribute="centerX" secondItem="jdM-Ji-8VF" secondAttribute="centerX" id="phD-Oc-Vq7"/>
+                            <constraint firstItem="Hgc-yN-Jf2" firstAttribute="centerX" secondItem="jdM-Ji-8VF" secondAttribute="centerX" id="tE6-9T-0rI"/>
+                            <constraint firstItem="Ssk-m8-aWa" firstAttribute="height" secondItem="X7m-6r-y5H" secondAttribute="height" id="tn7-vE-5xl"/>
+                            <constraint firstItem="X7m-6r-y5H" firstAttribute="centerX" secondItem="jdM-Ji-8VF" secondAttribute="centerX" id="vAa-0n-Uem"/>
+                            <constraint firstItem="Hgc-yN-Jf2" firstAttribute="height" secondItem="X7m-6r-y5H" secondAttribute="height" id="w7x-6g-0HI"/>
+                            <constraint firstItem="5QM-la-bfm" firstAttribute="bottom" secondItem="X7m-6r-y5H" secondAttribute="bottom" constant="22" id="wo4-k1-GLm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5QM-la-bfm"/>
+                    </view>
+                    <connections>
+                        <outlet property="cardPlacementView" destination="G4X-pN-q4C" id="XUh-nw-Yqb"/>
+                        <outletCollection property="playerCardViews" destination="X7m-6r-y5H" collectionClass="NSMutableArray" id="AV7-8p-vOp"/>
+                        <outletCollection property="playerCardViews" destination="Hgc-yN-Jf2" collectionClass="NSMutableArray" id="B57-5F-KG5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WaN-lI-NBu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="RpA-nS-lyu">
+                    <connections>
+                        <action selector="handlePanWithRecognizer:" destination="E49-sz-wdH" id="xhR-dU-k7n"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="odV-GP-UN2">
+                    <connections>
+                        <action selector="handlePanWithRecognizer:" destination="E49-sz-wdH" id="6MT-sO-BCp"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-30.215827338129497" y="136.69064748201438"/>
+        </scene>
+    </scenes>
+</document>

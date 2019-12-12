@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JlG-oS-1sr">
+    <device id="ipad12_9" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Puzzle GameVC-->
+        <scene sceneID="rms-1V-7sD">
+            <objects>
+                <viewController id="JlG-oS-1sr" customClass="PuzzleGameVC" customModule="Min_Fo_rsta_Matte" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4fw-bN-pFY">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Wo-vq-e1A">
+                                <rect key="frame" x="273.5" y="102.5" width="819" height="819"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1Wo-vq-e1A" secondAttribute="height" multiplier="1:1" id="E9f-m2-M89"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nZh-0R-eqP">
+                                    <size key="itemSize" width="400" height="400"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="puzzleCell" id="Smh-O6-Bwk" customClass="PuzzleCell" customModule="Min_Fo_rsta_Matte" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="322" height="298"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vPr-LC-xC3">
+                                            <rect key="frame" x="0.0" y="0.0" width="322" height="298"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="046-6L-hoL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="322" height="298"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="046-6L-hoL" firstAttribute="leading" secondItem="vPr-LC-xC3" secondAttribute="leading" id="LIw-hc-UGL"/>
+                                                <constraint firstAttribute="trailing" secondItem="046-6L-hoL" secondAttribute="trailing" id="UCS-xY-uKH"/>
+                                                <constraint firstItem="046-6L-hoL" firstAttribute="top" secondItem="vPr-LC-xC3" secondAttribute="top" id="lDq-vR-gMC"/>
+                                                <constraint firstAttribute="bottom" secondItem="046-6L-hoL" secondAttribute="bottom" id="owF-gv-wo7"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="322" height="298"/>
+                                        <connections>
+                                            <outlet property="puzzleImage" destination="046-6L-hoL" id="n9m-ch-RA0"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="JlG-oS-1sr" id="oeK-YH-xkP"/>
+                                    <outlet property="delegate" destination="JlG-oS-1sr" id="Igz-pS-YE8"/>
+                                </connections>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Moves:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFO-1W-fDo">
+                                <rect key="frame" x="102" y="955" width="55" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Highscore:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Tv-pp-iZD">
+                                <rect key="frame" x="382" y="955" width="83" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1Wo-vq-e1A" firstAttribute="centerX" secondItem="4fw-bN-pFY" secondAttribute="centerX" id="ULJ-vG-UX2"/>
+                            <constraint firstItem="1Wo-vq-e1A" firstAttribute="centerY" secondItem="4fw-bN-pFY" secondAttribute="centerY" id="foL-7A-Wwz"/>
+                            <constraint firstItem="1Wo-vq-e1A" firstAttribute="height" secondItem="RWk-ba-s2f" secondAttribute="height" multiplier="0.8" id="z09-k0-BMh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RWk-ba-s2f"/>
+                    </view>
+                    <connections>
+                        <outlet property="puzzleCollectionView" destination="1Wo-vq-e1A" id="Mvx-B5-VxC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CvU-9A-Zbg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="213.90922401171301" y="57.421874999999993"/>
+        </scene>
+    </scenes>
+</document>

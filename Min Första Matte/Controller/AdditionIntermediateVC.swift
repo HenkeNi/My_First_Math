@@ -7,7 +7,7 @@
 //
 
 
-
+// Kunna scrolla genom att dra fingret fram och tillbaka på progressbaren
 // Kolla vilken bild det är istället för sender.tag?
 // Bilder i en array?
 // Buttons på sidorna om brickorna - scrolla fram och tillbaka (bara 5st hela tiden)

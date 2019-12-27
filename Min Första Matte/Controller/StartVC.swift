@@ -27,7 +27,6 @@ class StartVC: UIViewController {
         easyMath.mathMode = .addition
         //let otherVC = storyboard.instantiateViewController(withIdentifier: "EasyMath") as! EasyMathVC
         self.present(easyMath, animated: true, completion:  nil)
-        
     }
     
     

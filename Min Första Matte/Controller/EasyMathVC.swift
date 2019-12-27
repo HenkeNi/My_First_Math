@@ -9,38 +9,53 @@
 import UIKit
 import AVFoundation
 
+
+// RENAME: BASIC MATH
+
+
+// Memory Leaks
+// Make all cards optional of Cards. Make them nil in deinit/viewDidDisappear
+// TODO: sätt array av cards till optional eller sätt korten i arrayen till att vara optionals
+
+
+
+// FÖRSLAG: Slumpa ut fem btm kort, kolla scoren, när man får mer poäng blir det svårare tal, och vid mindre poäng blir det lättare tal...
+
+// GÖr 3 + ? = 5 senare
+
+
+// Change: back button not working (VC presented in smaller window)
+
+
+
+// ADD: Add question mark image to answerView
+// ADD: Multiply, subtract
+// TODO: Sound effect for rejected
+// TODO: title (dependent of what mode?)
+// TODO: Fix both addition and subtraction working
+
+
+
 // Bugg: Card positionerna blir inbland fel när man drar och släpper kort
 // Bugg: Card vände sig på fel håll efter rätt svar (cardOirginalPositionc)
 
-// TODO v1.1: Nivå med fler siffror (1-10, 0-10(?)) (knappar blir synliga) och "svårare" ekvationer (5 + 4) etc.
-// eventuellt: 5 + X = 9
 
 
-// TODO: I addition lägg till x + 0. Så man får använda nr 1 nån gång (1 + 0 = 1)
+// TODO: I addition lägg till x + 0. Så man får använda nr 1 nån gång (1 + 0 = 1)?
+
+
+// TODO: GÖR ENgen scroll view? med pan gesture som bytar sifforna
+
 
 // TODO: Så länge, när man fyllt progress baren så dycker plus/minus tecken upp och man
 // kan gå över till andra räknesättet
 
-// TODO: lägg listener för alertView click
 
 // TODO: Function for updating labels Lägg i klassen
 // TODO: Fix score label
 
 // TODO: Randomerade tal inte samma som förra gången (spara sista)
 
-// TODO: lägg logik i klasserna!
-
-
-// TODO: back button not working
-
-// TODO: Sound effect for rejected
-
-// TODO: Prevent memory leak. make all cards optional of Cards. Make them nil in deinit/viewDidDisappear
-// FIX?: Divide code with extension?
-
-// TODO: title (dependent of what mode?)
-
-// TODO: Fix both addition and subtraction working
 
 let nxtLvlNotificationKey = "co.HenrikJangefelt.nxtLvl"
 
@@ -60,12 +75,17 @@ class EasyMathVC: UIViewController {
 
     
     
-    var audioPlayer : AVAudioPlayer!
+    @IBOutlet var btmCardViews: [UIView]!
+    
+    
+    
+    
     var selectedSoundFileName = "Click"
+    var mathMode = CalculationMode.addition
+    var audioPlayer: AVAudioPlayer! // TODO: make optional
     var calculator: Calculator?
     
-    var mathMode = CalculationMode.addition
-    var cards = [Card]() // TODO: Make optional??
+    var cards = [Card]() // TODO: Make optional?? || sätt arrayen till empty i deinit
     var topCards = [Card]() // TODO: property in object (isTopCard)
     
     var score = 0
@@ -96,7 +116,12 @@ class EasyMathVC: UIViewController {
         
         saveCardPositions() // Saves the original position of the bottom cards
         //nextLevel()
+        
+     
     }
+    
+    
+    
     
     
     func createObserver() {
@@ -106,49 +131,36 @@ class EasyMathVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(EasyMathVC.updateLevel(notification:)), name: name, object: nil)
     }
     
+    
     @objc func updateLevel(notification: NSNotification) {
         nextLevel()
-        originalCardPositions()
+        returnCardsToPositions()
     }
     
-    // Sets right background color based on CalculationMode
-    func setBackgroundColors(mathMode: CalculationMode) {
-        
-        view.backgroundColor = mathMode == .addition ? .additionLightBrown : .subtractionLightBlue
-        topView.backgroundColor = mathMode == .addition ? .additionBrown : .subtractionBlue
-        progressBarViewBackground.backgroundColor = mathMode == .addition ? .additionBrown : .subtractionBlue
-    }
     
+   
 
             
-    func setMathOperatorsImages(mathMode: CalculationMode) {
-                
-        for cardImage in cardImages {
-            
-            switch cardImage.tag {
-            case 8:
-                cardImage.image = mathMode == .addition ? UIImage(named: "NumberPlus") : UIImage(named: "NumberMinus")
-            case 9:
-                cardImage.image = mathMode == .addition ? UIImage(named: "NumberEqual") : UIImage(named: "NumberEqualMinus")
-            default:
-                break
-            }
-        }
-    }
+
+    
+    
+    
     
     
     func createBottomCards(mathMode: CalculationMode) {
            
-           let subtractionMode = mathMode == .addition ? 0 : 1
+        let subtractionMode = mathMode == .addition ? 0 : 1
            
-           for cardNumber in 1...5 {
-              let card = Card()
-              card.number = cardNumber - subtractionMode
-              card.updateImageName(mathMode: mathMode)
-              cards.append(card)
-           }
-       }
+        for cardNumber in 1...5 {
+            let card = Card()
+            card.number = cardNumber - subtractionMode
+            card.updateImageName(mathMode: mathMode)
+            cards.append(card)
+        }
+    }
  
+    
+    
     func createTopCards() {
         
         let firstTopCard = Card()
@@ -158,52 +170,10 @@ class EasyMathVC: UIViewController {
     }
     
  
+ 
+    
     
 
-    // Puts right image on the card
-    func updateCardImages() {
-        
-        for cardImage in cardImages {
-            
-            switch cardImage.tag {
-                
-            case 1:
-                cardImage.image = UIImage(named: cards[0].imageName)
-            case 2:
-                cardImage.image = UIImage(named: cards[1].imageName)
-            case 3:
-                cardImage.image = UIImage(named: cards[2].imageName)
-            case 4:
-                cardImage.image = UIImage(named: cards[3].imageName)
-            case 5:
-                cardImage.image = UIImage(named: cards[4].imageName)
-            case 6:
-                cardImage.image = UIImage(named: topCards[0].imageName)
-            case 7:
-                cardImage.image = UIImage(named: topCards[1].imageName)
-            default:
-                break
-            }
-        }
-    }
-    
-    
-    // Updates the label text
-    func updateTopCardLabels() {
-          
-        for label in cardLabels {
-            
-            switch label.tag {
-            case 6:
-                print("\(topCards[0].numberText)")
-                label.text = topCards[0].number.convertIntToString()
-            case 7:
-                label.text = topCards[1].number.convertIntToString()
-            default:
-                continue
-            }
-        }
-    }
     
     
     // TODO: improve
@@ -242,7 +212,7 @@ class EasyMathVC: UIViewController {
         
         updateCardImages()
         updateTopCardLabels()
-        disableOrEnableCardInteractions(isDisabled: true) // Enable moving/turning cards again
+        //disableOrEnableCardInteractions(isDisabled: true) // Enable moving/turning cards again
         
         // Hide UI elements
         WrongImage.isHidden = true
@@ -256,18 +226,19 @@ class EasyMathVC: UIViewController {
     
 
     
+    // BEHÖVS det att flippa tillbaka topCards? Sätt istället isFlipped till false
     // TODO: improve
     // Turns the cards back to the front side
     func flipCardsBack() {
         
-        var cardViewIndex = 0
+        //var cardViewIndex = 0
         
-        for card in cards {
+        for (index, card) in cards.enumerated() {
             if card.isFlipped {
-                card.flipCardBack(cardView: cardViews[cardViewIndex])
+                card.flipCardBack(cardView: cardViews[index])
                 card.updateImageName(mathMode: mathMode)
             }
-            cardViewIndex += 1
+            //cardViewIndex += 1
         }
         
         topCards[0].flipCardBack(cardView: cardViews[5])
@@ -277,16 +248,16 @@ class EasyMathVC: UIViewController {
     
     
     // Resets the cards to their original position
-    func originalCardPositions() {
+    func returnCardsToPositions() {
     
-        var cardIndex = 0
+        //var cardIndex = 0
         
-        for cardView in cardViews where cardView.tag <= 5 && cardView.tag > 0 {
+        for (index, cardView) in cardViews.enumerated() where cardView.tag <= 5 && cardView.tag > 0 {
             
             
             UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             
-                cardView.center = self.cards[cardIndex].originalPosition!
+                cardView.center = self.cards[index].originalPosition!
 
             })
             
@@ -301,7 +272,8 @@ class EasyMathVC: UIViewController {
                 print("ERROR!!! origCard pos")
                 return }
             cardView.center = position*/
-            cardIndex += 1
+           
+            //cardIndex += 1
         }
     }
     
@@ -309,12 +281,12 @@ class EasyMathVC: UIViewController {
     // Saves original position for cards
     func saveCardPositions() {
         
-        var cardIndex = 0
+        //var cardIndex = 0
         
         // For all the cardViews with tags between 1 and 5 (the bottom cards)
-        for cardView in cardViews where cardView.tag <= 5 && cardView.tag > 0 {
-            cards[cardIndex].originalPosition = cardView.center
-            cardIndex += 1
+        for (index, cardView) in cardViews.enumerated() where cardView.tag <= 5 && cardView.tag > 0 {
+            cards[index].originalPosition = cardView.center
+            //cardIndex += 1
         }
     }
   
@@ -336,14 +308,7 @@ class EasyMathVC: UIViewController {
    
 
     
-    // Rounded corners, border width (and color) for Cards
-    func customizeCards() {
-        
-        for cardView in cardViews {
-            cardView.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray)
-        }
-    }
-    
+
     
     
     
@@ -370,34 +335,7 @@ class EasyMathVC: UIViewController {
     
    
     
-    
-    // Adds tap recognizer to all card images
-    func addImageTapGesture() {
-        
-        for cardImage in cardImages {
-            
-            let cardTap = UITapGestureRecognizer(target: self, action: #selector(cardTapped(gesture:)))
-            
-            cardImage.addGestureRecognizer(cardTap)
-        }
-    }
-    
 
-    @objc func cardTapped(gesture: UITapGestureRecognizer) {
-        
-        for cardView in cardViews where gesture.view?.tag == cardView.tag {
-            
-            if gesture.view as? UIImageView != nil {
-
-                if cardView.tag <= 5 {
-                    cards[cardView.tag - 1].turnCard(cardView: cardView, mode: mathMode)
-                } else { // TODO: Improve/ make better
-                    topCards[cardView.tag - 6].turnCard(cardView: cardView, mode: mathMode)
-                }
-            }
-            updateCardImages()
-        }
-    }
     
     
     
@@ -416,24 +354,7 @@ class EasyMathVC: UIViewController {
     
     
     
-     // Returns closure expression for updating progressbar
-     func updateProgressBar(isRightAnswer: Bool) -> (CGFloat, CGFloat) -> CGFloat {
-         return isRightAnswer ? increaseProgress : decreaseProgress
-     }
-     
-     // Closure expression for increasing progressbar
-     let increaseProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
-                 
-         return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.1)
-     }
-     
-     // Closure expression for decreasing progressbar
-     let decreaseProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
-         
-         return barWidth < 0 ? 0.0 : barWidth - (containerWidth * 0.1)
-     }
-     
-    
+ 
     
     
     
@@ -483,7 +404,7 @@ class EasyMathVC: UIViewController {
         //if score >= 10 { score -= 10 }
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
-            self.originalCardPositions()
+            self.returnCardsToPositions()
             self.WrongImage.isHidden = false
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
@@ -516,6 +437,7 @@ class EasyMathVC: UIViewController {
                self.view.layoutIfNeeded()
                //self.scoreLabel.text = "Score: \(self.score)"
         }
+        disableOrEnableCardInteractions(isDisabled: true) // Enable moving/turning cards again
     }
  
     
@@ -534,6 +456,7 @@ class EasyMathVC: UIViewController {
         
         let cardNumber = cards[currentView.tag - 1].number // Dragged card's number
                 
+        // TODO: replace topCards[0].number med topCards.first?.number (unwrappa)
         // TODO: FIX calcMode: calcualtor.addition
         if calculator.validateMathResult(calcMode: calculator.addition, numbOne: topCards[0].number, numbTwo: topCards[1].number, answer: cardNumber) {
             
@@ -546,17 +469,7 @@ class EasyMathVC: UIViewController {
     }
     
     
-    // Function for moving (card) view
-    func moveView(currentView: UIView, sender: UIPanGestureRecognizer) {
-             
-        let translation = sender.translation(in: view)
 
-        currentView.center = CGPoint(x: currentView.center.x + translation.x, y: currentView.center.y + translation.y)
-        sender.setTranslation(CGPoint.zero, in: view)
-             
-        view.bringSubviewToFront(currentView)
-    }
-    
     
     func getAnswerView() -> UIView? {
            
@@ -567,38 +480,22 @@ class EasyMathVC: UIViewController {
     }
     
     
-    // Handles different gesture recognizer states
-    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
-        
-        guard let handledCard = sender.view else { return }
-        
-        switch sender.state {
-            
-        case .began, .changed:
-            
-            moveView(currentView: handledCard, sender: sender)
-            WrongImage.isHidden = true
-            
-        case .ended:
-            
-            if handledCard.frame.intersects(getAnswerView()!.frame) {
-                soundEffects()
-                validateDraggedAnswer(currentView: handledCard, answerView: getAnswerView()!)
-            } else {
-                originalCardPositions()
-            }
-        default:
-            break
-        }
-    }
+
       
+    
+    
+    
     
     @IBAction func goBackPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    
+    
+    
     deinit {
-           NotificationCenter.default.removeObserver(self)
+        calculator = nil
+        NotificationCenter.default.removeObserver(self)
        }
     
     

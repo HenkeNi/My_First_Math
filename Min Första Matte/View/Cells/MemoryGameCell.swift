@@ -10,8 +10,10 @@ import UIKit
 
 class MemoryGameCell: UICollectionViewCell {
     
-    @IBOutlet weak var cardFace: UIImageView!
-    @IBOutlet weak var cardBack: UIImageView!
+    @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var cardImage: UIImageView!
+    
+    
     
     // Lägg logik för turn (en imageView samt remove i klassen för card)
     var card: MemoryCard?
@@ -22,43 +24,37 @@ class MemoryGameCell: UICollectionViewCell {
         
         if card.isPaired == true {
         
-        // isHidden istället???
-        cardFace.alpha = 0
-        cardBack.alpha = 0
+            // isHidden istället???
+            
+            cardView.alpha = 0
         
-        return
-    } else {
-        cardFace.alpha = 1
-        cardBack.alpha = 1
-    }
+            return
+        } else {
+            cardView.alpha = 1
+        }
         
-        cardFace.image = UIImage(named: card.imageName)
+        cardImage.image = UIImage(named: card.imageName)
         
         if card.isFlipped == true {
             
-            UIView.transition(from: cardBack, to: cardFace, duration: 0, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
-        } else {
-            UIView.transition(from: cardFace, to: cardBack, duration: 0, options: [.showHideTransitionViews, .transitionFlipFromRight], completion: nil)
-        }
-    }
-    
-    func turn() {
-        
-          UIView.transition(from: cardBack, to: cardFace, duration: 0.3, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
-        
-    }
-    
-    func turnBack() {
-        
-        // Skapar en delay innan korten vänds tillbaka
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            card.turnCard(cardView: cardView)
             
-            UIView.transition(from: self.cardFace, to: self.cardBack, duration: 0.3, options: [.transitionFlipFromRight, .showHideTransitionViews], completion: nil)
+            /*UIView.transition(from: cardBack, to: cardFace, duration: 0, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)*/
+        } else {
+            
+            card.turnCard(cardView: cardView)
+            //card.flipCardBack()
+            /*UIView.transition(from: cardFace, to: cardBack, duration: 0, options: [.showHideTransitionViews, .transitionFlipFromRight], completion: nil)*/
         }
     }
+    
+    
+    
+    
+
         
         
-    func remove() {
+    /*func remove() {
         cardBack.alpha = 0
             
         // Ta bort båda korten
@@ -68,5 +64,5 @@ class MemoryGameCell: UICollectionViewCell {
                 
         }, completion: nil)
             
-    }
+    }*/
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Henrik Jangefelt Nilsson. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // TODO: Make a superClass called Card the subclasses like GameCard etc.??
 // TODO: Combine with Card class
@@ -15,6 +15,7 @@ class MemoryCard {
     var imageName = ""
     var isFlipped = false
     var isPaired = false
+    var imageNumber = 0
     
     
     
@@ -23,10 +24,10 @@ class MemoryCard {
         var randomNumbArray = [Int]()
         var cardDeckArray = [MemoryCard]()
         
-        // For deck with 10 (pairs of) Cards
-        while randomNumbArray.count < 10 {
+        // For deck with 8 (pairs of) Cards
+        while randomNumbArray.count < 8 {
             
-            let randomNumb = Int.random(in: 0...10)
+            let randomNumb = Int.random(in: 0...8)
             
             // If the randomNumber is not already in the array
             if !randomNumbArray.contains(randomNumb) {
@@ -58,14 +59,25 @@ class MemoryCard {
     }
     
     
-    func turnCard() {
+    func turnCard(cardView: UIView) {
+        
+        imageName = isFlipped ? "Card\(imageNumber)" : "CardBack"
+        isFlipped = !isFlipped
+        
+        UIView.transition(with: cardView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
         
     }
     
     
     func removeCard() {
         
+        // TEST
+              // UIView.transition(with: cardView, duration: 0.6, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+               //imageName = "Number\(number)"
     }
+    
+    
+ 
     
     
 }

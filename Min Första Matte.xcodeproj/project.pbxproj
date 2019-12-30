@@ -12,7 +12,15 @@
 		203622A021C4491200D678E9 /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036229F21C4491200D678E9 /* GuessNumberViewController.swift */; };
 		2043014623B57BC7006CB5F6 /* EasyMathVC+panGest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043014523B57BC7006CB5F6 /* EasyMathVC+panGest.swift */; };
 		2043014823B6B080006CB5F6 /* EasyMathVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043014723B6B080006CB5F6 /* EasyMathVC+Layout.swift */; };
+		2043014B23B97730006CB5F6 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043014A23B97730006CB5F6 /* CardModel.swift */; };
+		2043014E23B97E40006CB5F6 /* MatchingGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043014D23B97E40006CB5F6 /* MatchingGameVC.swift */; };
+		2043015223B97E7D006CB5F6 /* MatchingGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2043015123B97E7D006CB5F6 /* MatchingGame.storyboard */; };
+		2043015423B982E8006CB5F6 /* MatchingGameVC+CVDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043015323B982E8006CB5F6 /* MatchingGameVC+CVDelegate.swift */; };
+		2043015623B982FB006CB5F6 /* MatchingGameVC+CVDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043015523B982FB006CB5F6 /* MatchingGameVC+CVDataSource.swift */; };
+		2043015823B983B1006CB5F6 /* CardGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043015723B983B1006CB5F6 /* CardGenerator.swift */; };
+		2043015A23B984B2006CB5F6 /* MatchingGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043015923B984B2006CB5F6 /* MatchingGameCell.swift */; };
 		2080589C2328C7C9005D53E1 /* NumberRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080589B2328C7C8005D53E1 /* NumberRandomizer.swift */; };
+		208DECFE23BAAD6300F9D214 /* MatchingGameVC+CVFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DECFD23BAAD6300F9D214 /* MatchingGameVC+CVFlowLayout.swift */; };
 		209269E52194B79F00C5A341 /* Click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 209269E42194B79E00C5A341 /* Click.wav */; };
 		20A8BA1F218DD1AE003FEA75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8BA1E218DD1AE003FEA75 /* AppDelegate.swift */; };
 		20A8BA24218DD1AE003FEA75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A8BA22218DD1AE003FEA75 /* Main.storyboard */; };
@@ -33,10 +41,7 @@
 		20E4D32E230136D1005D2364 /* MemoryGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E4D32D230136D1005D2364 /* MemoryGameCell.swift */; };
 		20E4D3302301379C005D2364 /* MemoryGameVC+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E4D32F2301379C005D2364 /* MemoryGameVC+CollectionView.swift */; };
 		20EB47BB23A1AF8B00124FC7 /* PanGestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB47BA23A1AF8B00124FC7 /* PanGestVC.swift */; };
-		20F2709222A06C6000917EBF /* Addition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F2709122A06C6000917EBF /* Addition.storyboard */; };
-		20F2709522A06CDC00917EBF /* Subtraction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F2709422A06CDC00917EBF /* Subtraction.storyboard */; };
 		20F2709722A06D4400917EBF /* Memory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F2709622A06D4400917EBF /* Memory.storyboard */; };
-		20F6101E21E4D604004AE027 /* SubtractionIntermediateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F6101D21E4D604004AE027 /* SubtractionIntermediateVC.swift */; };
 		20F7069022FB651B00FE0183 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F7068F22FB651B00FE0183 /* Card.swift */; };
 		20F7069222FBA98300FE0183 /* EasyMath.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F7069122FBA98300FE0183 /* EasyMath.storyboard */; };
 		20F7069422FBA9AD00FE0183 /* EasyMathVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F7069322FBA9AD00FE0183 /* EasyMathVC.swift */; };
@@ -62,7 +67,15 @@
 		2036229F21C4491200D678E9 /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
 		2043014523B57BC7006CB5F6 /* EasyMathVC+panGest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+panGest.swift"; sourceTree = "<group>"; };
 		2043014723B6B080006CB5F6 /* EasyMathVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+Layout.swift"; sourceTree = "<group>"; };
+		2043014A23B97730006CB5F6 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		2043014D23B97E40006CB5F6 /* MatchingGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingGameVC.swift; sourceTree = "<group>"; };
+		2043015123B97E7D006CB5F6 /* MatchingGame.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MatchingGame.storyboard; sourceTree = "<group>"; };
+		2043015323B982E8006CB5F6 /* MatchingGameVC+CVDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchingGameVC+CVDelegate.swift"; sourceTree = "<group>"; };
+		2043015523B982FB006CB5F6 /* MatchingGameVC+CVDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchingGameVC+CVDataSource.swift"; sourceTree = "<group>"; };
+		2043015723B983B1006CB5F6 /* CardGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGenerator.swift; sourceTree = "<group>"; };
+		2043015923B984B2006CB5F6 /* MatchingGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingGameCell.swift; sourceTree = "<group>"; };
 		2080589B2328C7C8005D53E1 /* NumberRandomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberRandomizer.swift; sourceTree = "<group>"; };
+		208DECFD23BAAD6300F9D214 /* MatchingGameVC+CVFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchingGameVC+CVFlowLayout.swift"; sourceTree = "<group>"; };
 		209269E42194B79E00C5A341 /* Click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Click.wav; sourceTree = "<group>"; };
 		20A8BA1B218DD1AE003FEA75 /* Min Första Matte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Min Första Matte.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A8BA1E218DD1AE003FEA75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,17 +91,14 @@
 		20C19EF52305D5D10009242D /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		20CAC09621F0BA20007E3B35 /* MakeViewAppearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeViewAppearViewController.swift; sourceTree = "<group>"; };
 		20D362B721A75E8900931C6C /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionIntermediateVC.swift; sourceTree = "<group>"; };
+		20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdditionIntermediateVC.swift; path = ../Controller/AdditionIntermediateVC.swift; sourceTree = "<group>"; };
 		20E4D32222FF9BF1005D2364 /* MemoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCard.swift; sourceTree = "<group>"; };
 		20E4D32623013585005D2364 /* MemoryGame.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MemoryGame.storyboard; sourceTree = "<group>"; };
-		20E4D328230135A4005D2364 /* MemoryGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameVC.swift; sourceTree = "<group>"; };
+		20E4D328230135A4005D2364 /* MemoryGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemoryGameVC.swift; path = ../MemoryGameVC.swift; sourceTree = "<group>"; };
 		20E4D32D230136D1005D2364 /* MemoryGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameCell.swift; sourceTree = "<group>"; };
-		20E4D32F2301379C005D2364 /* MemoryGameVC+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGameVC+CollectionView.swift"; sourceTree = "<group>"; };
+		20E4D32F2301379C005D2364 /* MemoryGameVC+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MemoryGameVC+CollectionView.swift"; path = "../MemoryGameVC+CollectionView.swift"; sourceTree = "<group>"; };
 		20EB47BA23A1AF8B00124FC7 /* PanGestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGestVC.swift; sourceTree = "<group>"; };
-		20F2709122A06C6000917EBF /* Addition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Addition.storyboard; sourceTree = "<group>"; };
-		20F2709422A06CDC00917EBF /* Subtraction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Subtraction.storyboard; sourceTree = "<group>"; };
-		20F2709622A06D4400917EBF /* Memory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Memory.storyboard; sourceTree = "<group>"; };
-		20F6101D21E4D604004AE027 /* SubtractionIntermediateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtractionIntermediateVC.swift; sourceTree = "<group>"; };
+		20F2709622A06D4400917EBF /* Memory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Memory.storyboard; path = ../View/Storyboards/Memory.storyboard; sourceTree = "<group>"; };
 		20F7068F22FB651B00FE0183 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		20F7069122FBA98300FE0183 /* EasyMath.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EasyMath.storyboard; sourceTree = "<group>"; };
 		20F7069322FBA9AD00FE0183 /* EasyMathVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EasyMathVC.swift; path = ../EasyMathVC.swift; sourceTree = "<group>"; };
@@ -146,6 +156,26 @@
 			path = "Basic Math";
 			sourceTree = "<group>";
 		};
+		2043014923B7E0B3006CB5F6 /* Memory Game */ = {
+			isa = PBXGroup;
+			children = (
+				20E4D328230135A4005D2364 /* MemoryGameVC.swift */,
+				20E4D32F2301379C005D2364 /* MemoryGameVC+CollectionView.swift */,
+			);
+			path = "Memory Game";
+			sourceTree = "<group>";
+		};
+		2043014C23B97E29006CB5F6 /* Matching Game */ = {
+			isa = PBXGroup;
+			children = (
+				2043014D23B97E40006CB5F6 /* MatchingGameVC.swift */,
+				2043015323B982E8006CB5F6 /* MatchingGameVC+CVDelegate.swift */,
+				2043015523B982FB006CB5F6 /* MatchingGameVC+CVDataSource.swift */,
+				208DECFD23BAAD6300F9D214 /* MatchingGameVC+CVFlowLayout.swift */,
+			);
+			path = "Matching Game";
+			sourceTree = "<group>";
+		};
 		20A8BA12218DD1AE003FEA75 = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +213,7 @@
 				20A8BA31218DD2BB003FEA75 /* AGameOfCardsViewController.swift */,
 				20A8BA33218DD2DF003FEA75 /* CollectionViewCell.swift */,
 				20A8BA35218DD2F1003FEA75 /* BuildACard.swift */,
+				20F2709622A06D4400917EBF /* Memory.storyboard */,
 			);
 			path = "Match Game";
 			sourceTree = "<group>";
@@ -218,6 +249,7 @@
 			children = (
 				20E4D32D230136D1005D2364 /* MemoryGameCell.swift */,
 				20F884202346A46C004E02D5 /* PuzzleCell.swift */,
+				2043015923B984B2006CB5F6 /* MatchingGameCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -228,12 +260,10 @@
 				20A8BA22218DD1AE003FEA75 /* Main.storyboard */,
 				20F7069122FBA98300FE0183 /* EasyMath.storyboard */,
 				20E4D32623013585005D2364 /* MemoryGame.storyboard */,
-				20F2709122A06C6000917EBF /* Addition.storyboard */,
-				20F2709422A06CDC00917EBF /* Subtraction.storyboard */,
 				202CC8CC22A070320038E852 /* Settings.storyboard */,
-				20F2709622A06D4400917EBF /* Memory.storyboard */,
 				20F88412234511C2004E02D5 /* CardGame.storyboard */,
 				20F8841C2346A2C0004E02D5 /* PuzzleGame.storyboard */,
+				2043015123B97E7D006CB5F6 /* MatchingGame.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -243,6 +273,7 @@
 			children = (
 				202CC8CF22A082E30038E852 /* TestLab.storyboard */,
 				20D362B721A75E8900931C6C /* TestViewController.swift */,
+				20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */,
 				20CAC09621F0BA20007E3B35 /* MakeViewAppearViewController.swift */,
 				20EB47BA23A1AF8B00124FC7 /* PanGestVC.swift */,
 			);
@@ -260,6 +291,8 @@
 				20F8840E2344D292004E02D5 /* CardDeck.swift */,
 				20F8841A234699AC004E02D5 /* CardPlayer.swift */,
 				20F8842623491F42004E02D5 /* puzzlePiece.swift */,
+				2043014A23B97730006CB5F6 /* CardModel.swift */,
+				2043015723B983B1006CB5F6 /* CardGenerator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -279,14 +312,12 @@
 		20F73D5A229700C1008A8071 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2043014C23B97E29006CB5F6 /* Matching Game */,
+				2043014923B7E0B3006CB5F6 /* Memory Game */,
 				2043014423B57A89006CB5F6 /* Basic Math */,
 				20C19EF12304C5270009242D /* Extensions */,
 				20A8BA1E218DD1AE003FEA75 /* AppDelegate.swift */,
 				20F8840C2343E2AE004E02D5 /* StartVC.swift */,
-				20E4D328230135A4005D2364 /* MemoryGameVC.swift */,
-				20E4D32F2301379C005D2364 /* MemoryGameVC+CollectionView.swift */,
-				20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */,
-				20F6101D21E4D604004AE027 /* SubtractionIntermediateVC.swift */,
 				20F88414234512D1004E02D5 /* CardGameVC.swift */,
 				20F8841E2346A309004E02D5 /* PuzzleGameVC.swift */,
 				20F88424234733CF004E02D5 /* PuzzleGameVC+CollectionView.swift */,
@@ -354,15 +385,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				20F7069222FBA98300FE0183 /* EasyMath.storyboard in Resources */,
-				20F2709222A06C6000917EBF /* Addition.storyboard in Resources */,
 				202CC8D022A082E30038E852 /* TestLab.storyboard in Resources */,
 				20F2709722A06D4400917EBF /* Memory.storyboard in Resources */,
 				209269E52194B79F00C5A341 /* Click.wav in Resources */,
 				202CC8CD22A070320038E852 /* Settings.storyboard in Resources */,
 				20F8841D2346A2C0004E02D5 /* PuzzleGame.storyboard in Resources */,
 				20A8BA29218DD1AF003FEA75 /* LaunchScreen.storyboard in Resources */,
+				2043015223B97E7D006CB5F6 /* MatchingGame.storyboard in Resources */,
 				20E4D32723013585005D2364 /* MemoryGame.storyboard in Resources */,
-				20F2709522A06CDC00917EBF /* Subtraction.storyboard in Resources */,
 				20C19EF42305929B0009242D /* AlertView.xib in Resources */,
 				20F88413234511C2004E02D5 /* CardGame.storyboard in Resources */,
 				20A8BA26218DD1AF003FEA75 /* Assets.xcassets in Resources */,
@@ -378,7 +408,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				20D362BA21A9EF5800931C6C /* AdditionIntermediateVC.swift in Sources */,
+				2043014E23B97E40006CB5F6 /* MatchingGameVC.swift in Sources */,
 				20F8840F2344D292004E02D5 /* CardDeck.swift in Sources */,
+				2043015623B982FB006CB5F6 /* MatchingGameVC+CVDataSource.swift in Sources */,
 				20E4D329230135A4005D2364 /* MemoryGameVC.swift in Sources */,
 				20F884212346A46C004E02D5 /* PuzzleCell.swift in Sources */,
 				20F88415234512D1004E02D5 /* CardGameVC.swift in Sources */,
@@ -394,13 +426,16 @@
 				20F88425234733CF004E02D5 /* PuzzleGameVC+CollectionView.swift in Sources */,
 				20F884112344D39B004E02D5 /* GameCard.swift in Sources */,
 				20F7069022FB651B00FE0183 /* Card.swift in Sources */,
+				2043015423B982E8006CB5F6 /* MatchingGameVC+CVDelegate.swift in Sources */,
 				20F8842723491F43004E02D5 /* puzzlePiece.swift in Sources */,
+				2043015823B983B1006CB5F6 /* CardGenerator.swift in Sources */,
+				2043015A23B984B2006CB5F6 /* MatchingGameCell.swift in Sources */,
 				20A8BA32218DD2BB003FEA75 /* AGameOfCardsViewController.swift in Sources */,
 				2043014823B6B080006CB5F6 /* EasyMathVC+Layout.swift in Sources */,
 				20E4D3302301379C005D2364 /* MemoryGameVC+CollectionView.swift in Sources */,
 				2080589C2328C7C9005D53E1 /* NumberRandomizer.swift in Sources */,
-				20F6101E21E4D604004AE027 /* SubtractionIntermediateVC.swift in Sources */,
 				20EB47BB23A1AF8B00124FC7 /* PanGestVC.swift in Sources */,
+				2043014B23B97730006CB5F6 /* CardModel.swift in Sources */,
 				20A8BA34218DD2DF003FEA75 /* CollectionViewCell.swift in Sources */,
 				20A8BA36218DD2F1003FEA75 /* BuildACard.swift in Sources */,
 				20E4D32322FF9BF1005D2364 /* MemoryCard.swift in Sources */,
@@ -409,6 +444,7 @@
 				20CAC09721F0BA20007E3B35 /* MakeViewAppearViewController.swift in Sources */,
 				20F7069422FBA9AD00FE0183 /* EasyMathVC.swift in Sources */,
 				20D362B821A75E8900931C6C /* TestViewController.swift in Sources */,
+				208DECFE23BAAD6300F9D214 /* MatchingGameVC+CVFlowLayout.swift in Sources */,
 				20F8841F2346A309004E02D5 /* PuzzleGameVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

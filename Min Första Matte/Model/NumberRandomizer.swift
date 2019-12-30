@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Extension av INt istället?
 // TODO: Lägg till 0 för plus?? 4 + 0 etc..
 // TODO: not same numbers in a row
 class NumberRandomizer {

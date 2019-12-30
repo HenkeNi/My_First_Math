@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: superklass av Card -> subklasser, memoryCard, MathCard etc
 // TODO: UIview property?
 // TODO: Combine Different Card Classes
 // TODO: Make private variables, set and get

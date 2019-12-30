@@ -40,6 +40,11 @@ import AVFoundation
 // Bugg: Card vände sig på fel håll efter rätt svar (cardOirginalPositionc)
 
 
+// TODO: Randomerade tal inte samma som förra gången (spara sista)
+
+
+// TODO: randomera btm tal (en optional parameter -> kort som måste finnas med (rätt svar))
+
 
 // TODO: I addition lägg till x + 0. Så man får använda nr 1 nån gång (1 + 0 = 1)?
 
@@ -54,7 +59,6 @@ import AVFoundation
 // TODO: Function for updating labels Lägg i klassen
 // TODO: Fix score label
 
-// TODO: Randomerade tal inte samma som förra gången (spara sista)
 
 
 let nxtLvlNotificationKey = "co.HenrikJangefelt.nxtLvl"
@@ -72,15 +76,17 @@ class EasyMathVC: UIViewController {
     @IBOutlet weak var progressBarContainer: UIView!
     @IBOutlet weak var progressBarWidth: NSLayoutConstraint!
     @IBOutlet weak var scoreLabel: UILabel!
-
-    
-    
-    @IBOutlet var btmCardViews: [UIView]!
     
     
     
+    @IBOutlet var cardHandViews: [UIView]!  //@IBOutlet var btmCardViews: [UIView]!
     
-    var selectedSoundFileName = "Click"
+    var cardHand = [Card]()
+    
+    
+    var equationNumbers = [Card]()
+    
+    
     var mathMode = CalculationMode.addition
     var audioPlayer: AVAudioPlayer! // TODO: make optional
     var calculator: Calculator?
@@ -90,7 +96,6 @@ class EasyMathVC: UIViewController {
     
     var score = 0
     
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,10 +120,10 @@ class EasyMathVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         saveCardPositions() // Saves the original position of the bottom cards
-        //nextLevel()
-        
-     
     }
+    
+    
+    
     
     
     
@@ -138,59 +143,41 @@ class EasyMathVC: UIViewController {
     }
     
     
-   
-
-            
-
     
     
     
     
     
-    func createBottomCards(mathMode: CalculationMode) {
-           
-        let subtractionMode = mathMode == .addition ? 0 : 1
-           
-        for cardNumber in 1...5 {
-            let card = Card()
-            card.number = cardNumber - subtractionMode
-            card.updateImageName(mathMode: mathMode)
-            cards.append(card)
-        }
-    }
- 
     
     
-    func createTopCards() {
-        
-        let firstTopCard = Card()
-        let secondTopCard = Card()
-        topCards.append(firstTopCard)
-        topCards.append(secondTopCard)
-    }
-    
- 
- 
     
     
-
+    
+    
+    
+    
+    
+    
     
     
     // TODO: improve
-    func getRandomNumbers() -> (Int, Int) {
+    func getRandomNumbers() -> (firstNumber: Int, secondNumber: Int) {
         let numberRandomizer = NumberRandomizer()
         
         let startNumber = mathMode == .addition ? 1 : 0
         let endNumber = mathMode == .addition ? 4 : 4
         let condition = mathMode == .addition ? numberRandomizer.additionCondition : numberRandomizer.subtractionCondition
         return numberRandomizer.numberRandomizer(startNumber: startNumber, endNumber: endNumber, condition: condition)
-
+        
     }
+    
+    
+    
     
     func nextLevel() {
         
         //scoreLabel.text = "Score: \(score)"
-
+        
         
         //let numberRandomizer = NumberRandomizer()
         
@@ -202,8 +189,8 @@ class EasyMathVC: UIViewController {
         
         let randomNumbers = getRandomNumbers()
         
-        topCards[0].number = randomNumbers.0
-        topCards[1].number = randomNumbers.1
+        topCards[0].number = randomNumbers.firstNumber
+        topCards[1].number = randomNumbers.secondNumber
         
         topCards[0].updateImageName(mathMode: mathMode)
         topCards[1].updateImageName(mathMode: mathMode)
@@ -218,16 +205,237 @@ class EasyMathVC: UIViewController {
         WrongImage.isHidden = true
         
         /*for card in cards where card.number == 8 {
-            
-        }*/
+         
+         }*/
         
     }
     
     
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Disable or enable pangesture of the cards
+    func disableOrEnableCardInteractions(isDisabled: Bool) {
+        
+        for cardView in cardViews {
+            cardView.isUserInteractionEnabled = isDisabled ? true : false
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func answerIsCorrect() {
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            AlertView.instance.showAlert(title: "Correct!", message: "That is the right number!", alertType: .success)
+        }
+        
+        //let updateProgress = updateProgressBar(isRightAnswer: true) // Sets update to be of type increaseProgress
+        //progressBarWidth.constant = updateProgress(progressBarWidth.constant, progressBarContainer.frame.size.width)
+        
+        
+        score += 10
+        
+        //originalCardPositions() // TEST
+        //nextLevel()
+        
+        UIView.animate(withDuration: 1) {
+            self.view.layoutIfNeeded()
+            //self.scoreLabel.text = "Score: \(self.score)"
+        }
+        
+    }
+    
+    
+    
+    
+    func answerIsIncorrect() {
+        
+        // Score ska inte kunna gå ner?
+        //if score >= 10 { score -= 10 }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
+            self.returnCardsToPositions()
+            self.WrongImage.isHidden = false
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+                self.WrongImage.isHidden = true
+            }
+        }
+        //nextLevel()
+        UIView.animate(withDuration: 1) {
+            self.view.layoutIfNeeded()
+            //self.scoreLabel.text = "Score: \(self.score)"
+        }
+        
+        score += 10
+        print(score)
+        
+    }
+    
+    
+    
+    
+    
+    func handleAnswer(answerCorrect: Bool) {
+        
+        disableOrEnableCardInteractions(isDisabled: false)
+        answerCorrect ? answerIsCorrect() : answerIsIncorrect()
+        
+        
+        let progressBarUpdate = updateProgressBar(isRightAnswer: answerCorrect)
+        
+        progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width)
+        
+        UIView.animate(withDuration: 1) {
+            self.view.layoutIfNeeded()
+            //self.scoreLabel.text = "Score: \(self.score)"
+        }
+        disableOrEnableCardInteractions(isDisabled: true) // Enable moving/turning cards again
+    }
+    
+    
+    
+    
+    
+    // Check if dragged card is the correct one
+    func validateDraggedAnswer(currentView: UIView, answerView: UIView) {
+        
+        guard let calculator = calculator else { return } // Unwrap instance of calculator
+        
+        // Position the draggedCard in the answerView
+        UIView.animate(withDuration: 0.2) {
+            currentView.center = answerView.center
+        }
+        
+        let cardNumber = cards[currentView.tag - 1].number // Dragged card's number
+        
+        // TODO: replace topCards[0].number med topCards.first?.number (unwrappa)
+        // TODO: FIX calcMode: calcualtor.addition
+        if calculator.validateMathResult(calcMode: calculator.addition, numbOne: topCards[0].number, numbTwo: topCards[1].number, answer: cardNumber) {
+            
+            handleAnswer(answerCorrect: true)
+            //answerIsCorrect() // Correct answer
+        } else {
+            handleAnswer(answerCorrect: false)
+            //answerIsIncorrect() // Wrong answer
+        }
+    }
+    
+    
+    
+    
+    func getAnswerView() -> UIView? {
+        
+        for cardView in cardViews where cardView.tag == 8 {
+            return cardView
+        }
+        return nil
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    func createBottomCards(mathMode: CalculationMode) {
+        
+        let subtractionMode = mathMode == .addition ? 0 : 1
+        
+        for cardNumber in 1...5 {
+            let card = Card()
+            card.number = cardNumber - subtractionMode
+            card.updateImageName(mathMode: mathMode)
+            cards.append(card)
+        }
+    }
+    
+    
+    
+    func createTopCards() {
+        
+        /*let firstTopCard = Card()
+         let secondTopCard = Card()
+         topCards.append(firstTopCard)
+         topCards.append(secondTopCard)*/
+        topCards.append(Card())
+        topCards.append(Card())
+        
+    }
+    
+    
+    
+    
+    
     
     // BEHÖVS det att flippa tillbaka topCards? Sätt istället isFlipped till false
     // TODO: improve
+    // RENAME
     // Turns the cards back to the front side
     func flipCardsBack() {
         
@@ -249,239 +457,37 @@ class EasyMathVC: UIViewController {
     
     // Resets the cards to their original position
     func returnCardsToPositions() {
-    
-        //var cardIndex = 0
         
-        for (index, cardView) in cardViews.enumerated() where cardView.tag <= 5 && cardView.tag > 0 {
-            
+        for (index, cardView) in cardHandViews.enumerated() {
             
             UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-            
+                
                 cardView.center = self.cards[index].originalPosition!
-
             })
-            
-            /*UIView.animate(withDuration: 0.3) {
-                cardView.center = self.cards[cardIndex].originalPosition!
-            }*/
-            
-            
-            
-            
-            /*guard let position = cards[cardIndex].originalPosition else {
-                print("ERROR!!! origCard pos")
-                return }
-            cardView.center = position*/
-           
-            //cardIndex += 1
         }
     }
     
-
+    
     // Saves original position for cards
     func saveCardPositions() {
         
-        //var cardIndex = 0
-        
-        // For all the cardViews with tags between 1 and 5 (the bottom cards)
-        for (index, cardView) in cardViews.enumerated() where cardView.tag <= 5 && cardView.tag > 0 {
+        for (index, cardView) in cardHandViews.enumerated() {
             cards[index].originalPosition = cardView.center
-            //cardIndex += 1
-        }
-    }
-  
-    
-    
-    
-    
-    
-    
-       // Soundeffects for placing cards
-       func soundEffects() {
-           let soundURL = Bundle.main.url(forResource: selectedSoundFileName, withExtension: "wav")
-           
-           audioPlayer = try! AVAudioPlayer(contentsOf: soundURL!)
-           
-           audioPlayer.play()
-       }
-    
-   
-
-    
-
-    
-    
-    
- 
-    
- 
- 
-    
-    
-    // Disable or enable pangesture of the cards
-       func disableOrEnableCardInteractions(isDisabled: Bool) {
-           
-           for cardView in cardViews {
-               cardView.isUserInteractionEnabled = isDisabled ? true : false
-           }
-       }
-    
-    
-    
-    
-    
-
-
-    
-   
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
-    
-
-    
-    
-    
-    func answerIsCorrect() {
-
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            AlertView.instance.showAlert(title: "Correct!", message: "That is the right number!", alertType: .success)
-        }
-
-        //let updateProgress = updateProgressBar(isRightAnswer: true) // Sets update to be of type increaseProgress
-        //progressBarWidth.constant = updateProgress(progressBarWidth.constant, progressBarContainer.frame.size.width)
-        
-        
-          score += 10
-
-          //originalCardPositions() // TEST
-        //nextLevel()
-        
-        UIView.animate(withDuration: 1) {
-            self.view.layoutIfNeeded()
-            //self.scoreLabel.text = "Score: \(self.score)"
-        }
-      
-      }
-      
-    
-    
-    
-      func answerIsIncorrect() {
-        
-        // Score ska inte kunna gå ner?
-        //if score >= 10 { score -= 10 }
-
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
-            self.returnCardsToPositions()
-            self.WrongImage.isHidden = false
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-                self.WrongImage.isHidden = true
-            }
-        }
-        //nextLevel()
-        UIView.animate(withDuration: 1) {
-            self.view.layoutIfNeeded()
-            //self.scoreLabel.text = "Score: \(self.score)"
-        }
-    
-      }
-    
-    
-    
-    
-    
-    func handleAnswer(answerCorrect: Bool) {
-    
-        disableOrEnableCardInteractions(isDisabled: false)
-        answerCorrect ? answerIsCorrect() : answerIsIncorrect()
-        
-        
-        let progressBarUpdate = updateProgressBar(isRightAnswer: answerCorrect)
-
-        progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width)
-                
-        UIView.animate(withDuration: 1) {
-               self.view.layoutIfNeeded()
-               //self.scoreLabel.text = "Score: \(self.score)"
-        }
-        disableOrEnableCardInteractions(isDisabled: true) // Enable moving/turning cards again
-    }
- 
-    
-    
-    
-  
-    // Check if dragged card is the correct one
-    func validateDraggedAnswer(currentView: UIView, answerView: UIView) {
-       
-        guard let calculator = calculator else { return } // Unwrap instance of calculator
-        
-        // Position the draggedCard in the answerView
-        UIView.animate(withDuration: 0.2) {
-            currentView.center = answerView.center
-        }
-        
-        let cardNumber = cards[currentView.tag - 1].number // Dragged card's number
-                
-        // TODO: replace topCards[0].number med topCards.first?.number (unwrappa)
-        // TODO: FIX calcMode: calcualtor.addition
-        if calculator.validateMathResult(calcMode: calculator.addition, numbOne: topCards[0].number, numbTwo: topCards[1].number, answer: cardNumber) {
-            
-            handleAnswer(answerCorrect: true)
-            //answerIsCorrect() // Correct answer
-        } else {
-            handleAnswer(answerCorrect: false)
-            //answerIsIncorrect() // Wrong answer
         }
     }
     
     
-
     
-    func getAnswerView() -> UIView? {
-           
-        for cardView in cardViews where cardView.tag == 8 {
-            return cardView
-        }
-        return nil
+    // Soundeffects for placing cards
+    func soundEffects(soundName: String) {
+        let soundURL = Bundle.main.url(forResource: soundName, withExtension: "wav")
+        
+        audioPlayer = try! AVAudioPlayer(contentsOf: soundURL!)
+        
+        audioPlayer.play()
     }
     
     
-
-      
     
     
     
@@ -496,9 +502,42 @@ class EasyMathVC: UIViewController {
     deinit {
         calculator = nil
         NotificationCenter.default.removeObserver(self)
-       }
+    }
     
     
 }
 
 
+
+/*
+ 
+ 
+ @IBAction func scrollPicturesButton(_ sender: UIButton) {
+ if sender.tag == 1 {
+ 
+ if indexPath <= 0 {
+ indexPath = 0
+ } else {
+ indexPath -= 1
+ }
+ 
+ }
+ if sender.tag == 2 {
+ 
+ if indexPath < picturesArray.count - 4 {
+ indexPath += 1
+ } else {
+ indexPath = picturesArray.count - 4
+ }
+ 
+ 
+ 
+ }
+ firstImage.image = picturesArray[indexPath]
+ secondImage.image = picturesArray[indexPath + 1]
+ thirdImage.image = picturesArray[indexPath + 2]
+ fourthImage.image = picturesArray[indexPath + 3]
+ print(indexPath)
+ }
+ 
+ */

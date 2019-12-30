@@ -398,11 +398,11 @@
                         <outletCollection property="cardLabels" destination="vb7-IK-O0b" collectionClass="NSMutableArray" id="b99-CA-kzN"/>
                         <outletCollection property="cardLabels" destination="0Ui-kW-K5O" collectionClass="NSMutableArray" id="MUd-S9-I2c"/>
                         <outletCollection property="cardViews" destination="Bev-Ms-y90" collectionClass="NSMutableArray" id="YOc-hX-WHv"/>
-                        <outletCollection property="btmCardViews" destination="FUt-ET-Bil" collectionClass="NSMutableArray" id="bpg-GR-SNF"/>
-                        <outletCollection property="btmCardViews" destination="Fyp-aB-3Fh" collectionClass="NSMutableArray" id="Ehz-0h-EDW"/>
-                        <outletCollection property="btmCardViews" destination="7IL-br-2sH" collectionClass="NSMutableArray" id="2XR-0C-iSY"/>
-                        <outletCollection property="btmCardViews" destination="RjJ-Ak-hui" collectionClass="NSMutableArray" id="HJf-jL-0Gx"/>
-                        <outletCollection property="btmCardViews" destination="i9m-QR-Iq3" collectionClass="NSMutableArray" id="122-zy-mvW"/>
+                        <outletCollection property="cardHandViews" destination="FUt-ET-Bil" collectionClass="NSMutableArray" id="3di-sU-Eom"/>
+                        <outletCollection property="cardHandViews" destination="Fyp-aB-3Fh" collectionClass="NSMutableArray" id="IjH-rY-7iw"/>
+                        <outletCollection property="cardHandViews" destination="7IL-br-2sH" collectionClass="NSMutableArray" id="exu-pa-Qny"/>
+                        <outletCollection property="cardHandViews" destination="RjJ-Ak-hui" collectionClass="NSMutableArray" id="v6P-nn-Bx7"/>
+                        <outletCollection property="cardHandViews" destination="i9m-QR-Iq3" collectionClass="NSMutableArray" id="YcI-ZA-rPi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0S-o6-cKy" userLabel="First Responder" sceneMemberID="firstResponder"/>

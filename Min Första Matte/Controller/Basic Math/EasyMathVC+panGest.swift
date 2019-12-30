@@ -75,7 +75,7 @@ extension EasyMathVC {
         case .ended:
             
             if handledCard.frame.intersects(getAnswerView()!.frame) {
-                soundEffects()
+                soundEffects(soundName: "Click")
                 validateDraggedAnswer(currentView: handledCard, answerView: getAnswerView()!)
             } else {
                 returnCardsToPositions()

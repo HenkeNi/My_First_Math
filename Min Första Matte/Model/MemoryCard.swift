@@ -8,6 +8,7 @@
 
 import UIKit
 
+// REMOVE
 // TODO: Make a superClass called Card the subclasses like GameCard etc.??
 // TODO: Combine with Card class
 class MemoryCard {

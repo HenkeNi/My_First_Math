@@ -27,7 +27,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>TestLab</string>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>MatchingGame</string>
+	<string>EasyMath</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

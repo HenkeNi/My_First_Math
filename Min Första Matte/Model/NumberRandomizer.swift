@@ -27,7 +27,7 @@ class NumberRandomizer {
                 
      return (firstNumber, secondNumber)
     }*/
-    
+    var previousResult = 0
     
     
     func numberRandomizer(startNumber: Int, endNumber: Int, condition: (Int, Int) -> Bool) -> (Int, Int) {
@@ -38,7 +38,10 @@ class NumberRandomizer {
         repeat {
             firstNumber = Int.random(in: startNumber...endNumber)
             secondNumber = Int.random(in: startNumber...endNumber)
-        } while condition(firstNumber, secondNumber)
+        } while condition(firstNumber, secondNumber) || (firstNumber + secondNumber == previousResult)
+        
+        previousResult = firstNumber + secondNumber
+        print("Prev \(previousResult)")
         
         return (firstNumber, secondNumber)
     }
@@ -50,9 +53,25 @@ class NumberRandomizer {
         return firstNumber + secondNumber > 5
     }
     
+    let additionMedContidion: (Int, Int) -> Bool = { (firstNumber: Int, secondNumber: Int) -> Bool in
+        return firstNumber + secondNumber < 6 || firstNumber + secondNumber > 10
+    }
+    
     let subtractionCondition: (Int, Int) -> Bool = { (firstNumber: Int, secondNumber: Int) -> Bool in
         return firstNumber - secondNumber < 0
     }
+    
+    
+    
+    func numberRandomizerHard() {
+        
+    }
+    
+    
+    
+    
+    
+    
     
     /*let randomSubtractionNumbers: () -> (Int, Int) = {
         return f - s < 0

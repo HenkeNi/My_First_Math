@@ -12,6 +12,9 @@ import Foundation
 enum CalculationMode {
     case addition
     case subtraction
+    //case multiplication
+    //case division
+    
     //case memoryCard
 }
 
@@ -28,6 +31,7 @@ class Calculator {
         case .subtraction:
             answer = chosenNumb == numb1 - numb2 ? true : false
         }
+        
         return answer
     }
     

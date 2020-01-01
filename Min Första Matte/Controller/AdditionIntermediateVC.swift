@@ -6,6 +6,8 @@
 //  Copyright © 2018 Henrik Jangefelt Nilsson. All rights reserved.
 //
 
+// TODO: GÖR ENgen scroll view? med pan gesture som bytar sifforna
+
 
 // Kunna scrolla genom att dra fingret fram och tillbaka på progressbaren
 // Kolla vilken bild det är istället för sender.tag?

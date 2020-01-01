@@ -13,10 +13,10 @@ class CardGenerator {
     
     
    
-    func getCards(amount: Int) -> [Card] {
+    func getCards(amount: Int) -> [MathCard] {
         
         var usedNumbers = [Int]()
-        var cardArray = [Card]()
+        var cardArray = [MathCard]()
         
         while usedNumbers.count < amount {
             
@@ -26,9 +26,10 @@ class CardGenerator {
                 
                 usedNumbers.append(randomNumb)
                 
-                let firstCard = Card()
+                let firstCard = MathCard()
                 firstCard.number = randomNumb
                 firstCard.imageName = "Card\(randomNumb)"
+                firstCard.labelText = randomNumb.convertIntToString()
                 cardArray += [firstCard, firstCard]
             }
         }

@@ -2,71 +2,40 @@
 //  Card.swift
 //  Min Första Matte
 //
-//  Created by Henrik Jangefelt on 2019-08-07.
+//  Created by Henrik Jangefelt on 2019-12-30.
 //  Copyright © 2019 Henrik Jangefelt Nilsson. All rights reserved.
 //
 
 import UIKit
 
-// TODO: superklass av Card -> subklasser, memoryCard, MathCard etc
-// TODO: UIview property?
-// TODO: Combine Different Card Classes
-// TODO: Make private variables, set and get
-class Card {
-        
-    var imageName = ""
-    var number = 0
-    var numberText = ""
-    var isFlipped = false
-    var isPaired = false
-    var originalPosition: CGPoint?
+// FLip card eget protocol?
+protocol Card {
     
-    //var containerView : UIView
-    
-//    init(containerView: UIView) {
-//        self.containerView = containerView
-//    }
+    //var frontImgName: String { get set}
+    //var backImgName: String { get set }
+    var imageName: String { get set }
+    var number: Int { get set }
+    var isFlipped: Bool { get set }
+    var labelText: String { get set }
+}
 
+extension Card {
     
     
-    // Return a UIIMage name/string?
-    func turnCard(cardView: UIView, mode: CalculationMode) {
+    mutating func flipCard(card: UIView) {
         
-        switch mode {
-        case .addition:
-            imageName = isFlipped ? "Number\(number)" : "Number\(number)Back"
-        case .subtraction:
-            imageName = isFlipped ? "Number\(number)M" : "Number\(number)MBack"
-        }
+            
+        imageName = isFlipped ? imageName : imageName + "Back"
+        
         isFlipped = !isFlipped
 
-            UIView.transition(with: cardView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
         
+        UIView.transition(with: card, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
     }
     
-    // Turn card back to front side
-    func flipCardBack(cardView: UIView) {
-        isFlipped = false
+    func flipCardBack(card: UIView, fromImage: String, toImage: String) {
         
-        // TEST
-        UIView.transition(with: cardView, duration: 0.6, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-        //imageName = "Number\(number)"
-    }
-    
-    
-    func updateImageName(mathMode: CalculationMode) {
         
-        imageName = mathMode == .addition ? "Number\(number)" : "Number\(number)M"
         
-        //imageName = "Number\(number)"
     }
-    
-    func updateNumberText() {
-        numberText = number.convertIntToString()
-    }
-
-    
-    
-    
-    
 }

@@ -12,7 +12,7 @@ class MatchingGameVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var cards = [Card]()
+    var cards = [MathCard]()
     var cardGenerator: CardGenerator?
     
     override func viewDidLoad() {

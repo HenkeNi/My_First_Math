@@ -25,14 +25,33 @@ extension EasyMathVC {
     }
     
     
+    // FIX! sätt kortet som är på viewn till att bestämma labeltexten
     // Updates the label text
+    func updateCardLabels() {
+        
+        for (index, label) in cardLabels.enumerated() {
+            
+            switch label.tag {
+            case 1, 2, 3, 4, 5:
+                label.text = cards[index].number.convertIntToString()
+//            case 6:
+//                label.text = topCards[0].number.convertIntToString()
+//            case 7:
+//                label.text = topCards[1].number.convertIntToString()
+            default:
+                label.text = ""
+            }
+            
+        }
+    }
+    
     func updateTopCardLabels() {
           
         for label in cardLabels {
             
             switch label.tag {
             case 6:
-                print("\(topCards[0].numberText)")
+                print("\(topCards[0].labelText)")
                 label.text = topCards[0].number.convertIntToString()
             case 7:
                 label.text = topCards[1].number.convertIntToString()
@@ -80,6 +99,10 @@ extension EasyMathVC {
      }
      
     
+    // FIXA
+    static let resetProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
+        return 0
+    }
     
     
     

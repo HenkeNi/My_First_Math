@@ -13,9 +13,9 @@ class MatchingGameCell: UICollectionViewCell {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var cardImage: UIImageView!
     
-    func displayCards(card: Card) {
+    
+    func displayCards(card: MathCard) {
         
-        cardImage.image = UIImage(named: card.imageName)
-        
+        cardImage.image = UIImage(named: card.matchingCardImageName)
     }
 }

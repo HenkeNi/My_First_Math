@@ -10,21 +10,41 @@ import UIKit
 import AVFoundation
 
 
-// RENAME: BASIC MATH
+// TODO: Randomerade tal inte samma som förra gången (spara sista)
 
+
+
+// Nivå 1: tal: 1 - 5
+// Nivå 2: tal: 6 - 10
+// Nivå 3: tal: 1 - 10 answerView är 4 + ? = 7 BARA Nivå 4??!
+// Nivå 4: tal: 1 - 10 answerView skiftar ? + 3 = 5 || 4 + ? = 8 || 5 + 3 = ?
+
+
+// TODO: I addition lägg till x + 0. Så man får använda nr 1 nån gång (1 + 0 = 1)?
+
+
+// TODO: randomera btm tal (en optional parameter -> kort som måste finnas med (rätt svar))
+
+
+// Is answerView som property?
+
+
+// TODO: om progressbaren går ner i botten sänks nivån
+
+// TODO: Alert Rutan berättar när man kommit till ny nivå! -> KAnske, knapp man måste trycka först innan man går vidare??
+
+
+// CardViews Collections: 1. btmCards, 2. plus/likamed -tecknena, 3. topNumbers + answerView (så det går att sätta topcard två till att vara answerView)
 
 // Memory Leaks
 // Make all cards optional of Cards. Make them nil in deinit/viewDidDisappear
 // TODO: sätt array av cards till optional eller sätt korten i arrayen till att vara optionals
 
 
-
-// FÖRSLAG: Slumpa ut fem btm kort, kolla scoren, när man får mer poäng blir det svårare tal, och vid mindre poäng blir det lättare tal...
-
-// GÖr 3 + ? = 5 senare
+// SOunds:
+// rejected, correct answer, swish for turning card, return sound  
 
 
-// Change: back button not working (VC presented in smaller window)
 
 
 
@@ -32,67 +52,74 @@ import AVFoundation
 // ADD: Multiply, subtract
 // TODO: Sound effect for rejected
 // TODO: title (dependent of what mode?)
-// TODO: Fix both addition and subtraction working
+// TODO: Fix both addition, multip, divis and subtraction working
 
-
-
-// Bugg: Card positionerna blir inbland fel när man drar och släpper kort
-// Bugg: Card vände sig på fel håll efter rätt svar (cardOirginalPositionc)
-
-
-// TODO: Randomerade tal inte samma som förra gången (spara sista)
-
-
-// TODO: randomera btm tal (en optional parameter -> kort som måste finnas med (rätt svar))
-
-
-// TODO: I addition lägg till x + 0. Så man får använda nr 1 nån gång (1 + 0 = 1)?
-
-
-// TODO: GÖR ENgen scroll view? med pan gesture som bytar sifforna
-
-
-// TODO: Så länge, när man fyllt progress baren så dycker plus/minus tecken upp och man
-// kan gå över till andra räknesättet
-
-
-// TODO: Function for updating labels Lägg i klassen
 // TODO: Fix score label
+// TODO: reseta progressBar
 
+
+
+// FIX:
+// back button not working (VC presented in smaller window)
+// Crashar om ljudfil inte finns
+
+
+// BUGGAR:
+// Card positionerna blir inbland fel när man drar och släpper kort
+// Card vände sig på fel håll efter rätt svar (cardOirginalPositionc)
+// Kan svaret bli 5 på medel?
 
 
 let nxtLvlNotificationKey = "co.HenrikJangefelt.nxtLvl"
 
+
+// TODO: RENAME: BASIC MATH
 class EasyMathVC: UIViewController {
     
     // TODO: make part of object?
-    @IBOutlet var cardViews: [UIView]!
+    @IBOutlet var cardViews: [UIView]! // Spara?? har gemensam för alla
+    
+    @IBOutlet var cardLabels: [UILabel]! // BtmCardLabels
+
+    
     @IBOutlet var cardImages: [UIImageView]!
-    @IBOutlet var cardLabels: [UILabel]!
     
     @IBOutlet weak var WrongImage: UIImageView! // Wrong images
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var progressBarViewBackground: UIView!
     @IBOutlet weak var progressBarContainer: UIView!
     @IBOutlet weak var progressBarWidth: NSLayoutConstraint!
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel! // Gör i kod?
     
     
     
-    @IBOutlet var cardHandViews: [UIView]!  //@IBOutlet var btmCardViews: [UIView]!
-    
-    var cardHand = [Card]()
+    @IBOutlet var cardHandViews: [UIView]!  //@IBOutlet var btmCardViews: [UIView]!, playableCardViews, draggableCardViews
     
     
-    var equationNumbers = [Card]()
     
     
+    enum Difficulty {
+        case easy
+        case medium
+        case hard
+    }
+    
+    
+    
+    
+    var cardHand = [MathCard]() //
+    
+    
+    var equationNumbers = [MathCard]()
+    
+    var currentDifficulty = Difficulty.easy
     var mathMode = CalculationMode.addition
-    var audioPlayer: AVAudioPlayer! // TODO: make optional
+    var audioPlayer: AVAudioPlayer? // TODO: make optional
     var calculator: Calculator?
+    var numberRandomizer: NumberRandomizer?
     
-    var cards = [Card]() // TODO: Make optional?? || sätt arrayen till empty i deinit
-    var topCards = [Card]() // TODO: property in object (isTopCard)
+    var cards = [MathCard]() // TODO: Make optional?? || sätt arrayen till empty i deinit
+    var topCards = [MathCard]() // TODO: property in object (isTopCard)
     
     var score = 0
     
@@ -127,8 +154,6 @@ class EasyMathVC: UIViewController {
     
     
     
-    
-    
     func createObserver() {
         
         let name = Notification.Name(rawValue: nxtLvlNotificationKey)
@@ -144,29 +169,40 @@ class EasyMathVC: UIViewController {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     
     // TODO: improve
     func getRandomNumbers() -> (firstNumber: Int, secondNumber: Int) {
         let numberRandomizer = NumberRandomizer()
+        //numberRandomizer = NumberRandomizer()
         
-        let startNumber = mathMode == .addition ? 1 : 0
-        let endNumber = mathMode == .addition ? 4 : 4
-        let condition = mathMode == .addition ? numberRandomizer.additionCondition : numberRandomizer.subtractionCondition
+        //guard let numberR = numberRandomizer else { return }
+        var startNumber: Int
+        var endNumber: Int
+        var condition: (Int, Int) -> Bool
+        
+        print(currentDifficulty)
+        switch currentDifficulty {
+        case .easy:
+            startNumber = mathMode == .addition ? 1 : 0
+            endNumber = mathMode == .addition ? 4 : 4
+            condition = numberRandomizer.additionCondition
+        case .medium:
+            startNumber = 1
+            endNumber = 9
+            condition = numberRandomizer.additionMedContidion
+        case .hard:
+            startNumber = 1
+            endNumber = 4
+            condition = numberRandomizer.additionCondition
+            // Random numbers
+        }
+        
+            //let condition = mathMode == .addition ? numberRandomizer.additionCondition : numberRandomizer.subtractionCondition
+        
+        
         return numberRandomizer.numberRandomizer(startNumber: startNumber, endNumber: endNumber, condition: condition)
         
     }
@@ -180,53 +216,30 @@ class EasyMathVC: UIViewController {
         
         
         //let numberRandomizer = NumberRandomizer()
-        
-        
-        
         //let randomNumbers = numberRandomizer.numberRandomizer(startNumber: <#T##Int#>, endNumber: <#T##Int#>, condition: <#T##(Int, Int) -> Bool#>)
-        
         //let randomNumbers = numberRandomizer.randomizeTwoNumbers(mathMode: mathMode)
+        
+        
         
         let randomNumbers = getRandomNumbers()
         
         topCards[0].number = randomNumbers.firstNumber
         topCards[1].number = randomNumbers.secondNumber
         
-        topCards[0].updateImageName(mathMode: mathMode)
-        topCards[1].updateImageName(mathMode: mathMode)
+        //topCards[0].updateImageName(mathMode: mathMode)
+        //topCards[1].updateImageName(mathMode: mathMode)
         
-        flipCardsBack() // Turns all card to front side
+        resetBtmCards() // Turns all card to front side
         
         updateCardImages()
+        updateCardLabels()
         updateTopCardLabels()
+        
         //disableOrEnableCardInteractions(isDisabled: true) // Enable moving/turning cards again
         
-        // Hide UI elements
+        
         WrongImage.isHidden = true
-        
-        /*for card in cards where card.number == 8 {
-         
-         }*/
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -244,44 +257,46 @@ class EasyMathVC: UIViewController {
     
     
     
+    func updateScore() {
+        
+        score += 10
+        
+        switch score {
+        case 100:
+            currentDifficulty = .medium
+            print(currentDifficulty)
+            print("Lvl1")
+            increaseDifficulty()
+            soundEffects(soundName: "Cheering")
+        case 200:
+            soundEffects(soundName: "Cheering")
+            currentDifficulty = .hard
+            print("Lvl2")
+        default:
+            break
+        }
+        
+        /*if score < 100 {
+            score += 10
+        } else {
+            print("Unlocked New Lvl")
+            increaseDifficulty()
+        }*/
+        
+        
+        print(score)
+    }
+
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    func increaseDifficulty() {
+        
+        for card in cards {
+            card.number += 5
+        }
+        
+    }
     
     
     
@@ -296,8 +311,7 @@ class EasyMathVC: UIViewController {
         //let updateProgress = updateProgressBar(isRightAnswer: true) // Sets update to be of type increaseProgress
         //progressBarWidth.constant = updateProgress(progressBarWidth.constant, progressBarContainer.frame.size.width)
         
-        
-        score += 10
+        updateScore()
         
         //originalCardPositions() // TEST
         //nextLevel()
@@ -325,14 +339,12 @@ class EasyMathVC: UIViewController {
                 self.WrongImage.isHidden = true
             }
         }
+        
         //nextLevel()
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
             //self.scoreLabel.text = "Score: \(self.score)"
         }
-        
-        score += 10
-        print(score)
         
     }
     
@@ -362,7 +374,7 @@ class EasyMathVC: UIViewController {
     
     
     // Check if dragged card is the correct one
-    func validateDraggedAnswer(currentView: UIView, answerView: UIView) {
+    func validateChosenAnswer(currentView: UIView, answerView: UIView) {
         
         guard let calculator = calculator else { return } // Unwrap instance of calculator
         
@@ -390,16 +402,26 @@ class EasyMathVC: UIViewController {
     
     func getAnswerView() -> UIView? {
         
+        if currentDifficulty == .easy || currentDifficulty == .medium {
+            
+            for cardView in cardViews where cardView.tag == 8 {
+                return cardView
+            }
+        } else {
+            for cardView in cardViews where cardView.tag == 7 {
+                return cardView
+            }
+        }
+        /*
         for cardView in cardViews where cardView.tag == 8 {
             return cardView
         }
         return nil
+        */
+        return nil
     }
     
-    
-    
-    
-    
+  
     
     
     
@@ -408,9 +430,9 @@ class EasyMathVC: UIViewController {
         let subtractionMode = mathMode == .addition ? 0 : 1
         
         for cardNumber in 1...5 {
-            let card = Card()
+            let card = MathCard()
             card.number = cardNumber - subtractionMode
-            card.updateImageName(mathMode: mathMode)
+            //card.updateImageName(mathMode: mathMode)
             cards.append(card)
         }
     }
@@ -423,11 +445,11 @@ class EasyMathVC: UIViewController {
          let secondTopCard = Card()
          topCards.append(firstTopCard)
          topCards.append(secondTopCard)*/
-        topCards.append(Card())
-        topCards.append(Card())
+        
+        topCards.append(MathCard())
+        topCards.append(MathCard())
         
     }
-    
     
     
     
@@ -435,24 +457,22 @@ class EasyMathVC: UIViewController {
     
     // BEHÖVS det att flippa tillbaka topCards? Sätt istället isFlipped till false
     // TODO: improve
-    // RENAME
     // Turns the cards back to the front side
-    func flipCardsBack() {
+    func resetBtmCards() {
         
-        //var cardViewIndex = 0
-        
-        for (index, card) in cards.enumerated() {
-            if card.isFlipped {
-                card.flipCardBack(cardView: cardViews[index])
-                card.updateImageName(mathMode: mathMode)
-            }
-            //cardViewIndex += 1
+        for (index, card) in cards.enumerated() where card.isFlipped {
+
+            card.flipCardBack(cardView: cardViews[index])
+            //card.updateImageName(mathMode: mathMode)
         }
         
         topCards[0].flipCardBack(cardView: cardViews[5])
-        topCards[1].flipCardBack(cardView: cardViews[6])
+        topCards[1].flipCardBack(cardView: cardViews[6]) // FIX: behöve bara sätta isFlipped till false??
     }
     
+    func resetTopCards() {
+        
+    }
     
     
     // Resets the cards to their original position
@@ -478,13 +498,25 @@ class EasyMathVC: UIViewController {
     
     
     
+    
     // Soundeffects for placing cards
     func soundEffects(soundName: String) {
+        
         let soundURL = Bundle.main.url(forResource: soundName, withExtension: "wav")
         
+        audioPlayer = AVAudioPlayer()
+      
         audioPlayer = try! AVAudioPlayer(contentsOf: soundURL!)
+        audioPlayer!.play()
         
-        audioPlayer.play()
+        
+        /*if var audioPlayer = audioPlayer {
+            
+            audioPlayer = try! AVAudioPlayer(contentsOf: soundURL!)
+            audioPlayer.play()
+        }*/
+        
+        
     }
     
     
@@ -501,11 +533,29 @@ class EasyMathVC: UIViewController {
     
     deinit {
         calculator = nil
+        
         NotificationCenter.default.removeObserver(self)
     }
     
     
 }
+
+
+
+
+
+
+  
+  // FIX!
+  /*func getImageName(cardNumber: Int) -> String {
+      if mathMode == .addition {
+          return "Number\(cardNumber)"
+      } else {
+          return "Number\(cardNumber)M"
+      }
+  }*/
+
+
 
 
 

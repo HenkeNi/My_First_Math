@@ -22,8 +22,11 @@ extension EasyMathVC {
     }
     
 
+    // RENAME: touchedCard??
     // Flips the card on cardImage tap
     @objc func flipCardOnTap(gesture: UITapGestureRecognizer) {
+        
+        soundEffects(soundName: "Woosh")
         
         // For every cardView that has the same tag number as the cardImage's tag
         for (index, cardView) in cardViews.enumerated() where gesture.view?.tag == cardView.tag {
@@ -31,9 +34,9 @@ extension EasyMathVC {
             if gesture.view as? UIImageView != nil {
 
                 if cardView.tag <= 5 {
-                    cards[index].turnCard(cardView: cardView, mode: mathMode)
+                    cards[index].flipCard(cardView: cardView, mode: mathMode)
                 } else { // TODO: Improve/ make better
-                    topCards[cardView.tag - 6].turnCard(cardView: cardView, mode: mathMode)
+                    topCards[cardView.tag - 6].flipCard(cardView: cardView, mode: mathMode)
                 }
             }
             updateCardImages()
@@ -73,10 +76,9 @@ extension EasyMathVC {
             WrongImage.isHidden = true
             
         case .ended:
-            
             if handledCard.frame.intersects(getAnswerView()!.frame) {
                 soundEffects(soundName: "Click")
-                validateDraggedAnswer(currentView: handledCard, answerView: getAnswerView()!)
+                validateChosenAnswer(currentView: handledCard, answerView: getAnswerView()!)
             } else {
                 returnCardsToPositions()
             }

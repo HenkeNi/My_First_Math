@@ -14,6 +14,7 @@ extension MatchingGameVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print("Pressed \(indexPath.row)")
+        cards[indexPath.row].isFlipped = true
     }
     
 }

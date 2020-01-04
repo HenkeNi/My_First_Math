@@ -13,9 +13,23 @@ class MatchingGameCell: UICollectionViewCell {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var cardImage: UIImageView!
     
-    
-    func displayCards(card: MathCard) {
-        
-        cardImage.image = UIImage(named: card.matchingCardImageName)
+    func customizeCardView() {
+        cardView.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray)
     }
+    
+    func setCardImage(card: MatchingCard) {
+        cardImage.image = UIImage(named: card.getImageName)
+    }
+    
+    func flipCard(card: MatchingCard) {
+        card.flipCard(cardView: cardView)
+        setCardImage(card: card)
+    }
+    
+    func removeCard(card: MatchingCard) {
+        UIView.animate(withDuration: 0.5) {
+            self.cardView.alpha = 0
+        }
+    }
+    
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+// TODO: ANVÄND STRUCT ISTÄLLET FÖR CLASS????
+
 // TODO: superklass av Card -> subklasser, memoryCard, MathCard etc
 // TODO: UIview property?
 // TODO: Combine Different Card Classes

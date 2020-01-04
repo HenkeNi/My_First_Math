@@ -17,12 +17,26 @@ extension EasyMathVC {
     
     
     // Rounded corners, border width (and color) for Cards
-    func customizeCards() {
+    func customizeCards(cardViews: [UIView]) {
         
         for cardView in cardViews {
             cardView.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray)
         }
     }
+    
+    
+   /* func updateCardLabels(cardLabels: [UILabel], associatedCards: [Card]) {
+        
+        for (index, label) in cardLabels.enumerated() {
+            
+            switch label.tag {
+            case <#pattern#>:
+                <#code#>
+            default:
+                <#code#>
+            }
+        }
+    }*/
     
     
     // FIX! sätt kortet som är på viewn till att bestämma labeltexten
@@ -131,6 +145,12 @@ extension EasyMathVC {
      }
      
 
+    // FIX!!!
+    func setCardImage(card: MathCard) {
+        for cardImage in cardImages {
+            cardImage.image = UIImage(named: card.imageName)
+        }
+    }
      
      // Puts right image on the card
      /*func updateCardImages() {

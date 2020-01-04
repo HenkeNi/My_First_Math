@@ -67,16 +67,6 @@ class StartVC: UIViewController {
         }*/
     }*/
 
-    @IBAction func testBtn(_ sender: Any) {
-        
-        /*let numberGenerator = NumberRandomizer()
-        let numbers = numberGenerator.randomizeTwoNumbers(mathMode: .addition)
-        let numb1 = numbers.0
-        let numb2 = numbers.1
-     
-        print("\(numb1) & \(numb2)")*/
-        
-        
-    }
+
     
 }

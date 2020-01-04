@@ -9,14 +9,51 @@
 import Foundation
 
 // COmbine with numberRandomizer?
-class CardGenerator {
+// STRUCT istället?
+struct CardGenerator {
+    
+    func getCards(amount: Int) -> [MatchingCard] {
+        
+        var usedNumbers = [Int]()
+        var cardArray = [MatchingCard]()
+        
+        while usedNumbers.count < amount {
+            
+            //let randomNumb = Int.random(in: 0...10)
+            let randomNumb = 3
+            
+            if !usedNumbers.contains(randomNumb) {
+                
+                usedNumbers.append(randomNumb)
+                
+                let firstCard = MatchingCard(number: randomNumb)
+                //firstCard.number = randomNumb
+                //firstCard.imageName = "Card\(randomNumb)"
+                //firstCard.labelText = randomNumb.convertIntToString()
+                let secondCard = MatchingCard(number: randomNumb)
+                //secondCard.number = randomNumb
+                //secondCard.imageName = "Card\(randomNumb)"
+                cardArray.append(firstCard)
+                cardArray.append(secondCard)
+            }
+        }
+        
+        cardArray.shuffle()
+        
+        return cardArray
+    }
+    
+}
+
+
+/*class CardGenerator {
     
     
    
-    func getCards(amount: Int) -> [MathCard] {
+    func getCards(amount: Int) -> [MatchingCard] {
         
         var usedNumbers = [Int]()
-        var cardArray = [MathCard]()
+        var cardArray = [MatchingCard]()
         
         while usedNumbers.count < amount {
             
@@ -26,11 +63,15 @@ class CardGenerator {
                 
                 usedNumbers.append(randomNumb)
                 
-                let firstCard = MathCard()
+                let firstCard = MatchingCard()
                 firstCard.number = randomNumb
                 firstCard.imageName = "Card\(randomNumb)"
                 firstCard.labelText = randomNumb.convertIntToString()
-                cardArray += [firstCard, firstCard]
+                let secondCard = MatchingCard()
+                secondCard.number = randomNumb
+                secondCard.imageName = "Card\(randomNumb)"
+                cardArray.append(firstCard)
+                cardArray.append(secondCard)
             }
         }
         
@@ -81,3 +122,4 @@ class CardGenerator {
  
     
 }
+*/

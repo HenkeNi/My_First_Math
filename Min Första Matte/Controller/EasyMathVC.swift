@@ -10,6 +10,19 @@ import UIKit
 import AVFoundation
 
 
+
+// Dagens uppgift, gör generic function för att kod som har med Card att göra. Reseta card tex.... som kan användas till både topCard % Btm cards
+
+
+// LÄgg logik för att lägga till kort i klassen MathCard?
+
+// Generic cardClass?
+
+// CardHand egen klass? Array av Cards?, Subscript för att nå certain card
+
+
+
+
 // TODO: Randomerade tal inte samma som förra gången (spara sista)
 
 
@@ -41,10 +54,10 @@ import AVFoundation
 // TODO: sätt array av cards till optional eller sätt korten i arrayen till att vara optionals
 
 
-// SOunds:
-// rejected, correct answer, swish for turning card, return sound  
+// Add Sound effects:
+// rejected (wrong answer), correct answer, return sound (card dropped)
 
-
+// Particle effects for finishing a lvl
 
 
 
@@ -77,11 +90,10 @@ let nxtLvlNotificationKey = "co.HenrikJangefelt.nxtLvl"
 class EasyMathVC: UIViewController {
     
     // TODO: make part of object?
-    @IBOutlet var cardViews: [UIView]! // Spara?? har gemensam för alla
+    @IBOutlet var cardViews: [UIView]! // Spara?? har gemensam för alla??
     
     @IBOutlet var cardLabels: [UILabel]! // BtmCardLabels
 
-    
     @IBOutlet var cardImages: [UIImageView]!
     
     @IBOutlet weak var WrongImage: UIImageView! // Wrong images
@@ -137,7 +149,7 @@ class EasyMathVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setBackgroundColors(mathMode: mathMode)
         setMathOperatorsImages(mathMode: mathMode)
-        customizeCards()
+        customizeCards(cardViews: cardViews)
         nextLevel() // TEST FIXES delay
         title = mathMode == .addition ? "Addition" : "Subtraction"
         WrongImage.isHidden = true
@@ -471,6 +483,8 @@ class EasyMathVC: UIViewController {
     }
     
     func resetTopCards() {
+        
+        //for card in topCards where card.!isAnswerView
         
     }
     

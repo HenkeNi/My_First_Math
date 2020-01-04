@@ -12,7 +12,6 @@
 //class AGameOfCardsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 //
 //
-//    @IBOutlet weak var winMessageView: UIView!
 //    @IBOutlet weak var collectionView: UICollectionView!
 //
 //
@@ -32,10 +31,15 @@
 //        }
 //
 //
+//    
+//    
 //        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //
 //            return cardArray.count
 //        }
+//    
+//    
+//    
 //
 //        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //
@@ -48,6 +52,9 @@
 //            return cell
 //        }
 //
+//    
+//    
+//    
 //
 //        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //
@@ -78,6 +85,11 @@
 //                }
 //            }
 //        }
+//    
+//    
+//    
+//    
+//    
 //
 //        // Kollar om korten är ihop parade
 //        func checkIfPaired(_ secondCardTurnedOver:IndexPath) {
@@ -127,6 +139,10 @@
 //            firstCardTurnedOver = nil
 //        }
 //
+//
+//
+//
+//
 //        func checkGameEnded() {
 //
 //            // Kolla om det finns omatchade kort
@@ -145,15 +161,6 @@
 //
 //                print("Vinst!!")
 //
-//                // Lite delay för vinst meddelande
-//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-//
-//                    self.view.bringSubviewToFront(self.winMessageView)
-//                    self.winMessageView.alpha = 1
-//                }
-//
-//                // Knapp gå tillbaka, knapp avsluta(perform segue)
-//
 //            }
 //            else {
 //                print("ERROR!!!!")
@@ -163,10 +170,6 @@
 //
 //
 //
-//
-//    @IBAction func restartGameButton(_ sender: Any) {
-//        performSegue(withIdentifier: "quitMatchGame", sender: self)
-//    }
 //
 //
 //}

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wrZ-fI-AJE">
-    <device id="ipad9_7" orientation="landscape">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wrZ-fI-AJE">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,6 +10,7 @@
         <!--Game Of Cards View Controller-->
         <scene sceneID="H6N-Pl-Oii">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1cX-Jf-iCJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="wrZ-fI-AJE" customClass="AGameOfCardsViewController" customModule="Min_Fo_rsta_Matte" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zur-kj-uVA">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
@@ -58,7 +57,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2nI-pn-VvU">
-                                <rect key="frame" x="0.0" y="55" width="1024" height="713"/>
+                                <rect key="frame" x="0.0" y="35" width="1024" height="733"/>
                                 <color key="backgroundColor" red="0.6559094889" green="0.98132258650000004" blue="0.59978277899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xGk-8k-ch9">
                                     <size key="itemSize" width="180" height="180"/>
@@ -104,7 +103,7 @@
                                 </connections>
                             </collectionView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75D-X1-2Yh">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="55"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="35"/>
                                 <items>
                                     <navigationItem title="Matcha Siffrorna!" id="dOD-dk-j9y">
                                         <barButtonItem key="leftBarButtonItem" title="Tillbaka" id="vS3-MI-22h"/>
@@ -136,7 +135,6 @@
                         <outlet property="winMessageView" destination="Iu6-YV-vaj" id="TAb-eq-sgp"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1cX-Jf-iCJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-773.4375" y="-328.125"/>
         </scene>

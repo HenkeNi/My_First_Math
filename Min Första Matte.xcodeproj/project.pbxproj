@@ -30,9 +30,6 @@
 		20A8BA24218DD1AE003FEA75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A8BA22218DD1AE003FEA75 /* Main.storyboard */; };
 		20A8BA26218DD1AF003FEA75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20A8BA25218DD1AF003FEA75 /* Assets.xcassets */; };
 		20A8BA29218DD1AF003FEA75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A8BA27218DD1AF003FEA75 /* LaunchScreen.storyboard */; };
-		20A8BA32218DD2BB003FEA75 /* AGameOfCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8BA31218DD2BB003FEA75 /* AGameOfCardsViewController.swift */; };
-		20A8BA34218DD2DF003FEA75 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8BA33218DD2DF003FEA75 /* CollectionViewCell.swift */; };
-		20A8BA36218DD2F1003FEA75 /* BuildACard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8BA35218DD2F1003FEA75 /* BuildACard.swift */; };
 		20C19EEF2304935D0009242D /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C19EEE2304935D0009242D /* Extension+Int.swift */; };
 		20C19EF42305929B0009242D /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C19EF32305929B0009242D /* AlertView.xib */; };
 		20C19EF62305D5D10009242D /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C19EF52305D5D10009242D /* AlertView.swift */; };
@@ -41,7 +38,6 @@
 		20D362BA21A9EF5800931C6C /* AdditionIntermediateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */; };
 		20E4D32322FF9BF1005D2364 /* MemoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E4D32222FF9BF1005D2364 /* MemoryCard.swift */; };
 		20EB47BB23A1AF8B00124FC7 /* PanGestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB47BA23A1AF8B00124FC7 /* PanGestVC.swift */; };
-		20F2709722A06D4400917EBF /* Memory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F2709622A06D4400917EBF /* Memory.storyboard */; };
 		20F7069222FBA98300FE0183 /* EasyMath.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F7069122FBA98300FE0183 /* EasyMath.storyboard */; };
 		20F7069422FBA9AD00FE0183 /* EasyMathVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F7069322FBA9AD00FE0183 /* EasyMathVC.swift */; };
 		20F7069622FCE83C00FE0183 /* Extension+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F7069522FCE83B00FE0183 /* Extension+Colors.swift */; };
@@ -68,7 +64,7 @@
 		2029C0DC23BF8D8A0095C059 /* MatchingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingCard.swift; sourceTree = "<group>"; };
 		202CC8CC22A070320038E852 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		202CC8CF22A082E30038E852 /* TestLab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestLab.storyboard; sourceTree = "<group>"; };
-		2036229F21C4491200D678E9 /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
+		2036229F21C4491200D678E9 /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessNumberViewController.swift; path = ../GuessNumberViewController.swift; sourceTree = "<group>"; };
 		2043014523B57BC7006CB5F6 /* EasyMathVC+panGest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+panGest.swift"; sourceTree = "<group>"; };
 		2043014723B6B080006CB5F6 /* EasyMathVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+Layout.swift"; sourceTree = "<group>"; };
 		2043014D23B97E40006CB5F6 /* MatchingGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingGameVC.swift; sourceTree = "<group>"; };
@@ -86,9 +82,6 @@
 		20A8BA25218DD1AF003FEA75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20A8BA28218DD1AF003FEA75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20A8BA2A218DD1AF003FEA75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20A8BA31218DD2BB003FEA75 /* AGameOfCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGameOfCardsViewController.swift; sourceTree = "<group>"; };
-		20A8BA33218DD2DF003FEA75 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		20A8BA35218DD2F1003FEA75 /* BuildACard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildACard.swift; sourceTree = "<group>"; };
 		20C19EEE2304935D0009242D /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		20C19EF32305929B0009242D /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		20C19EF52305D5D10009242D /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -97,7 +90,6 @@
 		20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdditionIntermediateVC.swift; path = ../Controller/AdditionIntermediateVC.swift; sourceTree = "<group>"; };
 		20E4D32222FF9BF1005D2364 /* MemoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCard.swift; sourceTree = "<group>"; };
 		20EB47BA23A1AF8B00124FC7 /* PanGestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGestVC.swift; sourceTree = "<group>"; };
-		20F2709622A06D4400917EBF /* Memory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Memory.storyboard; path = ../View/Storyboards/Memory.storyboard; sourceTree = "<group>"; };
 		20F7069122FBA98300FE0183 /* EasyMath.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EasyMath.storyboard; sourceTree = "<group>"; };
 		20F7069322FBA9AD00FE0183 /* EasyMathVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EasyMathVC.swift; path = ../EasyMathVC.swift; sourceTree = "<group>"; };
 		20F7069522FCE83B00FE0183 /* Extension+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Colors.swift"; sourceTree = "<group>"; };
@@ -191,22 +183,9 @@
 				20F73D5A229700C1008A8071 /* Controller */,
 				202CC8CE22A071B10038E852 /* Supporting Files */,
 				20F7068E22FB241100FE0183 /* TestLab */,
-				2036229F21C4491200D678E9 /* GuessNumberViewController.swift */,
-				20A8BA30218DD1D5003FEA75 /* Match Game */,
 				202C883A219993A4008FDBF5 /* Sound Files */,
 			);
 			path = "Min Första Matte";
-			sourceTree = "<group>";
-		};
-		20A8BA30218DD1D5003FEA75 /* Match Game */ = {
-			isa = PBXGroup;
-			children = (
-				20A8BA31218DD2BB003FEA75 /* AGameOfCardsViewController.swift */,
-				20A8BA33218DD2DF003FEA75 /* CollectionViewCell.swift */,
-				20A8BA35218DD2F1003FEA75 /* BuildACard.swift */,
-				20F2709622A06D4400917EBF /* Memory.storyboard */,
-			);
-			path = "Match Game";
 			sourceTree = "<group>";
 		};
 		20C19EF02304C4DD0009242D /* Extensions */ = {
@@ -265,6 +244,7 @@
 				20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */,
 				20CAC09621F0BA20007E3B35 /* MakeViewAppearViewController.swift */,
 				20EB47BA23A1AF8B00124FC7 /* PanGestVC.swift */,
+				2036229F21C4491200D678E9 /* GuessNumberViewController.swift */,
 			);
 			path = TestLab;
 			sourceTree = "<group>";
@@ -375,7 +355,6 @@
 			files = (
 				20F7069222FBA98300FE0183 /* EasyMath.storyboard in Resources */,
 				202CC8D022A082E30038E852 /* TestLab.storyboard in Resources */,
-				20F2709722A06D4400917EBF /* Memory.storyboard in Resources */,
 				2029C0D923BCFEC70095C059 /* Woosh.wav in Resources */,
 				209269E52194B79F00C5A341 /* Click.wav in Resources */,
 				2029C0DB23BCFF4C0095C059 /* Cheering.wav in Resources */,
@@ -418,12 +397,9 @@
 				20F8842723491F43004E02D5 /* puzzlePiece.swift in Sources */,
 				2043015823B983B1006CB5F6 /* CardGenerator.swift in Sources */,
 				2043015A23B984B2006CB5F6 /* MatchingGameCell.swift in Sources */,
-				20A8BA32218DD2BB003FEA75 /* AGameOfCardsViewController.swift in Sources */,
 				2043014823B6B080006CB5F6 /* EasyMathVC+Layout.swift in Sources */,
 				2080589C2328C7C9005D53E1 /* NumberRandomizer.swift in Sources */,
 				20EB47BB23A1AF8B00124FC7 /* PanGestVC.swift in Sources */,
-				20A8BA34218DD2DF003FEA75 /* CollectionViewCell.swift in Sources */,
-				20A8BA36218DD2F1003FEA75 /* BuildACard.swift in Sources */,
 				20E4D32322FF9BF1005D2364 /* MemoryCard.swift in Sources */,
 				20A8BA1F218DD1AE003FEA75 /* AppDelegate.swift in Sources */,
 				20F8840D2343E2AF004E02D5 /* StartVC.swift in Sources */,

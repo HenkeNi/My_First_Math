@@ -17,12 +17,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iU0-2c-q5F">
-                                <rect key="frame" x="230.5" y="50.5" width="733" height="733"/>
+                                <rect key="frame" x="230.5" y="57.5" width="733" height="732.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="iU0-2c-q5F" secondAttribute="height" multiplier="1:1" id="h2R-VW-vDj"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hCh-JA-gMN">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="hCh-JA-gMN">
                                     <size key="itemSize" width="153" height="136"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -74,7 +74,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.2095613657268155" green="0.11537799376523156" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="iU0-2c-q5F" firstAttribute="centerY" secondItem="0uF-ZW-c4L" secondAttribute="centerY" id="Xmo-FA-jPC"/>
+                            <constraint firstItem="4tU-XK-bbU" firstAttribute="bottom" secondItem="iU0-2c-q5F" secondAttribute="bottom" constant="24" id="dFu-JO-Tsx"/>
                             <constraint firstItem="iU0-2c-q5F" firstAttribute="height" secondItem="4tU-XK-bbU" secondAttribute="height" multiplier="0.9" id="hTF-p5-q4K"/>
                             <constraint firstItem="iU0-2c-q5F" firstAttribute="centerX" secondItem="0uF-ZW-c4L" secondAttribute="centerX" id="krT-MS-ur8"/>
                         </constraints>

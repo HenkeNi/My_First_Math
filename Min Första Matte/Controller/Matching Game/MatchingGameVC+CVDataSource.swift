@@ -20,7 +20,6 @@ extension MatchingGameVC: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! MatchingGameCell
         
-        
         let card = cards[indexPath.row]
         card.indexPath = indexPath
         

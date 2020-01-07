@@ -30,6 +30,8 @@
 		20A8BA24218DD1AE003FEA75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A8BA22218DD1AE003FEA75 /* Main.storyboard */; };
 		20A8BA26218DD1AF003FEA75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20A8BA25218DD1AF003FEA75 /* Assets.xcassets */; };
 		20A8BA29218DD1AF003FEA75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A8BA27218DD1AF003FEA75 /* LaunchScreen.storyboard */; };
+		20B88F0323C3EDB10079B576 /* EasyMathVC+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B88F0223C3EDB10079B576 /* EasyMathVC+Audio.swift */; };
+		20B88F0523C4CE540079B576 /* EasyMathVC+HandleAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B88F0423C4CE540079B576 /* EasyMathVC+HandleAnswer.swift */; };
 		20C19EEF2304935D0009242D /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C19EEE2304935D0009242D /* Extension+Int.swift */; };
 		20C19EF42305929B0009242D /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C19EF32305929B0009242D /* AlertView.xib */; };
 		20C19EF62305D5D10009242D /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C19EF52305D5D10009242D /* AlertView.swift */; };
@@ -82,6 +84,8 @@
 		20A8BA25218DD1AF003FEA75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20A8BA28218DD1AF003FEA75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20A8BA2A218DD1AF003FEA75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20B88F0223C3EDB10079B576 /* EasyMathVC+Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+Audio.swift"; sourceTree = "<group>"; };
+		20B88F0423C4CE540079B576 /* EasyMathVC+HandleAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+HandleAnswer.swift"; sourceTree = "<group>"; };
 		20C19EEE2304935D0009242D /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		20C19EF32305929B0009242D /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		20C19EF52305D5D10009242D /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -142,8 +146,10 @@
 			isa = PBXGroup;
 			children = (
 				20F7069322FBA9AD00FE0183 /* EasyMathVC.swift */,
+				20B88F0423C4CE540079B576 /* EasyMathVC+HandleAnswer.swift */,
 				2043014523B57BC7006CB5F6 /* EasyMathVC+panGest.swift */,
 				2043014723B6B080006CB5F6 /* EasyMathVC+Layout.swift */,
+				20B88F0223C3EDB10079B576 /* EasyMathVC+Audio.swift */,
 			);
 			path = "Basic Math";
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 				2043014E23B97E40006CB5F6 /* MatchingGameVC.swift in Sources */,
 				20F8840F2344D292004E02D5 /* CardDeck.swift in Sources */,
 				2043015623B982FB006CB5F6 /* MatchingGameVC+CVDataSource.swift in Sources */,
+				20B88F0523C4CE540079B576 /* EasyMathVC+HandleAnswer.swift in Sources */,
 				20F884212346A46C004E02D5 /* PuzzleCell.swift in Sources */,
 				20F88415234512D1004E02D5 /* CardGameVC.swift in Sources */,
 				2029C0D323BAB3770095C059 /* Card.swift in Sources */,
@@ -399,6 +406,7 @@
 				2043015A23B984B2006CB5F6 /* MatchingGameCell.swift in Sources */,
 				2043014823B6B080006CB5F6 /* EasyMathVC+Layout.swift in Sources */,
 				2080589C2328C7C9005D53E1 /* NumberRandomizer.swift in Sources */,
+				20B88F0323C3EDB10079B576 /* EasyMathVC+Audio.swift in Sources */,
 				20EB47BB23A1AF8B00124FC7 /* PanGestVC.swift in Sources */,
 				20E4D32322FF9BF1005D2364 /* MemoryCard.swift in Sources */,
 				20A8BA1F218DD1AE003FEA75 /* AppDelegate.swift in Sources */,

@@ -12,6 +12,7 @@ import Foundation
 // STRUCT istället?
 class CardGenerator {
     
+    // RENAME getMatchingCards??
     func getCards(amount: Int) -> [MatchingCard] {
         
         var usedNumbers = [Int]()
@@ -34,5 +35,23 @@ class CardGenerator {
         cardArray.shuffle()
         return cardArray
     }
+    
+    
+    
+//    func getPlayableCards(difficulty: EasyMathVC.Difficulty) -> [MathCard] {
+//
+//        let cardRange: ClosedRange<Int>
+//
+//        switch difficulty {
+//        case .easy:
+//            cardRange = 1...5
+//        case .medium:
+//            cardRange = 6...10
+//        case .hard:
+//            cardRange = RandomNumberGenerator
+//
+//        }
+//
+//    }
     
 }

@@ -8,17 +8,20 @@
 
 import UIKit
 
+
+// TODO: Choose gridsize (4x4, 5x5, etc..)
+// TODO: Alert ruta: 1. replay (choose gridsize) 2. Go Back
+// TODO: Timer?
+// TODO: FLip back numbers when pressing new ones (instead of waiting)
 class MatchingGameVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
     var cards = [MatchingCard]()
     var cardGenerator: CardGenerator?
-    
     var flippedCards = [MatchingCard]()
     var tapCardIsPossible: Bool = true
     
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +37,7 @@ class MatchingGameVC: UIViewController {
         
         if let generator = cardGenerator {
             cards = generator.getCards(amount: 8)
-        } 
+        }
     }
     
     
@@ -120,6 +123,25 @@ class MatchingGameVC: UIViewController {
     
     
     
+    // FIX
+    // TODO: Get new array of cards?
+    func restartGame() {
+        
+        for card in cards {
+            card.isPaired = false
+            card.isFlipped = false
+            
+            let cell = collectionView.cellForItem(at: card.indexPath!) as! MatchingGameCell
+            cell.setCardImage(card: card)
+            cell.cardView.alpha = 1
+        }
+        tapCardIsPossible = true
+    }
+    
+    
+    deinit {
+        cardGenerator = nil
+    }
     
 
 }

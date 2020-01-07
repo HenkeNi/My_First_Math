@@ -41,7 +41,7 @@ class NumberRandomizer {
         } while condition(firstNumber, secondNumber) || (firstNumber + secondNumber == previousResult)
         
         previousResult = firstNumber + secondNumber
-        print("Prev \(previousResult)")
+        //print("Prev \(previousResult)")
         
         return (firstNumber, secondNumber)
     }

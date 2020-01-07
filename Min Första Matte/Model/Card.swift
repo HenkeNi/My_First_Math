@@ -24,11 +24,9 @@ extension Card {
     
     mutating func flipCard(card: UIView) {
         
-            
         imageName = isFlipped ? imageName : imageName + "Back"
         
         isFlipped = !isFlipped
-
         
         UIView.transition(with: card, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
     }

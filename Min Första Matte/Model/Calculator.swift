@@ -9,11 +9,11 @@
 import Foundation
 
 // TODO: add case memoryGame??
-enum CalculationMode {
-    case addition
-    case subtraction
-    //case multiplication
-    //case division
+enum CalculationMode: String {
+    case addition = "Addition"
+    case subtraction = "Subtraction"
+    //case multiplication = "Multiplication"
+    //case division = "Division"
     
     //case memoryCard
 }
@@ -44,8 +44,8 @@ class Calculator {
 
     
     // ValidateMathResult checks if the two given numbers are equal to the answer, with calcMode deciding how it should be calculated
-    func validateMathResult(calcMode: (Int, Int) -> Int, numbOne: Int, numbTwo: Int, answer: Int) -> Bool {
-            return calcMode(numbOne, numbTwo) == answer
+    func validateMathResult(calcMode: (Int, Int) -> Int, firstNumb: Int, secondNumb: Int, resultNumb: Int) -> Bool {
+            return calcMode(firstNumb, secondNumb) == resultNumb
     }
     
 

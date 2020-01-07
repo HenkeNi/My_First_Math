@@ -15,9 +15,13 @@ extension MatchingGameVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let cardAmountSqrd = Double(cards.count).squareRoot()
+        //let roundedCardAmount = cardAmountSqrd.rounded(.awayFromZero)
+        
+        //print("Card in row: \(cardAmountSqrd.rounded(.awayFromZero))")
+        
         let cardWidth = collectionView.frame.size.width / CGFloat(cardAmountSqrd)
         
-        return CGSize(width: cardWidth - 2, height: cardWidth - 2)
+        return CGSize(width: cardWidth, height: cardWidth)
     }
     
 }

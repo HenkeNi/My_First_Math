@@ -19,21 +19,31 @@ class MathCard {
     var labelText: String = "" // FIX
     var imageName: String = "" // FIX
     var isFlipped = false
+    var isAnswerView = false
     var originalPosition: CGPoint?
 
+    
     // FIX
     var number: Int = 0 {
         didSet {
-            print("Updating imageName")
             updateImageName(mathMode: .addition) // Fixa för minus .etc...
             updateLabelText()
         }
     }
     
-    //var isPaired = false
     
-    // getImageName: String {
-    //}
+    var getImageName: String {
+        if !isAnswerView {
+            return imageName
+        } else {
+            return "NumberQuestion"
+        }
+    }
+    
+    
+
+    
+
 
     
     
@@ -45,7 +55,7 @@ class MathCard {
     }*/
     
     
-    var matchingCardImageName: String {
+    var mathCardImageName: String {
         if isFlipped {
             return "Card\(number)"
         } else {
@@ -119,7 +129,7 @@ class MathCard {
     }
     
     func updateImageName(mathMode: CalculationMode) {
-        
+
         var imgName: String
         
         switch mathMode {
@@ -130,14 +140,16 @@ class MathCard {
             // TOOD: add multi / div
         }
         
-        
         imageName = imgName
-            
+        
+        
             
         //imageName = mathMode == .addition ? "Number\(number)" : "Number\(number)M"
         
         //imageName = "Number\(number)"
     }
+    
+    
     
     func updateLabelText() {
         labelText = number.convertIntToString()

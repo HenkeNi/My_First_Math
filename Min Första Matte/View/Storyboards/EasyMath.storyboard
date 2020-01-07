@@ -18,8 +18,9 @@
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUt-ET-Bil">
                                 <rect key="frame" x="117.5" y="555" width="179" height="179"/>
                                 <subviews>
-                                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number0M" translatesAutoresizingMaskIntoConstraints="NO" id="4Tg-0k-qUz">
-                                        <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
+                                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Number0M" translatesAutoresizingMaskIntoConstraints="NO" id="4Tg-0k-qUz">
+                                        <rect key="frame" x="0.0" y="1" width="179" height="179"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Hej"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYX-63-vwM">
                                         <rect key="frame" x="0.0" y="154.5" width="179" height="21.5"/>
@@ -167,10 +168,10 @@
                                     <constraint firstAttribute="width" secondItem="af3-OU-NBr" secondAttribute="height" multiplier="5:1" id="Phd-qP-mKh"/>
                                 </constraints>
                             </view>
-                            <view tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93a-Qv-P5y">
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93a-Qv-P5y">
                                 <rect key="frame" x="117.5" y="66" width="179" height="179"/>
                                 <subviews>
-                                    <imageView tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number3M" translatesAutoresizingMaskIntoConstraints="NO" id="xZB-DD-adR">
+                                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number3M" translatesAutoresizingMaskIntoConstraints="NO" id="xZB-DD-adR">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vb7-IK-O0b">
@@ -196,7 +197,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6M-f9-ssU">
                                 <rect key="frame" x="312.5" y="66" width="179" height="179"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberMinus" translatesAutoresizingMaskIntoConstraints="NO" id="gAr-RY-gG9">
+                                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberMinus" translatesAutoresizingMaskIntoConstraints="NO" id="gAr-RY-gG9">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                 </subviews>
@@ -209,10 +210,10 @@
                                     <constraint firstItem="gAr-RY-gG9" firstAttribute="leading" secondItem="e6M-f9-ssU" secondAttribute="leading" id="pfY-NS-KLh"/>
                                 </constraints>
                             </view>
-                            <view tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOy-1C-nbe">
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOy-1C-nbe">
                                 <rect key="frame" x="507.5" y="66" width="179" height="179"/>
                                 <subviews>
-                                    <imageView tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number2M" translatesAutoresizingMaskIntoConstraints="NO" id="u7V-IK-hys">
+                                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number2M" translatesAutoresizingMaskIntoConstraints="NO" id="u7V-IK-hys">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ui-kW-K5O">
@@ -237,7 +238,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Koa-9Y-1mc">
                                 <rect key="frame" x="702.5" y="66" width="179" height="179"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="9" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberEqualMinus" translatesAutoresizingMaskIntoConstraints="NO" id="Z9l-6u-eiE">
+                                    <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberEqualMinus" translatesAutoresizingMaskIntoConstraints="NO" id="Z9l-6u-eiE">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                 </subviews>
@@ -250,19 +251,28 @@
                                     <constraint firstAttribute="bottom" secondItem="Z9l-6u-eiE" secondAttribute="bottom" id="bZn-ig-ptA"/>
                                 </constraints>
                             </view>
-                            <view tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bev-Ms-y90">
+                            <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bev-Ms-y90">
                                 <rect key="frame" x="897.5" y="66" width="179.5" height="179"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WrongAnswer" translatesAutoresizingMaskIntoConstraints="NO" id="AQ5-nU-cJB">
+                                    <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberQuestion" translatesAutoresizingMaskIntoConstraints="NO" id="AQ5-nU-cJB">
                                         <rect key="frame" x="0.0" y="0.0" width="179.5" height="179"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWA-ES-ZAW">
+                                        <rect key="frame" x="0.0" y="154.5" width="179.5" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="JWA-ES-ZAW" secondAttribute="trailing" id="4HH-PK-Qy1"/>
+                                    <constraint firstAttribute="bottom" secondItem="JWA-ES-ZAW" secondAttribute="bottom" constant="3" id="9RI-0G-MMV"/>
                                     <constraint firstItem="AQ5-nU-cJB" firstAttribute="top" secondItem="Bev-Ms-y90" secondAttribute="top" id="Bwg-Fg-ebI"/>
                                     <constraint firstAttribute="width" secondItem="Bev-Ms-y90" secondAttribute="height" multiplier="1:1" id="Qck-qC-8aq"/>
                                     <constraint firstItem="AQ5-nU-cJB" firstAttribute="leading" secondItem="Bev-Ms-y90" secondAttribute="leading" id="akT-14-z99"/>
                                     <constraint firstAttribute="bottom" secondItem="AQ5-nU-cJB" secondAttribute="bottom" id="dea-Ng-2y3"/>
+                                    <constraint firstItem="JWA-ES-ZAW" firstAttribute="leading" secondItem="Bev-Ms-y90" secondAttribute="leading" id="dnz-lj-Fs5"/>
                                     <constraint firstAttribute="trailing" secondItem="AQ5-nU-cJB" secondAttribute="trailing" id="oIG-MM-2gr"/>
                                 </constraints>
                             </view>
@@ -343,6 +353,7 @@
                             <constraint firstItem="93a-Qv-P5y" firstAttribute="width" secondItem="FUt-ET-Bil" secondAttribute="width" id="hTc-yj-R6I"/>
                             <constraint firstItem="nOy-1C-nbe" firstAttribute="centerX" secondItem="ELi-ih-kPk" secondAttribute="centerX" id="j2J-qW-BI6"/>
                             <constraint firstItem="run-8I-PBr" firstAttribute="leading" secondItem="duV-Zp-ab1" secondAttribute="leading" constant="20" id="luk-tX-D2t"/>
+                            <constraint firstItem="JWA-ES-ZAW" firstAttribute="height" secondItem="0Ui-kW-K5O" secondAttribute="height" id="mUn-UA-rnP"/>
                             <constraint firstItem="Bev-Ms-y90" firstAttribute="leading" secondItem="Koa-9Y-1mc" secondAttribute="trailing" constant="16" id="muw-E4-2Rl"/>
                             <constraint firstItem="NYX-63-vwM" firstAttribute="height" secondItem="vb7-IK-O0b" secondAttribute="height" id="tLI-MK-cvi"/>
                             <constraint firstItem="duV-Zp-ab1" firstAttribute="bottom" secondItem="run-8I-PBr" secondAttribute="bottom" constant="16" id="ukm-UX-4GB"/>
@@ -366,43 +377,38 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="WrongImage" destination="AQ5-nU-cJB" id="1KX-IT-h1V"/>
                         <outlet property="progressBarContainer" destination="XVg-lZ-pxf" id="4Sw-tw-Rka"/>
                         <outlet property="progressBarViewBackground" destination="run-8I-PBr" id="rxa-R8-uzk"/>
                         <outlet property="progressBarWidth" destination="Bs5-eI-JY0" id="ApY-FT-FnC"/>
                         <outlet property="scoreLabel" destination="SWy-7T-omr" id="eU6-9H-d97"/>
                         <outlet property="topView" destination="af3-OU-NBr" id="fhb-rN-gu4"/>
-                        <outletCollection property="cardViews" destination="FUt-ET-Bil" collectionClass="NSMutableArray" id="WPK-Dq-c0R"/>
-                        <outletCollection property="cardViews" destination="Fyp-aB-3Fh" collectionClass="NSMutableArray" id="PwU-Up-kt6"/>
-                        <outletCollection property="cardViews" destination="7IL-br-2sH" collectionClass="NSMutableArray" id="3Jt-h0-iku"/>
-                        <outletCollection property="cardViews" destination="RjJ-Ak-hui" collectionClass="NSMutableArray" id="vPD-Lr-1cI"/>
-                        <outletCollection property="cardViews" destination="i9m-QR-Iq3" collectionClass="NSMutableArray" id="r2B-rH-cSU"/>
-                        <outletCollection property="cardViews" destination="93a-Qv-P5y" collectionClass="NSMutableArray" id="muv-17-2Vz"/>
-                        <outletCollection property="cardViews" destination="nOy-1C-nbe" collectionClass="NSMutableArray" id="RE3-cg-h6G"/>
-                        <outletCollection property="cardImages" destination="4Tg-0k-qUz" collectionClass="NSMutableArray" id="69f-Rl-XIK"/>
-                        <outletCollection property="cardImages" destination="HV7-g9-6jF" collectionClass="NSMutableArray" id="2hM-Rn-9i6"/>
-                        <outletCollection property="cardImages" destination="0xi-zi-vRv" collectionClass="NSMutableArray" id="klb-fn-wjl"/>
-                        <outletCollection property="cardImages" destination="5Ni-vL-97P" collectionClass="NSMutableArray" id="fX7-hX-SXY"/>
-                        <outletCollection property="cardImages" destination="48Y-pN-RSZ" collectionClass="NSMutableArray" id="Pfu-df-gwE"/>
-                        <outletCollection property="cardImages" destination="xZB-DD-adR" collectionClass="NSMutableArray" id="SH8-1s-MfH"/>
-                        <outletCollection property="cardImages" destination="u7V-IK-hys" collectionClass="NSMutableArray" id="XOS-7S-JXa"/>
-                        <outletCollection property="cardImages" destination="gAr-RY-gG9" collectionClass="NSMutableArray" id="kUR-Q1-4nU"/>
-                        <outletCollection property="cardImages" destination="Z9l-6u-eiE" collectionClass="NSMutableArray" id="BBD-HU-FEu"/>
-                        <outletCollection property="cardViews" destination="e6M-f9-ssU" collectionClass="NSMutableArray" id="ME8-dz-RT3"/>
-                        <outletCollection property="cardViews" destination="Koa-9Y-1mc" collectionClass="NSMutableArray" id="Rtk-3j-Ceg"/>
-                        <outletCollection property="cardLabels" destination="NYX-63-vwM" collectionClass="NSMutableArray" id="8hd-sw-4em"/>
-                        <outletCollection property="cardLabels" destination="erT-xa-5OX" collectionClass="NSMutableArray" id="QaS-Pc-vQW"/>
-                        <outletCollection property="cardLabels" destination="Qw3-xg-EFg" collectionClass="NSMutableArray" id="eeA-O6-udK"/>
-                        <outletCollection property="cardLabels" destination="0fL-r7-dew" collectionClass="NSMutableArray" id="bwJ-Ts-bOP"/>
-                        <outletCollection property="cardLabels" destination="A7w-IF-5nU" collectionClass="NSMutableArray" id="VG7-eb-do9"/>
-                        <outletCollection property="cardLabels" destination="vb7-IK-O0b" collectionClass="NSMutableArray" id="b99-CA-kzN"/>
-                        <outletCollection property="cardLabels" destination="0Ui-kW-K5O" collectionClass="NSMutableArray" id="MUd-S9-I2c"/>
-                        <outletCollection property="cardViews" destination="Bev-Ms-y90" collectionClass="NSMutableArray" id="YOc-hX-WHv"/>
-                        <outletCollection property="cardHandViews" destination="FUt-ET-Bil" collectionClass="NSMutableArray" id="3di-sU-Eom"/>
-                        <outletCollection property="cardHandViews" destination="Fyp-aB-3Fh" collectionClass="NSMutableArray" id="IjH-rY-7iw"/>
-                        <outletCollection property="cardHandViews" destination="7IL-br-2sH" collectionClass="NSMutableArray" id="exu-pa-Qny"/>
-                        <outletCollection property="cardHandViews" destination="RjJ-Ak-hui" collectionClass="NSMutableArray" id="v6P-nn-Bx7"/>
-                        <outletCollection property="cardHandViews" destination="i9m-QR-Iq3" collectionClass="NSMutableArray" id="YcI-ZA-rPi"/>
+                        <outletCollection property="operatorCardViews" destination="e6M-f9-ssU" collectionClass="NSMutableArray" id="BdM-KG-OgT"/>
+                        <outletCollection property="operatorCardViews" destination="Koa-9Y-1mc" collectionClass="NSMutableArray" id="4Yx-x4-w72"/>
+                        <outletCollection property="operatorCardImages" destination="gAr-RY-gG9" collectionClass="NSMutableArray" id="e9a-Ab-Dwz"/>
+                        <outletCollection property="operatorCardImages" destination="Z9l-6u-eiE" collectionClass="NSMutableArray" id="H0b-1G-qzk"/>
+                        <outletCollection property="playableCardViews" destination="FUt-ET-Bil" collectionClass="NSMutableArray" id="wKI-Fy-D0f"/>
+                        <outletCollection property="playableCardViews" destination="Fyp-aB-3Fh" collectionClass="NSMutableArray" id="v0l-0B-kzV"/>
+                        <outletCollection property="playableCardViews" destination="7IL-br-2sH" collectionClass="NSMutableArray" id="OO5-w1-S5v"/>
+                        <outletCollection property="playableCardImages" destination="4Tg-0k-qUz" collectionClass="NSMutableArray" id="ryL-Zx-ydb"/>
+                        <outletCollection property="playableCardImages" destination="HV7-g9-6jF" collectionClass="NSMutableArray" id="W0q-nz-Auq"/>
+                        <outletCollection property="playableCardImages" destination="0xi-zi-vRv" collectionClass="NSMutableArray" id="C8A-12-dUp"/>
+                        <outletCollection property="playableCardImages" destination="5Ni-vL-97P" collectionClass="NSMutableArray" id="YQY-FO-Bg5"/>
+                        <outletCollection property="playableCardImages" destination="48Y-pN-RSZ" collectionClass="NSMutableArray" id="62P-Ju-H8L"/>
+                        <outletCollection property="playableCardLabels" destination="NYX-63-vwM" collectionClass="NSMutableArray" id="Ro0-Cc-qPZ"/>
+                        <outletCollection property="playableCardLabels" destination="erT-xa-5OX" collectionClass="NSMutableArray" id="dmw-UX-rqC"/>
+                        <outletCollection property="playableCardLabels" destination="Qw3-xg-EFg" collectionClass="NSMutableArray" id="xCi-N9-byW"/>
+                        <outletCollection property="playableCardLabels" destination="0fL-r7-dew" collectionClass="NSMutableArray" id="aUy-1L-edV"/>
+                        <outletCollection property="playableCardLabels" destination="A7w-IF-5nU" collectionClass="NSMutableArray" id="XkP-yr-IRu"/>
+                        <outletCollection property="equationCardImages" destination="xZB-DD-adR" collectionClass="NSMutableArray" id="2IW-Xd-7b0"/>
+                        <outletCollection property="equationCardImages" destination="u7V-IK-hys" collectionClass="NSMutableArray" id="Icf-cD-OwG"/>
+                        <outletCollection property="equationCardImages" destination="AQ5-nU-cJB" collectionClass="NSMutableArray" id="ba9-1c-UPR"/>
+                        <outletCollection property="equationCardViews" destination="93a-Qv-P5y" collectionClass="NSMutableArray" id="KUR-bz-kzM"/>
+                        <outletCollection property="equationCardViews" destination="nOy-1C-nbe" collectionClass="NSMutableArray" id="3eH-D5-x8a"/>
+                        <outletCollection property="equationCardViews" destination="Bev-Ms-y90" collectionClass="NSMutableArray" id="BWk-Gd-qJE"/>
+                        <outletCollection property="equationCardLabels" destination="vb7-IK-O0b" collectionClass="NSMutableArray" id="4TW-HO-hiQ"/>
+                        <outletCollection property="equationCardLabels" destination="0Ui-kW-K5O" collectionClass="NSMutableArray" id="oV2-fZ-FpL"/>
+                        <outletCollection property="playableCardViews" destination="RjJ-Ak-hui" collectionClass="NSMutableArray" id="axd-8o-7gO"/>
+                        <outletCollection property="playableCardViews" destination="i9m-QR-Iq3" collectionClass="NSMutableArray" id="U02-sA-62k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0S-o6-cKy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -461,6 +467,6 @@
         <image name="Number4M" width="180" height="180"/>
         <image name="NumberEqualMinus" width="180" height="180"/>
         <image name="NumberMinus" width="180" height="180"/>
-        <image name="WrongAnswer" width="100" height="100"/>
+        <image name="NumberQuestion" width="180" height="180"/>
     </resources>
 </document>

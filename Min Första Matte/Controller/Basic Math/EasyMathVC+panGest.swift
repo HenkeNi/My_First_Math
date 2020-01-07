@@ -14,9 +14,8 @@ extension EasyMathVC {
     
     // Adds UITapGestureRecognizer to all card images
     func addImgTapGesture(cardImages: [UIImageView], isPlayableCardImage: Bool) {
-        
+                
         for cardImage in cardImages {
-                    
             isPlayableCardImage ? cardImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imgTapPlayableCard(sender:)))) : cardImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imgTapEquationCard(sender:))))
         }
     }
@@ -41,9 +40,9 @@ extension EasyMathVC {
     @objc func imgTapEquationCard(sender: UITapGestureRecognizer) {
 
         soundEffects(soundName: "Woosh")
-
+        
         for (index, view) in equationCardViews.enumerated() where sender.view?.tag == view.tag {
-            
+                        
             if sender.view as? UIImageView != nil {
                 equationCards[index].flipCard(cardView: view, mode: mathMode)
             }

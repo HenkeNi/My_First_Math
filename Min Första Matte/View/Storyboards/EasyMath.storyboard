@@ -174,7 +174,7 @@
                                     <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number3M" translatesAutoresizingMaskIntoConstraints="NO" id="xZB-DD-adR">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vb7-IK-O0b">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vb7-IK-O0b">
                                         <rect key="frame" x="0.0" y="154.5" width="179" height="21.5"/>
                                         <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
                                         <nil key="textColor"/>
@@ -216,7 +216,7 @@
                                     <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number2M" translatesAutoresizingMaskIntoConstraints="NO" id="u7V-IK-hys">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ui-kW-K5O">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ui-kW-K5O">
                                         <rect key="frame" x="0.0" y="154.5" width="179" height="21.5"/>
                                         <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
                                         <nil key="textColor"/>
@@ -254,7 +254,7 @@
                             <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bev-Ms-y90">
                                 <rect key="frame" x="897.5" y="66" width="179.5" height="179"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberQuestion" translatesAutoresizingMaskIntoConstraints="NO" id="AQ5-nU-cJB">
+                                    <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberQuestion" translatesAutoresizingMaskIntoConstraints="NO" id="AQ5-nU-cJB">
                                         <rect key="frame" x="0.0" y="0.0" width="179.5" height="179"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWA-ES-ZAW">
@@ -409,6 +409,7 @@
                         <outletCollection property="equationCardLabels" destination="0Ui-kW-K5O" collectionClass="NSMutableArray" id="oV2-fZ-FpL"/>
                         <outletCollection property="playableCardViews" destination="RjJ-Ak-hui" collectionClass="NSMutableArray" id="axd-8o-7gO"/>
                         <outletCollection property="playableCardViews" destination="i9m-QR-Iq3" collectionClass="NSMutableArray" id="U02-sA-62k"/>
+                        <outletCollection property="equationCardLabels" destination="JWA-ES-ZAW" collectionClass="NSMutableArray" id="7Yp-E5-qNa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0S-o6-cKy" userLabel="First Responder" sceneMemberID="firstResponder"/>

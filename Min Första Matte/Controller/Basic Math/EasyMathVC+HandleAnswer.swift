@@ -11,22 +11,6 @@ import UIKit
 extension EasyMathVC {
     
     
-    
-    static let basicAdditionAnswerCondition: (Int, Int, Int) -> Bool = {
-        return $0 + $1 == $2
-    }
-    
-    static let hardAdditionAnswerConitdion: (Int, Int, Int) -> Bool = {
-        return $2 - $0 == $1
-    }
-    
-    func calcAnswer(chosenNumb: Int, firstNumb: Int, answerNumb: Int) -> Bool {
-         print("\(firstNumb) + \(chosenNumb) == \(answerNumb)")
-         return firstNumb + chosenNumb == answerNumb
-     }
-     
-    
-    
      func getEquationNumbers() -> [Int] {
          
          var array = [Int]()
@@ -44,33 +28,6 @@ extension EasyMathVC {
         }
         return nil
     }
-    
-    
-    
-//    func validateChosenAnswer(currentView: UIView, answerView: UIView) {
-//
-//
-//         UIView.animate(withDuration: 0.2) {
-//             currentView.center = answerView.center // Position the draggedCard in the answerView
-//         }
-//
-//         let chosenNumber = playableCards[currentView.tag - 1].number // Dragged card's number
-//         print("ChosenNumber: \(chosenNumber)")
-//
-//         let equationNumbers = getEquationNumbers()
-//         print("First \(equationNumbers[0]), sec. \(equationNumbers[1])")
-//
-//         // TODO: FIX calcMode: calcualtor.addition
-//         // TODO: kolla vilka som är nummer och vilket som är answerView!!!
-//         if calcAnswer(chosenNumb: chosenNumber, firstNumb: equationNumbers[0], answerNumb: equationNumbers[1]) {
-//
-//             handleAnswer(answerCorrect: true) // Correct Answer
-//         } else {
-//             handleAnswer(answerCorrect: false) // Incorrect Answer
-//         }
-//     }
-    
-    
     
     
     // Check if dragged card is the correct one

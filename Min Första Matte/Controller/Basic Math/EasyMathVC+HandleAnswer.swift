@@ -11,7 +11,8 @@ import UIKit
 extension EasyMathVC {
     
     
-     func getEquationNumbers() -> [Int] {
+    
+     func getCurrentEquationCardNumbers() -> [Int] {
          
          var array = [Int]()
          
@@ -40,7 +41,7 @@ extension EasyMathVC {
         }
         
         let chosenNumber = playableCards[currentView.tag - 1].number // Dragged card's number
-        let equationNumbers = getEquationNumbers()
+        let equationNumbers = getCurrentEquationCardNumbers()
         
         print("ChosenNumber: \(chosenNumber)")
         print("First \(equationNumbers[0]), sec. \(equationNumbers[1])")
@@ -105,6 +106,8 @@ extension EasyMathVC {
     
     func answerIsCorrect() {
         
+        
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             AlertView.instance.showAlert(title: "Correct!", message: "That is the right number!", alertType: .success)
         }
@@ -121,7 +124,9 @@ extension EasyMathVC {
             self.view.layoutIfNeeded()
             //self.scoreLabel.text = "Score: \(self.score)"
         }
-        
+        score += 25
+        print("Score: \(score)")
+        //scoreLabel.text = "\(score)"
     }
     
     

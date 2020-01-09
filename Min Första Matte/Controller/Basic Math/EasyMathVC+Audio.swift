@@ -12,7 +12,7 @@ import Foundation
 extension EasyMathVC {
     
 
-    
+    // TODO: GÖr till egen klass??
     func soundEffects(soundName: String) {
         
         let soundURL = Bundle.main.url(forResource: soundName, withExtension: "wav")

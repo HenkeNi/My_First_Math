@@ -53,6 +53,12 @@ class Calculator {
     let addition: (Int, Int) -> Int = {
         return $0 + $1
     }
+    
+    let mediumAddition: (Int, Int) -> Int = {
+        return $1 - $0
+    }
+    
+    
     let subtraction: (Int, Int) -> Int = {
         return $0 - $1
     }

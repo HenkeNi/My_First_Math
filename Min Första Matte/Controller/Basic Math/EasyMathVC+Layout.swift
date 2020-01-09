@@ -47,12 +47,6 @@ extension EasyMathVC {
 
     // TOOD: Set nil/Black om card.isAnswerView = true?
     func setCardImages(cards: [MathCard], cardImages: [UIImageView]) {
-       
-//        for (index, cardImage) in cardImages.enumerated() {
-//            print("SET IMG")
-//            print("tag: \(cardImage.tag)")
-//            print("ind: \(index)")
-//        }
         
         for (index, cardImage) in cardImages.enumerated() where cardImage.tag == index + 1 {
             //cardImage.image = UIImage(named: cards[index].imageName)
@@ -83,6 +77,10 @@ extension EasyMathVC {
     
     // TODO: RENAME IMAGES
     func setOperatorImages(mathMode: CalculationMode) {
+        
+        print("PLUS TAG: \(operatorCardImages[0].tag)")
+        print("EQUAL TAG: \(operatorCardImages[1].tag)")
+        
         
         switch mathMode {
         case .addition:

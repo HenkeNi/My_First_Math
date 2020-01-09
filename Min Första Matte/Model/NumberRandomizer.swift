@@ -30,17 +30,19 @@ class NumberRandomizer {
     var previousResult = 0
     
     
-    func numberRandomizer(startNumber: Int, endNumber: Int, condition: (Int, Int) -> Bool) -> (Int, Int) {
+    func numberRandomizer(condition: (Int, Int) -> Bool) -> (Int, Int) {
          
         var firstNumber: Int
         var secondNumber: Int
         
         repeat {
-            firstNumber = Int.random(in: startNumber...endNumber)
-            secondNumber = Int.random(in: startNumber...endNumber)
+            firstNumber = Int.random(in: 1...10)
+            secondNumber = Int.random(in: 1...10)
+            //firstNumber = Int.random(in: startNumber...endNumber)
+            //secondNumber = Int.random(in: startNumber...endNumber)
         } while condition(firstNumber, secondNumber) || (firstNumber + secondNumber == previousResult)
         
-        previousResult = firstNumber + secondNumber
+        //previousResult = firstNumber + secondNumber
         //print("Prev \(previousResult)")
         
         return (firstNumber, secondNumber)
@@ -49,13 +51,25 @@ class NumberRandomizer {
     
     
     
-    let additionCondition: (Int, Int) -> Bool = { (firstNumber: Int, secondNumber: Int) -> Bool in
+    let easyAdditionCondition: (Int, Int) -> Bool = { (firstNumber: Int, secondNumber: Int) -> Bool in
         return firstNumber + secondNumber > 5
     }
     
-    let additionMedContidion: (Int, Int) -> Bool = { (firstNumber: Int, secondNumber: Int) -> Bool in
+    let mediumAdditionContidion: (Int, Int) -> Bool = { (firstNumber: Int, secondNumber: Int) -> Bool in
         return firstNumber + secondNumber < 6 || firstNumber + secondNumber > 10
     }
+    
+    let hardAdditionCondition: (Int, Int) -> Bool = { (firstNumber: Int, resultNumber: Int) -> Bool in
+        return resultNumber - firstNumber > 5 || resultNumber - firstNumber < 1
+    }
+    
+    let veryHardAdditionConditio: (Int, Int) -> Bool = {
+        return $1 - $0 < 6 || $1 - $0 > 10
+    }
+    
+    
+    
+    
     
     let subtractionCondition: (Int, Int) -> Bool = { (firstNumber: Int, secondNumber: Int) -> Bool in
         return firstNumber - secondNumber < 0

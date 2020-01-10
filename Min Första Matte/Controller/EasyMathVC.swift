@@ -140,7 +140,7 @@ class EasyMathVC: UIViewController {
     var playableCards = [MathCard]() // TODO: Make optional?? || sätt arrayen till empty i deinit
     var currentDifficulty = Difficulty.easy
     //var currentDifficulty: Difficulty? = .easy
-    var mathMode = CalculationMode.subtraction
+    var mathMode = CalculationMode.addition
     var audioPlayer: AVAudioPlayer?
     var calculator: Calculator?
     var numberRandomizer: NumberRandomizer?

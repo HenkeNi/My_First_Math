@@ -25,8 +25,8 @@ extension EasyMathVC {
      // Closure expression for increasing progressbar
      static let increaseProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
            
-        //return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.5)
-        return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.1)
+        return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.5)
+        //return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.1)
      }
      
      // Closure expression for decreasing progressbar
@@ -85,6 +85,9 @@ extension EasyMathVC {
         case .subtraction:
             operatorCardImages[0].image = UIImage(named: "NumberMinus")
             operatorCardImages[1].image = UIImage(named: "NumberEqualMinus")
+        case .multiplication:
+            operatorCardImages[0].image = UIImage(named: "WrongAnswer")
+            operatorCardImages[1].image = UIImage(named: "NumberEqual")
         }
         
     }

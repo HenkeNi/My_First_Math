@@ -12,7 +12,7 @@ import Foundation
 enum CalculationMode: String {
     case addition = "Addition"
     case subtraction = "Subtraction"
-    //case multiplication = "Multiplication"
+    case multiplication = "Multiplication"
     //case division = "Division"
     
     //case memoryCard
@@ -30,6 +30,8 @@ class Calculator {
             answer = chosenNumb == numb1 + numb2 ? true : false
         case .subtraction:
             answer = chosenNumb == numb1 - numb2 ? true : false
+        case .multiplication:
+            answer = chosenNumb == numb1 * numb2 ? true : false
         }
         
         return answer

@@ -33,48 +33,17 @@ extension EasyMathVC {
     
     // Check if dragged card is the correct one
     func validateChosenAnswer(currentView: UIView, answerView: UIView) {
-        
+               
         guard let calculator = calculator else { return } // Unwrap instance of calculator
-        
+
         UIView.animate(withDuration: 0.2) {
             currentView.center = answerView.center // Position the draggedCard in the answerView
         }
         
+        let calculationMode = getCalculationMode(calc: calculator)
         let equationNumbers = getNumbersInEquation(currentView: currentView)
-        
-        //let chosenNumber = playableCards[currentView.tag - 1].number // Dragged card's number
-        //let equationNumbers = getCurrentEquationCardNumbers()
-        
-        //print("ChosenNumber: \(chosenNumber)")
-        //print("First \(equationNumbers[0]), sec. \(equationNumbers[1])")
-
-//        let indexForAnswerView = getAnswerViewPosition()
-//
-//        var firstNumb: Int = 0
-//        var secondNumb: Int = 0
-//        var resultNumb: Int = 0
-//
-//        switch indexForAnswerView {
-//        case 0:
-//            firstNumb = chosenNumber
-//            secondNumb = equationNumbers[0]
-//            resultNumb = equationNumbers[1]
-//        case 1:
-//            firstNumb = equationNumbers[0]
-//            secondNumb = chosenNumber
-//            resultNumb = equationNumbers[1]
-//        case 2:
-//            firstNumb = equationNumbers[0]
-//            secondNumb = equationNumbers[1]
-//            resultNumb = chosenNumber
-//        default:
-//            break
-//        }
-        
-        // TODO: FIX calcMode: calcualtor.addition
-        
-        if calculator.validateMathResult(calcMode: calculator.addition, firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber) {
-        //if calculator.validateMathResult(calcMode: calculator.addition, firstNumb: firstNumb, secondNumb: secondNumb, resultNumb: resultNumb) {
+            
+        if calculator.validateMathResult(calcMode: calculationMode, firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber) {
             handleAnswer(answerCorrect: true) // Correct Answer
         } else {
             handleAnswer(answerCorrect: false) // Incorrect Answer
@@ -100,12 +69,19 @@ extension EasyMathVC {
         }
     }
     
-    
-    
-    
-    func getCalculationMode() {
+
+    func getCalculationMode(calc: Calculator) -> (Int, Int) -> Int {
         
+        //guard let calculator = calculator else { return } // Unwrap instance of calculator
         
+        switch mathMode {
+        case .addition:
+            return calc.addition
+        case .subtraction:
+            return calc.subtraction
+        case .multiplication:
+            return calc.multiplication
+        }
         
     }
     

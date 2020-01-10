@@ -107,7 +107,7 @@ class MathCard {
     func flipCard(cardView: UIView) {
         
         switch type {
-        case .addition:
+        case .addition, .multiplication:
             imageName = isFlipped ? "Number\(number)" : "Number\(number)Back"
         case .subtraction:
             imageName = isFlipped ? "Number\(number)M" : "Number\(number)MBack"
@@ -145,7 +145,7 @@ class MathCard {
 
         
         switch type {
-        case .addition:
+        case .addition, .multiplication:
             imageName = "Number\(number)"
         case .subtraction:
             imageName = "Number\(number)M"

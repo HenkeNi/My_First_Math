@@ -10,8 +10,11 @@ import UIKit
 import AVFoundation
 
 
+// TODO: Fixa lite med multiplikationen
+
 // TODO: Fixa nivå 5! randomera btm tal (en optional parameter -> kort som måste finnas med (rätt svar))
-// TODO: Minus, delat och gånger
+
+// TODO: Division
 
 // TODO: fixa score (mer beroende på svårighets grad)
 // TODO: Fixa highscore (olika för dem olika räknesätten) -> Fixa speciell view för highscores!
@@ -140,7 +143,7 @@ class EasyMathVC: UIViewController {
     var playableCards = [MathCard]() // TODO: Make optional?? || sätt arrayen till empty i deinit
     var currentDifficulty = Difficulty.easy
     //var currentDifficulty: Difficulty? = .easy
-    var mathMode = CalculationMode.addition
+    var mathMode = CalculationMode.multiplication
     var audioPlayer: AVAudioPlayer?
     var calculator: Calculator?
     var numberRandomizer: NumberRandomizer?
@@ -306,18 +309,45 @@ class EasyMathVC: UIViewController {
         let numberRandomizer = NumberRandomizer()
         var condition: (Int, Int) -> Bool
         
-        switch currentDifficulty {
-        case .easy:
+        switch (currentDifficulty, mathMode) {
+        case (.easy, .addition):
             condition = numberRandomizer.easyAdditionCondition
-        case .medium:
+        case (.medium, .addition):
             condition = numberRandomizer.mediumAdditionContidion
-        case .hard:
+        case (.hard, .addition):
             condition = numberRandomizer.hardAdditionCondition
-        case .veryHard:
+        case (.veryHard, .addition):
             condition = numberRandomizer.veryHardAdditionConditio
-        case .impossible:
+        case (.impossible, .addition):
             //condition = getAnswerViewIndex() == 2 ? numberRandomizer.impossibleAdditionCondition1 : numberRandomizer.impossibleAdditionCondition2
             condition = getImpossibleRandomizerCondition(numberRandomizer: numberRandomizer)
+            
+        case (.easy, .subtraction):
+            condition = numberRandomizer.easySubtractionCondition
+        case (.medium, .subtraction):
+            condition = numberRandomizer.mediumSubtractionCondition
+        case (.hard, .subtraction):
+            condition = numberRandomizer.hardSubtractionCondition
+        case (.veryHard, .subtraction):
+            condition = numberRandomizer.veryHardSubtractionCondition
+        case (.impossible, .subtraction):
+            condition = numberRandomizer.impossibleSubtractionCondition
+            
+            
+        case (.easy, .multiplication):
+            condition = numberRandomizer.easyMultiplicationCondition
+        case (.medium, .multiplication):
+            condition = numberRandomizer.mediumMultiplicationCondition
+        case (.hard, .multiplication):
+            condition = numberRandomizer.hardMultiplicationCondition
+        case (.veryHard, .multiplication):
+            condition = numberRandomizer.veryHardMultiplicationCondition
+        case (.impossible, .multiplication):
+            condition = numberRandomizer.impossibleMultiplicationCondition
+
+
+        
+    
         }
         return numberRandomizer.numberRandomizer(condition: condition)
     }
@@ -420,11 +450,11 @@ class EasyMathVC: UIViewController {
         
         switch (currentDifficulty, mathMode)  {
             
-        case (.easy, .addition), (.hard, .addition):
+        case (.easy, .addition), (.hard, .addition), (.easy, .multiplication), (.hard, .multiplication):
             return 1...5
-        case (.medium, .addition), (.veryHard, .addition):
+        case (.medium, .addition), (.veryHard, .addition), (.medium, .multiplication), (.veryHard, .multiplication):
             return 6...10
-        case (.impossible, .addition):
+        case (.impossible, .addition), (.impossible, .multiplication):
             return 4...8 // TODO: FIX!!
             
         case (.easy, .subtraction), (.hard, .subtraction):
@@ -433,6 +463,7 @@ class EasyMathVC: UIViewController {
             return 5...9
         case (.impossible, .subtraction):
             return 4...8 // FIX
+                        
         }
         
         
@@ -669,3 +700,24 @@ class EasyMathVC: UIViewController {
 
 
 
+//// TODO: FIX IMPOSSIBLE
+// func getEquationNumbers() -> (firstNumber: Int, secondNumber: Int) {
+//
+//     let numberRandomizer = NumberRandomizer()
+//     var condition: (Int, Int) -> Bool
+//
+//     switch currentDifficulty {
+//     case .easy:
+//         condition = numberRandomizer.easyAdditionCondition
+//     case .medium:
+//         condition = numberRandomizer.mediumAdditionContidion
+//     case .hard:
+//         condition = numberRandomizer.hardAdditionCondition
+//     case .veryHard:
+//         condition = numberRandomizer.veryHardAdditionConditio
+//     case .impossible:
+//         //condition = getAnswerViewIndex() == 2 ? numberRandomizer.impossibleAdditionCondition1 : numberRandomizer.impossibleAdditionCondition2
+//         condition = getImpossibleRandomizerCondition(numberRandomizer: numberRandomizer)
+//     }
+//     return numberRandomizer.numberRandomizer(condition: condition)
+// }

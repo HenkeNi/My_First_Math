@@ -21,12 +21,13 @@ class MathCard {
     var isFlipped = false
     var isAnswerView = false
     var originalPosition: CGPoint?
-
+    var type: CalculationMode?
+    
     
     // FIX
     var number: Int = 0 {
         didSet {
-            updateImageName(mathMode: .addition) // Fixa för minus .etc...
+            updateImageName() // Fixa för minus .etc...
             updateLabelText()
         }
     }
@@ -102,14 +103,24 @@ class MathCard {
     
     
     // Return a UIIMage name/string?
-    func flipCard(cardView: UIView, mode: CalculationMode) {
+    //func flipCard(cardView: UIView) {
+    func flipCard(cardView: UIView) {
         
-        switch mode {
+        switch type {
         case .addition:
             imageName = isFlipped ? "Number\(number)" : "Number\(number)Back"
         case .subtraction:
             imageName = isFlipped ? "Number\(number)M" : "Number\(number)MBack"
+        case .none:
+            imageName = isFlipped ? "Number\(number)" : "Number\(number)Back"
         }
+        
+//        switch mode {
+//        case .addition:
+//            imageName = isFlipped ? "Number\(number)" : "Number\(number)Back"
+//        case .subtraction:
+//            imageName = isFlipped ? "Number\(number)M" : "Number\(number)MBack"
+//        }
         isFlipped = !isFlipped
 
             UIView.transition(with: cardView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
@@ -128,20 +139,37 @@ class MathCard {
         imageName = "Number\(number)"
     }
     
-    func updateImageName(mathMode: CalculationMode) {
+    
+    
+    func updateImageName() {
 
-        var imgName: String
         
-        switch mathMode {
+        switch type {
         case .addition:
-            imgName = "Number\(number)"
+            imageName = "Number\(number)"
         case .subtraction:
-            imgName = "Number\(number)M"
-            // TOOD: add multi / div
+            imageName = "Number\(number)M"
+        case .none:
+            imageName = "Number\(number)"
         }
         
-        imageName = imgName
         
+        
+//        var imgName: String
+//
+//            switch type {
+//            case .addition:
+//                imgName = "Number\(number)"
+//            case .subtraction:
+//                imgName = "Number\(number)M"
+//                // TOOD: add multi / div
+//            case .none:
+//                <#code#>
+//            }
+//
+//            imageName = imgName
+//
+//
         
             
         //imageName = mathMode == .addition ? "Number\(number)" : "Number\(number)M"

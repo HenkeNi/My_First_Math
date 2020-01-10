@@ -25,8 +25,8 @@ extension EasyMathVC {
      // Closure expression for increasing progressbar
      static let increaseProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
            
-        return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.5)
-         //return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.1)
+        //return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.5)
+        return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.1)
      }
      
      // Closure expression for decreasing progressbar
@@ -77,10 +77,6 @@ extension EasyMathVC {
     
     // TODO: RENAME IMAGES
     func setOperatorImages(mathMode: CalculationMode) {
-        
-        print("PLUS TAG: \(operatorCardImages[0].tag)")
-        print("EQUAL TAG: \(operatorCardImages[1].tag)")
-        
         
         switch mathMode {
         case .addition:

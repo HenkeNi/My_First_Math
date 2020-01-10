@@ -72,7 +72,6 @@ extension EasyMathVC {
         // TODO: FIX calcMode: calcualtor.addition
         // TODO: kolla vilka som är nummer och vilket som är answerView!!!
         if calculator.validateMathResult(calcMode: calculator.addition, firstNumb: firstNumb, secondNumb: secondNumb, resultNumb: resultNumb) {
-            
             handleAnswer(answerCorrect: true) // Correct Answer
         } else {
             handleAnswer(answerCorrect: false) // Incorrect Answer
@@ -86,7 +85,7 @@ extension EasyMathVC {
          disableOrEnableCardInteractions(shouldDisable: true)
          
          
-         answerCorrect ? answerIsCorrect() : answerIsIncorrect()
+        answerCorrect ? answerIsCorrect() : answerIsIncorrect()
          let progressBarUpdate = updateProgressBar(isRightAnswer: answerCorrect)
          
          progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width)
@@ -97,7 +96,7 @@ extension EasyMathVC {
              self.view.layoutIfNeeded()
              //self.scoreLabel.text = "Score: \(self.score)"
          }
-         disableOrEnableCardInteractions(shouldDisable: false) // Enable moving/turning cards again
+         //disableOrEnableCardInteractions(shouldDisable: false) // Enable moving/turning cards again
      }
     
     
@@ -135,15 +134,16 @@ extension EasyMathVC {
     func answerIsIncorrect() {
                 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
-            self.resetToCardPosition()
+            self.resetToCardPosition() // FIX ONLY RESET CURRENT CARD
+            self.changeAnswerViewImage(displayWrongAnswer: true)
             //self.WrongImage.isHidden = false // TODO: ändra bild bara
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            self.disableOrEnableCardInteractions(shouldDisable: false)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                self.changeAnswerViewImage(displayWrongAnswer: false)
                 //self.WrongImage.isHidden = true
             }
         }
         
-        //nextLevel()
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
             //self.scoreLabel.text = "Score: \(self.score)"

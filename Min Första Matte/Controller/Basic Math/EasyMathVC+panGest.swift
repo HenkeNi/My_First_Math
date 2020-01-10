@@ -29,7 +29,7 @@ extension EasyMathVC {
         for (index, view) in playableCardViews.enumerated() where sender.view?.tag == view.tag {
             
             if sender.view as? UIImageView != nil {
-                playableCards[index].flipCard(cardView: view, mode: mathMode)
+                playableCards[index].flipCard(cardView: view)
             }
             setCardImages(cards: playableCards, cardImages: playableCardImages)
         }
@@ -43,7 +43,7 @@ extension EasyMathVC {
         for (index, view) in equationCardViews.enumerated() where sender.view?.tag == view.tag {
                         
             if sender.view as? UIImageView != nil {
-                equationCards[index].flipCard(cardView: view, mode: mathMode)
+                equationCards[index].flipCard(cardView: view)
             }
             setCardImages(cards: equationCards, cardImages: equationCardImages)
         }
@@ -75,7 +75,7 @@ extension EasyMathVC {
         case .began, .changed:
             
             moveView(currentView: handledCard, sender: sender)
-            //WrongImage.isHidden = true
+            //changeAnswerViewImage(displayWrongAnswer: false) //WrongImage.isHidden = true
         case .ended:
             if handledCard.frame.intersects(getAnswerView()!.frame) {
                 soundEffects(soundName: "Click")

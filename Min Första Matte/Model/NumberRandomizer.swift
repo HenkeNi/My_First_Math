@@ -67,6 +67,15 @@ class NumberRandomizer {
         return $1 - $0 < 6 || $1 - $0 > 10
     }
     
+    // x + y = ?
+    let impossibleAdditionCondition1: (Int, Int) -> Bool = {
+        return $0 + $1 > 10
+    }
+    
+    // x + ? = y && ? + x = y
+    let impossibleAdditionCondition2: (Int, Int) -> Bool = {
+        return $1 - $0 > 10 || $1 - $0 < 1
+    }
     
     
     

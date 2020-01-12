@@ -21,4 +21,6 @@ extension UIColor {
     static let subtractionLightBlue = UIColor(red: 178.0/255.0, green: 230.0/255.0, blue: 252.0/255.0, alpha: 1.0)
     
     static let subtractionWhite = UIColor(red: 200.0/255.0, green: 210.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    
+    static let progressBarColor = UIColor(red: 86, green: 201, blue: 174, alpha: 1.0)
 }

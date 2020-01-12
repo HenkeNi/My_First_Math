@@ -42,6 +42,15 @@ extension EasyMathVC {
     }
     
     
+    static let fullProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
+        return containerWidth
+    }
+    
+    // COmbine with decreaseProgress (input for amount to decrease with)
+    static let slowDecreaseProgress: (CGFloat, CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat, decreaseBy: CGFloat) -> CGFloat in
+        return barWidth < 0 ? 0.0 : barWidth - (containerWidth * decreaseBy)
+        
+    }
     
     
 
@@ -86,7 +95,7 @@ extension EasyMathVC {
             operatorCardImages[0].image = UIImage(named: "NumberMinus")
             operatorCardImages[1].image = UIImage(named: "NumberEqualMinus")
         case .multiplication:
-            operatorCardImages[0].image = UIImage(named: "WrongAnswer")
+            operatorCardImages[0].image = UIImage(named: "NumberMulti")
             operatorCardImages[1].image = UIImage(named: "NumberEqual")
         }
         
@@ -99,6 +108,15 @@ extension EasyMathVC {
         view.backgroundColor = mathMode == .addition ? .additionLightBrown : .subtractionLightBlue
         topView.backgroundColor = mathMode == .addition ? .additionBrown : .subtractionBlue
         progressBarViewBackground.backgroundColor = mathMode == .addition ? .additionBrown : .subtractionBlue
+    }
+    
+    
+    func setProgressBarColor(isRightAnswer: Bool) {
+        progressBarView.backgroundColor = isRightAnswer ? .green : .red
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+            self.progressBarView.backgroundColor = UIColor.progressBarColor
+        }
     }
        
     

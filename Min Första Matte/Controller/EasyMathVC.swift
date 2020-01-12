@@ -10,7 +10,9 @@ import UIKit
 import AVFoundation
 
 
-// TODO: Fixa lite med multiplikationen
+// TODO: Fixa lite med multiplikationen, nummren (inte bara 8 X 1 osv), 9 x ? = 7 funkar inte!!
+
+// TODO: lägg till högre svar i nivå 3: ex. 3 + ? = 10 (KVAR??)
 
 // TODO: Fixa nivå 5! randomera btm tal (en optional parameter -> kort som måste finnas med (rätt svar))
 
@@ -20,10 +22,8 @@ import AVFoundation
 // TODO: Fixa highscore (olika för dem olika räknesätten) -> Fixa speciell view för highscores!
 
 // Fixa olika färger på progressbaren??
-// Wrong Image vid fel
 
-//
-// TODO: HardMode
+// TODO: Impossible nivåerna!
 
 // PLUS
 // Nivå 1: tal: 1 - 5    1 + 3 = ?
@@ -34,24 +34,42 @@ import AVFoundation
 
 
 
+// HARDMODE:
+// Kunna gå bakåt i lvl (till lvl. 1) (om progressbaren når 0)
+// Timmer som tickar på (mer tid kvar ger mer poäng)
+// Progressbaren börjar i toppen och går sakta ner (fylls på om man svarar rätt, tappar om man svarar fel)
+// Resetas poängen om man går tillbaka till lvl 1 ???
+// Poäng som sakta tickar ner med?.
+// Mätaren börjar på toppen och går sakta neråt? Klarar man en nivå börjar den på topp igen!
 
-// RÄknesätt: +, -, /, *
+
+
+
+// KANSKE: FÖR MULTI: ENDAST HA RANDOMERADE NUMMER? istället för 1...5 eller 6...10!
+
+
+
+
+// FIX:
+// Progressbar color...
+// Om man startar från början på level medium ska korten skapas som medium kort (6-10)
+// - kolla när korten bottem cards instansieras vilken lvl som det är?
+// back button not working (VC presented in smaller window)
+// Crashar om ljudfil intex finns
+
+
+
+
 
 // TODO: Randomerade matte tal, inte samma som förra gången (spara sista). Ex: 3 + 4, nästa gång 2 + 1. Alt att svaret inte heller är samma
 // TODO: I addition (nivå1) lägg till '0';  1 + 0. Så man får använda nr 1 nån gång (1 + 0 = 1)?
-// TODO: Fixa räknesätten -, / och *
 
 // TODO: Alert Rutan berättar när man kommit till ny nivå! -> KAnske, knapp man måste trycka först innan man går vidare?? Kanske fyverkerieffekter
 
 
-// TODO: lägg till högre svar i nivå 3: ex. 3 + ? = 10
 
-
-// TODO: Hardmode!, om progressbaren går ner i botten sänks nivån. Progressbar sänks över tid. Poäng som sakta tickar ner med?. .... gå ner i nivå om mätaren når 0. Mätaren börjar på toppen och går sakta neråt? Klarar man en nivå börjar den på topp igen!
-
-
+// SCORE BARA FÖR HARDMODE???
 // TODO: highscore lista!, en för hardCore en för vanligt!
-
 
 // Add Sound effects:
 // rejected (wrong answer), correct answer, return sound (card dropped)
@@ -81,15 +99,8 @@ import AVFoundation
 
 
 
-// FIX:
-// Om man startar från början på level medium ska korten skapas som medium kort (6-10)
-    // - kolla när korten bottem cards instansieras vilken lvl som det är?
-
-// back button not working (VC presented in smaller window)
-// Crashar om ljudfil inte finns
 
 // BUGGAR:
-
 // När man drar nytt kort efter att ha dragit fel; om för snabbt, resetas kortet automatiskt när man drar det....
 // NIVÅ 5: Labels inte på rätt kort. Tag fel (image på fel kort)
 
@@ -116,6 +127,7 @@ class EasyMathVC: UIViewController {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var progressBarViewBackground: UIView!
     @IBOutlet weak var progressBarContainer: UIView!
+    @IBOutlet weak var progressBarView: UIView!
     @IBOutlet weak var progressBarWidth: NSLayoutConstraint!
     @IBOutlet weak var scoreLabel: UILabel! // Gör i kod?
     
@@ -139,14 +151,17 @@ class EasyMathVC: UIViewController {
         case impossible
     }
     
+  
+    
     var equationCards = [MathCard]() // TODO: property in object (isTopCard)
     var playableCards = [MathCard]() // TODO: Make optional?? || sätt arrayen till empty i deinit
     var currentDifficulty = Difficulty.easy
     //var currentDifficulty: Difficulty? = .easy
-    var mathMode = CalculationMode.multiplication
+    var mathMode = CalculationMode.addition
     var audioPlayer: AVAudioPlayer?
     var calculator: Calculator?
     var numberRandomizer: NumberRandomizer?
+    var hardMode: Bool = false
     var score = 0
     
     
@@ -161,6 +176,7 @@ class EasyMathVC: UIViewController {
         addImgTapGesture(cardImages: equationCardImages, isPlayableCardImage: false)
         createObserver()
         setStartDifficulty()
+        enableHardMode(shouldEnable: hardMode)// FIX
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -209,8 +225,8 @@ class EasyMathVC: UIViewController {
         playableCardImages.sort(by: { $0.tag < $1.tag })
         playableCardLabels.sort(by: { $0.tag < $1.tag })
         
-        equationCardViews.sort(by: { $0.tag < $1.tag }) // TODO: Behövs?
-        equationCardImages.sort(by: { $0.tag < $1.tag }) // TODO: Behövs?
+        equationCardViews.sort(by: { $0.tag < $1.tag })
+        equationCardImages.sort(by: { $0.tag < $1.tag })
         equationCardLabels.sort(by: { $0.tag < $1.tag })
         operatorCardImages.sort(by: { $0.tag < $1.tag })
         
@@ -233,9 +249,52 @@ class EasyMathVC: UIViewController {
     
     
     
+    // FIX
+    func enableHardMode(shouldEnable: Bool) {
+        
+        refillProgress()
+        timerInterval()
+        
+    }
     
     
+    func checkForNoProgressBar() {
+        
+//        if progressBarView.frame.width <= 0 {
+//
+//            //DispatchQueue.asyncAfter(<#T##self: DispatchQueue##DispatchQueue#>)
+//            print("ZERO!!")
+//        }
+        
+        if progressBarWidth.constant.rounded() == 0 {
+        }
+        if progressBarWidth.constant <= 0 {
+            print("NO PROG")
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+//                print("NO PROGRESS LEFT!!!")
+//            }
+        }
+    }
     
+    func refillProgress() {
+        progressBarWidth.constant = EasyMathVC.fullProgress(progressBarWidth.constant, progressBarContainer.frame.width)
+    }
+    
+    
+    @objc func progressBarSlowDecrease() {
+        print("MINUS!!")
+        progressBarWidth.constant = EasyMathVC.slowDecreaseProgress(progressBarWidth.constant, progressBarContainer.frame.width, 0.01) // 5 for smoother but harder to check for 0
+        
+        UIView.animate(withDuration: 1) {
+            self.view.layoutIfNeeded()
+        }
+        
+        checkForNoProgressBar()
+    }
+    
+    func timerInterval() {
+        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(progressBarSlowDecrease), userInfo: nil, repeats: true)
+    }
     
     
     
@@ -379,13 +438,12 @@ class EasyMathVC: UIViewController {
     
     
     
- 
+    
     
 
     
-    
+    // TODO: SPlit in two functions??
     func checkProgress() {
-        var counter = 0
         var difficultyValue = currentDifficulty.rawValue
         
         if progressBarWidth.constant.rounded() == progressBarContainer.frame.size.width.rounded() {
@@ -400,7 +458,6 @@ class EasyMathVC: UIViewController {
         
         // TODO: FÖR HARDMODE!
         if progressBarWidth.constant.rounded() == 0 {
-            counter += 1
         }
         currentDifficulty = updateDifficulty(difficulty: difficultyValue)
         setPlayableCardNumberValue()

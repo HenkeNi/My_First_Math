@@ -181,7 +181,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="xZB-DD-adR" secondAttribute="trailing" id="EMG-dr-A8e"/>
                                     <constraint firstAttribute="trailing" secondItem="vb7-IK-O0b" secondAttribute="trailing" id="FNb-k4-71l"/>
@@ -223,7 +223,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="0Ui-kW-K5O" firstAttribute="leading" secondItem="nOy-1C-nbe" secondAttribute="leading" id="ASZ-Fp-2Vg"/>
                                     <constraint firstItem="u7V-IK-hys" firstAttribute="top" secondItem="nOy-1C-nbe" secondAttribute="top" id="EFp-eJ-jBZ"/>
@@ -381,6 +381,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="progressBarContainer" destination="XVg-lZ-pxf" id="4Sw-tw-Rka"/>
+                        <outlet property="progressBarView" destination="rXP-Fd-slp" id="bsG-zO-LXL"/>
                         <outlet property="progressBarViewBackground" destination="run-8I-PBr" id="rxa-R8-uzk"/>
                         <outlet property="progressBarWidth" destination="Bs5-eI-JY0" id="ApY-FT-FnC"/>
                         <outlet property="scoreLabel" destination="SWy-7T-omr" id="eU6-9H-d97"/>

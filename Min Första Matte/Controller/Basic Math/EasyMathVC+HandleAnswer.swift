@@ -11,7 +11,7 @@ import UIKit
 extension EasyMathVC {
     
     
-    
+        // getNumbersInEquation
      func getCurrentEquationCardNumbers() -> [Int] {
          
          var array = [Int]()

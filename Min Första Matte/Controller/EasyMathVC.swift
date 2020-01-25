@@ -10,6 +10,9 @@ import UIKit
 import AVFoundation
 
 
+// TODO: FIXa så att start lvl fungerar (easy, medium etc...)
+
+
 // TODO: Fixa lite med multiplikationen, nummren (inte bara 8 X 1 osv), 9 x ? = 7 funkar inte!!
 
 // TODO: lägg till högre svar i nivå 3: ex. 3 + ? = 10 (KVAR??)
@@ -47,6 +50,8 @@ import AVFoundation
 
 // KANSKE: FÖR MULTI: ENDAST HA RANDOMERADE NUMMER? istället för 1...5 eller 6...10!
 
+// Kunna dra upp mer en ett kort? två rutor (en lite ovanför och till höger, sitter samman delvis)
+// så man får [][] + 3 = 10 sen får man dra upp tex 4 och 2 eller 3 och 3?
 
 
 
@@ -155,13 +160,13 @@ class EasyMathVC: UIViewController {
     
     var equationCards = [MathCard]() // TODO: property in object (isTopCard)
     var playableCards = [MathCard]() // TODO: Make optional?? || sätt arrayen till empty i deinit
-    var currentDifficulty = Difficulty.easy
+    var currentDifficulty = Difficulty.medium
     //var currentDifficulty: Difficulty? = .easy
     var mathMode = CalculationMode.addition
+    var hardModeEnabled: Bool = false
     var audioPlayer: AVAudioPlayer?
     var calculator: Calculator?
     var numberRandomizer: NumberRandomizer?
-    var hardMode: Bool = false
     var score = 0
     
     
@@ -175,8 +180,8 @@ class EasyMathVC: UIViewController {
         addImgTapGesture(cardImages: playableCardImages, isPlayableCardImage: true)
         addImgTapGesture(cardImages: equationCardImages, isPlayableCardImage: false)
         createObserver()
-        setStartDifficulty()
-        enableHardMode(shouldEnable: hardMode)// FIX
+        //setStartDifficulty()
+        enableHardMode(shouldEnable: hardModeEnabled)// FIX
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -197,12 +202,12 @@ class EasyMathVC: UIViewController {
     }
     
     
+    // TODO: NEEDED?
     func setStartDifficulty() {
-        currentDifficulty = Difficulty.easy
+        currentDifficulty = Difficulty.medium
     }
     
     
-
     func createObserver() {
         
         let name = Notification.Name(rawValue: nxtLvlNotificationKey)
@@ -234,12 +239,12 @@ class EasyMathVC: UIViewController {
     
     
     
-    
     func updateScoreLabel() {
         scoreLabel.text = "Score: \(score)"
     }
 
     
+    // Change between question mark and x (wrong answer)
     func changeAnswerViewImage(displayWrongAnswer: Bool) {
         
         for (index, image) in equationCardImages.enumerated() where index == getAnswerViewIndex() {
@@ -249,31 +254,33 @@ class EasyMathVC: UIViewController {
     
     
     
+    
     // FIX
     func enableHardMode(shouldEnable: Bool) {
         
-        refillProgress()
-        timerInterval()
+        if shouldEnable {
+            refillProgress()
+            timerInterval()
+        }
+        
         
     }
     
     
     func checkForNoProgressBar() {
         
-//        if progressBarView.frame.width <= 0 {
-//
-//            //DispatchQueue.asyncAfter(<#T##self: DispatchQueue##DispatchQueue#>)
-//            print("ZERO!!")
-//        }
         
-        if progressBarWidth.constant.rounded() == 0 {
+        if progressBarWidth.constant.rounded() <= 0 {
+            print("NO PROGRESS LEFT")
+            if currentDifficulty.rawValue > 1 {
+                updateDifficulty(difficulty: currentDifficulty.rawValue - 1)
+                
+                // TEST!!!
+                //nextEquation()
+                //resetToCardPosition()
+            }
         }
-        if progressBarWidth.constant <= 0 {
-            print("NO PROG")
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-//                print("NO PROGRESS LEFT!!!")
-//            }
-        }
+
     }
     
     func refillProgress() {
@@ -282,8 +289,8 @@ class EasyMathVC: UIViewController {
     
     
     @objc func progressBarSlowDecrease() {
-        print("MINUS!!")
-        progressBarWidth.constant = EasyMathVC.slowDecreaseProgress(progressBarWidth.constant, progressBarContainer.frame.width, 0.01) // 5 for smoother but harder to check for 0
+
+        progressBarWidth.constant = EasyMathVC.slowDecreaseProgress(progressBarWidth.constant, progressBarContainer.frame.width, 0.1) // 5 for smoother but harder to check for 0
         
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
@@ -292,6 +299,7 @@ class EasyMathVC: UIViewController {
         checkForNoProgressBar()
     }
     
+    // TODO: STOP TIMER, put Timer in the top var timer: Timer?
     func timerInterval() {
         let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(progressBarSlowDecrease), userInfo: nil, repeats: true)
     }
@@ -561,7 +569,7 @@ class EasyMathVC: UIViewController {
         for n in 1...3 {
                  
             let card = MathCard()
-            card.type = mathMode
+            card.calcMode = mathMode
             if n == getAnswerViewIndex() { card.isAnswerView = true }
             equationCards.append(card)
         }
@@ -571,7 +579,7 @@ class EasyMathVC: UIViewController {
         
         for _ in 1...5 {
             let card = MathCard()
-            card.type = mathMode
+            card.calcMode = mathMode
             playableCards.append(card)
         }
         setPlayableCardNumberValue()
@@ -632,7 +640,8 @@ class EasyMathVC: UIViewController {
     func flipCardsBack(cards: [MathCard], cardViews: [UIView]) {
         
         for (index, card) in cards.enumerated() where card.isFlipped && !card.isAnswerView {
-            card.flipCardBack(cardView: cardViews[index])
+            //card.flipCardBack(cardView: cardViews[index])
+            card.flipCard(cardView: cardViews[index], duration: 0.6)
         }
     }
     
@@ -658,7 +667,7 @@ class EasyMathVC: UIViewController {
     }
     
     
-    // Disable or enable pangesture of the cards
+    // Disable or enable card(s) interactions
      func disableOrEnableCardInteractions(shouldDisable: Bool) {
          
          for cardView in playableCardViews {

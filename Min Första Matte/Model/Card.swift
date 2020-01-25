@@ -9,6 +9,7 @@
 import UIKit
 
 // FLip card eget protocol?
+// pairable protocol med?
 protocol Card {
     
     //var frontImgName: String { get set}

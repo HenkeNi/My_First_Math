@@ -35,6 +35,12 @@ extension EasyMathVC {
          return barWidth < 0 ? 0.0 : barWidth - (containerWidth * 0.1)
      }
      
+//    static let decreaseProgress: (CGFloat) -> CGFloat = {
+//        return barWidth < 0 ? 0.0 : 
+//    }
+    
+    
+    // TODO COMBINE SLOW DECREASE WITH DECrease
     
     // FIXA
     static let resetProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
@@ -87,18 +93,23 @@ extension EasyMathVC {
     // TODO: RENAME IMAGES
     func setOperatorImages(mathMode: CalculationMode) {
         
+        var operatorImgName: String
+        
         switch mathMode {
         case .addition:
+            //operatorImgName = "NumberPlus"
             operatorCardImages[0].image = UIImage(named: "NumberPlus")
             operatorCardImages[1].image = UIImage(named: "NumberEqual")
         case .subtraction:
+            //operatorImgName = "NumberMinus"
             operatorCardImages[0].image = UIImage(named: "NumberMinus")
             operatorCardImages[1].image = UIImage(named: "NumberEqualMinus")
         case .multiplication:
+            //operatorImgName = "NumberMulti"
             operatorCardImages[0].image = UIImage(named: "NumberMulti")
             operatorCardImages[1].image = UIImage(named: "NumberEqual")
         }
-        
+        //operatorCardImages[0].image = UIImage(named: operatorImgName)
     }
 
     
@@ -133,32 +144,6 @@ extension EasyMathVC {
 
 
 
-// Puts right image on the card
-  /*func updateCardImages() {
-      
-      for cardImage in cardImages {
-          
-          switch cardImage.tag {
-              
-          case 1:
-              cardImage.image = UIImage(named: cards[0].imageName)
-          case 2:
-              cardImage.image = UIImage(named: cards[1].imageName)
-          case 3:
-              cardImage.image = UIImage(named: cards[2].imageName)
-          case 4:
-              cardImage.image = UIImage(named: cards[3].imageName)
-          case 5:
-              cardImage.image = UIImage(named: cards[4].imageName)
-          case 6:
-              cardImage.image = UIImage(named: topCards[0].imageName)
-          case 7:
-              cardImage.image = UIImage(named: topCards[1].imageName)
-          default:
-              break
-          }
-      }
-  }*/
 
 
 
@@ -169,89 +154,4 @@ extension EasyMathVC {
 
 
 
-   /* func updateCardLabels(cardLabels: [UILabel], associatedCards: [Card]) {
-            
-            for (index, label) in cardLabels.enumerated() {
-                
-                switch label.tag {
-                case <#pattern#>:
-                    <#code#>
-                default:
-                    <#code#>
-                }
-            }
-        }*/
-        
-        
-//        // FIX! sätt kortet som är på viewn till att bestämma labeltexten
-//        // Updates the label text
-//        func updateCardLabels() {
-//
-//            for (index, label) in cardLabels.enumerated() {
-//
-//                switch label.tag {
-//                case 1, 2, 3, 4, 5:
-//                    label.text = playableCards[index].number.convertIntToString()
-//    //            case 6:
-//    //                label.text = topCards[0].number.convertIntToString()
-//    //            case 7:
-//    //                label.text = topCards[1].number.convertIntToString()
-//                default:
-//                    label.text = ""
-//                }
-//
-//            }
-//        }
-//
-//        func updateTopCardLabels() {
-//
-//            for label in cardLabels {
-//
-//                switch label.tag {
-//                case 6:
-//                    print("\(equationCards[0].labelText)")
-//                    label.text = equationCards[0].number.convertIntToString()
-//                case 7:
-//                    label.text = equationCards[1].number.convertIntToString()
-//                default:
-//                    continue
-//                }
-//            }
-//        }
 
-
-/*func updateCardImages() {
-       
-       for (index, cardImage) in cardImages.enumerated() {
-               
-           switch cardImage.tag {
-           case 1, 2, 3, 4, 5:
-               cardImage.image = UIImage(named: playableCards[index].imageName)
-           case 6:
-               cardImage.image = UIImage(named: equationCards[0].imageName)
-           case 7:
-               cardImage.image = UIImage(named: equationCards[1].imageName)
-           default:
-               break
-           }
-           
-       }
-   }*/
-
-
-
-// COmbine with below? FIX!! Egen klass?
-  /*func setMathOperatorsImages(mathMode: CalculationMode) {
-               
-      for image in operatorCardImages {
-           
-           switch image.tag {
-           case 1:
-               image.image = mathMode == .addition ? UIImage(named: "NumberPlus") : UIImage(named: "NumberMinus")
-           case 2:
-               image.image = mathMode == .addition ? UIImage(named: "NumberEqual") : UIImage(named: "NumberEqualMinus")
-           default:
-               break
-           }
-       }
-   }*/

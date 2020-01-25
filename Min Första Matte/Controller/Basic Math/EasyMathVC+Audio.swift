@@ -15,18 +15,17 @@ extension EasyMathVC {
     // TODO: GÖr till egen klass??
     func soundEffects(soundName: String) {
         
-        let soundURL = Bundle.main.url(forResource: soundName, withExtension: "wav")
+        guard let soundURL = Bundle.main.url(forResource: soundName, withExtension: "wav") else { return }
         
         audioPlayer = AVAudioPlayer()
         
-        audioPlayer = try! AVAudioPlayer(contentsOf: soundURL!)
-        audioPlayer!.play()
-        
-        /*if var audioPlayer = audioPlayer {
-         
-         audioPlayer = try! AVAudioPlayer(contentsOf: soundURL!)
-         audioPlayer.play()
-         }*/
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOf: soundURL)
+        }
+        catch {
+            print("No sound was heard")
+        }
+        audioPlayer?.play()
     }
     
 }

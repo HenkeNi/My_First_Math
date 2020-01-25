@@ -8,265 +8,94 @@
 
 import UIKit
 
-// TODO: ANVÄND STRUCT ISTÄLLET FÖR CLASS????
-
+// TODO: använd conveniece initializer...
 // TODO: superklass av Card -> subklasser, memoryCard, MathCard etc
-// TODO: UIview property?
 // TODO: Combine Different Card Classes
+
 // TODO: Make private variables, set and get
+// TODO: set didSet listener på isFlipped och kalla på metoden för att vända kortet
+
+
+// TODO: UIview property?
 class MathCard {
     
-    var labelText: String = "" // FIX
-    var imageName: String = "" // FIX
-    var isFlipped = false
-    var isAnswerView = false
+    //  var cardView: UIView
+    // var cardImage: UIImage
+    var imageName = ""
+    var isAnswerView = false // RENAME? Card that is answer/question-mark
     var originalPosition: CGPoint?
-    var type: CalculationMode?
+    var calcMode: CalculationMode? // Check memory leak
     
-    
-    // FIX
-    var number: Int = 0 {
+    var number = 0 {
         didSet {
-            updateImageName() // Fixa för minus .etc...
-            updateLabelText()
+            updateImageName()
+            //updateLabelText()
         }
     }
     
-    
-    var getImageName: String {
-        if !isAnswerView {
-            return imageName
-        } else {
-            return "NumberQuestion"
+    var isFlipped = false {
+        didSet {
+            updateImageName()
         }
     }
-    
-    
 
-    
-
-
-    
-    
-    
-    /*init(number: Int, imageName: String, labelText: String) {
-        self.number = number
-        self.imageName = imageName
-        self.labelText = labelText
-    }*/
-    
-    
-    var mathCardImageName: String {
-        if isFlipped {
-            return "Card\(number)"
-        } else {
-            return "CardBack"
-        }
+    var labelText: String {
+        return number.convertIntToString()
     }
     
-    //var containerView : UIView
-    
-//    init(containerView: UIView) {
-//        self.containerView = containerView
+
+//    var imgName: String {
+//
+//    }
+
+//    init(number: Int) {
+//        self.number = number
 //    }
 
     
     
-    
-    // TODO: set didSet listener på isFlipped och kalla på metoden för att vända kortet
-    
-    
-    
-    // Return a UIIMage name/string?
-    /*func turnCard(cardView: UIView, mode: CalculationMode) {
-        
-        switch mode {
-        case .addition:
-            imageName = isFlipped ? "Number\(number)" : "Number\(number)Back"
-        case .subtraction:
-            imageName = isFlipped ? "Number\(number)M" : "Number\(number)MBack"
-        }
-        isFlipped = !isFlipped
-
-            UIView.transition(with: cardView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-        
-    }
-    
-    // Turn card back to front side
-    func flipCardBack(cardView: UIView) {
-        isFlipped = false
-        
-        // TEST
-        UIView.transition(with: cardView, duration: 0.6, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-        //imageName = "Number\(number)"
-    }*/
-    
-    
-    // Return a UIIMage name/string?
-    //func flipCard(cardView: UIView) {
-    func flipCard(cardView: UIView) {
-        
-        switch type {
-        case .addition, .multiplication:
-            imageName = isFlipped ? "Number\(number)" : "Number\(number)Back"
-        case .subtraction:
-            imageName = isFlipped ? "Number\(number)M" : "Number\(number)MBack"
-        case .none:
-            imageName = isFlipped ? "Number\(number)" : "Number\(number)Back"
-        }
-        
-//        switch mode {
-//        case .addition:
-//            imageName = isFlipped ? "Number\(number)" : "Number\(number)Back"
-//        case .subtraction:
-//            imageName = isFlipped ? "Number\(number)M" : "Number\(number)MBack"
-//        }
-        isFlipped = !isFlipped
-
-            UIView.transition(with: cardView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-        
-    }
-    
-    // Turn card back to front side
-    func flipCardBack(cardView: UIView) {
-        
-        isFlipped = false
-        
-        // TEST
-        
-        
-        UIView.transition(with: cardView, duration: 0.6, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-        imageName = "Number\(number)"
-    }
-    
-    
-    
     func updateImageName() {
-
-        
-        switch type {
-        case .addition, .multiplication:
-            imageName = "Number\(number)"
-        case .subtraction:
-            imageName = "Number\(number)M"
-        case .none:
-            imageName = "Number\(number)"
+        switch (calcMode, isFlipped) {
+        case (.addition, false), (.multiplication, false), (.none, false):
+                  imageName = "Number\(number)"
+        case (.subtraction, false):
+                  imageName = "Number\(number)M"
+        case (.addition, true), (.multiplication, true), (.none, true):
+                imageName = "Number\(number)Back"
+        case (.subtraction, true):
+            imageName = "Number\(number)MBack"
         }
-        
-        
-        
-//        var imgName: String
-//
-//            switch type {
-//            case .addition:
-//                imgName = "Number\(number)"
-//            case .subtraction:
-//                imgName = "Number\(number)M"
-//                // TOOD: add multi / div
-//            case .none:
-//                <#code#>
-//            }
-//
-//            imageName = imgName
-//
-//
-        
-            
-        //imageName = mathMode == .addition ? "Number\(number)" : "Number\(number)M"
-        
-        //imageName = "Number\(number)"
     }
     
     
-    
-    func updateLabelText() {
-        labelText = number.convertIntToString()
+    // COMBINE WITH ABOVE!?!
+    var getImageName: String {
+               if !isAnswerView {
+                   return imageName
+               } else {
+                   return "NumberQuestion"
+               }
     }
+   
 
+    // CLOSURE INSTEAD??
+    //    var updateLabel: () -> () {
+    //        self.labelText = number.converIntToString()
+    //    }
+        
+    
+    func flipCard(cardView: UIView, duration: Double) {
+        
+        UIView.transition(with: cardView, duration: duration, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+        
+        isFlipped = !isFlipped
+    }
+    
+ 
+    
     
     
     
     
 }
 
-
-/*
- 
- class MathCard: Card {
-     
-     
-     var labelText: String
-     
-     var imageName = ""
-     var number = 0
-     var numberText = ""
-     var isFlipped = false
-     var isPaired = false
-     var originalPosition: CGPoint?
-     
-  
-     
-     var matchingCardImageName: String {
-         if isFlipped {
-             return "Card\(number)"
-         } else {
-             return "CardBack"
-         }
-     }
-     
-     //var containerView : UIView
-     
- //    init(containerView: UIView) {
- //        self.containerView = containerView
- //    }
-
-     
-     
-     
-     // TODO: set didSet listener på isFlipped och kalla på metoden för att vända kortet
-     
-     
-     
-     // Return a UIIMage name/string?
-     func turnCard(cardView: UIView, mode: CalculationMode) {
-         
-         switch mode {
-         case .addition:
-             imageName = isFlipped ? "Number\(number)" : "Number\(number)Back"
-         case .subtraction:
-             imageName = isFlipped ? "Number\(number)M" : "Number\(number)MBack"
-         }
-         isFlipped = !isFlipped
-
-             UIView.transition(with: cardView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-         
-     }
-     
-     // Turn card back to front side
-     func flipCardBack(cardView: UIView) {
-         isFlipped = false
-         
-         // TEST
-         UIView.transition(with: cardView, duration: 0.6, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-         //imageName = "Number\(number)"
-     }
-     
-     
-     func updateImageName(mathMode: CalculationMode) {
-         
-         imageName = mathMode == .addition ? "Number\(number)" : "Number\(number)M"
-         
-         //imageName = "Number\(number)"
-     }
-     
-     func updateNumberText() {
-         numberText = number.convertIntToString()
-     }
-
-     
-     
-     
-     
- }
-
- */

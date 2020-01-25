@@ -29,7 +29,7 @@ extension EasyMathVC {
         for (index, view) in playableCardViews.enumerated() where sender.view?.tag == view.tag {
             
             if sender.view as? UIImageView != nil {
-                playableCards[index].flipCard(cardView: view)
+                playableCards[index].flipCard(cardView: view, duration: 0.3)
             }
             setCardImages(cards: playableCards, cardImages: playableCardImages)
         }
@@ -43,7 +43,7 @@ extension EasyMathVC {
         for (index, view) in equationCardViews.enumerated() where sender.view?.tag == view.tag {
                         
             if sender.view as? UIImageView != nil {
-                equationCards[index].flipCard(cardView: view)
+                equationCards[index].flipCard(cardView: view, duration: 0.3)
             }
             setCardImages(cards: equationCards, cardImages: equationCardImages)
         }

@@ -21,21 +21,21 @@ enum CalculationMode: String {
 class Calculator {
     
     // Old versuib
-    func calculate(mode : CalculationMode, numb1: Int, numb2: Int, chosenNumb: Int) -> Bool {
-        
-        var answer: Bool
-        
-        switch mode {
-        case .addition:
-            answer = chosenNumb == numb1 + numb2 ? true : false
-        case .subtraction:
-            answer = chosenNumb == numb1 - numb2 ? true : false
-        case .multiplication:
-            answer = chosenNumb == numb1 * numb2 ? true : false
-        }
-        
-        return answer
-    }
+//    func calculate(mode : CalculationMode, numb1: Int, numb2: Int, chosenNumb: Int) -> Bool {
+//
+//        var answer: Bool
+//
+//        switch mode {
+//        case .addition:
+//            answer = chosenNumb == numb1 + numb2 ? true : false
+//        case .subtraction:
+//            answer = chosenNumb == numb1 - numb2 ? true : false
+//        case .multiplication:
+//            answer = chosenNumb == numb1 * numb2 ? true : false
+//        }
+//
+//        return answer
+//    }
     
     
     

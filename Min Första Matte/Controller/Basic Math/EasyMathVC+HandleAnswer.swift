@@ -10,25 +10,10 @@ import UIKit
 
 extension EasyMathVC {
     
-    
-        // getNumbersInEquation
-     func getCurrentEquationCardNumbers() -> [Int] {
-         
-         var array = [Int]()
-         
-         for card in equationCards where !card.isAnswerView {
-             array.append(card.number)
-         }
-         return array
-     }
+  
     
     
-    func getAnswerViewPosition() -> Int? {
-        for (index, card) in equationCards.enumerated() where card.isAnswerView {
-            return index
-        }
-        return nil
-    }
+ 
     
     
     // Check if dragged card is the correct one
@@ -41,7 +26,7 @@ extension EasyMathVC {
         }
         
         let calculationMode = getCalculationMode(calc: calculator)
-        let equationNumbers = getNumbersInEquation(currentView: currentView)
+        let equationNumbers = getNumbersInEquation(chosenNumber: playableCards[currentView.tag - 1].number)
             
         if calculator.validateMathResult(calcMode: calculationMode, firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber) {
             handleAnswer(answerCorrect: true) // Correct Answer
@@ -51,23 +36,33 @@ extension EasyMathVC {
     }
     
     
-    func getNumbersInEquation(currentView: UIView) -> (firstNumber: Int, secondNumber: Int, resultNumber: Int) {
-        
-        let chosenNumber = playableCards[currentView.tag - 1].number // Dragged card's number
-        let equationNumbers = getCurrentEquationCardNumbers()
-        let answerIndexPosition = getAnswerViewPosition()
+    
+       func getNumbersInEquation(chosenNumber: Int) -> (firstNumber: Int, secondNumber: Int, resultNumber: Int) {
+           
+           let equationNumbers = getCurrentEquationCardNumbers()
 
-        switch answerIndexPosition {
-        case 0:
-            return (chosenNumber, equationNumbers[0], equationNumbers[1])
-        case 1:
-            return (equationNumbers[0], chosenNumber, equationNumbers[1])
-        case 2:
-            return (equationNumbers[0], equationNumbers[1], chosenNumber)
-        default:
-            return (0, 0, 0) // TODO: FIX!
-        }
-    }
+           switch getAnswerViewIndex() {
+           case 0:
+               return (chosenNumber, equationNumbers[0], equationNumbers[1])
+           case 1:
+               return (equationNumbers[0], chosenNumber, equationNumbers[1])
+           case 2:
+               return (equationNumbers[0], equationNumbers[1], chosenNumber)
+           default:
+               return (0, 0, 0) // TODO: FIX!
+           }
+       }
+       
+       func getCurrentEquationCardNumbers() -> [Int] {
+              
+           var equationsNumbers = [Int]()
+              
+           for card in equationCards where !card.isAnswerView {
+               equationsNumbers.append(card.number)
+           }
+           return equationsNumbers
+       }
+
     
 
     func getCalculationMode(calc: Calculator) -> (Int, Int) -> Int {
@@ -95,7 +90,7 @@ extension EasyMathVC {
          let progressBarUpdate = updateProgressBar(isRightAnswer: answerCorrect)
         setProgressBarColor(isRightAnswer: answerCorrect)
         
-         progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width)
+        progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width, 0.1)
          
          checkProgress()
          
@@ -141,7 +136,7 @@ extension EasyMathVC {
     func answerIsIncorrect() {
                 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
-            self.resetToCardPosition() // FIX ONLY RESET CURRENT CARD
+            self.returnCardViewsToOriginalPosition() // FIX ONLY RESET CURRENT CARD
             self.changeAnswerViewImage(displayWrongAnswer: true)
             //self.WrongImage.isHidden = false // TODO: ändra bild bara
             self.disableOrEnableCardInteractions(shouldDisable: false)
@@ -157,6 +152,33 @@ extension EasyMathVC {
         }
         
     }
+    
+    
+    // TODO: SPlit in two functions??
+     func checkProgress() {
+         var difficultyValue = currentDifficulty.rawValue
+         
+         if progressBarWidth.constant.rounded() == progressBarContainer.frame.size.width.rounded() {
+             
+             if difficultyValue < Difficulty.allCases.count {
+                 // Increase lvl!
+                 difficultyValue += 1
+                 playSound(soundName: "Cheering")
+                 progressBarWidth.constant = 0
+             }
+         }
+     
+         currentDifficulty = updateDifficulty(difficulty: difficultyValue)
+         setPlayableCardsNumber()
+     }
+    
+    
+      // NOT USED!!!!!
+      func increaseDifficulty() {
+          
+        
+        
+      }
 }
 
 

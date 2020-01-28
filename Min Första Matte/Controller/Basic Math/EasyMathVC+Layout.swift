@@ -14,57 +14,48 @@ import UIKit
 extension EasyMathVC {
     
     
-    // OBS: gjorde closuresen statiska samt lade till EasyMathVC. funktitonene!!!
-    
-    
     // Returns closure expression for updating progressbar
-     func updateProgressBar(isRightAnswer: Bool) -> (CGFloat, CGFloat) -> CGFloat {
+     func updateProgressBar(isRightAnswer: Bool) -> (CGFloat, CGFloat, CGFloat) -> CGFloat {
         return isRightAnswer ? EasyMathVC.increaseProgress : EasyMathVC.decreaseProgress
      }
      
      // Closure expression for increasing progressbar
-     static let increaseProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
+    static let increaseProgress = { (barWidth: CGFloat, containerWidth: CGFloat, increaseAmount: CGFloat) -> CGFloat in
            
-        return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.5)
-        //return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * 0.1)
+        return barWidth >= containerWidth ? containerWidth : barWidth + (containerWidth * increaseAmount)
      }
-     
-     // Closure expression for decreasing progressbar
-     static let decreaseProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
          
-         return barWidth < 0 ? 0.0 : barWidth - (containerWidth * 0.1)
+     // Closure expression for decreasing progressbar
+    static let decreaseProgress = { (barWidth: CGFloat, containerWidth: CGFloat, decreaseAmount: CGFloat) -> CGFloat in
+         
+         return barWidth < 0 ? 0.0 : barWidth - (containerWidth * decreaseAmount)
      }
      
-//    static let decreaseProgress: (CGFloat) -> CGFloat = {
-//        return barWidth < 0 ? 0.0 : 
+    func refillProgress() {
+        progressBarWidth.constant = progressBarContainer.frame.width
+      
+    //        progressBarWidth.constant = EasyMathVC.fullProgress(progressBarWidth.constant, progressBarContainer.frame.width)
+    }
+
+    
+//    static let resetProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
+//        return 0
+//    }
+//
+//    static let fullProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
+//        return containerWidth
 //    }
     
     
-    // TODO COMBINE SLOW DECREASE WITH DECrease
     
-    // FIXA
-    static let resetProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
-        return 0
+    func updateScoreLabel() {
+        scoreLabel.text = "Score: \(score)"
     }
-    
-    
-    static let fullProgress: (CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat) -> CGFloat in
-        return containerWidth
-    }
-    
-    // COmbine with decreaseProgress (input for amount to decrease with)
-    static let slowDecreaseProgress: (CGFloat, CGFloat, CGFloat) -> CGFloat = { (barWidth: CGFloat, containerWidth: CGFloat, decreaseBy: CGFloat) -> CGFloat in
-        return barWidth < 0 ? 0.0 : barWidth - (containerWidth * decreaseBy)
-        
-    }
-    
-    
 
     // TOOD: Set nil/Black om card.isAnswerView = true?
     func setCardImages(cards: [MathCard], cardImages: [UIImageView]) {
         
         for (index, cardImage) in cardImages.enumerated() where cardImage.tag == index + 1 {
-            //cardImage.image = UIImage(named: cards[index].imageName)
             cardImage.image = UIImage(named: cards[index].getImageName)
         }
     }
@@ -88,28 +79,29 @@ extension EasyMathVC {
     }
     
     
+    // Change between question mark and x (wrong answer)
+     // rename: toogleAnswerViewImgOrWrongImg
+     func changeAnswerViewImage(displayWrongAnswer: Bool) {
+         
+         for (index, image) in equationCardImages.enumerated() where index == getAnswerViewIndex() {
+             image.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
+         }
+     }
     
-    
-    // TODO: RENAME IMAGES
+
     func setOperatorImages(mathMode: CalculationMode) {
-        
-        var operatorImgName: String
-        
+                
         switch mathMode {
         case .addition:
-            //operatorImgName = "NumberPlus"
             operatorCardImages[0].image = UIImage(named: "NumberPlus")
             operatorCardImages[1].image = UIImage(named: "NumberEqual")
         case .subtraction:
-            //operatorImgName = "NumberMinus"
             operatorCardImages[0].image = UIImage(named: "NumberMinus")
             operatorCardImages[1].image = UIImage(named: "NumberEqualMinus")
         case .multiplication:
-            //operatorImgName = "NumberMulti"
             operatorCardImages[0].image = UIImage(named: "NumberMulti")
             operatorCardImages[1].image = UIImage(named: "NumberEqual")
         }
-        //operatorCardImages[0].image = UIImage(named: operatorImgName)
     }
 
     
@@ -123,7 +115,7 @@ extension EasyMathVC {
     
     
     func setProgressBarColor(isRightAnswer: Bool) {
-        progressBarView.backgroundColor = isRightAnswer ? .green : .red
+        progressBarView.backgroundColor = isRightAnswer ? .progressBarColor : .progressBarFailColor
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
             self.progressBarView.backgroundColor = UIColor.progressBarColor

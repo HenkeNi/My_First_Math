@@ -50,6 +50,13 @@ class NumberRandomizer {
     
     
     
+    // TEST
+    let basicAdditionCondition = { (firstNumb: Int, secondNumb: Int, maxValue: Int) -> Bool in
+            return firstNumb + secondNumb > maxValue
+    }
+        
+        
+    
     
     let easyAdditionCondition: (Int, Int) -> Bool = {
         return $0 + $1 > 5
@@ -69,13 +76,11 @@ class NumberRandomizer {
     
     
     // x + y = ?
-    // TODO: FIX
     let impossibleAdditionCondition1: (Int, Int) -> Bool = {
         return $0 + $1 > 10
     }
     
     // x + ? = y && ? + x = y
-    // TODO: FIX
     let impossibleAdditionCondition2: (Int, Int) -> Bool = {
         return $1 - $0 > 10 || $1 - $0 < 1
     }

@@ -94,7 +94,9 @@ class MathCard {
  
     
     
-    
+    deinit {
+        print("MathCard was deallocated")
+    }
     
     
 }

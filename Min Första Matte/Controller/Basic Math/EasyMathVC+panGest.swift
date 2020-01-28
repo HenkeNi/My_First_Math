@@ -23,7 +23,7 @@ extension EasyMathVC {
     
     @objc func imgTapPlayableCard(sender: UITapGestureRecognizer) {
         
-        soundEffects(soundName: "Woosh")
+        playSound(soundName: "Woosh")
                         
         //For every cardView that has the same tag number as the cardImage's tag
         for (index, view) in playableCardViews.enumerated() where sender.view?.tag == view.tag {
@@ -38,7 +38,7 @@ extension EasyMathVC {
     
     @objc func imgTapEquationCard(sender: UITapGestureRecognizer) {
 
-        soundEffects(soundName: "Woosh")
+        playSound(soundName: "Woosh")
         
         for (index, view) in equationCardViews.enumerated() where sender.view?.tag == view.tag {
                         
@@ -77,11 +77,13 @@ extension EasyMathVC {
             moveView(currentView: handledCard, sender: sender)
             //changeAnswerViewImage(displayWrongAnswer: false) //WrongImage.isHidden = true
         case .ended:
-            if handledCard.frame.intersects(getAnswerView()!.frame) {
-                soundEffects(soundName: "Click")
-                validateChosenAnswer(currentView: handledCard, answerView: getAnswerView()!)
+            if handledCard.frame.intersects(equationCardViews[getAnswerViewIndex()].frame) {
+            //if handledCard.frame.intersects(getAnswerView()!.frame) {
+                playSound(soundName: "Click")
+                validateChosenAnswer(currentView: handledCard, answerView: equationCardViews[getAnswerViewIndex()])
+                //validateChosenAnswer(currentView: handledCard, answerView: getAnswerView()!)
             } else {
-                resetToCardPosition()
+                returnCardViewsToOriginalPosition()
             }
         default:
             break

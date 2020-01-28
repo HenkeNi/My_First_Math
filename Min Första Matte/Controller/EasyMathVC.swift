@@ -10,42 +10,48 @@ import UIKit
 import AVFoundation
 
 
-// TODO: FIXa så att start lvl fungerar (easy, medium etc...)
-
-
-// TODO: Fixa lite med multiplikationen, nummren (inte bara 8 X 1 osv), 9 x ? = 7 funkar inte!!
-
-// TODO: lägg till högre svar i nivå 3: ex. 3 + ? = 10 (KVAR??)
-
-// TODO: Fixa nivå 5! randomera btm tal (en optional parameter -> kort som måste finnas med (rätt svar))
-
-// TODO: Division
-
-// TODO: fixa score (mer beroende på svårighets grad)
-// TODO: Fixa highscore (olika för dem olika räknesätten) -> Fixa speciell view för highscores!
-
-// Fixa olika färger på progressbaren??
-
-// TODO: Impossible nivåerna!
-
-// PLUS
-// Nivå 1: tal: 1 - 5    1 + 3 = ?
-// Nivå 2: tal: 6 - 10   6 + 3 = ?
-// Nivå 3: tal: 1-5      3 + ? = 5
-// Nivå 4: tal: 6-10     5 + ? = 9 || ? + 5 = 9
+// TODO:
+// Impossible lvl:
+// problem; answerView randomeras hela tiden
+// randomerade (ett som är rätt) playable cards
 // Nivå 5: tal: 1-10 (random) ? + 3 = 10 || 2 + ? = 3 || 3 + 4 = ?
 
 
 
+
+
+// Division:
+
+// Score/Highscore
+// fixa score (mer beroende på svårighets grad)
+
+
+// Fixa lite med multiplikationen, nummren (inte bara 8 X 1 osv), 9 x ? = 7 funkar inte!!
+
+// Kolla så att alla modes samt lvls fungerar...
+
+
+// TODO: lägg till högre svar i nivå 3: ex. 3 + ? = 10 (KVAR??)
+
+
+
+// TODO: Fixa highscore (olika för dem olika räknesätten) -> Fixa speciell view för highscores!
+
+
+// TODO: Korten vänds automatiskt tillbaka efter man tryckt på dem?!
+
+
+// SKAPA EN sub KLASS AV UIVIEW (cardView klasse) innehåller ref till MathCard? Innehåller indexPosition med....
+
+
 // HARDMODE:
-// Kunna gå bakåt i lvl (till lvl. 1) (om progressbaren når 0)
+// Progressbaren går långsammare tillbaka på lättare nivåer!?
+// GÅ till nästa lvl om 10 rätt svar??
 // Timmer som tickar på (mer tid kvar ger mer poäng)
-// Progressbaren börjar i toppen och går sakta ner (fylls på om man svarar rätt, tappar om man svarar fel)
-// Resetas poängen om man går tillbaka till lvl 1 ???
+// END CONDITIONS: 10 rätt på varje lvl?
+// Score: Tid kvar && antal lvls/tal passerade (x / 10 på varje lvl.. om man svarar fel ska man inte kunna få högre score ex: 11/10)
+// Live poäng??? Resetas poängen om man går tillbaka till lvl 1 ???
 // Poäng som sakta tickar ner med?.
-// Mätaren börjar på toppen och går sakta neråt? Klarar man en nivå börjar den på topp igen!
-
-
 
 
 // KANSKE: FÖR MULTI: ENDAST HA RANDOMERADE NUMMER? istället för 1...5 eller 6...10!
@@ -56,13 +62,8 @@ import AVFoundation
 
 
 // FIX:
-// Progressbar color...
-// Om man startar från början på level medium ska korten skapas som medium kort (6-10)
-// - kolla när korten bottem cards instansieras vilken lvl som det är?
 // back button not working (VC presented in smaller window)
 // Crashar om ljudfil intex finns
-
-
 
 
 
@@ -76,10 +77,8 @@ import AVFoundation
 // SCORE BARA FÖR HARDMODE???
 // TODO: highscore lista!, en för hardCore en för vanligt!
 
-// Add Sound effects:
+// Add Sound/Particle effects:
 // rejected (wrong answer), correct answer, return sound (card dropped)
-
-
 // Particle effects for finishing a lvl
 
 // Memory Leaks
@@ -106,6 +105,7 @@ import AVFoundation
 
 
 // BUGGAR:
+// ANSWERVIEW FELVÄND NÄR DEN FÅR SIFFRA (IBLAND) (NÄSTA LEVEL)
 // När man drar nytt kort efter att ha dragit fel; om för snabbt, resetas kortet automatiskt när man drar det....
 // NIVÅ 5: Labels inte på rätt kort. Tag fel (image på fel kort)
 
@@ -117,16 +117,15 @@ import AVFoundation
 // Refactoring:
 // Good name for bottomCards array of cards:
 // CardOptions, playableCards, cardHand, bottomCards, btmCardHand, bottomCardHand, bottomMathCards,
-   
+
 // cardHandViews: [UIView]!  //@IBOutlet var btmCardViews: [UIView]!, playableCardViews, draggableCardViews
 // TODO: RENAME answerView!
-// ResetCard, vänd tillbaka, sätt isFlipped till false osv... lägg i klassen?
 
 
 let nxtLvlNotificationKey = "co.HenrikJangefelt.nxtLvl"
 
 
-// TODO: RENAME: BasicMathVC?
+// TODO: RENAME: BasicMathVC? || EquationsVC || MathEquationsVC
 class EasyMathVC: UIViewController {
     
     @IBOutlet weak var topView: UIView!
@@ -156,12 +155,10 @@ class EasyMathVC: UIViewController {
         case impossible
     }
     
-  
     
     var equationCards = [MathCard]() // TODO: property in object (isTopCard)
-    var playableCards = [MathCard]() // TODO: Make optional?? || sätt arrayen till empty i deinit
-    var currentDifficulty = Difficulty.medium
-    //var currentDifficulty: Difficulty? = .easy
+    var playableCards = [MathCard]() // TODO: Make optional?? ([MathCard?]), sätt arrayen till empty i deinit
+    var currentDifficulty = Difficulty.impossible
     var mathMode = CalculationMode.addition
     var hardModeEnabled: Bool = false
     var audioPlayer: AVAudioPlayer?
@@ -170,18 +167,22 @@ class EasyMathVC: UIViewController {
     var score = 0
     
     
+    
+    //var randomIndex = 5
+    var randomIndex: Int? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         UIView.appearance().isExclusiveTouch = true // Disable multi touch
         calculator = Calculator()
-        createPlayableCards()
-        createEquationCards()
+        playableCards = createCards(numberOfCards: 5, isEquationCards: false)
+        equationCards = createCards(numberOfCards: 3, isEquationCards: true)
+        setPlayableCardsNumber()
         addImgTapGesture(cardImages: playableCardImages, isPlayableCardImage: true)
         addImgTapGesture(cardImages: equationCardImages, isPlayableCardImage: false)
         createObserver()
-        //setStartDifficulty()
-        enableHardMode(shouldEnable: hardModeEnabled)// FIX
+        
+        if hardModeEnabled { setupHardmodeConfigurations() }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -191,22 +192,25 @@ class EasyMathVC: UIViewController {
         customizeCards(cardViews: playableCardViews)
         customizeCards(cardViews: equationCardViews)
         customizeCards(cardViews: operatorCardViews)
-        
         sortOutletCollections()
-        nextEquation()
+        setupNextEquation()
         title = mathMode.rawValue // Sets title based on CalculationMode enum
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        saveCardPositions() // Saves the original position of the bottom cards
+        savePlayableCardViewPositions() // Saves the original position of the bottom cards
     }
     
     
-    // TODO: NEEDED?
-    func setStartDifficulty() {
-        currentDifficulty = Difficulty.medium
+    func sortOutletCollections() {
+           playableCardViews.sort(by: { $0.tag < $1.tag })
+           playableCardImages.sort(by: { $0.tag < $1.tag })
+           playableCardLabels.sort(by: { $0.tag < $1.tag })
+           equationCardViews.sort(by: { $0.tag < $1.tag })
+           equationCardImages.sort(by: { $0.tag < $1.tag })
+           equationCardLabels.sort(by: { $0.tag < $1.tag })
+           operatorCardImages.sort(by: { $0.tag < $1.tag })
     }
-    
     
     func createObserver() {
         
@@ -217,152 +221,28 @@ class EasyMathVC: UIViewController {
     
     
     @objc func updateLevel(notification: NSNotification) {
-        nextEquation()
-        resetToCardPosition()
+        //randomIndex = 5
+        randomIndex = nil
+        setupNextEquation()
+        returnCardViewsToOriginalPosition()
         disableOrEnableCardInteractions(shouldDisable: false)
         updateScoreLabel()
     }
     
     
-
-    func sortOutletCollections() {
-        playableCardViews.sort(by: { $0.tag < $1.tag })
-        playableCardImages.sort(by: { $0.tag < $1.tag })
-        playableCardLabels.sort(by: { $0.tag < $1.tag })
-        
-        equationCardViews.sort(by: { $0.tag < $1.tag })
-        equationCardImages.sort(by: { $0.tag < $1.tag })
-        equationCardLabels.sort(by: { $0.tag < $1.tag })
-        operatorCardImages.sort(by: { $0.tag < $1.tag })
-        
-    }
+   
     
     
     
-    func updateScoreLabel() {
-        scoreLabel.text = "Score: \(score)"
-    }
-
-    
-    // Change between question mark and x (wrong answer)
-    func changeAnswerViewImage(displayWrongAnswer: Bool) {
-        
-        for (index, image) in equationCardImages.enumerated() where index == getAnswerViewIndex() {
-            image.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
-        }
-    }
+ 
     
     
     
-    
-    // FIX
-    func enableHardMode(shouldEnable: Bool) {
-        
-        if shouldEnable {
-            refillProgress()
-            timerInterval()
-        }
-        
-        
-    }
-    
-    
-    func checkForNoProgressBar() {
-        
-        
-        if progressBarWidth.constant.rounded() <= 0 {
-            print("NO PROGRESS LEFT")
-            if currentDifficulty.rawValue > 1 {
-                updateDifficulty(difficulty: currentDifficulty.rawValue - 1)
-                
-                // TEST!!!
-                //nextEquation()
-                //resetToCardPosition()
-            }
-        }
-
-    }
-    
-    func refillProgress() {
-        progressBarWidth.constant = EasyMathVC.fullProgress(progressBarWidth.constant, progressBarContainer.frame.width)
-    }
-    
-    
-    @objc func progressBarSlowDecrease() {
-
-        progressBarWidth.constant = EasyMathVC.slowDecreaseProgress(progressBarWidth.constant, progressBarContainer.frame.width, 0.1) // 5 for smoother but harder to check for 0
-        
-        UIView.animate(withDuration: 1) {
-            self.view.layoutIfNeeded()
-        }
-        
-        checkForNoProgressBar()
-    }
-    
-    // TODO: STOP TIMER, put Timer in the top var timer: Timer?
-    func timerInterval() {
-        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(progressBarSlowDecrease), userInfo: nil, repeats: true)
-    }
+   
     
     
     
-    // RENAME: setupNextEquation
-    func nextEquation() {
-        
-        //scoreLabel.text = "Score: \(score)"
-        
-        
-        //let numberRandomizer = NumberRandomizer()
-        //let randomNumbers = numberRandomizer.numberRandomizer(startNumber: <#T##Int#>, endNumber: <#T##Int#>, condition: <#T##(Int, Int) -> Bool#>)
-        //let randomNumbers = numberRandomizer.randomizeTwoNumbers(mathMode: mathMode)
-        
-        //topCards[0].updateImageName(mathMode: mathMode)
-        //topCards[1].updateImageName(mathMode: mathMode)
-        
-        
-        flipCardsBack(cards: playableCards, cardViews: playableCardViews)
-        flipCardsBack(cards: equationCards, cardViews: equationCardViews) // TOOD: BeHÖVS???!!!
-        
-        setCardImages(cards: playableCards, cardImages: playableCardImages)
-        
-        newEquationCards()
-        //setCardImages(cards: equationCards, cardImages: equationCardImages)
-        
-        setCardLabels(cards: playableCards, cardLabels: playableCardLabels)
-        setCardLabels(cards: equationCards, cardLabels: equationCardLabels)
-        
-        
-        //WrongImage.isHidden = true
-    }
-    
-    
-    
-    func newEquationCards() {
-        
-        setCurrentAnswerView(currentIndex: getAnswerViewIndex())
-        hideAnswerViewLabel(answerView: getAnswerViewIndex())
-        //setDifficulty(difficulty: currentDifficulty.rawValue)
-
-        let randomNumbers = getEquationNumbers()
-            
-        var tempArray = [MathCard]()
-        
-        for equationCard in equationCards where !equationCard.isAnswerView {
-            tempArray.append(equationCard)
-        }
-        
-        tempArray[0].number = randomNumbers.firstNumber // Points to the same place in the memory as first valid equationCard (works because classes are reference's types!)
-        tempArray[1].number = randomNumbers.secondNumber
-        
-        
-        // Flips equations card and shows new ones
-        for cardView in equationCardViews where cardView != getAnswerView() {
-
-            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-        }
-     
-        setCardImages(cards: equationCards, cardImages: equationCardImages)
-    }
+  
     
     
     
@@ -370,9 +250,91 @@ class EasyMathVC: UIViewController {
  
     
     
+    
+    
+ 
+    
+
+    
+    
+    // Increase or decrease difficulty base on input
+    func updateDifficulty(difficulty: Int) -> Difficulty {
+        
+        switch difficulty {
+        case 1:
+            return .easy
+        case 2:
+            return .medium
+        case 3:
+            return .hard
+        case 4:
+            return .veryHard
+        case 5:
+            return .impossible
+        default:
+            return .easy
+        }
+    }
+    
+  
+    
+    
+    
+    // RENAME: setupNextEquation || setupNewEquation
+    func setupNextEquation() {
+        
+        setCurrentAnswerView(currentIndex: getAnswerViewIndex())
+        print("Current Answer \(getAnswerViewIndex())")
+        flipCardsBack(cards: playableCards, cardViews: playableCardViews)
+        flipCardsBack(cards: equationCards, cardViews: equationCardViews) // TOOD: BeHÖVS???!!!
+        
+        setCardImages(cards: playableCards, cardImages: playableCardImages)
+        
+        getNewEquationCards()
+        //setCardImages(cards: equationCards, cardImages: equationCardImages)
+        
+        setCardLabels(cards: playableCards, cardLabels: playableCardLabels)
+        setCardLabels(cards: equationCards, cardLabels: equationCardLabels)
+    }
+    
+    
+    
+    func getNewEquationCards() {
+        //setCurrentAnswerView(currentIndex: getAnswerViewIndex())
+        hideAnswerViewLabel(answerViewIndex: getAnswerViewIndex())
+        //setDifficulty(difficulty: currentDifficulty.rawValue)
+        
+        let randomNumbers = getEquationNumbers()
+        
+        var tempArray = [MathCard]()
+        
+        for equationCard in equationCards where !equationCard.isAnswerView {
+            tempArray.append(equationCard)
+        }
+        // TODO: använd function för detta....
+        tempArray[0].number = randomNumbers.firstNumber // Points to the same place in the memory as first valid equationCard (works because classes are reference's types!)
+        tempArray[1].number = randomNumbers.secondNumber
+        
+        
+        //for cardView in equationCardViews where cardView != getAnswerView() {
+        
+        //        for cardView in equationCardViews where cardView != equationCardViews[getAnswerViewIndex()] {
+        //
+        //            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+        //        }
+        newCardTransitionFlip(cardViews: equationCardViews)
+        
+        setCardImages(cards: equationCards, cardImages: equationCardImages)
+    }
+    
+    
+    
+    
+    
+    
     // TODO: FIX IMPOSSIBLE
     func getEquationNumbers() -> (firstNumber: Int, secondNumber: Int) {
-       
+        
         let numberRandomizer = NumberRandomizer()
         var condition: (Int, Int) -> Bool
         
@@ -411,18 +373,14 @@ class EasyMathVC: UIViewController {
             condition = numberRandomizer.veryHardMultiplicationCondition
         case (.impossible, .multiplication):
             condition = numberRandomizer.impossibleMultiplicationCondition
-
-
-        
-    
         }
         return numberRandomizer.numberRandomizer(condition: condition)
     }
     
     
-    
-    
     func getImpossibleRandomizerCondition(numberRandomizer: NumberRandomizer) -> (Int, Int) -> Bool {
+        
+        print("AnswInde:\(getAnswerViewIndex())")
         
         if getAnswerViewIndex() == 2 {
             print("Answer 2")
@@ -430,88 +388,13 @@ class EasyMathVC: UIViewController {
             print("Not answer 2")
         }
         
-       return getAnswerViewIndex() == 2 ? numberRandomizer.impossibleAdditionCondition1 : numberRandomizer.impossibleAdditionCondition2
-    }
-    
-
-    
-    
-   
-        
- 
-        
-        
-        
-
-    
-    
-    
-    
-    
-
-    
-    // TODO: SPlit in two functions??
-    func checkProgress() {
-        var difficultyValue = currentDifficulty.rawValue
-        
-        if progressBarWidth.constant.rounded() == progressBarContainer.frame.size.width.rounded() {
-            
-            if difficultyValue < Difficulty.allCases.count {
-                // Increase lvl!
-                difficultyValue += 1
-                soundEffects(soundName: "Cheering")
-                progressBarWidth.constant = 0
-            }
-        }
-        
-        // TODO: FÖR HARDMODE!
-        if progressBarWidth.constant.rounded() == 0 {
-        }
-        currentDifficulty = updateDifficulty(difficulty: difficultyValue)
-        setPlayableCardNumberValue()
-    }
-
-    
-        
-    
-    // Increase or decrease difficulty base on input
-    func updateDifficulty(difficulty: Int) -> Difficulty {
-        
-        switch difficulty {
-        case 1:
-            return .easy
-        case 2:
-            return .medium
-        case 3:
-            return .hard
-        case 4:
-            return .veryHard
-        case 5:
-            return .impossible
-        default:
-            return .easy
-        }
-    }
-
-    
-    // NOT USED!!!!!
-    func increaseDifficulty() {
-
-    }
-    
-    func decreaseDifficulty() {
-        
+        return getAnswerViewIndex() == 2 ? numberRandomizer.impossibleAdditionCondition1 : numberRandomizer.impossibleAdditionCondition2
     }
     
     
     
-
-    
-
-    
-
-    
-    func getPlayableCardNumberValueRange() -> ClosedRange<Int> {
+    // Returns number for playableCard based on lvl and mathMode
+    func getPlayableCardNumbersRange() -> ClosedRange<Int> {
         
         switch (currentDifficulty, mathMode)  {
             
@@ -520,7 +403,7 @@ class EasyMathVC: UIViewController {
         case (.medium, .addition), (.veryHard, .addition), (.medium, .multiplication), (.veryHard, .multiplication):
             return 6...10
         case (.impossible, .addition), (.impossible, .multiplication):
-            return 4...8 // TODO: FIX!!
+            return 4...8 // TODO: FIX!! RANDOM!!!!
             
         case (.easy, .subtraction), (.hard, .subtraction):
             return 0...4
@@ -528,72 +411,54 @@ class EasyMathVC: UIViewController {
             return 5...9
         case (.impossible, .subtraction):
             return 4...8 // FIX
-                        
-        }
-        
-        
-//        switch difficulty {
-//        case .easy:
-//            return 1...5
-//        case .medium:
-//            return 6...10
-//        case .hard:
-//            return 1...5
-//        case .veryHard:
-//            return 6...10
-//        case .impossible:
-//            return 4...8 // TODO: FIX!!
-//        }
-        
-    }
-    
-    
-    func setPlayableCardNumberValue() {
-        
-        let numberRange: ClosedRange<Int> = getPlayableCardNumberValueRange()
-       
-        var numbRangeArray = [Int]()
-        
-        for number in numberRange {
-            numbRangeArray.append(number)
-        }
-        
-        for (index, card) in playableCards.enumerated() {
-            card.number = numbRangeArray[index]
+            
         }
     }
     
     
-    func createEquationCards() {
-         
-        for n in 1...3 {
-                 
+    
+    
+    
+    
+    // Sets correct number of playableCards based on level
+    func setPlayableCardsNumber() {
+        
+        for (index, n) in getPlayableCardNumbersRange().enumerated() {
+            playableCards[index].number = n
+        }
+    }
+    
+    func createCards(numberOfCards: Int, isEquationCards: Bool) -> [MathCard] {
+        
+        var cards = [MathCard]()
+        
+        for n in 1...numberOfCards {
+            
             let card = MathCard()
             card.calcMode = mathMode
-            if n == getAnswerViewIndex() { card.isAnswerView = true }
-            equationCards.append(card)
+            if isEquationCards {
+                if n == getAnswerViewIndex() { card.isAnswerView = true }
+            }
+            cards.append(card)
         }
+        return cards
     }
     
-    func createPlayableCards() {
-        
-        for _ in 1...5 {
-            let card = MathCard()
-            card.calcMode = mathMode
-            playableCards.append(card)
-        }
-        setPlayableCardNumberValue()
-    }
-         
     
     
     
+    // TODO: CHECK THIS!!!!, DONT FORCE UNWRAP IN function call!!??
+    // Prevents getAnswerViewindex from randomizing impossible lvl again
+    //       func getCurrentAnswerViewIndex() -> Int? {
+    //           for (index, card) in equationCards.enumerated() {
+    //               return index
+    //           }
+    //           return nil
+    //       }
     
     
-
     // Returns correct answerView index/position for current difficulty
     func getAnswerViewIndex() -> Int {
-        
         switch currentDifficulty {
         case .easy:
             return 2
@@ -604,186 +469,124 @@ class EasyMathVC: UIViewController {
         case .veryHard:
             return 0
         case .impossible:
-            return Int.random(in: 0...2)
+            
+            if randomIndex != nil {
+                if let randomIndex = randomIndex { return randomIndex }
+            } else {
+                randomIndex = Int.random(in: 0...2)
+                
+                if let randomIndex = randomIndex { return randomIndex}
+            }
+            
+//            if randomIndex == nil {
+//                randomIndex = Int.random(in: 0...2)
+//
+//                if let n = randomIndex {
+//                    return n
+//                }
+//
+//                //return randomIndex
+//            } else {
+//                if let randomIndex = randomIndex { return randomIndex}
+//                //return randomIndex
+//            }
+            
+            return randomIndex!
+            
+            //if let randomIndex = randomIndex { return randomIndex }
+            
+//            if randomIndex == 5 {
+//                print("radn")
+//                let n = Int.random(in: 0...2)
+//                randomIndex = n
+//                return n
+//            } else {
+//                print("no rand")
+//                return randomIndex
+//            }
+            //return Int.random(in: 0...2)
         }
     }
     
     
     // Sets property of isAnswerView in equationCards
     func setCurrentAnswerView(currentIndex: Int) {
-             
+        
         for (index, card) in equationCards.enumerated() {
             card.isAnswerView = index == currentIndex ? true : false
         }
     }
-      
+    
+    
+    
+    
+    
+    
     // Hides label for answerView
-    func hideAnswerViewLabel(answerView: Int) {
+    func hideAnswerViewLabel(answerViewIndex: Int) {
         for (index, label) in equationCardLabels.enumerated() {
-            label.isHidden = answerView == index ? true : false
+            label.isHidden = answerViewIndex == index ? true : false
         }
     }
-  
-    // Returns the current answerView
-    func getAnswerView() -> UIView? {
-          
-        for (index, card) in equationCards.enumerated() where card.isAnswerView {
-            return equationCardViews[index]
+    
+    // Flips equations card and shows new ones
+    func newCardTransitionFlip(cardViews: [UIView]) {
+        for cardView in cardViews where cardView != equationCardViews[getAnswerViewIndex()] {
+            
+            UIView.transition(with: cardView, duration: 0.6, options: .transitionFlipFromLeft, animations: nil, completion: nil)
         }
-        return nil
     }
     
-    
-    
-    
-    
+    // TODO: kolla närmare om den kan kombineras med någon annan funktion
     func flipCardsBack(cards: [MathCard], cardViews: [UIView]) {
         
         for (index, card) in cards.enumerated() where card.isFlipped && !card.isAnswerView {
-            //card.flipCardBack(cardView: cardViews[index])
             card.flipCard(cardView: cardViews[index], duration: 0.6)
         }
     }
     
+    // Resets the cardViews to their original position
+    // returnPlayableCardViewsPosition
+    func returnCardViewsToOriginalPosition() {
         
-    // Resets the card(s) to their original position
-    func resetToCardPosition() {
-
         for (index, view) in playableCardViews.enumerated() {
-    
+            
             UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-    
+                
                 view.center = self.playableCards[index].originalPosition!
             })
         }
     }
     
     // Saves original position for cards
-    func saveCardPositions() {
+    func savePlayableCardViewPositions() {
         
         for (index, view) in playableCardViews.enumerated() {
             playableCards[index].originalPosition = view.center
         }
     }
     
-    
     // Disable or enable card(s) interactions
-     func disableOrEnableCardInteractions(shouldDisable: Bool) {
-         
-         for cardView in playableCardViews {
-             cardView.isUserInteractionEnabled = shouldDisable ? false : true
-         }
-     }
+    func disableOrEnableCardInteractions(shouldDisable: Bool) {
         
-
-    
-    deinit {
-        calculator = nil
-        
-        NotificationCenter.default.removeObserver(self)
+        for cardView in playableCardViews {
+            cardView.isUserInteractionEnabled = shouldDisable ? false : true
+        }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        calculator = nil
+        audioPlayer = nil
+        numberRandomizer = nil
+    }
     
     @IBAction func goBackPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-       
-    
     
 }
 
 
 
 
-
-
-
-
-
-
-//    // TODO: ta bort difficulty? REturnera anserIndex?
-//    func setDifficulty(difficulty: Int) {
-//
-//        var answerIndex: Int = 2
-//
-//        switch currentDifficulty {
-//        case .easy:
-//            answerIndex = 2
-//        case .medium:
-//            answerIndex = 2
-//        case .hard:
-//            answerIndex = 1
-//        case .veryHard:
-//            answerIndex = 0
-//        case .impossible:
-//            answerIndex = 1 // FIX!!
-//        }
-//
-//        setAnswerView(answerViewIndex: answerIndex)
-//        setAnswerViewLabel(answerView: answerIndex)
-//    }
-
-
-
-//   func createPlayableCards(mathMode: CalculationMode) {
-//        let range = getPlayableCardNumberValueRange(difficulty: currentDifficulty)
-//
-//        for n in 1...5 {
-//
-//            let card = MathCard()
-//
-//
-//        }
-//        let startingNumbers = getStartPlayableCardNumber()
-//
-//        let lowestNumber = startingNumbers.lowNumb
-//        let highestNumber = startingNumbers.highNumb
-//
-//
-//        for cardNumberValue in lowestNumber...highestNumber {
-//            let card = MathCard()
-//            card.number = cardNumberValue
-//            playableCards.append(card)
-//        }
-//    }
-
-
-
-      // Ändra för lvls med (6, 10)
-      // 0 for minus, 1 for plus etc...
-//      func getStartPlayableCardNumber() -> (lowNumb: Int, highNumb: Int) {
-//
-//          switch mathMode {
-//          case .addition:
-//              return (1, 5)
-//          case .subtraction:
-//              return (0, 4)
-//          }
-//
-//      }
-
-
-
-
-
-//// TODO: FIX IMPOSSIBLE
-// func getEquationNumbers() -> (firstNumber: Int, secondNumber: Int) {
-//
-//     let numberRandomizer = NumberRandomizer()
-//     var condition: (Int, Int) -> Bool
-//
-//     switch currentDifficulty {
-//     case .easy:
-//         condition = numberRandomizer.easyAdditionCondition
-//     case .medium:
-//         condition = numberRandomizer.mediumAdditionContidion
-//     case .hard:
-//         condition = numberRandomizer.hardAdditionCondition
-//     case .veryHard:
-//         condition = numberRandomizer.veryHardAdditionConditio
-//     case .impossible:
-//         //condition = getAnswerViewIndex() == 2 ? numberRandomizer.impossibleAdditionCondition1 : numberRandomizer.impossibleAdditionCondition2
-//         condition = getImpossibleRandomizerCondition(numberRandomizer: numberRandomizer)
-//     }
-//     return numberRandomizer.numberRandomizer(condition: condition)
-// }

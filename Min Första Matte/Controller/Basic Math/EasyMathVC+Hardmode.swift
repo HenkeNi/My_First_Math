@@ -38,8 +38,11 @@ extension EasyMathVC {
     
     func decreaseDifficulty() {
           currentDifficulty = updateDifficulty(difficulty: currentDifficulty.rawValue - 1)
-          setupNextEquation()
-          setPlayableCardsNumber()
+          //setupNextEquation()
+          updateAnswerView()
+          updateEquationCards()
+          updatePlayableCards()
+          //setPlayableCardsNumber()
           newCardTransitionFlip(cardViews: playableCardViews)
           setCardImages(cards: playableCards, cardImages: playableCardImages)
           returnCardViewsToOriginalPosition()

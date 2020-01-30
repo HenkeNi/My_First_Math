@@ -12,13 +12,22 @@ import AVFoundation
 
 // TODO:
 // Impossible lvl:
-// FIXA: FÖrsta talet, siffrorna bytts ut.... (BUGG)
+
+// Bugg, drar upp fel nummer -> Sedan roterar, bytts playableCards ut ....
+
+// Problemet: getPlayableCardNumbers kallas på och i den kallas impossible som ger nya random Cards
+
+
 // LÄgg till att playableCards roterar smatidigt // När playableCards byttas ut till nya (ny lvl) ska dem snurra.. kanske när spelet börjar med?? (inte snurra två ggr, tex. ett redan vänt kort)
 
 // TODO: Korten vänds automatiskt tillbaka efter man tryckt på dem?! (lägg logiken i klassen -> efter fördröjning om isFlipped = true - flippa tillbaka)
 
 
 // LÄGG Till function som returnerar cuurentEquationCards som en array av mathCards?? [MathCard]()
+
+
+// GÖr en klass, playableCards?? Innehåller 5 MathCards
+// End Condition: Efter Impossible -> Alert (Du har klarat spelet: 1. Gå tillbaka 2. Fortsätt spela)
 
 
 // Division:
@@ -56,15 +65,14 @@ import AVFoundation
 // så man får [][] + 3 = 10 sen får man dra upp tex 4 och 2 eller 3 och 3?
 
 
-
-// FIX:
 // back button not working (VC presented in smaller window)
-// Crashar om ljudfil intex finns
 
 
 
-// TODO: Randomerade matte tal, inte samma som förra gången (spara sista). Ex: 3 + 4, nästa gång 2 + 1. Alt att svaret inte heller är samma
+// TODO: Inte samma randomerade ekvaions tal i rad??? (spara sista svars siffra? Alt. spara senaste två randomerade talen)
 // TODO: I addition (nivå1) lägg till '0';  1 + 0. Så man får använda nr 1 nån gång (1 + 0 = 1)?
+
+
 
 // TODO: Alert Rutan berättar när man kommit till ny nivå! -> KAnske, knapp man måste trycka först innan man går vidare?? Kanske fyverkerieffekter
 
@@ -110,11 +118,13 @@ import AVFoundation
 
 
 // BUGGAR SOM ÄR BORTA?
+// Impossible lvl: FÖrsta ekvationen, siffrorna bytts ut.... (BUGG)
+// Impossible lvl: Siffra visar fel label // Siffra byts ut till en annnan mid-game
 // problem; answerView randomeras hela tiden (när man drar fel svar/ska rättas etc..)
 // Card positionerna blir inbland fel när man drar och släpper kort
 // Card vände sig på fel håll efter rätt svar (cardOirginalPositionc)
 // KAnske pterkommer, tryck på kort 4 så snurrar kort 5. Fel, ordningen i playableCardVeiws collectionen!s
-
+// Crashar om ljudfil intex finns
 
 
 
@@ -184,12 +194,9 @@ class EasyMathVC: UIViewController {
         addImgTapGesture(cardImages: playableCardImages, isPlayableCardImage: true)
         addImgTapGesture(cardImages: equationCardImages, isPlayableCardImage: false)
         
-        //setupNextEquation() // TEST
         updateAnswerView()
         updateEquationCards()
         updatePlayableCards()
-        //setPlayableCardsNumber()
-        
         createObserver()
         
         if hardModeEnabled { setupHardmodeConfigurations() }
@@ -203,7 +210,6 @@ class EasyMathVC: UIViewController {
         customizeCards(cardViews: equationCardViews)
         customizeCards(cardViews: operatorCardViews)
         sortOutletCollections()
-        //setupNextEquation()
         
         title = mathMode.rawValue // Sets title based on CalculationMode enum
     }
@@ -229,20 +235,10 @@ class EasyMathVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(EasyMathVC.updateLevel(notification:)), name: name, object: nil)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     @objc func updateLevel(notification: NSNotification) {
         randomAnswerViewIndex = nil
-        //setupNextEquation()
         updateAnswerView()
         updateEquationCards()
         updatePlayableCards()
@@ -289,64 +285,6 @@ class EasyMathVC: UIViewController {
     
     
     
-    
-//    // RENAME: setupNextEquation || setupNewEquation
-//    func setupNextEquation() {
-//
-//        setIsAnswerViewProperty(currentIndex: getAnswerViewIndex())
-//        //print("Current Answer \(getAnswerViewIndex())")
-//        flipCardsBack(cards: playableCards, cardViews: playableCardViews)
-//        flipCardsBack(cards: equationCards, cardViews: equationCardViews) // TOOD: BeHÖVS???!!!
-//
-//
-//        getNewEquationCards()
-//        //setCardImages(cards: equationCards, cardImages: equationCardImages)
-//        setPlayableCardsNumber() // TEST
-//        setCardImages(cards: playableCards, cardImages: playableCardImages)
-//
-//        setCardLabels(cards: playableCards, cardLabels: playableCardLabels)
-//        setCardLabels(cards: equationCards, cardLabels: equationCardLabels)
-//    }
-//
-//
-//
-//
-//    func getNewEquationCards() {
-//        //setCurrentAnswerView(currentIndex: getAnswerViewIndex())
-//        hideAnswerViewLabel(answerViewIndex: getAnswerViewIndex())
-//        //setDifficulty(difficulty: currentDifficulty.rawValue)
-//
-//        let equationNumbers = getEquationNumbers()
-//        var tempArray = [MathCard]()
-//
-//        for equationCard in equationCards where !equationCard.isAnswerView {
-//            tempArray.append(equationCard)
-//        }
-//        tempArray[0].number = equationNumbers.firstNumber
-//        tempArray[1].number = equationNumbers.secondNumber
-//
-//
-//
-//
-////
-////        for (index, equationCard) in equationCards.enumerated() where !equationCard.isAnswerView {
-////                 print("INDEX: \(index)")
-////                 if index == 0 { equationCard.number = equationNumbers.firstNumber }
-////                 if index == 1 { equationCard.number = equationNumbers.secondNumber }
-////             }
-//
-//
-//
-//        //for cardView in equationCardViews where cardView != getAnswerView() {
-//
-//        //        for cardView in equationCardViews where cardView != equationCardViews[getAnswerViewIndex()] {
-//        //
-//        //            UIView.transition(with: cardView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-//        //        }
-//        newCardTransitionFlip(cardViews: equationCardViews)
-//
-//        setCardImages(cards: equationCards, cardImages: equationCardImages)
-//    }
     
     
     
@@ -423,7 +361,7 @@ class EasyMathVC: UIViewController {
     
     // Returns number for playableCard based on lvl and mathMode
     func getPlayableCardNumbers() -> [Int] {
-        
+        print("UPDATING CARD")
         switch (currentDifficulty, mathMode)  {
             
         case (.easy, .addition), (.hard, .addition), (.easy, .multiplication), (.hard, .multiplication):
@@ -434,7 +372,20 @@ class EasyMathVC: UIViewController {
             //return [6...10]
         case (.impossible, .addition), (.impossible, .multiplication):
             //return 4...8 // TODO: FIX!! RANDOM!!!!
-            return getImpossibleLvlCardNumbers()
+            
+            // TODO: FIXA!!! EGEN PlayableCards klass?
+            print("UPDATING RANDOM INDEX: \(randomAnswerViewIndex)")
+            if randomAnswerViewIndex == nil {
+                var tempArray = [Int]()
+                
+                for card in playableCards {
+                    tempArray.append(card.number)
+                }
+                return tempArray
+            } else {
+                print("UPDATING AGAIN")
+                return getImpossibleLvlCardNumbers()
+            }
             //return 4...8
             
         case (.easy, .subtraction), (.hard, .subtraction):
@@ -453,10 +404,8 @@ class EasyMathVC: UIViewController {
     func getImpossibleLvlCardNumbers() -> [Int] {
         
         var numbs = [Int]()
-       var usedNumbs = [Int]()
+        var usedNumbs = [Int]()
             
-        
-        
         repeat {
             
             numbs.removeAll()
@@ -633,7 +582,6 @@ class EasyMathVC: UIViewController {
     
       
       
-    
     // Sets property of isAnswerView in equationCards
     // setCurrentAnswerView
     func setIsAnswerViewProperty(currentIndex: Int) {
@@ -685,6 +633,7 @@ class EasyMathVC: UIViewController {
     }
     
     // Saves original position for cards
+    // Put in extension of UIView (save view position??)
     func savePlayableCardViewPositions() {
         
         for (index, view) in playableCardViews.enumerated() {
@@ -716,26 +665,4 @@ class EasyMathVC: UIViewController {
 
 
 
-//
-//func getPlayableCardNumbersRange() -> ClosedRange<Int> {
-//
-//    switch (currentDifficulty, mathMode)  {
-//
-//    case (.easy, .addition), (.hard, .addition), (.easy, .multiplication), (.hard, .multiplication):
-//        return 1...5
-//    case (.medium, .addition), (.veryHard, .addition), (.medium, .multiplication), (.veryHard, .multiplication):
-//        return 6...10
-//    case (.impossible, .addition), (.impossible, .multiplication):
-//        //return 4...8 // TODO: FIX!! RANDOM!!!!
-//        getImpossibleLvlCardNumbers()
-//        return 4...8
-//
-//    case (.easy, .subtraction), (.hard, .subtraction):
-//        return 0...4
-//    case (.medium, .subtraction), (.veryHard, .subtraction):
-//        return 5...9
-//    case (.impossible, .subtraction):
-//        return 4...8 // FIX
-//
-//    }
-//}
+

@@ -21,6 +21,7 @@ extension EasyMathVC {
         }
     }
     
+    // TODO: Lägg i en extension av UITapGestureRecognizer???
     @objc func imgTapPlayableCard(sender: UITapGestureRecognizer) {
         
         playSound(soundName: "Woosh")
@@ -126,3 +127,5 @@ extension EasyMathVC {
 //            updateCardImages()
 //        }
 //    }
+
+

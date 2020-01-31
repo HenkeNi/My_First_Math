@@ -13,8 +13,7 @@ import AVFoundation
 // TODO:
 // Impossible lvl:
 
-// Bugg, drar upp fel nummer -> Sedan roterar, bytts playableCards ut ....
-// Problemet: getPlayableCardNumbers kallas på och i den kallas impossible som ger nya random Cards
+// I card klassen lägg till om addision, div etc... som property?
 
 
 
@@ -60,9 +59,9 @@ import AVFoundation
 // Poäng som sakta tickar ner med?.
 
 
-// KANSKE: FÖR MULTI: ENDAST HA RANDOMERADE NUMMER? istället för 1...5 eller 6...10!
+// KANSKE: FÖR MULTIplication: ENDAST HA RANDOMERADE NUMMER? istället för 1...5 eller 6...10!
 
-// Kunna dra upp mer en ett kort? två rutor (en lite ovanför och till höger, sitter samman delvis)
+// Kunna dra upp mer än ett kort? två rutor (en lite ovanför och till höger, sitter samman delvis)
 // så man får [][] + 3 = 10 sen får man dra upp tex 4 och 2 eller 3 och 3?
 
 
@@ -76,6 +75,9 @@ import AVFoundation
 
 
 // TODO: Alert Rutan berättar när man kommit till ny nivå! -> KAnske, knapp man måste trycka först innan man går vidare?? Kanske fyverkerieffekter
+
+
+// // Knapp för att slumpa fram ett nytt tal??
 
 
 
@@ -92,19 +94,11 @@ import AVFoundation
 // Använd structs istället för klasser?
 
 
-
-
 // Försök använda; Generics, Closures, Computed Properties.....
-// I card klassen lägg till om addision, div etc... som property?
-// LÄgg logik för att lägga till kort i klassen MathCard?
 // Generic cardClass?
-// CardHand egen klass? Array av Cards?, Subscript för att nå certain card
-// GetImageName i klassen
 // Läggga views, imageVeiws etc. i klassen?
-// SKAPA CARDIMAGES programmetical
-// LÄGG KOD I KLASSEN?
-// Knapp FÖR nytt tal?? - OM ogilgtligt tal ...
 
+// SKAPA CARDIMAGES programmetical
 
 
 
@@ -113,30 +107,15 @@ import AVFoundation
 // ANSWERVIEW FELVÄND NÄR DEN FÅR SIFFRA (IBLAND) (NÄSTA LEVEL)
 // När man drar nytt kort efter att ha dragit fel; om för snabbt, resetas kortet automatiskt när man drar det....
 // NIVÅ 5: Labels inte på rätt kort. Tag fel (image på fel kort)
-
 // Kan svaret bli 5 på medel?
 
 
-
 // BUGGAR SOM ÄR BORTA?
-// Impossible lvl: FÖrsta ekvationen, siffrorna bytts ut.... (BUGG)
-// Impossible lvl: Siffra visar fel label // Siffra byts ut till en annnan mid-game
-// problem; answerView randomeras hela tiden (när man drar fel svar/ska rättas etc..)
-// Card positionerna blir inbland fel när man drar och släpper kort
 // Card vände sig på fel håll efter rätt svar (cardOirginalPositionc)
-// KAnske pterkommer, tryck på kort 4 så snurrar kort 5. Fel, ordningen i playableCardVeiws collectionen!s
-// Crashar om ljudfil intex finns
-
-
 
 
 // Refactoring:
-// Good name for bottomCards array of cards:
-// CardOptions, playableCards, cardHand, bottomCards, btmCardHand, bottomCardHand, bottomMathCards,
-
-// cardHandViews: [UIView]!  //@IBOutlet var btmCardViews: [UIView]!, playableCardViews, draggableCardViews
-// TODO: RENAME answerView!
-
+// Names: CardOptions, playableCards, cardHand, bottomCards, btmCardHand, bottomCardHand, bottomMathCards, btmMathCards
 
 let nxtLvlNotificationKey = "co.HenrikJangefelt.nxtLvl"
 
@@ -460,21 +439,30 @@ class EasyMathVC: UIViewController {
                 }
             }
             
-        } while numbs.count < 5 || !checkNumbers(numbers: numbs)
-        
+        } while numbs.count < 5 || !checkImpossibleNumbers(numbers: numbs)//!checkNumbers(numbers: numbs)
         
         return numbs.sorted()
-        
-        //print("Contains correct Answer: \(checkNumbers(numbers: numbs))")
-        //return numbs
     }
+    
+    func checkImpossibleNumbers(numbers: [Int]) -> Bool {
+        if let calc = calculator {
+            
+            for i in numbers {
+                let numbs = getNumbersInEquation(chosenNumber: i)
+                                   
+                let result = calc.validateMathResult(calcMode: getCalculationMode(calc: calculator!), firstNumb: numbs.firstNumber, secondNumb: numbs.secondNumber, resultNumb: numbs.resultNumber)
+                                   
+                if result { return true }
+            }
+        }
+        return false
+    }
+    
     
     
     func checkNumbers(numbers: [Int]) -> Bool {
         
-        guard let calculator = calculator else {
-            print("Contains nothing")
-            return false } // Unwrap instance of calculator
+        guard let calculator = calculator else { return false }
         
         var answers = [Bool]()
         
@@ -525,15 +513,8 @@ class EasyMathVC: UIViewController {
         }
         
         return false
-
-        // COMBINE WITH getNumbersInEquation
-        
-        
     }
-    // FIX
-//    func getMissingNumberInEquation() -> Int {
-//
-//    }
+
     
     
     

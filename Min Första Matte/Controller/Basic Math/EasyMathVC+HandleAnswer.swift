@@ -92,7 +92,7 @@ extension EasyMathVC {
          let progressBarUpdate = updateProgressBar(isRightAnswer: answerCorrect)
         setProgressBarColor(isRightAnswer: answerCorrect)
         
-        progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width, 0.1)
+        progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width, 0.5)
          
          checkProgress()
          

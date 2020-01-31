@@ -10,43 +10,42 @@ import UIKit
 import AVFoundation
 
 
-// TODO:
-// Impossible lvl:
-
-// I card klassen lägg till om addision, div etc... som property?
+// När playableCards bytts ut ska dem rotera/flippas... (inte snurra två ggr, tex. ett redan vänt kort)
 
 
-
-// LÄgg till att playableCards roterar smatidigt // När playableCards byttas ut till nya (ny lvl) ska dem snurra.. kanske när spelet börjar med?? (inte snurra två ggr, tex. ett redan vänt kort)
 
 // TODO: Korten vänds automatiskt tillbaka efter man tryckt på dem?! (lägg logiken i klassen -> efter fördröjning om isFlipped = true - flippa tillbaka)
 
-
-// LÄGG Till function som returnerar cuurentEquationCards som en array av mathCards?? [MathCard]()
-
-
-
-// GÖr en klass, playableCards?? Innehåller 5 MathCards
-// End Condition: Efter Impossible -> Alert (Du har klarat spelet: 1. Gå tillbaka 2. Fortsätt spela)
-
-
-// Division:
 
 // Score/Highscore
 // fixa score (mer beroende på svårighets grad)
 
 
+// Division:
 // Fixa lite med multiplikationen, nummren (inte bara 8 X 1 osv), 9 x ? = 7 funkar inte!!
 
+
+
+// End Condition: Efter Impossible -> Alert (Du har klarat spelet: 1. Gå tillbaka 2. Fortsätt spela)
+
+
+
 // Kolla så att alla modes samt lvls fungerar...
+// Kolla alla nivåerna!! addition,subtraction, multiplication: easy - impossible
 
+// I MathCard klassen lägg till om addision, div etc... som property?
 
-// TODO: lägg till högre svar i nivå 3: ex. 3 + ? = 10 (KVAR??)
 
 // TODO: Fixa highscore (olika för dem olika räknesätten) -> Fixa speciell view för highscores!
 
 
-// SKAPA EN sub KLASS AV UIVIEW (cardView klasse) innehåller ref till MathCard? Innehåller indexPosition med....
+
+
+// SKAPA EN sub KLASS AV UIVIEW (cardView klasse) innehåller ref till MathCard? Innehåller indexPosition med....???
+
+
+
+
 
 
 // HARDMODE:
@@ -156,7 +155,7 @@ class EasyMathVC: UIViewController {
     
     //var equationCards = [MathCard]() // TODO: property in object (isTopCard)
     //var playableCards = [MathCard]() // TODO: Make optional?? ([MathCard?]), sätt arrayen till empty i deinit
-    var currentDifficulty = Difficulty.impossible
+    var currentDifficulty = Difficulty.easy
     var mathMode = CalculationMode.addition
     var hardModeEnabled: Bool = false
     var audioPlayer: AVAudioPlayer?
@@ -254,15 +253,22 @@ class EasyMathVC: UIViewController {
         if let cards = playableCards?.cards {
             flipCardsBack(cards: cards, cardViews: playableCardViews)
             setPlayableCardsNumber()
+            //newCardTransitionFlip(cardViews: playableCardViews)
+            flipNewPlayableCards()
             setCardImages(cards: cards, cardImages: playableCardImages)
             setCardLabels(cards: cards, cardLabels: playableCardLabels)
         }
     }
     
+    
+    func flipNewPlayableCards() {
+        if progressBarWidth.constant == 0 || currentDifficulty == .impossible {
+            newCardTransitionFlip(cardViews: playableCardViews)
+        }
+    }
    
     
- 
-     
+    
     
     // Returns correct answerView index/position for current difficulty
     func getAnswerViewIndex() -> Int {
@@ -323,8 +329,6 @@ class EasyMathVC: UIViewController {
     
     // TODO: FIX IMPOSSIBLE
     func getRandomizedEquationNumbers() -> [Int] {
-
-//    func getRandomizedEquationNumbers() -> (firstNumber: Int, secondNumber: Int) {
         
         let numberRandomizer = NumberRandomizer()
         var condition: (Int, Int) -> Bool
@@ -571,24 +575,3 @@ class EasyMathVC: UIViewController {
     
 }
 
-
-
-
-
-
-    
-    
-        
-
-
-
-
-
-// TODO: CHECK THIS!!!!, DONT FORCE UNWRAP IN function call!!??
-// Prevents getAnswerViewindex from randomizing impossible lvl again
-//       func getCurrentAnswerViewIndex() -> Int? {
-//           for (index, card) in equationCards.enumerated() {
-//               return index
-//           }
-//           return nil
-//       }

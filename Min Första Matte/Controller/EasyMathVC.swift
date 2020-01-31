@@ -353,7 +353,6 @@ class EasyMathVC: UIViewController {
         case (.impossible, .subtraction):
             condition = numberRandomizer.impossibleSubtractionCondition
             
-            
         case (.easy, .multiplication):
             condition = numberRandomizer.easyMultiplicationCondition
         case (.medium, .multiplication):
@@ -378,45 +377,32 @@ class EasyMathVC: UIViewController {
     
     // Returns number for playableCard based on lvl and mathMode
     func getPlayableCardNumbers() -> [Int] {
-        print("UPDATING CARD")
+
         switch (currentDifficulty, mathMode)  {
             
         case (.easy, .addition), (.hard, .addition), (.easy, .multiplication), (.hard, .multiplication):
             return [1, 2, 3, 4, 5]
-            //return [1...5]
         case (.medium, .addition), (.veryHard, .addition), (.medium, .multiplication), (.veryHard, .multiplication):
             return [6, 7, 8, 9, 10]
-            //return [6...10]
-        case (.impossible, .addition), (.impossible, .multiplication):
-            //return 4...8 // TODO: FIX!! RANDOM!!!!
-            
-            // TODO: FIXA!!! EGEN PlayableCards klass?
-            print("UPDATING RANDOM INDEX: \(randomAnswerViewIndex)")
-            if randomAnswerViewIndex == nil {
-                var tempArray = [Int]()
-                
-                if let playabelCards = playableCards?.cards {
-                    for card in playabelCards {
-                        tempArray.append(card.number)
-                    }
-                }
-               
-                return tempArray
-            } else {
-                print("UPDATING AGAIN")
-                return getImpossibleplayableCardNumbers()
-            }
-            //return 4...8
-            
         case (.easy, .subtraction), (.hard, .subtraction):
             return [0, 1, 2, 3, 4]
-            //return [0...4]
         case (.medium, .subtraction), (.veryHard, .subtraction):
             return [5, 6, 7, 8, 9]
-            //return [5...9]
-        case (.impossible, .subtraction):
-             return [4, 5, 6, 7, 8] // FIX
-            //return [4...8] // FIX
+        case (.impossible, .addition), (.impossible, .multiplication), (.impossible, .subtraction):
+             
+            if randomAnswerViewIndex == nil {
+                      var tempArray = [Int]()
+                      
+                      if let playabelCards = playableCards?.cards {
+                          for card in playabelCards {
+                              tempArray.append(card.number)
+                          }
+                      }
+                      return tempArray
+                  } else {
+                      print("UPDATING AGAIN")
+                      return getImpossibleplayableCardNumbers()
+                  }
             
         }
     }
@@ -426,7 +412,6 @@ class EasyMathVC: UIViewController {
     func getImpossibleplayableCardNumbers() -> [Int] {
         
         var numbs = [Int]()
-        var usedNumbs = [Int]()
             
         repeat {
             
@@ -438,7 +423,6 @@ class EasyMathVC: UIViewController {
                     numbs.append(n)
                 }
             }
-            
         } while numbs.count < 5 || !checkImpossibleNumbers(numbers: numbs)//!checkNumbers(numbers: numbs)
         
         return numbs.sorted()
@@ -459,61 +443,6 @@ class EasyMathVC: UIViewController {
     }
     
     
-    
-    func checkNumbers(numbers: [Int]) -> Bool {
-        
-        guard let calculator = calculator else { return false }
-        
-        var answers = [Bool]()
-        
-        let equationsNumber = getCurrentEquationCardNumbers()
-        print(equationsNumber[0])
-        print(equationsNumber[1])
-        var numb1: Int = 0
-        var numb2: Int = 0
-        var numb3: Int = 0
-        
-        for number in numbers {
-            
-            switch getAnswerViewIndex() {
-            case 0:
-                print("Contains case 0")
-                print("Contains: \(number) + \(equationsNumber[0]) = \(equationsNumber[1])")
-                numb1 = number
-                numb2 = equationsNumber[0]
-                numb3 = equationsNumber[1]
-                 //return (number, equationNumbers[0], equationNumbers[1])
-            case 1:
-                print("Contains case 1")
-                print("Contains: \(equationsNumber[0]) + \(number) = \(equationsNumber[1])")
-                numb1 = equationsNumber[0]
-                numb2 = number
-                numb3 = equationsNumber[1]
-                //return (equationNumbers[0], number, equationNumbers[1])
-            case 2:
-                print("Contains case 2")
-                print("Contains: \(equationsNumber[0]) + \(equationsNumber[1]) = \(number)")
-                numb1 = equationsNumber[0]
-                numb2 = equationsNumber[1]
-                numb3 = number
-                //return (equationNumbers[0], equationNumbers[1], number)
-            default:
-                print("Contains failure")
-                //return (0, 0, 0) // TODO: FIX!
-            }
-            
-            let calculationMode = getCalculationMode(calc: calculator)
-
-            answers.append(calculator.validateMathResult(calcMode: calculationMode, firstNumb: numb1, secondNumb: numb2, resultNumb: numb3))
-        }
-        
-        for answer in answers {
-            print("Contains answer: \(answer)")
-            if answer == true { return true }
-        }
-        
-        return false
-    }
 
     
     

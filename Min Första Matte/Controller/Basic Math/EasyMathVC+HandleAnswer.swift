@@ -127,7 +127,8 @@ extension EasyMathVC {
             self.view.layoutIfNeeded()
             //self.scoreLabel.text = "Score: \(self.score)"
         }
-        score += 25
+        //score += 25
+        updateNormalScore()
         print("Score: \(score)")
         //scoreLabel.text = "\(score)"
     }
@@ -174,12 +175,29 @@ extension EasyMathVC {
      }
     
     
-      // NOT USED!!!!!
-      func increaseDifficulty() {
-          
+//      func increaseDifficulty() {
+//
+//      }
+    
+    func updateNormalScore() {
         
+        switch currentDifficulty {
+        case .easy:
+            score += 5
+        case .medium:
+            score += 10
+        case .hard:
+            score += 15
+        case .veryHard:
+            score += 20
+        case .impossible:
+            score += 25
+        }
+    }
+    
+    func updateHardmodeScore() {
         
-      }
+    }
 }
 
 

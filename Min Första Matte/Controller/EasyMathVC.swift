@@ -14,8 +14,8 @@ import AVFoundation
 // Impossible lvl:
 
 // Bugg, drar upp fel nummer -> Sedan roterar, bytts playableCards ut ....
-
 // Problemet: getPlayableCardNumbers kallas på och i den kallas impossible som ger nya random Cards
+
 
 
 // LÄgg till att playableCards roterar smatidigt // När playableCards byttas ut till nya (ny lvl) ska dem snurra.. kanske när spelet börjar med?? (inte snurra två ggr, tex. ett redan vänt kort)
@@ -24,6 +24,7 @@ import AVFoundation
 
 
 // LÄGG Till function som returnerar cuurentEquationCards som en array av mathCards?? [MathCard]()
+
 
 
 // GÖr en klass, playableCards?? Innehåller 5 MathCards
@@ -194,8 +195,6 @@ class EasyMathVC: UIViewController {
         calculator = Calculator()
         playableCards = MathCards(amountOfCards: 5)
         equationCards = MathCards(amountOfCards: 3)
-        //playableCards = createCards(numberOfCards: 5, isEquationCards: false)
-        //equationCards = createCards(numberOfCards: 3, isEquationCards: true)
         addImgTapGesture(cardImages: playableCardImages, isPlayableCardImage: true)
         addImgTapGesture(cardImages: equationCardImages, isPlayableCardImage: false)
         
@@ -426,7 +425,7 @@ class EasyMathVC: UIViewController {
                 return tempArray
             } else {
                 print("UPDATING AGAIN")
-                return getImpossibleLvlCardNumbers()
+                return getImpossibleplayableCardNumbers()
             }
             //return 4...8
             
@@ -443,7 +442,9 @@ class EasyMathVC: UIViewController {
         }
     }
     
-    func getImpossibleLvlCardNumbers() -> [Int] {
+    
+    
+    func getImpossibleplayableCardNumbers() -> [Int] {
         
         var numbs = [Int]()
         var usedNumbs = [Int]()
@@ -665,57 +666,11 @@ class EasyMathVC: UIViewController {
 
 
 
-
-//    // TODO: set answerViewIndex?
-//    func setEquationCardNumbers() {
-////        if let equationCards = equationCards?.cards {
-////
-////            for (index, card) in equationCards {
-////
-////                switch getAnswerViewIndex() {
-////                case <#pattern#>:
-////                    <#code#>
-////                default:
-////                    <#code#>
-////                }
-////
-////            }
-////        }
-//    }
     
     
         
-//        func setIsAnswerViewProperty(currentIndex: Int) {
-//
-//            if let equationCards = equationCards?.cards {
-//                for (index, card) in equationCards.enumerated() {
-//                    card.isAnswerView = index == currentIndex ? true : false
-//                }
-//            }
-//
-//
-//    //        for (index, card) in equationCards.cards.enumerated() {
-//    //            card.isAnswerView = index == currentIndex ? true : false
-//    //        }
-//        }
 
 
-
-//     func createCards(numberOfCards: Int, isEquationCards: Bool) -> [MathCard] {
-//
-//         var cards = [MathCard]()
-//
-//         for n in 1...numberOfCards {
-//
-//             let card = MathCard()
-//             card.calcMode = mathMode
-//             if isEquationCards {
-//                 if n == getAnswerViewIndex() { card.isAnswerView = true }
-//             }
-//             cards.append(card)
-//         }
-//         return cards
-//     }
 
 
 

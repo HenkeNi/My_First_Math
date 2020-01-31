@@ -171,7 +171,6 @@ extension EasyMathVC {
          }
      
          currentDifficulty = updateDifficulty(difficulty: difficultyValue)
-         setPlayableCardsNumber()
      }
     
     

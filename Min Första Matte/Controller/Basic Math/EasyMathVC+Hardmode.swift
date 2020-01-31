@@ -44,7 +44,10 @@ extension EasyMathVC {
           updatePlayableCards()
           //setPlayableCardsNumber()
           newCardTransitionFlip(cardViews: playableCardViews)
-          setCardImages(cards: playableCards, cardImages: playableCardImages)
+        
+        if let playableCards = playableCards?.cards {
+            setCardImages(cards: playableCards, cardImages: playableCardImages)
+        }
           returnCardViewsToOriginalPosition()
           refillProgress()
       }

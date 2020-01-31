@@ -24,13 +24,18 @@ extension EasyMathVC {
     // TODO: Lägg i en extension av UITapGestureRecognizer???
     @objc func imgTapPlayableCard(sender: UITapGestureRecognizer) {
         
+        guard let playableCards = playableCards?.cards else { return }
+        
         playSound(soundName: "Woosh")
                         
         //For every cardView that has the same tag number as the cardImage's tag
         for (index, view) in playableCardViews.enumerated() where sender.view?.tag == view.tag {
             
             if sender.view as? UIImageView != nil {
-                playableCards[index].flipCard(cardView: view, duration: 0.3)
+                
+                view.flipView(duration: 0.3)
+                playableCards[index].isFlipped = !playableCards[index].isFlipped
+                //playableCards[index].flipCard(cardView: view, duration: 0.3)
             }
             setCardImages(cards: playableCards, cardImages: playableCardImages)
         }
@@ -39,12 +44,16 @@ extension EasyMathVC {
     
     @objc func imgTapEquationCard(sender: UITapGestureRecognizer) {
 
+        guard let equationCards = equationCards?.cards else { return }
+        
         playSound(soundName: "Woosh")
         
         for (index, view) in equationCardViews.enumerated() where sender.view?.tag == view.tag {
                         
             if sender.view as? UIImageView != nil {
-                equationCards[index].flipCard(cardView: view, duration: 0.3)
+                //equationCards[index].flipCard(cardView: view, duration: 0.3)
+                view.flipView(duration: 0.3)
+                equationCards[index].isFlipped = !equationCards[index].isFlipped
             }
             setCardImages(cards: equationCards, cardImages: equationCardImages)
         }

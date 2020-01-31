@@ -19,7 +19,7 @@ extension EasyMathVC {
     // Check if dragged card is the correct one
     func validateChosenAnswer(currentView: UIView, answerView: UIView) {
                
-        guard let calculator = calculator else { return } // Unwrap instance of calculator
+        guard let calculator = calculator, let playableCards = playableCards?.cards else { return }
 
         UIView.animate(withDuration: 0.2) {
             currentView.center = answerView.center // Position the draggedCard in the answerView
@@ -57,9 +57,11 @@ extension EasyMathVC {
               
            var equationsNumbers = [Int]()
               
-           for card in equationCards where !card.isAnswerView {
-               equationsNumbers.append(card.number)
-           }
+            if let equationCards = equationCards?.cards {
+                for card in equationCards where !card.isAnswerView {
+                    equationsNumbers.append(card.number)
+                }
+            }
            return equationsNumbers
        }
 

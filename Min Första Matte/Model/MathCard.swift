@@ -23,8 +23,10 @@ class MathCard {
     // var cardImage: UIImage
     var imageName = ""
     var isAnswerView = false // RENAME? Card that is answer/question-mark
-    var originalPosition: CGPoint?
+    var position: CardPosition?
+    //var originalPosition: CGPoint?
     var calcMode: CalculationMode? // Check memory leak
+
     
     var number = 0 {
         didSet {
@@ -53,7 +55,7 @@ class MathCard {
 //    }
 
     
-    
+    // I KLassen?
     func updateImageName() {
         switch (calcMode, isFlipped) {
         case (.addition, false), (.multiplication, false), (.none, false):
@@ -84,12 +86,12 @@ class MathCard {
     //    }
         
     
-    func flipCard(cardView: UIView, duration: Double) {
-        
-        UIView.transition(with: cardView, duration: duration, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-        
-        isFlipped = !isFlipped
-    }
+//    func flipCard(cardView: UIView, duration: Double) {
+//
+//        UIView.transition(with: cardView, duration: duration, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+//        
+//        isFlipped = !isFlipped
+//    }
     
  
     

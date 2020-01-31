@@ -25,4 +25,13 @@ extension UIView {
             self.layer.borderColor = color.cgColor
         }
     }
+    
+    func flipView(duration: Double) {
+        
+        UIView.transition(with: self, duration: duration, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+    }
+    
+    
+   
+    
 }

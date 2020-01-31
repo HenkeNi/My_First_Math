@@ -35,12 +35,12 @@
 		20C19EEF2304935D0009242D /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C19EEE2304935D0009242D /* Extension+Int.swift */; };
 		20C19EF42305929B0009242D /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C19EF32305929B0009242D /* AlertView.xib */; };
 		20C19EF62305D5D10009242D /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C19EF52305D5D10009242D /* AlertView.swift */; };
+		20CA723523E38EF5007AE7EA /* MathCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA723423E38EF5007AE7EA /* MathCards.swift */; };
+		20CA723923E393F7007AE7EA /* CardPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA723823E393F7007AE7EA /* CardPosition.swift */; };
 		20CAC09721F0BA20007E3B35 /* MakeViewAppearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAC09621F0BA20007E3B35 /* MakeViewAppearViewController.swift */; };
 		20D362B821A75E8900931C6C /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D362B721A75E8900931C6C /* TestViewController.swift */; };
 		20D362BA21A9EF5800931C6C /* AdditionIntermediateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */; };
 		20D663B523DD0E3A0020F5AC /* EasyMathVC+Hardmode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D663B423DD0E390020F5AC /* EasyMathVC+Hardmode.swift */; };
-		20D663B823E246B00020F5AC /* PlayableCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D663B723E246B00020F5AC /* PlayableCards.swift */; };
-		20D663BA23E259B10020F5AC /* EquationCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D663B923E259B00020F5AC /* EquationCards.swift */; };
 		20E4D32322FF9BF1005D2364 /* MemoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E4D32222FF9BF1005D2364 /* MemoryCard.swift */; };
 		20EB47BB23A1AF8B00124FC7 /* PanGestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB47BA23A1AF8B00124FC7 /* PanGestVC.swift */; };
 		20F7069222FBA98300FE0183 /* EasyMath.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F7069122FBA98300FE0183 /* EasyMath.storyboard */; };
@@ -62,7 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2029C0D023BAB2BB0095C059 /* MathCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathCard.swift; sourceTree = "<group>"; };
+		2029C0D023BAB2BB0095C059 /* MathCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MathCard.swift; path = ../MathCard.swift; sourceTree = "<group>"; };
 		2029C0D223BAB3770095C059 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2029C0D823BCFEC70095C059 /* Woosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Woosh.wav; sourceTree = "<group>"; };
 		2029C0DA23BCFF4C0095C059 /* Cheering.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Cheering.wav; sourceTree = "<group>"; };
@@ -92,12 +92,12 @@
 		20C19EEE2304935D0009242D /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		20C19EF32305929B0009242D /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		20C19EF52305D5D10009242D /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		20CA723423E38EF5007AE7EA /* MathCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathCards.swift; sourceTree = "<group>"; };
+		20CA723823E393F7007AE7EA /* CardPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPosition.swift; sourceTree = "<group>"; };
 		20CAC09621F0BA20007E3B35 /* MakeViewAppearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeViewAppearViewController.swift; sourceTree = "<group>"; };
 		20D362B721A75E8900931C6C /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdditionIntermediateVC.swift; path = ../Controller/AdditionIntermediateVC.swift; sourceTree = "<group>"; };
 		20D663B423DD0E390020F5AC /* EasyMathVC+Hardmode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+Hardmode.swift"; sourceTree = "<group>"; };
-		20D663B723E246B00020F5AC /* PlayableCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableCards.swift; sourceTree = "<group>"; };
-		20D663B923E259B00020F5AC /* EquationCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationCards.swift; sourceTree = "<group>"; };
 		20E4D32222FF9BF1005D2364 /* MemoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCard.swift; sourceTree = "<group>"; };
 		20EB47BA23A1AF8B00124FC7 /* PanGestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGestVC.swift; sourceTree = "<group>"; };
 		20F7069122FBA98300FE0183 /* EasyMath.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EasyMath.storyboard; sourceTree = "<group>"; };
@@ -230,8 +230,9 @@
 		20D663B623E246900020F5AC /* BasicMath */ = {
 			isa = PBXGroup;
 			children = (
-				20D663B723E246B00020F5AC /* PlayableCards.swift */,
-				20D663B923E259B00020F5AC /* EquationCards.swift */,
+				2029C0D023BAB2BB0095C059 /* MathCard.swift */,
+				20CA723423E38EF5007AE7EA /* MathCards.swift */,
+				20CA723823E393F7007AE7EA /* CardPosition.swift */,
 			);
 			path = BasicMath;
 			sourceTree = "<group>";
@@ -282,7 +283,6 @@
 				20F8841A234699AC004E02D5 /* CardPlayer.swift */,
 				20F8842623491F42004E02D5 /* puzzlePiece.swift */,
 				2029C0D223BAB3770095C059 /* Card.swift */,
-				2029C0D023BAB2BB0095C059 /* MathCard.swift */,
 				2029C0DC23BF8D8A0095C059 /* MatchingCard.swift */,
 				2043015723B983B1006CB5F6 /* CardGenerator.swift */,
 				20D663B623E246900020F5AC /* BasicMath */,
@@ -409,19 +409,18 @@
 				2029C0D323BAB3770095C059 /* Card.swift in Sources */,
 				2043014623B57BC7006CB5F6 /* EasyMathVC+panGest.swift in Sources */,
 				20F7069622FCE83C00FE0183 /* Extension+Colors.swift in Sources */,
-				20D663BA23E259B10020F5AC /* EquationCards.swift in Sources */,
 				20F73D4B22940437008A8071 /* Extension+UIView.swift in Sources */,
 				20F73D492293F364008A8071 /* Calculator.swift in Sources */,
 				20C19EF62305D5D10009242D /* AlertView.swift in Sources */,
 				203622A021C4491200D678E9 /* GuessNumberViewController.swift in Sources */,
 				20D663B523DD0E3A0020F5AC /* EasyMathVC+Hardmode.swift in Sources */,
+				20CA723523E38EF5007AE7EA /* MathCards.swift in Sources */,
 				20F8841B234699AC004E02D5 /* CardPlayer.swift in Sources */,
 				20C19EEF2304935D0009242D /* Extension+Int.swift in Sources */,
 				20F88425234733CF004E02D5 /* PuzzleGameVC+CollectionView.swift in Sources */,
 				20F884112344D39B004E02D5 /* GameCard.swift in Sources */,
 				2043015423B982E8006CB5F6 /* MatchingGameVC+CVDelegate.swift in Sources */,
 				20F8842723491F43004E02D5 /* puzzlePiece.swift in Sources */,
-				20D663B823E246B00020F5AC /* PlayableCards.swift in Sources */,
 				2043015823B983B1006CB5F6 /* CardGenerator.swift in Sources */,
 				2043015A23B984B2006CB5F6 /* MatchingGameCell.swift in Sources */,
 				2043014823B6B080006CB5F6 /* EasyMathVC+Layout.swift in Sources */,
@@ -433,6 +432,7 @@
 				20F8840D2343E2AF004E02D5 /* StartVC.swift in Sources */,
 				20CAC09721F0BA20007E3B35 /* MakeViewAppearViewController.swift in Sources */,
 				2029C0DD23BF8D8A0095C059 /* MatchingCard.swift in Sources */,
+				20CA723923E393F7007AE7EA /* CardPosition.swift in Sources */,
 				20F7069422FBA9AD00FE0183 /* EasyMathVC.swift in Sources */,
 				20D362B821A75E8900931C6C /* TestViewController.swift in Sources */,
 				2029C0D123BAB2BB0095C059 /* MathCard.swift in Sources */,

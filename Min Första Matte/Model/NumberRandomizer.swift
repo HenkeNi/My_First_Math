@@ -30,7 +30,7 @@ class NumberRandomizer {
     var previousResult = 0
     
     
-    func numberRandomizer(condition: (Int, Int) -> Bool) -> (Int, Int) {
+    func numberRandomizer(condition: (Int, Int) -> Bool) -> [Int] {
          
         var firstNumber: Int
         var secondNumber: Int
@@ -45,7 +45,8 @@ class NumberRandomizer {
         //previousResult = firstNumber + secondNumber
         //print("Prev \(previousResult)")
         
-        return (firstNumber, secondNumber)
+       // return (firstNumber, secondNumber)
+        return [firstNumber, secondNumber]
     }
     
     

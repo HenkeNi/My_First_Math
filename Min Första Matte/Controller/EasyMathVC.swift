@@ -271,21 +271,6 @@ class EasyMathVC: UIViewController {
         }
     }
   
-    func setNewEquationNumbers() {
-        
-        let equationNumbers = getEquationNumbers()
-        var tempArray = [MathCard]()
-        
-        if let equationCards = equationCards?.cards {
-            for equationCard in equationCards where !equationCard.isAnswerView {
-                tempArray.append(equationCard)
-            }
-        }
-        
-        tempArray[0].number = equationNumbers.firstNumber
-        tempArray[1].number = equationNumbers.secondNumber
-    }
-    
     func updatePlayableCards() {
         
         if let cards = playableCards?.cards {
@@ -297,7 +282,6 @@ class EasyMathVC: UIViewController {
     }
     
    
-    
     
  
      
@@ -328,33 +312,41 @@ class EasyMathVC: UIViewController {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
      // Sets correct number of playableCards based on level
       func setPlayableCardsNumber() {
           
-          if let playableCards = playableCards?.cards {
-              
-              for (index, n) in getPlayableCardNumbers().enumerated() {
-                  playableCards[index].number = n
-              }
-          }
+        for (index, n) in getPlayableCardNumbers().enumerated() {
+            playableCards?.cards[index].number = n
+        }
+        
+//          if let playableCards = playableCards?.cards {
+//
+//              for (index, n) in getPlayableCardNumbers().enumerated() {
+//                  playableCards[index].number = n
+//              }
+//          }
       }
     
     
+    // LÄGG I KLASSEN???
+    func setNewEquationNumbers() {
+                        
+        if let equationCards = equationCards?.cards {
+            
+            let equationNumbers = getRandomizedEquationNumbers()
+            let filteredEquationCards = equationCards.filter { !$0.isAnswerView }
+                
+            for (index, card) in filteredEquationCards.enumerated() {
+                card.number = equationNumbers[index]
+            }
+        }
+    }
     
     
     // TODO: FIX IMPOSSIBLE
-    func getEquationNumbers() -> (firstNumber: Int, secondNumber: Int) {
+    func getRandomizedEquationNumbers() -> [Int] {
+
+//    func getRandomizedEquationNumbers() -> (firstNumber: Int, secondNumber: Int) {
         
         let numberRandomizer = NumberRandomizer()
         var condition: (Int, Int) -> Bool

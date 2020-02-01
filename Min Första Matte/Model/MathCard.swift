@@ -42,7 +42,7 @@ class MathCard {
     }
 
     var labelText: String {
-        return number.convertIntToString()
+        return number.spellOutNumber()
     }
     
 

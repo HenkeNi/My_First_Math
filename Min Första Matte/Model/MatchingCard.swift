@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Equatable???
 class MatchingCard {
     
     var number: Int
@@ -40,7 +41,7 @@ class MatchingCard {
     
     
     var labelText: String {
-        return number.convertIntToString()
+        return number.spellOutNumber()
     }
     
     

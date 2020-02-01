@@ -55,6 +55,11 @@ import AVFoundation
 
 
 
+// FÖRSÖK ANVÄNDA:
+// equatable protocol (== mellan två objekt)
+// map (loopa över en collection of utföra samma sak på varje element)
+
+
 
 
 // TODO: Inte samma randomerade ekvaions tal i rad??? (spara sista svars siffra? Alt. spara senaste två randomerade talen)
@@ -480,6 +485,7 @@ class EasyMathVC: UIViewController {
     
     // Hides label for answerView
     func hideAnswerViewLabel(answerViewIndex: Int) {
+                
         for (index, label) in equationCardLabels.enumerated() {
             label.isHidden = answerViewIndex == index ? true : false
         }

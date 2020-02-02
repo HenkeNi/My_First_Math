@@ -85,7 +85,7 @@ extension EasyMathVC {
     
     func handleAnswer(answerCorrect: Bool) {
          
-         disableOrEnableCardInteractions(shouldDisable: true)
+         disableCardInteractions(shouldDisable: true)
          
          
         answerCorrect ? answerIsCorrect() : answerIsIncorrect()
@@ -142,7 +142,7 @@ extension EasyMathVC {
             self.returnCardViewsToOriginalPosition() // FIX ONLY RESET CURRENT CARD
             self.changeAnswerViewImage(displayWrongAnswer: true)
             //self.WrongImage.isHidden = false // TODO: ändra bild bara
-            self.disableOrEnableCardInteractions(shouldDisable: false)
+            self.disableCardInteractions(shouldDisable: false)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                 self.changeAnswerViewImage(displayWrongAnswer: false)
                 //self.WrongImage.isHidden = true

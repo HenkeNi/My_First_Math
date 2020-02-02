@@ -28,7 +28,7 @@ extension EasyMathVC {
         
         playSound(soundName: "Woosh")
                         
-        //For every cardView that has the same tag number as the cardImage's tag
+        //For every cardView that has the same tag number as the cardImage's tag        
         for (index, view) in playableCardViews.enumerated() where sender.view?.tag == view.tag {
             
             if sender.view as? UIImageView != nil {

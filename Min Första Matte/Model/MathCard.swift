@@ -72,11 +72,13 @@ class MathCard {
     
     // COMBINE WITH ABOVE!?!
     var getImageName: String {
-               if !isAnswerView {
-                   return imageName
-               } else {
-                   return "NumberQuestion"
-               }
+        
+        return !isAnswerView ? imageName : "NumberQuestion"
+//               if !isAnswerView {
+//                   return imageName
+//               } else {
+//                   return "NumberQuestion"
+//               }
     }
    
 

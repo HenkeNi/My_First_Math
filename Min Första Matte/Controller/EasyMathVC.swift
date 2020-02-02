@@ -216,7 +216,7 @@ class EasyMathVC: UIViewController {
         updateEquationCards()
         updatePlayableCards()
         returnCardViewsToOriginalPosition()
-        disableOrEnableCardInteractions(shouldDisable: false)
+        disableCardInteractions(shouldDisable: false)
         updateScoreLabel()
     }
     
@@ -486,22 +486,39 @@ class EasyMathVC: UIViewController {
     // Hides label for answerView
     func hideAnswerViewLabel(answerViewIndex: Int) {
                 
+        //equationCardLabels.map{$0.isHidden = answerViewIndex == $0.tag - 1 ? true : false}
+        
+        //equationCardLabels.enumerated().map { $0.isHidden = answerViewIndex == n ? true : false }
+        
+        //let condition = answerViewIndex == index ? true : false
+          
+        //equationCardLabels.filter{$0 != answerViewIndex}.map{ $0.isHidden = true}
+
+        //equationCardLabels.enumerated().map { $0.isHidden = condition}
+        
+        
         for (index, label) in equationCardLabels.enumerated() {
             label.isHidden = answerViewIndex == index ? true : false
         }
     }
     
-    // Flips equations card and shows new ones
+    // Flips cards when their numbers numbers gets updated (new image)
     func newCardTransitionFlip(cardViews: [UIView]) {
-        for cardView in cardViews where cardView != equationCardViews[getAnswerViewIndex()] {
-            
-            cardView.flipView(duration: 0.6)
-            //UIView.transition(with: cardView, duration: 0.6, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-        }
+        
+        // Flip cardviews that are not answerView
+        cardViews.filter { $0 != equationCardViews[getAnswerViewIndex()]}.map{$0.flipView(duration: 0.6)}
+        
+//        for cardView in cardViews where cardView != equationCardViews[getAnswerViewIndex()] {
+//
+//            cardView.flipView(duration: 0.6)
+//            //UIView.transition(with: cardView, duration: 0.6, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+//        }
     }
     
     // TODO: kolla närmare om den kan kombineras med någon annan funktion
     func flipCardsBack(cards: [MathCard], cardViews: [UIView]) {
+        
+        //let cards = cards.filter { $0.isFlipped && !$0.isAnswerView }
         
         for (index, card) in cards.enumerated() where card.isFlipped && !card.isAnswerView {
             
@@ -510,6 +527,7 @@ class EasyMathVC: UIViewController {
             //card.flipCard(cardView: cardViews[index], duration: 0.6)
         }
     }
+    
     
     // Resets the cardViews to their original position
     // returnPlayableCardViewsPosition
@@ -521,7 +539,6 @@ class EasyMathVC: UIViewController {
                 
                 //view.center = self.playableCards[index].originalPosition!
 
-                //if let position = self.playableCards[index].position {
                 if let position = self.playableCards?.cards[index].position {
                     view.center.x = CGFloat(position.xPosition)
                     view.center.y = CGFloat(position.yPosition)
@@ -534,31 +551,39 @@ class EasyMathVC: UIViewController {
     // Saves original position for cards
     // Put in extension of UIView (save view position??)
     func savePlayableCardViewPositions() {
-        
+                
         for (index, view) in playableCardViews.enumerated() {
             //playableCards[index].originalPosition = view.center
-            if let playableCards = playableCards?.cards[index] {
-                playableCards.position = CardPosition(xPosition: Double(view.center.x), yPosition: Double(view.center.y))
-            }
             
-            //playableCards[index].position = CardPosition(xPosition: Double(view.center.x), yPosition: Double(view.center.y))
+            playableCards?.cards[index].position = CardPosition(xPosition: Double(view.center.x), yPosition: Double(view.center.y))
+            
+//            if let playableCard = playableCards?.cards[index] {
+//                playableCard.position = CardPosition(xPosition: Double(view.center.x), yPosition: Double(view.center.y))
+//            }
+            
         }
     }
     
     // Disable or enable card(s) interactions
-    func disableOrEnableCardInteractions(shouldDisable: Bool) {
+    func disableCardInteractions(shouldDisable: Bool) {
+
+        playableCardViews.map { $0.isUserInteractionEnabled = shouldDisable ? false : true }
         
-        for cardView in playableCardViews {
-            cardView.isUserInteractionEnabled = shouldDisable ? false : true
-        }
+//        for cardView in playableCardViews {
+//            cardView.isUserInteractionEnabled = shouldDisable ? false : true
+//        }
     }
     
+    
+    // OR in ViewWillDisappear??
     deinit {
         NotificationCenter.default.removeObserver(self)
         playableCards = nil
         calculator = nil
         audioPlayer = nil
         numberRandomizer = nil
+        playableCards = nil
+        equationCards = nil
     }
     
     @IBAction func goBackPressed(_ sender: Any) {

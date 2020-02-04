@@ -6,7 +6,7 @@
 //  Copyright © 2019 Henrik Jangefelt Nilsson. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 // FLip card eget protocol?
 // pairable protocol med?

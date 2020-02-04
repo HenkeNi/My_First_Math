@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+
+// number som lazy stored property
 // TODO: använd conveniece initializer...
 // TODO: superklass av Card -> subklasser, memoryCard, MathCard etc
 // TODO: Combine Different Card Classes
@@ -23,11 +26,10 @@ class MathCard {
     // var cardImage: UIImage
     var imageName = ""
     var isAnswerView = false // RENAME? Card that is answer/question-mark
-    var position: CardPosition?
+    var position: CardPosition? // Renmae: Origin??
     //var originalPosition: CGPoint?
     var calcMode: CalculationMode? // Check memory leak
 
-    
     var number = 0 {
         didSet {
             updateImageName()
@@ -45,6 +47,15 @@ class MathCard {
         return number.spellOutNumber()
     }
     
+//    var origin: CardPosition {
+//        get {
+//            CardPosition(xPosition: position?.xPosition, yPosition: position?.yPosition)
+//        } set {
+//
+//          position.xPosition = newValue.x
+//          position.yPosition = newValue.y
+//        }
+//    }
 
 //    var imgName: String {
 //

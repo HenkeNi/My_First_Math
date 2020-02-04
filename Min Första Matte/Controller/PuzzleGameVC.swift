@@ -10,6 +10,16 @@ import UIKit
 
 class PuzzleGameVC: UIViewController {
 
+    // property isInCorretPlace?
+    // array för correctPlace [1, 2, 3, etc] (varje puzzel bit har ett nummer?)
+    
+    // Lätt: Klicka på en ruta; sedan en annan för att byta plats på dem..
+    
+    // Medel/Svår: En ruta "saknas", måste glida dem längs banan för att ändra dem...
+    
+    // Klicka på en rutan sen en annan för att byta plats på dem??
+    
+    
     // Antingen att man pusslar ihop en stor siffra (tex: varje ruta utgör olika delar av nummer ett) eller varje ruta är en siffra/kort som sedan ska rangordnas i storleksordning
     
     // Eller göra ett till pussel för stora siffror (där man drar bitar till plats)

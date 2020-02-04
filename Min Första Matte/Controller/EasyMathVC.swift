@@ -10,6 +10,13 @@ import UIKit
 import AVFoundation
 
 
+
+// HARDMODE:
+// Progressbaren går långsammare tillbaka på lättare nivåer!? Och snabbare på högre??
+// Timmer som tickar ner (1min 30s) - försöka samla så många poäng som möjligt
+// Ju närmare 0 man ligger desto mer tickar ens poäng ner??
+
+
 // TODO: I addition (nivå1) lägg till '0';  1 + 0. Så man får använda nr 1 nån gång (1 + 0 = 1)?
 
 // Score/Highscore
@@ -19,64 +26,27 @@ import AVFoundation
 // SCORE BARA FÖR HARDMODE???
 // TODO: highscore lista!, en för hardCore en för vanligt!
 
-
 // Division:
 // Fixa lite med multiplikationen, nummren (inte bara 8 X 1 osv), 9 x ? = 7 funkar inte!!
 
-
 // End Condition: Efter Impossible -> Alert (Du har klarat spelet: 1. Gå tillbaka 2. Fortsätt spela)
-
-
-// Kolla så att alla modes samt lvls fungerar...
-// Kolla alla nivåerna!! addition,subtraction, multiplication: easy - impossible
 
 // I MathCard klassen lägg till om addision, div etc... som property?
 
-
-// back button not working (VC presented in smaller window)
-
-
 // KANSKE: FÖR MULTIplication: ENDAST HA RANDOMERADE NUMMER? istället för 1...5 eller 6...10!
-
 
 // Maybe implement: CardViews will automatically flip back after being flipped (after small delay)??
 // Maybe implement: lvl where you drag up two cards either next to each other (2&1 + 2 = 5 ) or like (? + ? = 5) || (5 + ? = ?) etc.
 
-
-// HARDMODE:
-// Progressbaren går långsammare tillbaka på lättare nivåer!?
-// GÅ till nästa lvl om 10 rätt svar??
-// Timmer som tickar på (mer tid kvar ger mer poäng)
-// END CONDITIONS: 10 rätt på varje lvl?
-// Score: Tid kvar && antal lvls/tal passerade (x / 10 på varje lvl.. om man svarar fel ska man inte kunna få högre score ex: 11/10)
-// Live poäng??? Resetas poängen om man går tillbaka till lvl 1 ???
-// Poäng som sakta tickar ner med?.
-// Korten vänds automatiskt tillbaka
 
 
 
 // FÖRSÖK ANVÄNDA:
 // equatable protocol (== mellan två objekt)
 // map (loopa över en collection of utföra samma sak på varje element)
-
-
-
-
-// TODO: Inte samma randomerade ekvaions tal i rad??? (spara sista svars siffra? Alt. spara senaste två randomerade talen)
-
-
-
-
+// Nil coalescing operator (optionalA ?? defaultValue)
 // TODO: Alert Rutan berättar när man kommit till ny nivå! -> KAnske, knapp man måste trycka först innan man går vidare?? Kanske fyverkerieffekter
 
-
-// // Knapp för att slumpa fram ett nytt tal??
-
-
-
-// Add Sound/Particle effects:
-// rejected (wrong answer), correct answer, return sound (card dropped)
-// Particle effects for finishing a lvl
 
 // Memory Leaks
 // Make all cards optional of Cards. Make them nil in deinit/viewDidDisappear
@@ -84,28 +54,10 @@ import AVFoundation
 // Använd structs istället för klasser?
 
 
-// Försök använda; Generics, Closures, Computed Properties.....
+// Försök använda; Generics, Closures, Computed Properties, map, filter.....
 // Generic cardClass?
 // Läggga views, imageVeiws etc. i klassen?
 
-// SKAPA CARDIMAGES programmetical
-
-
-
-
-// BUGGAR:
-// ANSWERVIEW FELVÄND NÄR DEN FÅR SIFFRA (IBLAND) (NÄSTA LEVEL)
-// När man drar nytt kort efter att ha dragit fel; om för snabbt, resetas kortet automatiskt när man drar det....
-// NIVÅ 5: Labels inte på rätt kort. Tag fel (image på fel kort)
-// Kan svaret bli 5 på medel?
-
-
-// BUGGAR SOM ÄR BORTA?
-// Card vände sig på fel håll efter rätt svar (cardOirginalPositionc)
-
-
-// Refactoring:
-// Names: CardOptions, playableCards, cardHand, bottomCards, btmCardHand, bottomCardHand, bottomMathCards, btmMathCards
 
 let nxtLvlNotificationKey = "co.HenrikJangefelt.nxtLvl"
 
@@ -146,9 +98,9 @@ class EasyMathVC: UIViewController {
     
     //var equationCards = [MathCard]() // TODO: property in object (isTopCard)
     //var playableCards = [MathCard]() // TODO: Make optional?? ([MathCard?]), sätt arrayen till empty i deinit
-    var currentDifficulty = Difficulty.impossible
+    var currentDifficulty = Difficulty.easy
     var mathMode = CalculationMode.addition
-    var hardModeEnabled: Bool = false
+    var hardModeEnabled: Bool = true // RENAME: COMPETITIVE MODE??
     var audioPlayer: AVAudioPlayer?
     var calculator: Calculator?
     var numberRandomizer: NumberRandomizer?
@@ -211,6 +163,10 @@ class EasyMathVC: UIViewController {
 
     
     @objc func updateLevel(notification: NSNotification) {
+        updateNextLevel()
+    }
+    
+    func updateNextLevel() {
         randomAnswerViewIndex = nil
         updateAnswerView()
         updateEquationCards()
@@ -395,7 +351,6 @@ class EasyMathVC: UIViewController {
                       }
                       return tempArray
                   } else {
-                      print("UPDATING AGAIN")
                       return getImpossibleplayableCardNumbers()
                   }
             
@@ -414,9 +369,8 @@ class EasyMathVC: UIViewController {
             
             for _ in 1...5 {
                 let n = Int.random(in: 1...10)
-                if !numbs.contains(n) {
-                    numbs.append(n)
-                }
+                
+                if !numbs.contains(n) { numbs.append(n) }
             }
         } while numbs.count < 5 || !checkImpossibleNumbers(numbers: numbs)//!checkNumbers(numbers: numbs)
         
@@ -438,21 +392,6 @@ class EasyMathVC: UIViewController {
     }
     
     
-
-    
-    
-    
-    
- 
-    
-    
-    
-    
-    
-
-    
-    
-    
     
       // Increase or decrease difficulty base on input
       func updateDifficulty(difficulty: Int) -> Difficulty {
@@ -472,12 +411,6 @@ class EasyMathVC: UIViewController {
               return .easy
           }
       }
-      
-    
-      
-      
-
-    
     
     
     
@@ -485,17 +418,6 @@ class EasyMathVC: UIViewController {
     
     // Hides label for answerView
     func hideAnswerViewLabel(answerViewIndex: Int) {
-                
-        //equationCardLabels.map{$0.isHidden = answerViewIndex == $0.tag - 1 ? true : false}
-        
-        //equationCardLabels.enumerated().map { $0.isHidden = answerViewIndex == n ? true : false }
-        
-        //let condition = answerViewIndex == index ? true : false
-          
-        //equationCardLabels.filter{$0 != answerViewIndex}.map{ $0.isHidden = true}
-
-        //equationCardLabels.enumerated().map { $0.isHidden = condition}
-        
         
         for (index, label) in equationCardLabels.enumerated() {
             label.isHidden = answerViewIndex == index ? true : false
@@ -517,8 +439,9 @@ class EasyMathVC: UIViewController {
     
     // TODO: kolla närmare om den kan kombineras med någon annan funktion
     func flipCardsBack(cards: [MathCard], cardViews: [UIView]) {
+                
         
-        //let cards = cards.filter { $0.isFlipped && !$0.isAnswerView }
+        //cards.filter{ $0.isFlipped && !$0.isAnswerView }.map{$0.isFlipped = false }
         
         for (index, card) in cards.enumerated() where card.isFlipped && !card.isAnswerView {
             
@@ -537,8 +460,6 @@ class EasyMathVC: UIViewController {
             
             UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
                 
-                //view.center = self.playableCards[index].originalPosition!
-
                 if let position = self.playableCards?.cards[index].position {
                     view.center.x = CGFloat(position.xPosition)
                     view.center.y = CGFloat(position.yPosition)
@@ -553,7 +474,6 @@ class EasyMathVC: UIViewController {
     func savePlayableCardViewPositions() {
                 
         for (index, view) in playableCardViews.enumerated() {
-            //playableCards[index].originalPosition = view.center
             
             playableCards?.cards[index].position = CardPosition(xPosition: Double(view.center.x), yPosition: Double(view.center.y))
             

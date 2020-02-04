@@ -31,10 +31,17 @@ extension EasyMathVC {
          return barWidth < 0 ? 0.0 : barWidth - (containerWidth * decreaseAmount)
      }
      
-    func refillProgress() {
-        progressBarWidth.constant = progressBarContainer.frame.width
+    func refillHalfProgress() {
+        progressBarWidth.constant = progressBarContainer.frame.width / 2
       
+        UIView.animate(withDuration: 1) {
+            self.view.layoutIfNeeded()
+        }
     //        progressBarWidth.constant = EasyMathVC.fullProgress(progressBarWidth.constant, progressBarContainer.frame.width)
+    }
+    
+    func resetProgress() {
+        progressBarWidth.constant = 0
     }
 
     

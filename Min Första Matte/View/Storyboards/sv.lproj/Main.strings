@@ -1,0 +1,42 @@
+
+/* Class = "UILabel"; text = "1"; ObjectID = "21e-ji-rg1"; */
+"21e-ji-rg1.text" = "1";
+
+/* Class = "UILabel"; text = "___________________________"; ObjectID = "4XW-K7-syC"; */
+"4XW-K7-syC.text" = "___________________________";
+
+/* Class = "UILabel"; text = "Test your math skills! "; ObjectID = "7lW-oB-qH0"; */
+"7lW-oB-qH0.text" = "Test your math skills! ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "B8D-Mf-OF2"; */
+"B8D-Mf-OF2.text" = "Label";
+
+/* Class = "UILabel"; text = "My First Math!"; ObjectID = "EG1-lV-Ggn"; */
+"EG1-lV-Ggn.text" = "My First Math!";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "F1N-QI-sBw"; */
+"F1N-QI-sBw.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "HFN-G7-bna"; */
+"HFN-G7-bna.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "W5E-a5-R4j"; */
+"W5E-a5-R4j.text" = "Label";
+
+/* Class = "UILabel"; text = "Challenge yourself!"; ObjectID = "a7B-cK-cbM"; */
+"a7B-cK-cbM.text" = "Challenge yourself!";
+
+/* Class = "UIButton"; normalTitle = "?"; ObjectID = "gsg-Tj-CZ0"; */
+"gsg-Tj-CZ0.normalTitle" = "?";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "hKM-0r-bjd"; */
+"hKM-0r-bjd.normalTitle" = "+";
+
+/* Class = "UIButton"; normalTitle = "ABOUT"; ObjectID = "mbx-Pt-cm8"; */
+"mbx-Pt-cm8.normalTitle" = "ABOUT";
+
+/* Class = "UIButton"; normalTitle = "-"; ObjectID = "ohf-6O-aFk"; */
+"ohf-6O-aFk.normalTitle" = "-";
+
+/* Class = "UILabel"; text = "Fun Game for pairing together numbers "; ObjectID = "xWx-LA-fXU"; */
+"xWx-LA-fXU.text" = "Fun Game for pairing together numbers ";

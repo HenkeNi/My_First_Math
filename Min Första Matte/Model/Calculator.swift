@@ -18,7 +18,6 @@ enum CalculationMode: String {
 
 class Calculator {
     
-    
     // ValidateMathResult checks if the two given numbers are equal to the answer, with calcMode deciding how it should be calculated
     func validateMathResult(calcMode: (Int, Int) -> Int, firstNumb: Int, secondNumb: Int, resultNumb: Int) -> Bool {
             return calcMode(firstNumb, secondNumb) == resultNumb

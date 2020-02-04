@@ -46,6 +46,8 @@ class NumberRandomizer {
         //print("Prev \(previousResult)")
         
        // return (firstNumber, secondNumber)
+        previousResult = firstNumber + secondNumber
+        
         return [firstNumber, secondNumber]
     }
     

@@ -10,12 +10,6 @@ import UIKit
 
 extension EasyMathVC {
     
-  
-    
-    
- 
-    
-    
     // Check if dragged card is the correct one
     func validateChosenAnswer(currentView: UIView, answerView: UIView) {
                
@@ -58,6 +52,7 @@ extension EasyMathVC {
            var equationsNumbers = [Int]()
               
             if let equationCards = equationCards?.cards {
+                 
                 for card in equationCards where !card.isAnswerView {
                     equationsNumbers.append(card.number)
                 }
@@ -87,12 +82,17 @@ extension EasyMathVC {
          
          disableCardInteractions(shouldDisable: true)
          
-         
+//        if hardModeEnabled {
+//
+//        } else {
+//
+//        }
         answerCorrect ? answerIsCorrect() : answerIsIncorrect()
          let progressBarUpdate = updateProgressBar(isRightAnswer: answerCorrect)
         setProgressBarColor(isRightAnswer: answerCorrect)
         
-        progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width, 0.5)
+        
+        progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width, 0.2)
          
          checkProgress()
          
@@ -104,16 +104,22 @@ extension EasyMathVC {
      }
     
     
+//    func getProgressBarUpdateAmount() {
+//
+//    }
     
     
     
     func answerIsCorrect() {
         
-        
-        
+       
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            AlertView.instance.showAlert(title: "Correct!", message: "That is the right number!", alertType: .success)
+            
+            self.hardModeEnabled ? self.updateNextLevel() : AlertView.instance.showAlert(title: "Correct!", message: "That is the rigth number!!", alertType: .success)
         }
+    
+        
+      
         
         //let updateProgress = updateProgressBar(isRightAnswer: true) // Sets update to be of type increaseProgress
         //progressBarWidth.constant = updateProgress(progressBarWidth.constant, progressBarContainer.frame.size.width)
@@ -167,7 +173,7 @@ extension EasyMathVC {
                  // Increase lvl!
                  difficultyValue += 1
                  playSound(soundName: "Cheering")
-                 progressBarWidth.constant = 0
+                hardModeEnabled ? refillHalfProgress() : resetProgress()
              }
          }
      

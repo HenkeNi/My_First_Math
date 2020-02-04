@@ -13,7 +13,7 @@ extension EasyMathVC {
     
     // enableHardmode
        func setupHardmodeConfigurations() {
-           refillProgress()
+           refillHalfProgress()
            createTimeInterval()
        }
     
@@ -49,7 +49,7 @@ extension EasyMathVC {
             setCardImages(cards: playableCards, cardImages: playableCardImages)
         }
           returnCardViewsToOriginalPosition()
-          refillProgress()
+          refillHalfProgress()
       }
       
       

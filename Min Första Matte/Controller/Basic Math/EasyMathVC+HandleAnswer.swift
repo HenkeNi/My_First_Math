@@ -95,6 +95,8 @@ extension EasyMathVC {
         progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width, 0.2)
          
          checkProgress()
+        
+        //hardModeEnabled ? updateHardmodeScore(isCorrectAnswer: answerCorrect) : updateNormalScore()
          
          UIView.animate(withDuration: 1) {
              self.view.layoutIfNeeded()
@@ -134,7 +136,7 @@ extension EasyMathVC {
             //self.scoreLabel.text = "Score: \(self.score)"
         }
         //score += 25
-        updateNormalScore()
+        //updateNormalScore()
         print("Score: \(score)")
         //scoreLabel.text = "\(score)"
     }
@@ -187,22 +189,18 @@ extension EasyMathVC {
     
     func updateNormalScore() {
         
-        switch currentDifficulty {
-        case .easy:
-            score += 5
-        case .medium:
-            score += 10
-        case .hard:
-            score += 15
-        case .veryHard:
-            score += 20
-        case .impossible:
-            score += 25
-        }
+        
+        score += currentDifficulty.rawValue * 5
+    
     }
     
-    func updateHardmodeScore() {
+    func updateHardmodeScore(isCorrectAnswer: Bool) {
         
+        if isCorrectAnswer {
+            score += currentDifficulty.rawValue * 5
+        } else {
+            score -= currentDifficulty.rawValue * 2
+        }
     }
 }
 

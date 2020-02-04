@@ -10,11 +10,15 @@ import UIKit
 import AVFoundation
 
 
+// Update score - vid fel svar... (vid hardMode updatera scorelabel efter kortet åkt tillbaka..)
+// Return card funktionen kallas på för tidigt när man updaterar scoreLabel eller timeLabel
 
 // HARDMODE:
 // Progressbaren går långsammare tillbaka på lättare nivåer!? Och snabbare på högre??
-// Timmer som tickar ner (1min 30s) - försöka samla så många poäng som möjligt
-// Ju närmare 0 man ligger desto mer tickar ens poäng ner??
+// Ju närmare 0 bredd man ligger desto mer tickar ens poäng ner??
+// End condition: efter timers slut får man se sin poäng (samt highscore lista??) -> välja gå tillbaka eller börja om
+// Poängen tickar sakta ner med? Eller går bara ner vid fel svar!
+
 
 
 // TODO: I addition (nivå1) lägg till '0';  1 + 0. Så man får använda nr 1 nån gång (1 + 0 = 1)?
@@ -83,6 +87,7 @@ class EasyMathVC: UIViewController {
     @IBOutlet var playableCardImages: [UIImageView]!
     @IBOutlet var playableCardLabels: [UILabel]!
     
+    @IBOutlet weak var timerLabel: UILabel!
     
     enum Difficulty: Int, CaseIterable {
         case easy = 1
@@ -455,7 +460,7 @@ class EasyMathVC: UIViewController {
     // Resets the cardViews to their original position
     // returnPlayableCardViewsPosition
     func returnCardViewsToOriginalPosition() {
-        
+
         for (index, view) in playableCardViews.enumerated() {
             
             UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {

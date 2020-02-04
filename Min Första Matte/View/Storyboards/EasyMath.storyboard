@@ -315,6 +315,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fax-ho-xEr">
+                                <rect key="frame" x="562.5" y="392" width="69" height="50.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.69884255959425989" green="0.90071130965917823" blue="0.98829740290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -354,6 +360,7 @@
                             <constraint firstItem="Qw3-xg-EFg" firstAttribute="height" secondItem="vb7-IK-O0b" secondAttribute="height" id="gi5-Kk-lHS"/>
                             <constraint firstItem="Koa-9Y-1mc" firstAttribute="top" secondItem="duV-Zp-ab1" secondAttribute="top" constant="16" id="hQc-mU-JSC"/>
                             <constraint firstItem="93a-Qv-P5y" firstAttribute="width" secondItem="FUt-ET-Bil" secondAttribute="width" id="hTc-yj-R6I"/>
+                            <constraint firstItem="fax-ho-xEr" firstAttribute="centerX" secondItem="ELi-ih-kPk" secondAttribute="centerX" id="hum-vg-YvB"/>
                             <constraint firstItem="nOy-1C-nbe" firstAttribute="centerX" secondItem="ELi-ih-kPk" secondAttribute="centerX" id="j2J-qW-BI6"/>
                             <constraint firstItem="run-8I-PBr" firstAttribute="leading" secondItem="duV-Zp-ab1" secondAttribute="leading" constant="20" id="luk-tX-D2t"/>
                             <constraint firstItem="JWA-ES-ZAW" firstAttribute="height" secondItem="0Ui-kW-K5O" secondAttribute="height" id="mUn-UA-rnP"/>
@@ -362,6 +369,7 @@
                             <constraint firstItem="duV-Zp-ab1" firstAttribute="bottom" secondItem="run-8I-PBr" secondAttribute="bottom" constant="16" id="ukm-UX-4GB"/>
                             <constraint firstItem="run-8I-PBr" firstAttribute="top" secondItem="RjJ-Ak-hui" secondAttribute="bottom" constant="16" id="vAt-gB-MDL"/>
                             <constraint firstItem="Fyp-aB-3Fh" firstAttribute="width" secondItem="FUt-ET-Bil" secondAttribute="width" id="weS-kH-6fY"/>
+                            <constraint firstItem="fax-ho-xEr" firstAttribute="centerY" secondItem="ELi-ih-kPk" secondAttribute="centerY" id="wxn-Sg-Kv1"/>
                             <constraint firstItem="e6M-f9-ssU" firstAttribute="top" secondItem="duV-Zp-ab1" secondAttribute="top" constant="16" id="yIE-Lh-1zS"/>
                             <constraint firstItem="erT-xa-5OX" firstAttribute="height" secondItem="vb7-IK-O0b" secondAttribute="height" id="yXn-6S-1JD"/>
                         </constraints>
@@ -385,6 +393,7 @@
                         <outlet property="progressBarViewBackground" destination="run-8I-PBr" id="rxa-R8-uzk"/>
                         <outlet property="progressBarWidth" destination="Bs5-eI-JY0" id="ApY-FT-FnC"/>
                         <outlet property="scoreLabel" destination="SWy-7T-omr" id="eU6-9H-d97"/>
+                        <outlet property="timerLabel" destination="fax-ho-xEr" id="J6v-5b-whc"/>
                         <outlet property="topView" destination="af3-OU-NBr" id="fhb-rN-gu4"/>
                         <outletCollection property="operatorCardViews" destination="e6M-f9-ssU" collectionClass="NSMutableArray" id="BdM-KG-OgT"/>
                         <outletCollection property="operatorCardViews" destination="Koa-9Y-1mc" collectionClass="NSMutableArray" id="4Yx-x4-w72"/>

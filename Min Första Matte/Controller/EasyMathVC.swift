@@ -14,11 +14,7 @@ import AVFoundation
 // Return card funktionen kallas på för tidigt när man updaterar scoreLabel eller timeLabel
 
 // HARDMODE:
-// Progressbaren går långsammare tillbaka på lättare nivåer!? Och snabbare på högre??
-// Ju närmare 0 bredd man ligger desto mer tickar ens poäng ner??
 // End condition: efter timers slut får man se sin poäng (samt highscore lista??) -> välja gå tillbaka eller börja om
-// Poängen tickar sakta ner med? Eller går bara ner vid fel svar!
-
 
 
 // TODO: I addition (nivå1) lägg till '0';  1 + 0. Så man får använda nr 1 nån gång (1 + 0 = 1)?
@@ -41,8 +37,6 @@ import AVFoundation
 
 // Maybe implement: CardViews will automatically flip back after being flipped (after small delay)??
 // Maybe implement: lvl where you drag up two cards either next to each other (2&1 + 2 = 5 ) or like (? + ? = 5) || (5 + ? = ?) etc.
-
-
 
 
 // FÖRSÖK ANVÄNDA:
@@ -105,7 +99,7 @@ class EasyMathVC: UIViewController {
     //var playableCards = [MathCard]() // TODO: Make optional?? ([MathCard?]), sätt arrayen till empty i deinit
     var currentDifficulty = Difficulty.easy
     var mathMode = CalculationMode.addition
-    var hardModeEnabled: Bool = true // RENAME: COMPETITIVE MODE??
+    var hardModeEnabled: Bool = false // RENAME: COMPETITIVE MODE?? Competition , 
     var audioPlayer: AVAudioPlayer?
     var calculator: Calculator?
     var numberRandomizer: NumberRandomizer?
@@ -119,8 +113,10 @@ class EasyMathVC: UIViewController {
         super.viewDidLoad()
         UIView.appearance().isExclusiveTouch = true // Disable multi touch
         calculator = Calculator()
+        numberRandomizer = NumberRandomizer()
         playableCards = MathCards(amountOfCards: 5)
         equationCards = MathCards(amountOfCards: 3)
+
         addImgTapGesture(cardImages: playableCardImages, isPlayableCardImage: true)
         addImgTapGesture(cardImages: equationCardImages, isPlayableCardImage: false)
         
@@ -146,6 +142,10 @@ class EasyMathVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         savePlayableCardViewPositions() // Saves the original position of the bottom cards
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        removeInstances()
     }
     
     
@@ -267,9 +267,9 @@ class EasyMathVC: UIViewController {
     // LÄGG I KLASSEN???
     func setNewEquationNumbers() {
                         
-        if let equationCards = equationCards?.cards {
+        if let equationCards = equationCards?.cards, let equationNumbers = getRandomizedEquationNumbers() {
             
-            let equationNumbers = getRandomizedEquationNumbers()
+            //let equationNumbers = getRandomizedEquationNumbers()
             let filteredEquationCards = equationCards.filter { !$0.isAnswerView }
                 
             for (index, card) in filteredEquationCards.enumerated() {
@@ -280,9 +280,10 @@ class EasyMathVC: UIViewController {
     
     
     // TODO: FIX IMPOSSIBLE
-    func getRandomizedEquationNumbers() -> [Int] {
+    func getRandomizedEquationNumbers() -> [Int]? {
         
-        let numberRandomizer = NumberRandomizer()
+        guard let numberRandomizer = numberRandomizer else { return nil }
+        
         var condition: (Int, Int) -> Bool
         
         switch (currentDifficulty, mathMode) {
@@ -324,6 +325,7 @@ class EasyMathVC: UIViewController {
     }
     
     
+    
     func getImpossibleRandomizerCondition(numberRandomizer: NumberRandomizer) -> (Int, Int) -> Bool {
         
         return getAnswerViewIndex() == 2 ? numberRandomizer.impossibleAdditionCondition1 : numberRandomizer.impossibleAdditionCondition2
@@ -361,8 +363,6 @@ class EasyMathVC: UIViewController {
             
         }
     }
-    
-    
     
     func getImpossibleplayableCardNumbers() -> [Int] {
         
@@ -500,8 +500,8 @@ class EasyMathVC: UIViewController {
     }
     
     
-    // OR in ViewWillDisappear??
-    deinit {
+    
+    func removeInstances() {
         NotificationCenter.default.removeObserver(self)
         playableCards = nil
         calculator = nil
@@ -511,9 +511,22 @@ class EasyMathVC: UIViewController {
         equationCards = nil
     }
     
+    deinit {
+        print("EasyMathVC was deallocated")
+    }
+    
     @IBAction func goBackPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    
+    @IBAction func deallocateTest(_ sender: Any) {
+        
+        removeInstances()
+    }
+    
     
 }
 

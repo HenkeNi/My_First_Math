@@ -9,26 +9,10 @@
 import Foundation
 
 // Extension av INt istället?
-// TODO: Lägg till 0 för plus?? 4 + 0 etc..
-// TODO: not same numbers in a row
+// TODO: returnera 0 mer sällan
 class NumberRandomizer {
     
-    /*func randomizeTwoNumbers(mathMode : CalculationMode) -> (Int, Int) {
-        
-        var firstNumber: Int
-        var secondNumber: Int
-    
-        let startNumber = mathMode == .addition ? 1 : 0
-        
-        repeat {
-            firstNumber = Int.random(in: startNumber...4)
-            secondNumber = Int.random(in: startNumber...4)
-        } while mathMode == .addition ? firstNumber + secondNumber > 5 : firstNumber - secondNumber < 0
-                
-     return (firstNumber, secondNumber)
-    }*/
-    var previousResult = 0
-    
+    var previousNumbers = [0, 0]
     
     func numberRandomizer(condition: (Int, Int) -> Bool) -> [Int] {
          
@@ -36,17 +20,12 @@ class NumberRandomizer {
         var secondNumber: Int
         
         repeat {
-            firstNumber = Int.random(in: 1...10)
-            secondNumber = Int.random(in: 1...10)
-            //firstNumber = Int.random(in: startNumber...endNumber)
-            //secondNumber = Int.random(in: startNumber...endNumber)
-        } while condition(firstNumber, secondNumber) || (firstNumber + secondNumber == previousResult)
+            firstNumber = Int.random(in: 0...10)
+            secondNumber = Int.random(in: 0...10)
+        } while condition(firstNumber, secondNumber) || (firstNumber == previousNumbers[0] && secondNumber == previousNumbers[1])
         
-        //previousResult = firstNumber + secondNumber
-        //print("Prev \(previousResult)")
-        
-       // return (firstNumber, secondNumber)
-        previousResult = firstNumber + secondNumber
+        previousNumbers[0] = firstNumber
+        previousNumbers[1] = secondNumber
         
         return [firstNumber, secondNumber]
     }
@@ -54,15 +33,15 @@ class NumberRandomizer {
     
     
     // TEST
-    let basicAdditionCondition = { (firstNumb: Int, secondNumb: Int, maxValue: Int) -> Bool in
-            return firstNumb + secondNumb > maxValue
-    }
+//    let basicAdditionCondition = { (firstNumb: Int, secondNumb: Int, maxValue: Int) -> Bool in
+//            return firstNumb + secondNumb > maxValue
+//    }
         
         
-    
     
     let easyAdditionCondition: (Int, Int) -> Bool = {
-        return $0 + $1 > 5
+        //return $0 + $1 > 5 
+        return $0 + $1 > 5 || $0 + $1 < 1
     }
     
     let mediumAdditionContidion: (Int, Int) -> Bool = {
@@ -138,6 +117,8 @@ class NumberRandomizer {
     }
     
     
- 
+    deinit {
+        print("NumberRandomizer will be deallocated")
+    }
     
 }

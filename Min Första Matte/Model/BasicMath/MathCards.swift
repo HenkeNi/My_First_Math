@@ -38,10 +38,7 @@ class MathCards {
      
     
      
-     deinit {
-        //for card in cards { card = nil }
-         print("Cards no more?")
-     }
+  
     
     
 //    var answerViewIndex: Int? {
@@ -59,6 +56,12 @@ class MathCards {
 //              }
 //          }
 //      }
+    
+    
+    deinit {
+         //for card in cards { card = nil }
+          print("MathCards will be deallocated")
+      }
 }
 
 

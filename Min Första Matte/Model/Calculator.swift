@@ -55,7 +55,9 @@ class Calculator {
 //
 //    }
     
-    
+    deinit {
+        print("Calculator will be deallocated")
+    }
     
     
 }

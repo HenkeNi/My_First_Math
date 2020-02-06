@@ -321,6 +321,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvq-Kx-Czh">
+                                <rect key="frame" x="291" y="402" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="deallocateTest:" destination="eBu-EM-87G" eventType="touchUpInside" id="4y8-2i-YUC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.69884255959425989" green="0.90071130965917823" blue="0.98829740290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

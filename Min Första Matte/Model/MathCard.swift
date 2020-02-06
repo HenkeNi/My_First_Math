@@ -110,7 +110,7 @@ class MathCard {
     
     
     deinit {
-        print("MathCard was deallocated")
+        print("MathCard will be deallocated")
     }
     
     

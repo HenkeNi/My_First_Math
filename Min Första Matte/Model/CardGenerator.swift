@@ -54,4 +54,7 @@ class CardGenerator {
 //
 //    }
     
+    deinit {
+        print("CardGenerator was deallocated")
+    }
 }

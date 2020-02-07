@@ -387,8 +387,9 @@ class EasyMathVC: UIViewController {
             
             for i in numbers {
                 let numbs = getNumbersInEquation(chosenNumber: i)
-                                   
-                let result = calc.validateMathResult(calcMode: getCalculationMode(calc: calculator!), firstNumb: numbs.firstNumber, secondNumb: numbs.secondNumber, resultNumb: numbs.resultNumber)
+                
+                let result = calc.validateMathResult(firstNumb: numbs.firstNumber, secondNumb: numbs.secondNumber, resultNumb: numbs.resultNumber, calcMode: getCalculationMode(calc: calc))
+                //let result = calc.validateMathResult(calcMode: getCalculationMode(calc: calculator!), firstNumb: numbs.firstNumber, secondNumb: numbs.secondNumber, resultNumb: numbs.resultNumber)
                                    
                 if result { return true }
             }

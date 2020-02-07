@@ -21,8 +21,9 @@ extension EasyMathVC {
         
         let calculationMode = getCalculationMode(calc: calculator)
         let equationNumbers = getNumbersInEquation(chosenNumber: playableCards[currentView.tag - 1].number)
-            
-        if calculator.validateMathResult(calcMode: calculationMode, firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber) {
+          
+        if calculator.validateMathResult(firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber, calcMode: calculationMode) {
+        //if calculator.validateMathResult(calcMode: calculationMode, firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber) {
             handleAnswer(answerCorrect: true) // Correct Answer
         } else {
             handleAnswer(answerCorrect: false) // Incorrect Answer
@@ -33,7 +34,7 @@ extension EasyMathVC {
     
        func getNumbersInEquation(chosenNumber: Int) -> (firstNumber: Int, secondNumber: Int, resultNumber: Int) {
            
-           let equationNumbers = getCurrentEquationCardNumbers()
+        guard let equationNumbers = getCurrentEquationCardNumbers() else { return (0, 0, 0) }
 
            switch getAnswerViewIndex() {
            case 0:
@@ -47,17 +48,24 @@ extension EasyMathVC {
            }
        }
        
-       func getCurrentEquationCardNumbers() -> [Int] {
+       func getCurrentEquationCardNumbers() -> [Int]? {
               
-           var equationsNumbers = [Int]()
-              
+           //var equationsNumbers = [Int]()
+                
+        //return equationCards!.cards.filter{ !$0.isAnswerView }.map{ $0.number }
+        
             if let equationCards = equationCards?.cards {
+                
+                return equationCards.filter { !$0.isAnswerView }.map { $0.number }
                  
-                for card in equationCards where !card.isAnswerView {
-                    equationsNumbers.append(card.number)
-                }
+                //equationCards.filter
+                
+//                for card in equationCards where !card.isAnswerView {
+//                    equationsNumbers.append(card.number)
+//                }
             }
-           return equationsNumbers
+            return nil
+           //return equationsNumbers
        }
 
     

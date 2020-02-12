@@ -22,19 +22,22 @@ extension EasyMathVC {
         let calculationMode = getCalculationMode(calc: calculator)
         let equationNumbers = getNumbersInEquation(chosenNumber: playableCards[currentView.tag - 1].number)
           
-        if calculator.validateMathResult(firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber, calcMode: calculationMode) {
-        //if calculator.validateMathResult(calcMode: calculationMode, firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber) {
-            handleAnswer(answerCorrect: true) // Correct Answer
-        } else {
-            handleAnswer(answerCorrect: false) // Incorrect Answer
-        }
+        
+        handleAnswer(answerCorrect: calculator.validateMathResult(firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber, calcMode: calculationMode))
+        
+//        if calculator.validateMathResult(firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber, calcMode: calculationMode) {
+//
+//            handleAnswer(answerCorrect: true) // Correct Answer
+//        } else {
+//            handleAnswer(answerCorrect: false) // Incorrect Answer
+//        }
     }
     
     
     
        func getNumbersInEquation(chosenNumber: Int) -> (firstNumber: Int, secondNumber: Int, resultNumber: Int) {
            
-        guard let equationNumbers = getCurrentEquationCardNumbers() else { return (0, 0, 0) }
+           guard let equationNumbers = getCurrentEquationCardNumbers() else { return (0, 0, 0) }
 
            switch getAnswerViewIndex() {
            case 0:
@@ -48,24 +51,15 @@ extension EasyMathVC {
            }
        }
        
+    
+        // Returns numbers in equationCards that are not 'isAnswerView'
        func getCurrentEquationCardNumbers() -> [Int]? {
-              
-           //var equationsNumbers = [Int]()
-                
-        //return equationCards!.cards.filter{ !$0.isAnswerView }.map{ $0.number }
-        
+
             if let equationCards = equationCards?.cards {
                 
                 return equationCards.filter { !$0.isAnswerView }.map { $0.number }
-                 
-                //equationCards.filter
-                
-//                for card in equationCards where !card.isAnswerView {
-//                    equationsNumbers.append(card.number)
-//                }
             }
             return nil
-           //return equationsNumbers
        }
 
     
@@ -100,7 +94,7 @@ extension EasyMathVC {
         setProgressBarColor(isRightAnswer: answerCorrect)
         
         
-        progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width, 0.2)
+        progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width, 0.25)
          
          checkProgress()
         

@@ -10,15 +10,33 @@ import Foundation
 
 class MathCards {
     
-    var cards = [MathCard]() // MAKE OPTIONAL???
+    var cards = [MathCard]()
     var answerViewIndex: Int?
     
     init(amountOfCards: Int) {
         addCards(amountOfCards: amountOfCards)
     }
     
-    //var cardNumbers: Int
-     
+    subscript(index: Int) -> MathCard {
+        get {
+            return cards[index]
+        }
+    }
+    
+    
+//    let createCards = { (amount: Int) in
+//
+//        for _ in 1...amount {
+//            cards.append(MathCard())
+//        }
+//    }
+//
+//
+//    let createCards2 = { () -> MathCard in
+//        let card = MathCard()
+//        return card
+//    }
+    
      func addCards(amountOfCards: Int) {
          
          for _ in 1...amountOfCards {

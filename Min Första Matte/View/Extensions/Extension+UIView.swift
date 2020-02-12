@@ -6,7 +6,6 @@
 //  Copyright © 2019 Henrik Jangefelt Nilsson. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension UIView {

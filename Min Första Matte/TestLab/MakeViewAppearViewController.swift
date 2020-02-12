@@ -39,6 +39,8 @@ class MakeViewAppearViewController: UIViewController {
     }
     
     
+
+    
     
     func addPanGesutre(view: UIView) {
         let panGest = UIPanGestureRecognizer(target: self, action: #selector(handlePan(sender:)))

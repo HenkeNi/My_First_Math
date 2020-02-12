@@ -79,17 +79,16 @@ extension EasyMathVC {
     
     // Rounded corners, border width (and color) for Cards
     func customizeCards(cardViews: [UIView]) {
-           
-        for cardView in cardViews {
-            cardView.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray)
-        }
+        
+        cardViews.map { $0.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray) }
+    
     }
     
     
     // Change between question mark and x (wrong answer)
      // rename: toogleAnswerViewImgOrWrongImg
      func changeAnswerViewImage(displayWrongAnswer: Bool) {
-         
+                 
          for (index, image) in equationCardImages.enumerated() where index == getAnswerViewIndex() {
              image.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
          }

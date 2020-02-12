@@ -23,11 +23,17 @@ class Calculator {
             return calcMode(firstNumb, secondNumb) == resultNumb
     }
     
+    
+    typealias arithmetic = (Int, Int) -> Int
 
-    let addition:       (Int, Int) -> Int =     { $0 + $1 }
-    let subtraction:    (Int, Int) -> Int =     { $0 - $1 }
-    let division:       (Int, Int) -> Int =     { $0 / $1 }
-    let multiplication: (Int, Int) -> Int =     { $0 * $1 }
+    let addition:           arithmetic = { $0 + $1 }
+    let subtraction:        arithmetic = { $0 - $1 }
+    let division:           arithmetic = { $0 / $1 }
+    let multiplication:     arithmetic = { $0 * $1 }
+//    let addition:       (Int, Int) -> Int =     { $0 + $1 }
+//    let subtraction:    (Int, Int) -> Int =     { $0 - $1 }
+//    let division:       (Int, Int) -> Int =     { $0 / $1 }
+//    let multiplication: (Int, Int) -> Int =     { $0 * $1 }
     
 
 

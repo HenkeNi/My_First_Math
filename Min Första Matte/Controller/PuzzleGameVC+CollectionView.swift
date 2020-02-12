@@ -13,7 +13,14 @@ extension PuzzleGameVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
     // Returns amount of cells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        //return images.count
+        return puzzlePieces?.pieces.count ?? 0
+        
+//        if let puzzlePieces = puzzlePieces?.pieces.count {
+//            return puzzlePieces
+//        }
+//        return 0 // TODO: return current puzzle size?
+//        
      }
     
     
@@ -22,19 +29,69 @@ extension PuzzleGameVC: UICollectionViewDataSource, UICollectionViewDelegate {
          
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "puzzleCell", for: indexPath) as! PuzzleCell
          
-         cell.puzzleImage.image = UIImage(named: images[indexPath.row])
-         return cell
+         //cell.puzzleImage.image = UIImage(named: images[indexPath.row])
+        
+        if let puzzlePieceImg = puzzlePieces?.pieces[indexPath.row].imageName {
+            cell.puzzleImage.image = UIImage(named: puzzlePieceImg)
+        }
+        
+        if let puzzlePieces = puzzlePieces?.pieces {
+            
+            for piece in puzzlePieces {
+                setPuzzlePiecePosition(position: indexPath.row, puzzlePiece: piece)
+            }
+        }
+        
+        return cell
      }
     
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(images[indexPath.row])
         
-        let firstCard = images[indexPath.row]
-        //let secondCard =
+        //print(puzzlePieces?.pieces[indexPath.row].imageName)
+        //print(images[indexPath.row])
+        //print("\(indexPath.row)")
         
-        //puzzleCollectionView.moveItem(at: <#T##IndexPath#>, to: <#T##IndexPath#>)
+        
+        // FIX!! Optionals!!
+        if puzzlePieces?.firstPiece == nil {
+            
+            puzzlePieces?.firstPiece = indexPath.row
+            
+            
+        } else {
+            puzzlePieces?.secondPiece = indexPath.row
+            puzzlePieces?.pieces.swapAt(puzzlePieces!.firstPiece!, puzzlePieces!.secondPiece!)
+            
+                // BEHÖVS???
+            
+            puzzlePieces?.firstPiece = nil
+            puzzlePieces?.secondPiece = nil
+            
+            puzzleCollectionView.reloadData()
+            
+            checkForCompletion()
+            // CHECK IF ALL PIECES ARE CORRECT
+        }
+        
+        print(indexPath.row)
+        puzzlePieces?.pieces[indexPath.row].currentPosition = indexPath.row
+        //print(puzzlePieces?.pieces[indexPath.row].currentPosition)
+        //print(puzzlePieces?.pieces[indexPath.row].indexPosition)
+//        if firstCardIndex == 10 {
+//            firstCardIndex = indexPath.row
+//        } else {
+//            images.swapAt(firstCardIndex, indexPath.row)
+//            firstCardIndex = 10
+//            puzzleCollectionView.reloadData()
+//        }
+//
+//
+//        let firstCard = images[indexPath.row]
+//        //let secondCard =
+//
+//        //puzzleCollectionView.moveItem(at: <#T##IndexPath#>, to: <#T##IndexPath#>)
         
     }
     
@@ -91,7 +148,17 @@ extension PuzzleGameVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }*/
     
     
+    func setCellSize() {
+        let itemSize = puzzleCollectionView.frame.size.width / 4
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 15, bottom: 0, right: 15)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
 
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+
+        puzzleCollectionView.collectionViewLayout = layout
+    }
     
     
 }

@@ -18,12 +18,15 @@ import UIKit
 // TODO: Make private variables, set and get
 // TODO: set didSet listener på isFlipped och kalla på metoden för att vända kortet
 
+// TODO: use imageNameFront and -Back
 
 // TODO: UIview property?
 class MathCard {
     
     //  var cardView: UIView
     // var cardImage: UIImage
+    var imageNameFront = ""
+    var imageNameBack = ""
     var imageName = ""
     var isAnswerView = false // RENAME? Card that is answer/question-mark
     var position: CardPosition? // Renmae: Origin??
@@ -47,15 +50,7 @@ class MathCard {
         return number.spellOutNumber()
     }
     
-//    var origin: CardPosition {
-//        get {
-//            CardPosition(xPosition: position?.xPosition, yPosition: position?.yPosition)
-//        } set {
-//
-//          position.xPosition = newValue.x
-//          position.yPosition = newValue.y
-//        }
-//    }
+
 
 //    var imgName: String {
 //
@@ -107,6 +102,15 @@ class MathCard {
 //    }
     
  
+    //    var origin: CardPosition {
+    //        get {
+    //            CardPosition(xPosition: position?.xPosition, yPosition: position?.yPosition)
+    //        } set {
+    //
+    //          position.xPosition = newValue.x
+    //          position.yPosition = newValue.y
+    //        }
+    //    }
     
     
     deinit {

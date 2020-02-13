@@ -21,7 +21,6 @@ extension EasyMathVC {
         
         let calculationMode = getCalculationMode(calc: calculator)
         let equationNumbers = getNumbersInEquation(chosenNumber: playableCards[currentView.tag - 1].number)
-          
         
         handleAnswer(answerCorrect: calculator.validateMathResult(firstNumb: equationNumbers.firstNumber, secondNumb: equationNumbers.secondNumber, resultNumb: equationNumbers.resultNumber, calcMode: calculationMode))
         
@@ -90,9 +89,9 @@ extension EasyMathVC {
 //
 //        }
         answerCorrect ? answerIsCorrect() : answerIsIncorrect()
+        
          let progressBarUpdate = updateProgressBar(isRightAnswer: answerCorrect)
         setProgressBarColor(isRightAnswer: answerCorrect)
-        
         
         progressBarWidth.constant = progressBarUpdate(progressBarWidth.constant, progressBarContainer.frame.size.width, 0.25)
          
@@ -123,7 +122,6 @@ extension EasyMathVC {
         }
     
         
-      
         
         //let updateProgress = updateProgressBar(isRightAnswer: true) // Sets update to be of type increaseProgress
         //progressBarWidth.constant = updateProgress(progressBarWidth.constant, progressBarContainer.frame.size.width)
@@ -133,10 +131,10 @@ extension EasyMathVC {
         //originalCardPositions() // TEST
         //nextLevel()
         
-        UIView.animate(withDuration: 1) {
-            self.view.layoutIfNeeded()
-            //self.scoreLabel.text = "Score: \(self.score)"
-        }
+//        UIView.animate(withDuration: 1) {
+//            self.view.layoutIfNeeded()
+//            //self.scoreLabel.text = "Score: \(self.score)"
+//        }
         //score += 25
         //updateNormalScore()
         print("Score: \(score)")

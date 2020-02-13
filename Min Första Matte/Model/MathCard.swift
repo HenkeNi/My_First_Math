@@ -112,6 +112,7 @@ class MathCard {
     //        }
     //    }
     
+   
     
     deinit {
         print("MathCard will be deallocated")

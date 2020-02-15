@@ -169,9 +169,6 @@
                                 <rect key="frame" x="489" y="635" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="buttonPress:" destination="trN-4A-Ayc" eventType="touchUpInside" id="PCB-XU-Gr2"/>
-                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g1d-b7-c5K">
                                 <rect key="frame" x="38" y="44" width="111" height="108"/>
@@ -183,14 +180,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Number0TEST" translatesAutoresizingMaskIntoConstraints="NO" id="3yK-9G-nQU">
+                                <rect key="frame" x="560" y="104" width="179" height="179"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Number0" translatesAutoresizingMaskIntoConstraints="NO" id="4VD-AZ-eeQ">
+                                <rect key="frame" x="763" y="104" width="179" height="179"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="oEn-nn-U0l"/>
                     </view>
-                    <connections>
-                        <outlet property="blackView" destination="g1d-b7-c5K" id="7Rm-TN-7XW"/>
-                        <outlet property="wall" destination="MVi-O2-r0l" id="9YE-4N-hCF"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axa-uE-8K3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -736,6 +737,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Number0" width="180" height="180"/>
+        <image name="Number0TEST" width="180" height="180"/>
         <image name="Number1" width="180" height="180"/>
         <image name="Number10" width="180" height="180"/>
         <image name="Number1Back" width="180" height="180"/>

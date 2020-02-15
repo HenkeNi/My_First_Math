@@ -14,6 +14,7 @@ class NumberRandomizer {
     
     var previousNumbers = [0, 0]
     
+    // TODO: rename randomizeNumbers
     func numberRandomizer(condition: (Int, Int) -> Bool) -> [Int] {
          
         var firstNumber: Int
@@ -31,30 +32,42 @@ class NumberRandomizer {
     }
     
     
-    
-    // TEST
-//    let basicAdditionCondition = { (firstNumb: Int, secondNumb: Int, maxValue: Int) -> Bool in
-//            return firstNumb + secondNumb > maxValue
+//    func randomizeNumbers(condition: (Int, Int) -> Bool) -> [Int] {
+//
+//        var firstNumber: Int
+//        var secondNumber: Int
+//
+//        repeat {
+//            firstNumber = Int.random(in: 0...10)
+//            secondNumber = Int.random(in: 0...10)
+//        } while !condition(firstNumber, secondNumber) || (firstNumber == previousNumbers[0] && secondNumber == previousNumbers[1])
+//
+//            previousNumbers[0] = firstNumber
+//            previousNumbers[1] = secondNumber
+//
+//            return [firstNumber, secondNumber]
 //    }
-        
-        
+//
+//    typealias RandomizeCondition = (firstNumb: Int, secondNumb: Int, value: Int)
+    // TEST
+//    let basicAdditionCondition = { (condition: RandomizeCondition) -> Bool in
+//        return condition.firstNumb + condition.secondNumb < condition.maxNumb &&
+//            condition.firstNumb + condition.secondNumb > condition.minNumb
+//    }
+
+//    let additionMiniCondition: (RandomizeCondition) -> Bool = { (firstNumb: Int, secondNu) in
+//        return
+//    }
     
-    let easyAdditionCondition: (Int, Int) -> Bool = {
-        //return $0 + $1 > 5 
-        return $0 + $1 > 5 || $0 + $1 < 1
-    }
     
-    let mediumAdditionContidion: (Int, Int) -> Bool = {
-        return $0 + $1 < 6 || $0 + $1 > 10
-    }
     
-    let hardAdditionCondition: (Int, Int) -> Bool = { 
-        return $1 - $0 > 5 || $1 - $0 < 1
-    }
+    let additionMinCondition: (Int, Int, Int) -> Bool = { return $0 + $1 > $2 }
+    let additionMaxCondition: (Int, Int, Int) -> Bool = { return $0 + $1 < $2 }
     
-    let veryHardAdditionConditio: (Int, Int) -> Bool = {
-        return $1 - $0 < 6 || $1 - $0 > 10
-    }
+    let easyAdditionCondition: (Int, Int) -> Bool =    { return $0 + $1 > 5 || $0 + $1 < 1 }
+    let mediumAdditionContidion: (Int, Int) -> Bool =  { return $0 + $1 < 6 || $0 + $1 > 10 }
+    let hardAdditionCondition: (Int, Int) -> Bool =    { return $1 - $0 > 5 || $1 - $0 < 1 }
+    let veryHardAdditionConditio: (Int, Int) -> Bool = { return $1 - $0 < 6 || $1 - $0 > 10 }
     
     
     // x + y = ?
@@ -70,26 +83,40 @@ class NumberRandomizer {
     
     
     
-    let easySubtractionCondition: (Int, Int) -> Bool = {
-        return $0 - $1 < 0 || $0 - $1 > 4 || $0 > 5 || $1 > 4
-    }
+    let easySubtractionCondition: (Int, Int) -> Bool = { return $0 - $1 < 0 || $0 - $1 > 4 || $0 > 5 || $1 > 4 }
     
-    let mediumSubtractionCondition: (Int, Int) -> Bool = {
-        return $0 - $1 < 5 || $0 - $1 > 9
-    }
-    
-    let hardSubtractionCondition: (Int, Int) -> Bool = {
-        return $0 - $1 > 4 || $0 - $1 < 1
-    }
+    let mediumSubtractionCondition: (Int, Int) -> Bool = { return $0 - $1 < 5 || $0 - $1 > 9 }
+    let hardSubtractionCondition: (Int, Int) -> Bool = { return $0 - $1 > 4 || $0 - $1 < 1 }
     
     let veryHardSubtractionCondition: (Int, Int) -> Bool = {
         return $0 + $1 > 9 || $0 + $1 < 5
     }
     
     // TODO: FIX
-    let impossibleSubtractionCondition: (Int, Int) -> Bool = {
-        return $0 - $1 < 5
+    
+    //  x - y = ?
+    let impossibleSubtractionCondition1: (Int, Int) -> Bool = {
+        print("COND 1")
+        return $0 - $1 < 0 || $0 - $1 > 9 // Sista delen behövs?
     }
+    
+    // 5 - ? = 3
+    // x - ? = y
+    let impossibleSubtractionCondition2: (Int, Int) -> Bool = {
+        print("COND 2")
+        return $0 - $1 > 9 || $0 - $1 < 1
+    }
+    
+    // ? - x = y
+    let impossibleSubtractionCondition3: (Int, Int) -> Bool = {
+        print("COND 3")
+        return $0 + $1 > 9 || $0 + $1 < 0
+    }
+    
+    
+//    let impossibleSubtractionCondition: (Int, Int) -> Bool = {
+//        return $0 - $1 < 5
+//    }
     
  
     

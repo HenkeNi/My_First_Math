@@ -81,6 +81,7 @@ extension EasyMathVC {
     func customizeCards(cardViews: [UIView]) {
         
         cardViews.map { $0.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray) }
+        cardViews.map { $0.showShadows() }
     
     }
     

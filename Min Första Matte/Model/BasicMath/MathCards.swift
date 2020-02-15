@@ -17,6 +17,14 @@ class MathCards {
         addCards(amountOfCards: amountOfCards)
     }
     
+//    convenience init() {
+//        self.init(amountOfCards: 5)
+//        //addCards(amountOfCards: 5)
+//        
+//        for (index, card) in cards.enumerated() {
+//            card.number = index + 1
+//        }
+//    }
     subscript(index: Int) -> MathCard {
         get {
             return cards[index]

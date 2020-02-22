@@ -11,7 +11,7 @@ import Foundation
 
 extension EasyMathVC {
     
-
+    // TODO: Gör en klass ?
     func playSound(soundName: String) {
         
         guard let soundURL = Bundle.main.url(forResource: soundName, withExtension: "wav") else { return }

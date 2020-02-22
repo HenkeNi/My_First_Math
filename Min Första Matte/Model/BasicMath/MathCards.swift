@@ -11,7 +11,7 @@ import Foundation
 class MathCards {
     
     var cards = [MathCard]()
-    var answerViewIndex: Int?
+    //var answerViewIndex: Int?
     
     init(amountOfCards: Int) {
         addCards(amountOfCards: amountOfCards)
@@ -30,6 +30,32 @@ class MathCards {
             return cards[index]
         }
     }
+    
+    
+    // TODO: ANvänd subscript istället/
+    // TODO: Använd till att sätta index position med?
+    var answerViewIndex: Int? {
+        for (index, card) in cards.enumerated() {
+            if card.isAnswerView {
+                return index
+            }
+        }
+        return nil
+    }
+    
+//    subscript() -> Int? {
+//        for (index, card) in cards.enumerated() {
+//            if card.isAnswerView {
+//                return index
+//            }
+//        }
+//        return nil
+//    }
+    
+    
+    
+    
+    
     
     
 //    let createCards = { (amount: Int) in

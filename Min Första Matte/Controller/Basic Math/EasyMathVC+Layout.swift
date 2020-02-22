@@ -88,12 +88,27 @@ extension EasyMathVC {
     
     // Change between question mark and x (wrong answer)
      // rename: toogleAnswerViewImgOrWrongImg
-     func changeAnswerViewImage(displayWrongAnswer: Bool) {
-                 
-         for (index, image) in equationCardImages.enumerated() where index == getAnswerViewIndex() {
-             image.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
-         }
+    func changeAnswerViewImage(displayWrongAnswer: Bool) {
+
+        let answerViewImage = equationCardImages[getAnswerViewIndex()]
+        answerViewImage.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
+                    
+//        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: DispatchTime.now() + 1) {
+//
+//            DispatchQueue.main.async {
+//                answerViewImage.image = UIImage(named: "NumberQuestion")
+//            }
+//        }
      }
+    
+    
+//    func changeAnswerViewImage(displayWrongAnswer: Bool) {
+//
+//        for (index, image) in equationCardImages.enumerated() where index == getAnswerViewIndex() {
+//            image.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
+//        }
+//    }
+
     
 
     func setOperatorImages(mathMode: CalculationMode) {

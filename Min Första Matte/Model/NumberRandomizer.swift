@@ -23,6 +23,7 @@ class NumberRandomizer {
         repeat {
             firstNumber = Int.random(in: 0...10)
             secondNumber = Int.random(in: 0...10)
+            print("Randomizing")
         } while condition(firstNumber, secondNumber) || (firstNumber == previousNumbers[0] && secondNumber == previousNumbers[1])
         
         previousNumbers[0] = firstNumber
@@ -32,22 +33,22 @@ class NumberRandomizer {
     }
     
     
-//    func randomizeNumbers(condition: (Int, Int) -> Bool) -> [Int] {
-//
-//        var firstNumber: Int
-//        var secondNumber: Int
-//
-//        repeat {
-//            firstNumber = Int.random(in: 0...10)
-//            secondNumber = Int.random(in: 0...10)
-//        } while !condition(firstNumber, secondNumber) || (firstNumber == previousNumbers[0] && secondNumber == previousNumbers[1])
-//
-//            previousNumbers[0] = firstNumber
-//            previousNumbers[1] = secondNumber
-//
-//            return [firstNumber, secondNumber]
-//    }
-//
+    func randomizeNumbers(condition: (Int, Int) -> Bool) -> [Int] {
+
+        var firstNumber: Int
+        var secondNumber: Int
+
+        repeat {
+            firstNumber = Int.random(in: 0...10)
+            secondNumber = Int.random(in: 0...10)
+        } while !condition(firstNumber, secondNumber) || (firstNumber == previousNumbers[0] && secondNumber == previousNumbers[1])
+
+            previousNumbers[0] = firstNumber
+            previousNumbers[1] = secondNumber
+
+            return [firstNumber, secondNumber]
+    }
+
 //    typealias RandomizeCondition = (firstNumb: Int, secondNumb: Int, value: Int)
     // TEST
 //    let basicAdditionCondition = { (condition: RandomizeCondition) -> Bool in
@@ -61,11 +62,13 @@ class NumberRandomizer {
     
     
     
-    let additionMinCondition: (Int, Int, Int) -> Bool = { return $0 + $1 > $2 }
-    let additionMaxCondition: (Int, Int, Int) -> Bool = { return $0 + $1 < $2 }
+//    let additionMinCondition: (Int, Int, Int) -> Bool = { return $0 + $1 > $2 }
+//    let additionMaxCondition: (Int, Int, Int) -> Bool = { return $0 + $1 < $2 }
+    
     
     let easyAdditionCondition: (Int, Int) -> Bool =    { return $0 + $1 > 5 || $0 + $1 < 1 }
     let mediumAdditionContidion: (Int, Int) -> Bool =  { return $0 + $1 < 6 || $0 + $1 > 10 }
+    
     let hardAdditionCondition: (Int, Int) -> Bool =    { return $1 - $0 > 5 || $1 - $0 < 1 }
     let veryHardAdditionConditio: (Int, Int) -> Bool = { return $1 - $0 < 6 || $1 - $0 > 10 }
     
@@ -119,8 +122,38 @@ class NumberRandomizer {
 //    }
     
  
+    // x * y = ?
+    let basicMultiplicationCondition: (Int, Int) -> Bool = {
+        return $0 * $1 > 10
+    }
+    
+    // x * ? = y  2 * ? = 6
+    let intermediateMultiplicationCondition: (Int, Int) -> Bool = {
+        
+        if $0 == 0 || $1 == 0 { return true }
+      
+        let value = Double($1) / Double($0)
+        //let isInteger = value.truncatingRemainder(dividingBy: 1) == 0
+        //if value == Double(Int(value)) {
+        if value.truncatingRemainder(dividingBy: 1) == 0 {
+            // Not decimal
+            return $1 / $0 > 10 && $1 / $0 <= 0
+        }
+        
+        
+//        if ($1 / $0) % 1 == 0 && $1 / $0 != 0 {
+//            return $1 / $0 > 10 && $1 / $0 <= 0
+//        }
+        return true
+//        if ($1 / $0) % 1 != 0 { return true }
+//        return $1 / $0 > 10 && $1 / $0 <= 0
+    }
     
     
+    
+//    let advancedMultiplicationCondition: (Int, Int) -> Bool = {
+//        return 
+//    }
     
     let easyMultiplicationCondition: (Int, Int) -> Bool = {
         return $0 * $1 > 5

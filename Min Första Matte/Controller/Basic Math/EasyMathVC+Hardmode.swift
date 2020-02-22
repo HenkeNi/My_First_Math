@@ -36,7 +36,7 @@ extension EasyMathVC {
      // TODO: STOP TIMER, put Timer in the top var timer: Timer?
      func createTimeInterval() {
         
-        var timeLeft = 12
+        var timeLeft = 120
         
         let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
             timer.tolerance = 0.2

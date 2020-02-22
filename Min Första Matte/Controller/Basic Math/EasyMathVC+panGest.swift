@@ -83,9 +83,8 @@ extension EasyMathVC {
         switch sender.state {
             
         case .began, .changed:
-            
+            changeAnswerViewImage(displayWrongAnswer: false)
             moveView(currentView: handledCard, sender: sender)
-            //changeAnswerViewImage(displayWrongAnswer: false) //WrongImage.isHidden = true
         case .ended:
             if handledCard.frame.intersects(equationCardViews[getAnswerViewIndex()].frame) {
             //if handledCard.frame.intersects(getAnswerView()!.frame) {

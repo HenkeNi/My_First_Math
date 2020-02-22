@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2023F43F23FDEC8D0062B301 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023F43E23FDEC8D0062B301 /* AudioPlayer.swift */; };
 		2029C0D123BAB2BB0095C059 /* MathCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2029C0D023BAB2BB0095C059 /* MathCard.swift */; };
 		2029C0D323BAB3770095C059 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2029C0D223BAB3770095C059 /* Card.swift */; };
 		2029C0D923BCFEC70095C059 /* Woosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2029C0D823BCFEC70095C059 /* Woosh.wav */; };
@@ -63,6 +64,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2023F43E23FDEC8D0062B301 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		2029C0D023BAB2BB0095C059 /* MathCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MathCard.swift; path = ../MathCard.swift; sourceTree = "<group>"; };
 		2029C0D223BAB3770095C059 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2029C0D823BCFEC70095C059 /* Woosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Woosh.wav; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 		20F73D58229700B4008A8071 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2023F43E23FDEC8D0062B301 /* AudioPlayer.swift */,
 				20F73D482293F364008A8071 /* Calculator.swift */,
 				20E4D32222FF9BF1005D2364 /* MemoryCard.swift */,
 				2080589B2328C7C8005D53E1 /* NumberRandomizer.swift */,
@@ -452,6 +455,7 @@
 				2029C0DD23BF8D8A0095C059 /* MatchingCard.swift in Sources */,
 				20CA723923E393F7007AE7EA /* CardPosition.swift in Sources */,
 				20F7069422FBA9AD00FE0183 /* EasyMathVC.swift in Sources */,
+				2023F43F23FDEC8D0062B301 /* AudioPlayer.swift in Sources */,
 				20623CD223F31F5000983780 /* Puzzle.swift in Sources */,
 				20D362B821A75E8900931C6C /* TestViewController.swift in Sources */,
 				20623CCE23F31E9D00983780 /* PuzzlePiece.swift in Sources */,

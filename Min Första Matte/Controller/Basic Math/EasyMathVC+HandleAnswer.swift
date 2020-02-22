@@ -142,18 +142,40 @@ extension EasyMathVC {
     }
     
     
+//    func answerIsIncorrect() {
+//        perform(#selector(answerIsIncorrect2), with: nil, afterDelay: 0.75)
+//    }
     
-    
-    func answerIsIncorrect() {
+    @objc func answerIsIncorrect() {
+        
+        let serialQueue = DispatchQueue(label: "customQueue")
+        
+        serialQueue.asyncAfter(deadline: DispatchTime.now() + 0.75) {
+            
+        //DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 0.75) {
+            
+            DispatchQueue.main.async {
                 
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
+        //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
             self.returnCardViewsToOriginalPosition() // FIX ONLY RESET CURRENT CARD
             self.changeAnswerViewImage(displayWrongAnswer: true)
-            //self.WrongImage.isHidden = false // TODO: ändra bild bara
             self.disableCardInteractions(shouldDisable: false)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                self.changeAnswerViewImage(displayWrongAnswer: false)
-                //self.WrongImage.isHidden = true
+            
+//                let serial2Queue = DispatchQueue(label: "otherCustomQueue")
+//                serial2Queue.asyncAfter(deadline: DispatchTime.now() + 1) {
+//
+//                    DispatchQueue.main.async {
+//                        self.changeAnswerViewImage(displayWrongAnswer: false)
+//                    }
+//                }
+                
+            //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                //DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 1) {
+                    
+                  //  DispatchQueue.main.async {
+                        //self.changeAnswerViewImage(displayWrongAnswer: false)
+                    //}
+           // }
             }
         }
         
@@ -161,8 +183,10 @@ extension EasyMathVC {
             self.view.layoutIfNeeded()
             //self.scoreLabel.text = "Score: \(self.score)"
         }
-        
+    
     }
+    
+   
     
     
     // TODO: SPlit in two functions??

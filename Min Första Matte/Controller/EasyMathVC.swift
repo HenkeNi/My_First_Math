@@ -660,17 +660,24 @@ class EasyMathVC: UIViewController {
     // returnPlayableCardViewsPosition
     func returnCardViewsToOriginalPosition() {
 
-        for (index, view) in playableCardViews.enumerated() {
+        playableCardViews.enumerated().forEach({ (index, view) in
             
-            UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-                
-                if let position = self.playableCards?[index].position {
-                    view.center.x = CGFloat(position.xPosition)
-                    view.center.y = CGFloat(position.yPosition)
-                }
-          
-            })
-        }
+            if let playableCardPosition = playableCards?[index].position {
+                view.returnToPosition(position: playableCardPosition)
+            }
+            //view.returnToPosition(position: playableCards![index].position!)
+            
+        })
+        
+        
+//        for (index, view) in playableCardViews.enumerated() {
+//
+//            if let playableCardPosition = playableCards?[index].position {
+//                view.returnToPosition(position: playableCardPosition)
+//            }
+//
+//        }
+
     }
     
     // Saves original position for cards
@@ -682,6 +689,7 @@ class EasyMathVC: UIViewController {
             playableCards?[index].position = CardPosition(xPosition: Double(view.center.x), yPosition: Double(view.center.y))
         }
     }
+    
     
     // Disable or enable card(s) interactions
     func disableCardInteractions(shouldDisable: Bool) {
@@ -714,6 +722,11 @@ class EasyMathVC: UIViewController {
     
     
 }
+
+
+
+
+
 
 
 

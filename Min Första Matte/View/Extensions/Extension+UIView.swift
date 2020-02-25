@@ -40,4 +40,17 @@ extension UIView {
     }
     
     
+    func returnToPosition(position: CardPosition) {
+        
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            
+            self.center.x = CGFloat(position.xPosition)
+            self.center.y = CGFloat(position.yPosition)
+            
+        }, completion: nil)
+        
+        
+    }
+    
+    
 }

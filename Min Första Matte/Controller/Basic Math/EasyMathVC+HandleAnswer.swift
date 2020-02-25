@@ -12,9 +12,11 @@ extension EasyMathVC {
     
     // Check if dragged card is the correct one
     func validateChosenAnswer(currentView: UIView, answerView: UIView) {
-               
+                       
         guard let calculator = calculator, let playableCards = playableCards?.cards else { return }
 
+        playSound(soundName: "Click")
+        
         UIView.animate(withDuration: 0.2) {
             currentView.center = answerView.center // Position the draggedCard in the answerView
         }
@@ -36,9 +38,9 @@ extension EasyMathVC {
     
        func getNumbersInEquation(chosenNumber: Int) -> (firstNumber: Int, secondNumber: Int, resultNumber: Int) {
            
-           guard let equationNumbers = getCurrentEquationCardNumbers() else { return (0, 0, 0) }
+        guard let equationNumbers = getCurrentEquationCardNumbers(), let answerViewIndex = equationCards?.answerViewIndex else { return (0, 0, 0) }
 
-           switch getAnswerViewIndex() {
+           switch answerViewIndex {
            case 0:
                return (chosenNumber, equationNumbers[0], equationNumbers[1])
            case 1:
@@ -188,22 +190,23 @@ extension EasyMathVC {
     
    
     
-    
+    // TODO : FIX difficulty increase (remove function?)
     // TODO: SPlit in two functions??
      func checkProgress() {
-         var difficultyValue = currentDifficulty.rawValue
+        // var difficultyValue = currentDifficulty.rawValue
          
          if progressBarWidth.constant.rounded() == progressBarContainer.frame.size.width.rounded() {
              
-             if difficultyValue < Difficulty.allCases.count {
+            if currentDifficulty.rawValue < Difficulty.allCases.count {
                  // Increase lvl!
-                 difficultyValue += 1
+                 //difficultyValue += 1
+                currentDifficulty = updateDifficulty(difficulty: currentDifficulty.rawValue + 1)
                  playSound(soundName: "Cheering")
                 hardModeEnabled ? refillHalfProgress() : resetProgress()
              }
          }
      
-         currentDifficulty = updateDifficulty(difficulty: difficultyValue)
+//         currentDifficulty = updateDifficulty(difficulty: difficultyValue)
      }
     
     

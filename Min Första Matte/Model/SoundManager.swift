@@ -1,33 +1,31 @@
 //
-//  AudioPlayer.swift
+//  SoundManager.swift
 //  Min Första Matte
 //
-//  Created by Henrik Jangefelt on 2020-02-19.
+//  Created by Henrik Jangefelt on 2020-02-25.
 //  Copyright © 2020 Henrik Jangefelt Nilsson. All rights reserved.
 //
 
-
-// KORKAD IDE??? KNASKE GÖR SUBKLASS ISTÄLLET??
 import Foundation
 import AVFoundation
 
-class AudioPlayer: AVAudioPlayer {
-
-    func playSound(soundName: String) {
-
+class SoundManager {
+    
+    
+  
+    
+    static func playSound(soundName: String) {
+                
         guard let soundURL = Bundle.main.url(forResource: soundName, withExtension: "wav") else { return }
         
         var audioPlayer = AVAudioPlayer()
         
         do {
             try audioPlayer = AVAudioPlayer(contentsOf: soundURL)
-            //try AudioPlayer(contentsOf: soundURL)
+            audioPlayer.play()
         } catch {
             print("No sound was heard")
         }
-        
-        audioPlayer.play()
-        
     }
-
+    
 }

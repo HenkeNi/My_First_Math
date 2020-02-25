@@ -86,11 +86,8 @@ extension EasyMathVC {
             changeAnswerViewImage(displayWrongAnswer: false)
             moveView(currentView: handledCard, sender: sender)
         case .ended:
-            if handledCard.frame.intersects(equationCardViews[getAnswerViewIndex()].frame) {
-            //if handledCard.frame.intersects(getAnswerView()!.frame) {
-                playSound(soundName: "Click")
-                validateChosenAnswer(currentView: handledCard, answerView: equationCardViews[getAnswerViewIndex()])
-                //validateChosenAnswer(currentView: handledCard, answerView: getAnswerView()!)
+            if let index = equationCards?.answerViewIndex, handledCard.frame.intersects(equationCardViews[index].frame) {
+                validateChosenAnswer(currentView: handledCard, answerView: equationCardViews[index])
             } else {
                 returnCardViewsToOriginalPosition()
             }

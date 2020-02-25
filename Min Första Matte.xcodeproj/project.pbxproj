@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2023F43F23FDEC8D0062B301 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023F43E23FDEC8D0062B301 /* AudioPlayer.swift */; };
+		2023F48A2405BA680062B301 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023F4892405BA670062B301 /* SoundManager.swift */; };
 		2029C0D123BAB2BB0095C059 /* MathCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2029C0D023BAB2BB0095C059 /* MathCard.swift */; };
 		2029C0D323BAB3770095C059 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2029C0D223BAB3770095C059 /* Card.swift */; };
 		2029C0D923BCFEC70095C059 /* Woosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2029C0D823BCFEC70095C059 /* Woosh.wav */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		2023F43E23FDEC8D0062B301 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		2023F4892405BA670062B301 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		2029C0D023BAB2BB0095C059 /* MathCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MathCard.swift; path = ../MathCard.swift; sourceTree = "<group>"; };
 		2029C0D223BAB3770095C059 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2029C0D823BCFEC70095C059 /* Woosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Woosh.wav; sourceTree = "<group>"; };
@@ -159,8 +161,8 @@
 				20B88F0423C4CE540079B576 /* EasyMathVC+HandleAnswer.swift */,
 				2043014523B57BC7006CB5F6 /* EasyMathVC+panGest.swift */,
 				2043014723B6B080006CB5F6 /* EasyMathVC+Layout.swift */,
-				20B88F0223C3EDB10079B576 /* EasyMathVC+Audio.swift */,
 				20D663B423DD0E390020F5AC /* EasyMathVC+Hardmode.swift */,
+				20B88F0223C3EDB10079B576 /* EasyMathVC+Audio.swift */,
 			);
 			path = "Basic Math";
 			sourceTree = "<group>";
@@ -297,6 +299,7 @@
 		20F73D58229700B4008A8071 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2023F4892405BA670062B301 /* SoundManager.swift */,
 				2023F43E23FDEC8D0062B301 /* AudioPlayer.swift */,
 				20F73D482293F364008A8071 /* Calculator.swift */,
 				20E4D32222FF9BF1005D2364 /* MemoryCard.swift */,
@@ -426,6 +429,7 @@
 				20F8840F2344D292004E02D5 /* CardDeck.swift in Sources */,
 				2043015623B982FB006CB5F6 /* MatchingGameVC+CVDataSource.swift in Sources */,
 				20B88F0523C4CE540079B576 /* EasyMathVC+HandleAnswer.swift in Sources */,
+				2023F48A2405BA680062B301 /* SoundManager.swift in Sources */,
 				20F884212346A46C004E02D5 /* PuzzleCell.swift in Sources */,
 				20F88415234512D1004E02D5 /* CardGameVC.swift in Sources */,
 				2029C0D323BAB3770095C059 /* Card.swift in Sources */,

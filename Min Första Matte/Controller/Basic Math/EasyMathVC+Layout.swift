@@ -90,8 +90,12 @@ extension EasyMathVC {
      // rename: toogleAnswerViewImgOrWrongImg
     func changeAnswerViewImage(displayWrongAnswer: Bool) {
 
-        let answerViewImage = equationCardImages[getAnswerViewIndex()]
-        answerViewImage.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
+        if let index = equationCards?.answerViewIndex {
+            
+            let answerViewImage = equationCardImages[index]
+            answerViewImage.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
+        }
+        
                     
 //        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: DispatchTime.now() + 1) {
 //

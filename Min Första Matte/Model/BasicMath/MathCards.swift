@@ -35,22 +35,21 @@ class MathCards {
     // TODO: ANvänd subscript istället/
     // TODO: Använd till att sätta index position med?
     var answerViewIndex: Int? {
-        for (index, card) in cards.enumerated() {
-            if card.isAnswerView {
+        
+        get {
+            for (index, card) in cards.enumerated() where card.isAnswerView {
                 return index
             }
+            return nil
+        } set (newIndex) {
+            
+            cards.enumerated().forEach{ (index, card) in
+                card.isAnswerView = index == newIndex ? true : false
+            }
         }
-        return nil
     }
     
-//    subscript() -> Int? {
-//        for (index, card) in cards.enumerated() {
-//            if card.isAnswerView {
-//                return index
-//            }
-//        }
-//        return nil
-//    }
+
     
     
     
@@ -81,33 +80,7 @@ class MathCards {
      }
      
    
-    
-    func setAnswerViewIndex(answerViewIndex: Int) {
-        for (index, card) in cards.enumerated() {
-            card.isAnswerView = index == answerViewIndex ? true : false
-        }
-    }
-     
-    
-     
-  
-    
-    
-//    var answerViewIndex: Int? {
-//          get {
-//              for (index, card) in cards.enumerated() where card!.isAnswerView {
-//                  return index
-//              }
-//              return nil
-//          }
-//          set(newIndexPosition) {
-//              for (index,card) in cards.enumerated() {
-//                  if index == newIndexPosition {
-//                      card?.isAnswerView
-//                  }
-//              }
-//          }
-//      }
+
     
     
     deinit {

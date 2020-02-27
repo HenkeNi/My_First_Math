@@ -26,6 +26,11 @@ import AVFoundation
 // End condition: efter timers slut får man se sin poäng (samt highscore lista??) -> välja gå tillbaka eller börja om
 
 
+// pairable protocol med?
+
+
+// Lägg en summerize function i MathCars eller protocol till Cards?? Räknar ihop talen (skicka in räknesätt)?!?!? TÄnka på - använda det till att hjälpa till vid uträkningar alt. se om något tal i imp lvl stämmer
+
 // Score/Highscore
 // TODO: Fixa highscore (olika för dem olika räknesätten) -> Fixa speciell view för highscores!
 // fixa score (mer beroende på svårighets grad)
@@ -96,21 +101,26 @@ class EasyMathVC: UIViewController {
     var playableCards: MathCards?
     var currentDifficulty = Difficulty.impossible
     var mathMode = CalculationMode.addition
-    var hardModeEnabled: Bool = false // RENAME: COMPETITIVE MODE?? Competition ,
+    var hardModeEnabled: Bool = false // RENAME: COMPETITIVE MODE?? Competition , Make Enum (two cases)
     var audioPlayer: AVAudioPlayer?
     var calculator: Calculator?
     var numberRandomizer: NumberRandomizer?
-    var score = 0
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "\(score)"
+        }
+    }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("LOADING")
         UIView.appearance().isExclusiveTouch = true // Disable multi touch
         calculator = Calculator()
         numberRandomizer = NumberRandomizer()
-        playableCards = MathCards(amountOfCards: 5)
-        equationCards = MathCards(amountOfCards: 3)
+        playableCards = MathCards(amount: 5)
+        equationCards = MathCards(amount: 3)
 
         addImgTapGesture(cardImages: playableCardImages, isPlayableCardImage: true)
         addImgTapGesture(cardImages: equationCardImages, isPlayableCardImage: false)
@@ -137,7 +147,10 @@ class EasyMathVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        savePlayableCardViewPositions() // Saves the original position of the bottom cards
+        if let playableCards = playableCards?.cards {
+            print("savePosi")
+            saveViewsPosition(views: playableCardViews, cards: playableCards) // Saves the original position of the bottom cards
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -175,8 +188,8 @@ class EasyMathVC: UIViewController {
         updateEquationCards()
         updatePlayableCards()
         returnCardViewsToOriginalPosition()
-        disableCardInteractions(shouldDisable: false)
-        updateScoreLabel()
+        disableCardInteractions(views: playableCardViews, shouldDisable: false)
+        //updateScoreLabel()
     }
     
     
@@ -544,8 +557,6 @@ class EasyMathVC: UIViewController {
             
         default:
             return randomizeCardNumbers()
-//        case (.impossible, .addition), (.impossible, .multiplication), (.impossible, .subtraction), (.easy, .multiplication), (.medium, .multiplication), (.hard, .multiplication), (.veryHard, .multiplication):
-             //return randomAnswerViewIndex == nil ? playableCards!.cards.map({$0.number}) : getImpossibleplayableCardNumbers()
         }
     }
     
@@ -664,19 +675,24 @@ class EasyMathVC: UIViewController {
     
     // Saves original position for cards
     // Put in extension of UIView (save view position??)
-    func savePlayableCardViewPositions() {
+    func saveViewsPosition(views: [UIView], cards: [MathCard]) {
                 
-        for (index, view) in playableCardViews.enumerated() {
-            
-            playableCards?[index].position = CardPosition(xPosition: Double(view.center.x), yPosition: Double(view.center.y))
+         
+        for view in views.enumerated() {
+            cards[view.offset].position = CardPosition(xPosition: Double(view.element.center.x), yPosition: Double(view.element.center.y))
         }
+        
+//        for (index, view) in views.enumerated() {
+//
+//            cards[index].position = CardPosition(xPosition: Double(view.center.x), yPosition: Double(view.center.y))
+//        }
     }
     
     
     // Disable or enable card(s) interactions
-    func disableCardInteractions(shouldDisable: Bool) {
+    func disableCardInteractions(views: [UIView], shouldDisable: Bool) {
         
-        playableCardViews.forEach { $0.isUserInteractionEnabled = shouldDisable ? false : true }
+        views.forEach { $0.isUserInteractionEnabled = shouldDisable ? false : true }
     }
     
     

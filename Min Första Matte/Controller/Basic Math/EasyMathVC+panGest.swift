@@ -34,8 +34,8 @@ extension EasyMathVC {
             if sender.view as? UIImageView != nil {
                 
                 view.flipView(duration: 0.3)
-                playableCards[index].isFlipped = !playableCards[index].isFlipped
-                //playableCards[index].flipCard(cardView: view, duration: 0.3)
+                
+                playableCards[index].isFlipped.toggle()
             }
             setCardImages(cards: playableCards, cardImages: playableCardImages)
         }
@@ -53,7 +53,7 @@ extension EasyMathVC {
             if sender.view as? UIImageView != nil {
                 //equationCards[index].flipCard(cardView: view, duration: 0.3)
                 view.flipView(duration: 0.3)
-                equationCards[index].isFlipped = !equationCards[index].isFlipped
+                equationCards[index].isFlipped.toggle()
             }
             setCardImages(cards: equationCards, cardImages: equationCardImages)
         }

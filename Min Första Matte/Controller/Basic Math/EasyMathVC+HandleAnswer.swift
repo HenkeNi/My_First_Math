@@ -83,7 +83,7 @@ extension EasyMathVC {
     
     func handleAnswer(answerCorrect: Bool) {
          
-         disableCardInteractions(shouldDisable: true)
+        disableCardInteractions(views: playableCardViews, shouldDisable: true)
          
 //        if hardModeEnabled {
 //
@@ -124,7 +124,6 @@ extension EasyMathVC {
         }
     
         
-        
         //let updateProgress = updateProgressBar(isRightAnswer: true) // Sets update to be of type increaseProgress
         //progressBarWidth.constant = updateProgress(progressBarWidth.constant, progressBarContainer.frame.size.width)
         
@@ -161,7 +160,7 @@ extension EasyMathVC {
         //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
             self.returnCardViewsToOriginalPosition() // FIX ONLY RESET CURRENT CARD
             self.changeAnswerViewImage(displayWrongAnswer: true)
-            self.disableCardInteractions(shouldDisable: false)
+                self.disableCardInteractions(views: self.playableCardViews, shouldDisable: false)
             
 //                let serial2Queue = DispatchQueue(label: "otherCustomQueue")
 //                serial2Queue.asyncAfter(deadline: DispatchTime.now() + 1) {

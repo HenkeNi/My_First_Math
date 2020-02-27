@@ -55,15 +55,18 @@ extension EasyMathVC {
     
     
     
-    func updateScoreLabel() {
-        scoreLabel.text = "Score: \(score)"
-    }
+    
+//    func updateScoreLabel() {
+//        scoreLabel.text = "Score: \(score)"
+//    }
 
+    
+    
     // TOOD: Set nil/Black om card.isAnswerView = true?
     func setCardImages(cards: [MathCard], cardImages: [UIImageView]) {
         
         for (index, cardImage) in cardImages.enumerated() where cardImage.tag == index + 1 {
-            cardImage.image = UIImage(named: cards[index].getImageName)
+            cardImage.image = UIImage(named: cards[index].imageName)
         }
     }
     

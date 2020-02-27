@@ -307,9 +307,9 @@
 				20F884102344D39B004E02D5 /* GameCard.swift */,
 				20F8840E2344D292004E02D5 /* CardDeck.swift */,
 				20F8841A234699AC004E02D5 /* CardPlayer.swift */,
-				2029C0D223BAB3770095C059 /* Card.swift */,
 				2029C0DC23BF8D8A0095C059 /* MatchingCard.swift */,
 				2043015723B983B1006CB5F6 /* CardGenerator.swift */,
+				2029C0D223BAB3770095C059 /* Card.swift */,
 				20623CCA23F31E6200983780 /* PuzzleGame */,
 				20D663B623E246900020F5AC /* BasicMath */,
 			);

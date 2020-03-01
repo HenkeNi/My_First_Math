@@ -15,10 +15,10 @@ extension EasyMathVC {
                        
         guard let calculator = calculator, let playableCards = playableCards?.cards else { return }
 
-        playSound(soundName: "Click")
+        placeCardInAnswerView(currentView: currentView, answerView: answerView)
         
-        UIView.animate(withDuration: 0.2) {
-            currentView.center = answerView.center // Position the draggedCard in the answerView
+        if playableCards[currentView.tag - 1].number == equationCards![equationCards!.answerViewIndex!].number {
+            print("RÄTT SVAR!!")
         }
         
         let calculationMode = getCalculationMode(calc: calculator)
@@ -52,6 +52,7 @@ extension EasyMathVC {
            }
        }
        
+    
     
         // Returns numbers in equationCards that are not 'isAnswerView'
        func getCurrentEquationCardNumbers() -> [Int]? {
@@ -228,6 +229,19 @@ extension EasyMathVC {
             score -= currentDifficulty.rawValue * 2
         }
     }
+    
+    
+    func placeCardInAnswerView(currentView: UIView, answerView: UIView) {
+        
+        playSound(soundName: "Click")
+               
+        UIView.animate(withDuration: 0.2) {
+            currentView.center = answerView.center // Position the draggedCard in the answerView
+        }
+    }
+    
+    
+    
 }
 
 

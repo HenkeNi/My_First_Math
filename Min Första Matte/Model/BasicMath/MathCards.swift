@@ -39,6 +39,22 @@ class MathCards {
         }
     }
     
+//
+//    func getNumbersInEquation() -> (firstNumber: Int?, secondNumber: Int?, resultNumber: Int?) {
+//        
+//        switch answerViewIndex {
+//
+//        case 0:
+//            return (nil, cards.first?.number, cards.last?.number)
+//        case 1:
+//            return (cards.first?.number, nil, cards.last?.number)
+//        case 2:
+//            return (cards.first?.number, cards.last?.number, nil)
+//        default:
+//            return (nil, nil, nil)
+//        }
+//    }
+    
     deinit {
           print("MathCards will be deallocated")
       }

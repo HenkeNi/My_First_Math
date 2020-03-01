@@ -97,7 +97,7 @@ extension EasyMathVC {
             
             let answerViewImage = equationCardImages[index]
             answerViewImage.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
-        }
+    }
         
                     
 //        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: DispatchTime.now() + 1) {
@@ -123,24 +123,17 @@ extension EasyMathVC {
         switch mathMode {
         case .addition:
             operatorCardImages[0].image = UIImage(named: "NumberPlus")
-            operatorCardImages[1].image = UIImage(named: "NumberEqual")
         case .subtraction:
             operatorCardImages[0].image = UIImage(named: "NumberMinus")
-            operatorCardImages[1].image = UIImage(named: "NumberEqualMinus")
         case .multiplication:
             operatorCardImages[0].image = UIImage(named: "NumberMulti")
-            operatorCardImages[1].image = UIImage(named: "NumberEqual")
         }
+        operatorCardImages[1].image = UIImage(named: "NumberEqual")
+
     }
 
     
-    // Sets right background color based on CalculationMode
-    func setBackgroundColors(mathMode: CalculationMode) {
-           
-        view.backgroundColor = mathMode == .addition ? .additionLightBrown : .subtractionLightBlue
-        topView.backgroundColor = mathMode == .addition ? .additionBrown : .subtractionBlue
-        progressBarViewBackground.backgroundColor = mathMode == .addition ? .additionBrown : .subtractionBlue
-    }
+
     
     
     func setProgressBarColor(isRightAnswer: Bool) {

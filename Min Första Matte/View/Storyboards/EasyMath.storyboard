@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eBu-EM-87G">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eBu-EM-87G">
     <device id="ipad11_0rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUt-ET-Bil">
                                 <rect key="frame" x="117.5" y="555" width="179" height="179"/>
                                 <subviews>
-                                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Number0M" translatesAutoresizingMaskIntoConstraints="NO" id="4Tg-0k-qUz">
+                                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Number1" translatesAutoresizingMaskIntoConstraints="NO" id="4Tg-0k-qUz">
                                         <rect key="frame" x="0.0" y="1" width="179" height="179"/>
                                         <accessibility key="accessibilityConfiguration" identifier="Hej"/>
                                     </imageView>
@@ -48,7 +48,7 @@
                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fyp-aB-3Fh">
                                 <rect key="frame" x="312.5" y="555" width="179" height="179"/>
                                 <subviews>
-                                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number1M" translatesAutoresizingMaskIntoConstraints="NO" id="HV7-g9-6jF">
+                                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number2" translatesAutoresizingMaskIntoConstraints="NO" id="HV7-g9-6jF">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Two" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erT-xa-5OX">
@@ -77,7 +77,7 @@
                             <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IL-br-2sH">
                                 <rect key="frame" x="507.5" y="555" width="179" height="179"/>
                                 <subviews>
-                                    <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number2M" translatesAutoresizingMaskIntoConstraints="NO" id="0xi-zi-vRv">
+                                    <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number3" translatesAutoresizingMaskIntoConstraints="NO" id="0xi-zi-vRv">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Three" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qw3-xg-EFg">
@@ -106,7 +106,7 @@
                             <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjJ-Ak-hui">
                                 <rect key="frame" x="702.5" y="555" width="179" height="179"/>
                                 <subviews>
-                                    <imageView tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number3M" translatesAutoresizingMaskIntoConstraints="NO" id="5Ni-vL-97P">
+                                    <imageView tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number4" translatesAutoresizingMaskIntoConstraints="NO" id="5Ni-vL-97P">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Four" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fL-r7-dew">
@@ -135,7 +135,7 @@
                             <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9m-QR-Iq3">
                                 <rect key="frame" x="897.5" y="555" width="179.5" height="179"/>
                                 <subviews>
-                                    <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number4M" translatesAutoresizingMaskIntoConstraints="NO" id="48Y-pN-RSZ">
+                                    <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number5" translatesAutoresizingMaskIntoConstraints="NO" id="48Y-pN-RSZ">
                                         <rect key="frame" x="0.0" y="0.0" width="179.5" height="179"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Five" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7w-IF-5nU">
@@ -163,7 +163,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="af3-OU-NBr">
                                 <rect key="frame" x="0.0" y="0.0" width="1194" height="239"/>
-                                <color key="backgroundColor" red="0.6470588235294118" green="0.792156862745098" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.74117647058823533" green="0.59215686274509804" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="af3-OU-NBr" secondAttribute="height" multiplier="5:1" id="Phd-qP-mKh"/>
                                 </constraints>
@@ -171,7 +171,7 @@
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93a-Qv-P5y">
                                 <rect key="frame" x="117.5" y="16" width="179" height="179"/>
                                 <subviews>
-                                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number3M" translatesAutoresizingMaskIntoConstraints="NO" id="xZB-DD-adR">
+                                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number2" translatesAutoresizingMaskIntoConstraints="NO" id="xZB-DD-adR">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vb7-IK-O0b">
@@ -197,7 +197,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6M-f9-ssU">
                                 <rect key="frame" x="312.5" y="16" width="179" height="179"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberMinus" translatesAutoresizingMaskIntoConstraints="NO" id="gAr-RY-gG9">
+                                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberPlus" translatesAutoresizingMaskIntoConstraints="NO" id="gAr-RY-gG9">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                 </subviews>
@@ -213,7 +213,7 @@
                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOy-1C-nbe">
                                 <rect key="frame" x="507.5" y="16" width="179" height="179"/>
                                 <subviews>
-                                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number2M" translatesAutoresizingMaskIntoConstraints="NO" id="u7V-IK-hys">
+                                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Number1" translatesAutoresizingMaskIntoConstraints="NO" id="u7V-IK-hys">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ui-kW-K5O">
@@ -238,7 +238,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Koa-9Y-1mc">
                                 <rect key="frame" x="702.5" y="16" width="179" height="179"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberEqualMinus" translatesAutoresizingMaskIntoConstraints="NO" id="Z9l-6u-eiE">
+                                    <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NumberEqual" translatesAutoresizingMaskIntoConstraints="NO" id="Z9l-6u-eiE">
                                         <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                     </imageView>
                                 </subviews>
@@ -298,7 +298,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.64524389599999998" green="0.793561509" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="XVg-lZ-pxf" firstAttribute="top" secondItem="run-8I-PBr" secondAttribute="top" constant="5" id="9Ro-bd-lLc"/>
                                     <constraint firstItem="XVg-lZ-pxf" firstAttribute="leading" secondItem="run-8I-PBr" secondAttribute="leading" constant="5" id="ITQ-Co-LU0"/>
@@ -322,7 +322,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.69884255959425989" green="0.90071130965917823" blue="0.98829740290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.83137254901960778" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Bev-Ms-y90" firstAttribute="top" secondItem="duV-Zp-ab1" secondAttribute="top" constant="16" id="2P9-ba-dq5"/>
                             <constraint firstItem="nOy-1C-nbe" firstAttribute="top" secondItem="duV-Zp-ab1" secondAttribute="top" constant="16" id="57w-MO-fJh"/>
@@ -456,13 +456,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Number0M" width="180" height="180"/>
-        <image name="Number1M" width="180" height="180"/>
-        <image name="Number2M" width="180" height="180"/>
-        <image name="Number3M" width="180" height="180"/>
-        <image name="Number4M" width="180" height="180"/>
-        <image name="NumberEqualMinus" width="180" height="180"/>
-        <image name="NumberMinus" width="180" height="180"/>
+        <image name="Number1" width="180" height="180"/>
+        <image name="Number2" width="180" height="180"/>
+        <image name="Number3" width="180" height="180"/>
+        <image name="Number4" width="180" height="180"/>
+        <image name="Number5" width="180" height="180"/>
+        <image name="NumberEqual" width="180" height="180"/>
+        <image name="NumberPlus" width="180" height="180"/>
         <image name="NumberQuestion" width="180" height="180"/>
     </resources>
 </document>

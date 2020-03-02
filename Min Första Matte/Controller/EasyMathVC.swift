@@ -10,7 +10,12 @@ import UIKit
 import AVFoundation
 
 
+// FÖRSTA SIFFRAN (BILDEN) FEL!!
 
+// Division:
+// CARD SHADOWS plus rounded corners
+
+// SCORE KLASS?
 
 // TODO: REPLACE DISPATCHQUEUE DELAY WIH A CUSTOM ANIMATION?? (STARTS AFTER 2 Seconds) -> Completion Handler (enable Card interaction)
  
@@ -29,6 +34,8 @@ import AVFoundation
 // pairable protocol med?
 
 
+
+
 // Lägg en summerize function i MathCars eller protocol till Cards?? Räknar ihop talen (skicka in räknesätt)?!?!? TÄnka på - använda det till att hjälpa till vid uträkningar alt. se om något tal i imp lvl stämmer
 
 // Score/Highscore
@@ -38,7 +45,7 @@ import AVFoundation
 // SCORE BARA FÖR HARDMODE???
 // TODO: highscore lista!, en för hardCore en för vanligt!
 
-// Division:
+
 
 // End Condition: Efter Impossible -> Alert (Du har klarat spelet: 1. Gå tillbaka 2. Fortsätt spela)
 
@@ -99,8 +106,8 @@ class EasyMathVC: UIViewController {
     
     var equationCards: MathCards?
     var playableCards: MathCards?
-    var currentDifficulty = Difficulty.easy
-    var mathMode = CalculationMode.multiplication
+    var currentDifficulty = Difficulty.impossible
+    var mathMode = CalculationMode.addition
     var hardModeEnabled: Bool = false // RENAME: COMPETITIVE MODE?? Competition , Make Enum (two cases)
     var audioPlayer: AVAudioPlayer?
     var calculator: Calculator?
@@ -146,7 +153,6 @@ class EasyMathVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if let playableCards = playableCards?.cards {
-            print("savePosi")
             saveViewsPosition(views: playableCardViews, cards: playableCards) // Saves the original position of the bottom cards
         }
     }
@@ -157,13 +163,13 @@ class EasyMathVC: UIViewController {
     
     
     func sortOutletCollections() {
-           playableCardViews.sort  { $0.tag < $1.tag }
-           playableCardImages.sort { $0.tag < $1.tag }
-           playableCardLabels.sort { $0.tag < $1.tag }
-           equationCardViews.sort  { $0.tag < $1.tag }
-           equationCardImages.sort { $0.tag < $1.tag }
-           equationCardLabels.sort { $0.tag < $1.tag }
-           operatorCardImages.sort { $0.tag < $1.tag }
+        playableCardViews.sort  { $0.tag < $1.tag }
+        playableCardImages.sort { $0.tag < $1.tag }
+        playableCardLabels.sort { $0.tag < $1.tag }
+        equationCardViews.sort  { $0.tag < $1.tag }
+        equationCardImages.sort { $0.tag < $1.tag }
+        equationCardLabels.sort { $0.tag < $1.tag }
+        operatorCardImages.sort { $0.tag < $1.tag }
     }
     
     func createObserver() {
@@ -233,8 +239,6 @@ class EasyMathVC: UIViewController {
     }
    
     
-    
-    
 
     
     // TODO: GÖR I KLASSEN ISTÄLLET???
@@ -251,7 +255,7 @@ class EasyMathVC: UIViewController {
     func setNewEquationNumbers() {
                         
         if let equationCards = equationCards?.cards, let equationNumbers = getRandomizedEquationNumbers() {
-            
+            print("SET EQUATION")
             //let equationNumbers = getRandomizedEquationNumbers()
             
             ///let filteredEquationCards = equationCards.filter { !$0.isAnswerView }
@@ -265,279 +269,23 @@ class EasyMathVC: UIViewController {
     }
     
     
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     func doAfterDelay(delay: DispatchTime, task: () -> ()) {
         
     }
     
     
-    
-    
-//    typealias ari = <#type expression#>
-//
-//    let additionAnswerViewInd2
-//
-    
+
     
     func getRandomizedEquationNumbers() -> [Int]? {
         
-        guard let index = equationCards?.answerViewIndex else { return nil }
-        if let numberRandomizer = numberRandomizer, let playableCards = playableCards?.cards {
+        guard let index = equationCards?.answerViewIndex, let numberRandomizer = numberRandomizer, let playableCards = playableCards?.cards else { return nil }
+        
         let numbers: [Int] = playableCards.map { $0.number }
             
         return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: index, arithmetic: mathMode)
-        
-        }
-        return nil
     }
     
-//    func getRandomizedEquationNumbers() -> [Int]? {
-//
-//        guard let index = equationCards?.answerViewIndex else { return nil }
-//
-//        switch mathMode {
-//        case .addition:
-//            return getAdditionEquationNumbers(answerViewIndex: index)
-//        case .subtraction:
-//            return getSubtractionEquationNumbers(answerViewIndex: index)
-//        case .multiplication:
-//            return getMultiplicationEquationNumbers(answerViewIndex: index)
-//        }
-//    }
-    
-    func getAdditionEquationNumbers(answerViewIndex: Int) -> [Int]? {
-        
-        
-        if let numberRandomizer = numberRandomizer, let playableCards = playableCards?.cards {
-        let numbers: [Int] = playableCards.map { $0.number }
-            
-            switch equationCards!.answerViewIndex {
-            case 0, 1:
-                //return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: answerViewIndex, arithmetic: -)
-                return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: answerViewIndex, arithmetic: .subtraction)
-            default:
-                //return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: answerViewIndex, arithmetic: +)
-                return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: answerViewIndex, arithmetic: .addition)
-            }
-        }
-        return nil
-        
-        
-//        guard let numberRandomizer = numberRandomizer else { return nil }
-//
-//        switch currentDifficulty {
-//        case .easy:
-//            return numberRandomizer.numberRandomizer { $0 + $1 < 1 || $0 + $1 > 5 }
-//        case .medium:
-//            return numberRandomizer.numberRandomizer { $0 + $1 < 6 || $0 + $1 > 10 }
-//        case .hard:
-//            return numberRandomizer.numberRandomizer { $1 - $0 < 1 || $1 - $0 > 5 }
-//        case .veryHard:
-//            return numberRandomizer.numberRandomizer { $1 - $0 < 6 || $1 - $0 > 10 }
-//        case .impossible:
-//            let normalCondition: (Int, Int) -> Bool = { $0 + $1 < 1 || $0 + $1 > 10 }
-//            let hardCondition: (Int, Int) -> Bool = { $1 - $0 < 1 || $1 - $0 > 10 }
-//
-//            return answerViewIndex == 2 ? numberRandomizer.numberRandomizer(condition: normalCondition) : numberRandomizer.numberRandomizer(condition: hardCondition)
-//        }
-    }
-    
-    func getSubtractionEquationNumbers(answerViewIndex: Int) -> [Int]? {
-        
-        
-        if let numberRandomizer = numberRandomizer, let playableCards = playableCards?.cards {
-        let numbers: [Int] = playableCards.map { $0.number }
-           
-        return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: answerViewIndex, arithmetic: .subtraction)
-            
-//        switch equationCards!.answerViewIndex {
-//        case 0:
-//            //return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: answerViewIndex, arithmetic: +)
-//            return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: answerViewIndex, arithmetic: .addition)
-//        default:
-//            //return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: answerViewIndex, arithmetic: -)
-//            return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: answerViewIndex, arithmetic: .subtraction)
-//
-//        }
-        }
-           return nil
-//        guard let numberRandomizer = numberRandomizer else { return nil }
-//
-//        switch currentDifficulty {
-//        case .easy:
-//            return numberRandomizer.numberRandomizer { $0 - $1 < 0 || $0 - $1 > 4 || $0 > 5 || $1 > 4 }
-//        case .medium:
-//            return numberRandomizer.numberRandomizer { $0 - $1 < 5 || $0 - $1 > 9 }
-//        case .hard:
-//            return numberRandomizer.numberRandomizer { $0 - $1 > 4 || $0 - $1 < 1 }
-//        case .veryHard:
-//                return numberRandomizer.numberRandomizer { $0 + $1 > 9 || $0 + $1 < 5 }
-//        case .impossible:
-//            switch answerViewIndex {
-//            case 0:
-//                return numberRandomizer.numberRandomizer { $0 + $1 > 9 || $0 + $1 < 0 }
-//            case 1:
-//               return numberRandomizer.numberRandomizer { $0 - $1 > 9 || $0 - $1 < 1 }
-//            case 2:
-//                return numberRandomizer.numberRandomizer { $0 - $1 < 0 || $0 - $1 > 9 }
-//            default:
-//                return nil
-//            }
-//
-//        }
-        
-    }
-    
-    
-    func getMultiplicationEquationNumbers(answerViewIndex: Int) -> [Int]? {
-        
-        guard let numberRandomizer = numberRandomizer else { return nil }
-        
-        switch currentDifficulty {
-        case .easy:
-            return numberRandomizer.numberRandomizer { $0 * $1 > 5 }
-        case .medium:
-            return numberRandomizer.numberRandomizer { $0 * $1 < 6 || $0 * $1 > 10 }
-        case .hard:
-            print("HARD")
-            return numberRandomizer.numberRandomizer {
-                if $0 == 0 || $1 == 0 { return true }
-                    
-                let value = Double($1) / Double($0)
 
-                if value.truncatingRemainder(dividingBy: 1) == 0 {
-                    return $1 / $0 > 5
-                }
-                return true
-            }
-                //if $0 == 0 || $1 == 0 { return true }
-                //{ $1 / $0 > 5 }
-        case .veryHard:
-            //return numberRandomizer.numberRandomizer { $0 == 0 || $1 == 0 || $1 / $0 > 10 || $1 / $0 < 6 } //{ $1 / $0 > 10 || $1 / $0 < 6 }
-            print("VERY HARD")
-            return numberRandomizer.numberRandomizer {
-                
-                if $0 == 0 || $1 == 0 { return true }
-                
-                let value = Double($1) / Double($0)
-
-                if value.truncatingRemainder(dividingBy: 1) == 0 {
-                    return $1 / $0 > 10 || $1 / $0 < 6
-                }
-                return true
-               
-            }
-        case .impossible:
-            switch answerViewIndex {
-            case 0, 1:
-                
-                return numberRandomizer.numberRandomizer {
-                    if $0 == 0 || $1 == 0 { return true }
-                    
-                    let value = Double($1) / Double($0)
-                    
-                    if value.truncatingRemainder(dividingBy: 1) == 0 {
-                        return $1 / $0 > 10 || $1 / $0 <= 0
-                    }
-                    return true
-                }
-            case 2:
-                return numberRandomizer.numberRandomizer { $0 * $1 > 10 }
-            default:
-                return nil
-            }
-        }
-        
-    }
-    
-  
-    
-    
-    
-    
-    
-    
-    
-//
-//     //Should reverse() ??
-//    // Skicka med alla cards. kolla om en stämmer
-//     //använd recursion?!
-//    func randomizeNumbers(minValue: Int, maxValue: Int, reverse: Bool, arithmeticType type: (_ lhs: Int, _ rhs: Int) -> Int) -> [Int] {
-//
-//
-//        var array = [Int]()
-//            //var firstNumber: Int
-//            //var secondNumber: Int
-//
-//            repeat {
-//                array.removeAll()
-//                let firstNumber = Int.random(in: 0...10)
-//                let secondNumber = Int.random(in: 0...10)
-//                array += [firstNumber, secondNumber]
-//
-//                if reverse {
-//                    array.reverse()
-//                }
-//            } while array.reduce(0, type) > maxValue || array.reduce(0, type) < minValue
-//
-//        //while [firstNumber, secondNumber].reduce(0, type) > maxValue || [firstNumber, secondNumber].reduce(0, type) < minValue
-//
-//        print(minValue)
-//        print(maxValue)
-//        print(array)
-//           return array
-//            //return [firstNumber, secondNumber]
-//        }
-//
-//    // 4 + ? = 8
-//
-//    func getRandomizedEquationNumbers() -> [Int]? {
-//
-//
-//        switch (mathMode, currentDifficulty) {
-//
-//
-//        case (.addition, .easy), (.addition, .medium):
-//            return randomizeNumbers(minValue: playableCards![0].number, maxValue: playableCards![4].number, reverse: false, arithmeticType: +)
-//        case (.addition, .hard), (.addition, .veryHard):
-//            return randomizeNumbers(minValue: playableCards![0].number, maxValue: playableCards![4].number, reverse: true, arithmeticType: -)
-//        default:
-//            return randomizeNumbers(minValue: playableCards![0].number, maxValue: playableCards![4].number, reverse: false, arithmeticType: +)
-//        }
-//    }
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-
-    
-    
-    
- 
-    
-    
-   
 
     // Split into different arithmetic??
     // Returns number for playableCard based on lvl and mathMode
@@ -578,35 +326,11 @@ class EasyMathVC: UIViewController {
                 let n = Int.random(in: 0...10)
                 
                 if !numbs.contains(n) { numbs.append(n) }
-                //print("Randomizing playableCards")
             }
-        } while numbs.count < 5 || !checkImpossibleNumbers(numbers: numbs)//!checkNumbers(numbers: numbs)
+        } while numbs.count < 5
         
         return numbs.sorted()
     }
-    
-    
-    
-    // Verify impossible lvl playableCards
-    func checkImpossibleNumbers(numbers: [Int]) -> Bool {
-        if let calc = calculator {
-            
-            for i in numbers {
-                let numbs = getNumbersInEquation(chosenNumber: i)
-                print("Current: \(numbs)")
-                
-                print(calc.validateMathResult(firstNumb: numbs.firstNumber, secondNumb: numbs.secondNumber, resultNumb: numbs.resultNumber, calcMode: getCalculationMode(calc: calc)))
-                
-                if calc.validateMathResult(firstNumb: numbs.firstNumber, secondNumb: numbs.secondNumber, resultNumb: numbs.resultNumber, calcMode: getCalculationMode(calc: calc)) {
-                    return true
-                }
-                
-                //return calc.validateMathResult(firstNumb: numbs.firstNumber, secondNumb: numbs.secondNumber, resultNumb: numbs.resultNumber, calcMode: getCalculationMode(calc: calc))
-            }
-        }
-        return false
-    }
-    
     
     
       // Increase or decrease difficulty base on input
@@ -662,7 +386,6 @@ class EasyMathVC: UIViewController {
     func newCardTransitionFlip(cardViews: [UIView]) {
         
         guard let index = equationCards?.answerViewIndex else { return }
-        
         cardViews.filter { $0 != equationCardViews[index]}.forEach {$0.flipView(duration: 0.6)}
         //cardViews.filter { $0 != equationCardViews[getAnswerViewIndex()]}.map{$0.flipView(duration: 0.6)}
     }
@@ -710,10 +433,8 @@ class EasyMathVC: UIViewController {
     
     // Disable or enable card(s) interactions
     func disableCardInteractions(views: [UIView], shouldDisable: Bool) {
-        
         views.forEach { $0.isUserInteractionEnabled = shouldDisable ? false : true }
     }
-    
     
     func removeInstances() {
         NotificationCenter.default.removeObserver(self)
@@ -729,9 +450,7 @@ class EasyMathVC: UIViewController {
         print("EasyMathVC was deallocated")
     }
     
-    
     @IBAction func goBackPressed(_ sender: Any) {
-
         dismiss(animated: true, completion: nil)
     }
      
@@ -743,34 +462,5 @@ class EasyMathVC: UIViewController {
 
 
 
-
-
-//    func randomizeEquationNumbers(minValue: Int, maxValue: Int) -> [Int]? {
-//
-//        guard let numberRandomizer = numberRandomizer else { return nil }
-//
-//        switch (mathMode, currentDifficulty) {
-//
-//        case (.addition, .easy), (.addition, .medium):
-//            return numberRandomizer.randomizeNumbers { $0 + $1 >= minValue && $0 + $1 <= maxValue }
-//        case (.addition, .hard), (.addition, .veryHard):
-//            return numberRandomizer.randomizeNumbers { $1 - $0 >= minValue && $1 - $0 <= maxValue}
-//        case (.addition, .impossible):
-//            let condition = getAnswerViewIndex() == 2 ? numberRandomizer.impossibleAdditionCondition1 : numberRandomizer.impossibleAdditionCondition2
-//            return numberRandomizer.randomizeNumbers(condition: condition)
-//        case (.subtraction, .easy), (.subtraction, .medium), (.addition, .hard), (.addition, .veryHard):
-//            return numberRandomizer.randomizeNumbers { $0 - $1 >= minValue && $0 - $1 <= maxValue }
-//        default:
-//            return nil
-//        }
-//    }
-
-
-
-
-
-
-
-
-
-
+    
+  

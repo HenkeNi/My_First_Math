@@ -64,7 +64,9 @@ extension EasyMathVC {
     
     // TOOD: Set nil/Black om card.isAnswerView = true?
     func setCardImages(cards: [MathCard], cardImages: [UIImageView]) {
-        
+
+        sortOutletCollections()
+    
         for (index, cardImage) in cardImages.enumerated() where cardImage.tag == index + 1 {
             cardImage.image = UIImage(named: cards[index].imageName)
         }

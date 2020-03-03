@@ -12,7 +12,7 @@ enum CalculationMode: String {
     case addition = "Addition"
     case subtraction = "Subtraction"
     case multiplication = "Multiplication"
-    //case division = "Division"
+    case division = "Division"
     
 }
 

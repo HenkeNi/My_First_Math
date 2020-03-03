@@ -390,11 +390,9 @@
                     <connections>
                         <outlet property="progressBarContainer" destination="XVg-lZ-pxf" id="4Sw-tw-Rka"/>
                         <outlet property="progressBarView" destination="rXP-Fd-slp" id="bsG-zO-LXL"/>
-                        <outlet property="progressBarViewBackground" destination="run-8I-PBr" id="rxa-R8-uzk"/>
                         <outlet property="progressBarWidth" destination="Bs5-eI-JY0" id="ApY-FT-FnC"/>
                         <outlet property="scoreLabel" destination="SWy-7T-omr" id="eU6-9H-d97"/>
                         <outlet property="timerLabel" destination="fax-ho-xEr" id="J6v-5b-whc"/>
-                        <outlet property="topView" destination="af3-OU-NBr" id="fhb-rN-gu4"/>
                         <outletCollection property="operatorCardViews" destination="e6M-f9-ssU" collectionClass="NSMutableArray" id="BdM-KG-OgT"/>
                         <outletCollection property="operatorCardViews" destination="Koa-9Y-1mc" collectionClass="NSMutableArray" id="4Yx-x4-w72"/>
                         <outletCollection property="operatorCardImages" destination="gAr-RY-gG9" collectionClass="NSMutableArray" id="e9a-Ab-Dwz"/>

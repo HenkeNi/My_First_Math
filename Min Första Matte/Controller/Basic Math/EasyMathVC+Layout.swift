@@ -81,15 +81,7 @@ extension EasyMathVC {
         }
     }
     
-    
-    // Rounded corners, border width (and color) for Cards
-    func customizeCards(cardViews: [UIView]) {
         
-        cardViews.map { $0.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray) }
-        cardViews.map { $0.showShadows() }
-    
-    }
-    
     
     // Change between question mark and x (wrong answer)
      // rename: toogleAnswerViewImgOrWrongImg
@@ -119,7 +111,7 @@ extension EasyMathVC {
 //    }
 
     
-
+    // RENAME IMAges   "NumberMultiplication"  Number\(mathMode.rawValue)
     func setOperatorImages(mathMode: CalculationMode) {
                 
         switch mathMode {
@@ -129,6 +121,8 @@ extension EasyMathVC {
             operatorCardImages[0].image = UIImage(named: "NumberMinus")
         case .multiplication:
             operatorCardImages[0].image = UIImage(named: "NumberMulti")
+        case .division:
+            operatorCardImages[0].image = UIImage(named: "OkCheck")
         }
         operatorCardImages[1].image = UIImage(named: "NumberEqual")
 

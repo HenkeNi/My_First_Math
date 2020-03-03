@@ -23,31 +23,12 @@ extension EasyMathVC {
 
     
     
-
-    
-    
-
-    
-
-    func getCalculationMode(calc: Calculator) -> (Int, Int) -> Int {
-        
-        //guard let calculator = calculator else { return } // Unwrap instance of calculator
-        
-        switch mathMode {
-        case .addition:
-            return calc.addition
-        case .subtraction:
-            return calc.subtraction
-        case .multiplication:
-            return calc.multiplication
-        }
-        
-    }
     
     
     func handleAnswer(answerCorrect: Bool) {
          
         disableCardInteractions(views: playableCardViews, shouldDisable: true)
+        disableCardInteractions(views: equationCardViews, shouldDisable: true)
          
 //        if hardModeEnabled {
 //
@@ -122,7 +103,7 @@ extension EasyMathVC {
             DispatchQueue.main.async {
                 
         //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
-            self.returnCardViewsToOriginalPosition() // FIX ONLY RESET CURRENT CARD
+            self.returnCards() // FIX ONLY RESET CURRENT CARD
             self.changeAnswerViewImage(displayWrongAnswer: true)
                 self.disableCardInteractions(views: self.playableCardViews, shouldDisable: false)
             
@@ -164,7 +145,9 @@ extension EasyMathVC {
                  // Increase lvl!
                  //difficultyValue += 1
                 currentDifficulty = updateDifficulty(difficulty: currentDifficulty.rawValue + 1)
-                 playSound(soundName: "Cheering")
+                soundManager?.playSound(soundName: "Cheering")
+
+                 //playSound(soundName: "Cheering")
                 hardModeEnabled ? refillHalfProgress() : resetProgress()
              }
          }
@@ -194,7 +177,9 @@ extension EasyMathVC {
     
     func placeCardInAnswerView(currentView: UIView, answerView: UIView) {
         
-        playSound(soundName: "Click")
+        soundManager?.playSound(soundName: "Click")
+        
+        //playSound(soundName: "Click")
                
         UIView.animate(withDuration: 0.2) {
             currentView.center = answerView.center // Position the draggedCard in the answerView

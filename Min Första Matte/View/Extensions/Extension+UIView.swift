@@ -10,6 +10,7 @@ import UIKit
 
 extension UIView {
     
+    
     func roundedCorners(myRadius : CGFloat, borderWith: CGFloat?, myColor : UIColor?) {
         
         self.layer.cornerRadius = self.frame.size.height/myRadius
@@ -26,12 +27,12 @@ extension UIView {
     }
     
     func showShadows() {
-        self.layer.shadowColor = UIColor.red.cgColor
-        self.layer.shadowOpacity = 1.0
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.7
         self.layer.shadowOffset = .zero
         self.layer.shadowRadius = 10
         
-        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
     }
     
     func flipView(duration: Double) {

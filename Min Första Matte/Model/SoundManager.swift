@@ -11,21 +11,25 @@ import AVFoundation
 
 class SoundManager {
     
-    
+    var audioPlayer: AVAudioPlayer
   
+    init() {
+        self.audioPlayer = AVAudioPlayer()
+    }
     
-    static func playSound(soundName: String) {
-                
-        guard let soundURL = Bundle.main.url(forResource: soundName, withExtension: "wav") else { return }
+    func playSound(soundName: String) {
         
-        var audioPlayer = AVAudioPlayer()
+        guard let soundURL = Bundle.main.url(forResource: soundName, withExtension: "wav") else { return }
+        print("HELE")
+        print(soundURL)
+        //var audioPlayer: AVAudioPlayer? = AVAudioPlayer()
         
         do {
             try audioPlayer = AVAudioPlayer(contentsOf: soundURL)
-            audioPlayer.play()
         } catch {
             print("No sound was heard")
         }
+        audioPlayer.play()
     }
     
 }

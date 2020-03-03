@@ -10,15 +10,17 @@ import UIKit
 import AVFoundation
 
 
-// FÖRSTA SIFFRAN (BILDEN) FEL!!
-
-// Division:
 // CARD SHADOWS plus rounded corners
+
+// LÄGG TILL MÅLAR BOK - fyll i siffror... Kunna använda sina egna siffror?!
+
+
 
 // SCORE KLASS?
 
 // TODO: REPLACE DISPATCHQUEUE DELAY WIH A CUSTOM ANIMATION?? (STARTS AFTER 2 Seconds) -> Completion Handler (enable Card interaction)
  
+
 // Disable movemnet equationcards (inte kunna snurra på dem!! efter rätt svar (tills knappen trycks))
 // låt baren gå upp i toppen innan den går ner till 0
 
@@ -46,7 +48,6 @@ import AVFoundation
 // TODO: highscore lista!, en för hardCore en för vanligt!
 
 
-
 // End Condition: Efter Impossible -> Alert (Du har klarat spelet: 1. Gå tillbaka 2. Fortsätt spela)
 
 // I MathCards lägg funktioner för uträkningar??
@@ -60,8 +61,6 @@ import AVFoundation
 
 
 // FÖRSÖK ANVÄNDA:
-// equatable protocol (== mellan två objekt)
-// map (loopa över en collection of utföra samma sak på varje element)
 // Nil coalescing operator (optionalA ?? defaultValue)
 // TODO: Alert Rutan berättar när man kommit till ny nivå! -> KAnske, knapp man måste trycka först innan man går vidare?? Kanske fyverkerieffekter
 // Använd structs istället för klassen
@@ -76,12 +75,9 @@ let nxtLvlNotificationKey = "co.HenrikJangefelt.nxtLvl"
 // TODO: RENAME: BasicMathVC? || EquationsVC || MathEquationsVC
 class EasyMathVC: UIViewController {
     
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var progressBarViewBackground: UIView!
     @IBOutlet weak var progressBarContainer: UIView!
     @IBOutlet weak var progressBarView: UIView!
     @IBOutlet weak var progressBarWidth: NSLayoutConstraint!
-    @IBOutlet weak var scoreLabel: UILabel! // Gör i kod?
 
     @IBOutlet var operatorCardViews: [UIView]! // UIViews; Math operator + Equal sign
     @IBOutlet var operatorCardImages: [UIImageView]!
@@ -94,6 +90,7 @@ class EasyMathVC: UIViewController {
     @IBOutlet var playableCardImages: [UIImageView]!
     @IBOutlet var playableCardLabels: [UILabel]!
     
+    @IBOutlet weak var scoreLabel: UILabel! // Gör i kod?
     @IBOutlet weak var timerLabel: UILabel!
     
     enum Difficulty: Int, CaseIterable {
@@ -104,12 +101,19 @@ class EasyMathVC: UIViewController {
         case impossible
     }
     
+    enum CompetitionMode {
+        case enabled
+        case disabled
+    }
+    
+    typealias tapGesture = UITapGestureRecognizer
+    
     var equationCards: MathCards?
     var playableCards: MathCards?
-    var currentDifficulty = Difficulty.impossible
+    var currentDifficulty = Difficulty.easy
     var mathMode = CalculationMode.addition
     var hardModeEnabled: Bool = false // RENAME: COMPETITIVE MODE?? Competition , Make Enum (two cases)
-    var audioPlayer: AVAudioPlayer?
+    var soundManager: SoundManager?
     var calculator: Calculator?
     var numberRandomizer: NumberRandomizer?
     var score = 0 {
@@ -124,17 +128,17 @@ class EasyMathVC: UIViewController {
         super.viewDidLoad()
         UIView.appearance().isExclusiveTouch = true // Disable multi touch
         calculator = Calculator()
+        soundManager = SoundManager()
         numberRandomizer = NumberRandomizer()
         playableCards = MathCards(amount: 5)
         equationCards = MathCards(amount: 3)
 
-        addImgTapGesture(cardImages: playableCardImages, isPlayableCardImage: true)
-        addImgTapGesture(cardImages: equationCardImages, isPlayableCardImage: false)
-        
+        playableCardViews.forEach { $0.addGestureRecognizer(tapGesture(target: self, action: #selector(didTapView))) }
+        equationCardViews.forEach { $0.addGestureRecognizer(tapGesture(target: self, action: #selector(didTapView))) }
+       
         updateAnswerView()
         updatePlayableCards()
         updateEquationCards()
-        //updatePlayableCards()
         createObserver()
         
         if hardModeEnabled { setupHardmodeConfigurations() }
@@ -142,16 +146,17 @@ class EasyMathVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        setOperatorImages(mathMode: mathMode)        
-        customizeCards(cardViews: playableCardViews)
-        customizeCards(cardViews: equationCardViews)
-        customizeCards(cardViews: operatorCardViews)
+        setOperatorImages(mathMode: mathMode)
+        playableCardViews.forEach { $0.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray) }
+        equationCardViews.forEach { $0.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray) }
+        operatorCardViews.forEach { $0.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray) }
         sortOutletCollections()
         
         title = mathMode.rawValue // Sets title based on CalculationMode enum
     }
     
     override func viewDidAppear(_ animated: Bool) {
+
         if let playableCards = playableCards?.cards {
             saveViewsPosition(views: playableCardViews, cards: playableCards) // Saves the original position of the bottom cards
         }
@@ -185,14 +190,13 @@ class EasyMathVC: UIViewController {
     }
     
     func updateNextLevel() {
-        //randomAnswerViewIndex = nil
         
         updateAnswerView()
         updatePlayableCards()
         updateEquationCards()
-        //updatePlayableCards()
-        returnCardViewsToOriginalPosition()
+        returnCards()
         disableCardInteractions(views: playableCardViews, shouldDisable: false)
+        disableCardInteractions(views: equationCardViews, shouldDisable: false)
         //updateScoreLabel()
     }
     
@@ -230,7 +234,7 @@ class EasyMathVC: UIViewController {
     func flipNewPlayableCards() {
         //if randomAnswerViewIndex != nil && progressBarWidth.constant == 0 || currentDifficulty == .impossible {
         
-        if progressBarWidth.constant == 0 || currentDifficulty == .impossible || mathMode == .multiplication {
+        if progressBarWidth.constant == 0 || currentDifficulty == .impossible || mathMode == .multiplication || mathMode == .division {
             newCardTransitionFlip(cardViews: playableCardViews)
         }
 //        if randomAnswerViewIndex == nil && progressBarWidth.constant == 0 || currentDifficulty == .impossible {
@@ -255,7 +259,6 @@ class EasyMathVC: UIViewController {
     func setNewEquationNumbers() {
                         
         if let equationCards = equationCards?.cards, let equationNumbers = getRandomizedEquationNumbers() {
-            print("SET EQUATION")
             //let equationNumbers = getRandomizedEquationNumbers()
             
             ///let filteredEquationCards = equationCards.filter { !$0.isAnswerView }
@@ -405,7 +408,7 @@ class EasyMathVC: UIViewController {
     
     // Resets the cardViews to their original position
     // returnPlayableCardViewsPosition
-    func returnCardViewsToOriginalPosition() {
+    func returnCards() {
 
         playableCardViews.enumerated().forEach({ (index, view) in
             
@@ -440,7 +443,7 @@ class EasyMathVC: UIViewController {
         NotificationCenter.default.removeObserver(self)
         playableCards = nil
         calculator = nil
-        audioPlayer = nil
+        soundManager = nil
         numberRandomizer = nil
         playableCards = nil
         equationCards = nil

@@ -68,7 +68,7 @@ extension EasyMathVC {
         if let playableCards = playableCards?.cards {
             setCardImages(cards: playableCards, cardImages: playableCardImages)
         }
-          returnCardViewsToOriginalPosition()
+          returnCards()
           refillHalfProgress()
       }
       

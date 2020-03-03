@@ -77,9 +77,17 @@ class NumberRandomizer {
         case .subtraction:
             return numbers.reduce(numbers[0] + numbers[0], -)
         case .multiplication:
-            
             if numbers[0] == 0 || numbers[1] == 0 { return -31 }
             return numbers.reduce(1, *)
+        case .division:
+            if numbers[0] == 0 || numbers[1] == 0 { return -31 }
+ 
+            let value = Double(numbers[0]) / Double(numbers[1])
+            
+            if value.truncatingRemainder(dividingBy: 1) == 0 {
+                return numbers[0] / numbers[1]
+            }
+            return -31
         }
     }
     
@@ -89,3 +97,4 @@ class NumberRandomizer {
     }
     
 }
+

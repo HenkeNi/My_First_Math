@@ -11,53 +11,31 @@ import UIKit
 // rename +UserInteractions, GestRec, Gestures
 extension EasyMathVC {
     
-    
-    // Adds UITapGestureRecognizer to all card images
-    func addImgTapGesture(cardImages: [UIImageView], isPlayableCardImage: Bool) {
-                
-        for cardImage in cardImages {
-            
-            isPlayableCardImage ? cardImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imgTapPlayableCard(sender:)))) : cardImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imgTapEquationCard(sender:))))
-        }
-    }
-    
-    // TODO: Lägg i en extension av UITapGestureRecognizer???
-    @objc func imgTapPlayableCard(sender: UITapGestureRecognizer) {
-        
-        guard let playableCards = playableCards?.cards else { return }
-        
-        playSound(soundName: "Woosh")
-                        
-        //For every cardView that has the same tag number as the cardImage's tag        
-        for (index, view) in playableCardViews.enumerated() where sender.view?.tag == view.tag {
-            
-            if sender.view as? UIImageView != nil {
-                
-                view.flipView(duration: 0.3)
-                
-                playableCards[index].isFlipped.toggle()
-            }
-            setCardImages(cards: playableCards, cardImages: playableCardImages)
-        }
-    }
-    
-    
-    @objc func imgTapEquationCard(sender: UITapGestureRecognizer) {
+  
+    @objc func didTapView(sender: UITapGestureRecognizer) {
 
-        guard let equationCards = equationCards?.cards else { return }
+        guard let cardView = sender.view else { return }
         
-        playSound(soundName: "Woosh")
+        soundManager?.playSound(soundName: "Woosh")
+        cardView.flipView(duration: 0.3)
         
-        for (index, view) in equationCardViews.enumerated() where sender.view?.tag == view.tag {
-                        
-            if sender.view as? UIImageView != nil {
-                //equationCards[index].flipCard(cardView: view, duration: 0.3)
-                view.flipView(duration: 0.3)
-                equationCards[index].isFlipped.toggle()
-            }
-            setCardImages(cards: equationCards, cardImages: equationCardImages)
+        if playableCardViews.contains(cardView) {
+            updateFlippedCard(cards: playableCards?.cards, index: cardView.tag - 1, cardImages: playableCardImages)
+        }
+        if equationCardViews.contains(cardView) {
+            updateFlippedCard(cards: equationCards?.cards, index: cardView.tag - 1, cardImages: equationCardImages)
         }
     }
+    
+    func updateFlippedCard(cards: [MathCard]?, index: Int, cardImages: [UIImageView]) {
+        
+        guard let cards = cards else { return }
+        cards[index].isFlipped.toggle()
+        setCardImages(cards: cards, cardImages: cardImages)
+        
+    }
+    
+
     
     
     
@@ -89,7 +67,7 @@ extension EasyMathVC {
             if let index = equationCards?.answerViewIndex, handledCard.frame.intersects(equationCardViews[index].frame) {
                 validateChosenAnswer(currentView: handledCard, answerView: equationCardViews[index])
             } else {
-                returnCardViewsToOriginalPosition()
+                returnCards()
             }
         default:
             break
@@ -98,39 +76,5 @@ extension EasyMathVC {
     
     
 }
-
-
-
-
-
-
-//    func addImageTapGesture() {
-//
-//        for cardImage in cardImages {
-//
-//            cardImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flipCardOnTap(gesture:))))
-//        }
-//    }
-//
-//
-//     //Flips the card on cardImage tap
-//    @objc func flipCardOnTap(gesture: UITapGestureRecognizer) {
-//
-//        soundEffects(soundName: "Woosh")
-//
-//        //For every cardView that has the same tag number as the cardImage's tag
-//        for (index, cardView) in cardViews.enumerated() where gesture.view?.tag == cardView.tag {
-//
-//            if gesture.view as? UIImageView != nil {
-//
-//                if cardView.tag <= 5 {
-//                    playableCards[index].flipCard(cardView: cardView, mode: mathMode)
-//                } else {  TODO: Improve/ make better
-//                    equationCards[cardView.tag - 6].flipCard(cardView: cardView, mode: mathMode)
-//                }
-//            }
-//            updateCardImages()
-//        }
-//    }
 
 

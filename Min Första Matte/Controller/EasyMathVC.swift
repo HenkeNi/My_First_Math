@@ -9,12 +9,16 @@
 import UIKit
 import AVFoundation
 
+// ADD Animations!, card shkaing etc.
+// TESTA SKAPA EN DELAYTIMER, tar in antal sekunder samt en completion handler!
 
-// CARD SHADOWS plus rounded corners
+
+// Completion handler istället för delay?
+// CARD SHADOWS plus rounded corners?
 
 // LÄGG TILL MÅLAR BOK - fyll i siffror... Kunna använda sina egna siffror?!
 
-
+// WrongImage, aningen ha numberQuestion bakom eller ha två bilder (vissa båda) - Vill kunna se frågetecknet bakom krysset....
 
 // SCORE KLASS?
 
@@ -61,6 +65,7 @@ import AVFoundation
 
 
 // FÖRSÖK ANVÄNDA:
+// for-case & if-case
 // Nil coalescing operator (optionalA ?? defaultValue)
 // TODO: Alert Rutan berättar när man kommit till ny nivå! -> KAnske, knapp man måste trycka först innan man går vidare?? Kanske fyverkerieffekter
 // Använd structs istället för klassen
@@ -93,6 +98,7 @@ class EasyMathVC: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel! // Gör i kod?
     @IBOutlet weak var timerLabel: UILabel!
     
+    @IBOutlet weak var soundManagerImage: UIImageView!
     enum Difficulty: Int, CaseIterable {
         case easy = 1
         case medium
@@ -113,7 +119,7 @@ class EasyMathVC: UIViewController {
     var currentDifficulty = Difficulty.easy
     var mathMode = CalculationMode.addition
     var hardModeEnabled: Bool = false // RENAME: COMPETITIVE MODE?? Competition , Make Enum (two cases)
-    var soundManager: SoundManager?
+    //var soundManager: SoundManager?
     var calculator: Calculator?
     var numberRandomizer: NumberRandomizer?
     var score = 0 {
@@ -128,14 +134,14 @@ class EasyMathVC: UIViewController {
         super.viewDidLoad()
         UIView.appearance().isExclusiveTouch = true // Disable multi touch
         calculator = Calculator()
-        soundManager = SoundManager()
+        //soundManager = SoundManager()
         numberRandomizer = NumberRandomizer()
         playableCards = MathCards(amount: 5)
         equationCards = MathCards(amount: 3)
 
         playableCardViews.forEach { $0.addGestureRecognizer(tapGesture(target: self, action: #selector(didTapView))) }
         equationCardViews.forEach { $0.addGestureRecognizer(tapGesture(target: self, action: #selector(didTapView))) }
-       
+        soundManagerImage.addGestureRecognizer(tapGesture(target: self, action: #selector(tappedMuteBtn)))
         updateAnswerView()
         updatePlayableCards()
         updateEquationCards()
@@ -157,6 +163,8 @@ class EasyMathVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
 
+        MusicPlayer.shared.startBackgroundMusic(forResource: "bensound-ukulele", songFormat: "mp3")
+        
         if let playableCards = playableCards?.cards {
             saveViewsPosition(views: playableCardViews, cards: playableCards) // Saves the original position of the bottom cards
         }
@@ -186,11 +194,13 @@ class EasyMathVC: UIViewController {
 
     
     @objc func updateLevel(notification: NSNotification) {
+        
         updateNextLevel()
+        //updateScoreLabel()
     }
+
     
     func updateNextLevel() {
-        
         updateAnswerView()
         updatePlayableCards()
         updateEquationCards()
@@ -351,7 +361,8 @@ class EasyMathVC: UIViewController {
           case 5:
               return .impossible
           default:
-              return .easy
+            assertionFailure("Unknown level")
+            return .easy
           }
       }
     
@@ -408,6 +419,22 @@ class EasyMathVC: UIViewController {
     
     // Resets the cardViews to their original position
     // returnPlayableCardViewsPosition
+    
+    func returnCard(cardView: UIView) {
+        
+        guard let cardPosition = playableCards?[cardView.tag - 1].position else { return }
+        cardView.returnToPosition(position: cardPosition)
+        
+        //let view: Int = playableCardViews.filter { $0 == cardView }
+        
+        
+//        for (index, view) in playableCardViews.enumerated() {
+//            if cardView == view {
+//                cardView.returnToPosition(position: playableCards?[index].position)
+//            }
+//        }
+    }
+    
     func returnCards() {
 
         playableCardViews.enumerated().forEach({ (index, view) in
@@ -443,7 +470,7 @@ class EasyMathVC: UIViewController {
         NotificationCenter.default.removeObserver(self)
         playableCards = nil
         calculator = nil
-        soundManager = nil
+        //soundManager = nil
         numberRandomizer = nil
         playableCards = nil
         equationCards = nil
@@ -456,7 +483,7 @@ class EasyMathVC: UIViewController {
     @IBAction func goBackPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-     
+    
     
     
 }

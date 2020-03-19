@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2023F43F23FDEC8D0062B301 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023F43E23FDEC8D0062B301 /* AudioPlayer.swift */; };
 		2023F48A2405BA680062B301 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023F4892405BA670062B301 /* SoundManager.swift */; };
+		2028E79824108BE1005478C1 /* UpdateLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028E79724108BE1005478C1 /* UpdateLevel.swift */; };
+		2028E79A24108CD0005478C1 /* EasyMathVC+UpdateLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028E79924108CD0005478C1 /* EasyMathVC+UpdateLevel.swift */; };
+		2028E79C241329D7005478C1 /* ValidNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028E79B241329D6005478C1 /* ValidNumber.swift */; };
+		2028E7A32416C30B005478C1 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028E7A22416C30A005478C1 /* MusicPlayer.swift */; };
+		2028E7A72416E8DF005478C1 /* bensound-ukulele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2028E7A42416E8DA005478C1 /* bensound-ukulele.mp3 */; };
+		2028E7A82416E8DF005478C1 /* bensound-cute.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2028E7A52416E8DE005478C1 /* bensound-cute.mp3 */; };
+		2028E7A92416E8DF005478C1 /* bensound-littleidea.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2028E7A62416E8DF005478C1 /* bensound-littleidea.mp3 */; };
+		2028E82C24219460005478C1 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028E82B24219460005478C1 /* Score.swift */; };
+		2028E82E242194A4005478C1 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028E82D242194A4005478C1 /* List.swift */; };
 		2029C0D123BAB2BB0095C059 /* MathCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2029C0D023BAB2BB0095C059 /* MathCard.swift */; };
 		2029C0D323BAB3770095C059 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2029C0D223BAB3770095C059 /* Card.swift */; };
 		2029C0D923BCFEC70095C059 /* Woosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2029C0D823BCFEC70095C059 /* Woosh.wav */; };
@@ -64,8 +72,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2023F43E23FDEC8D0062B301 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		2023F4892405BA670062B301 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		2028E79724108BE1005478C1 /* UpdateLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLevel.swift; sourceTree = "<group>"; };
+		2028E79924108CD0005478C1 /* EasyMathVC+UpdateLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+UpdateLevel.swift"; sourceTree = "<group>"; };
+		2028E79B241329D6005478C1 /* ValidNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidNumber.swift; sourceTree = "<group>"; };
+		2028E7A22416C30A005478C1 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		2028E7A42416E8DA005478C1 /* bensound-ukulele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-ukulele.mp3"; sourceTree = "<group>"; };
+		2028E7A52416E8DE005478C1 /* bensound-cute.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-cute.mp3"; sourceTree = "<group>"; };
+		2028E7A62416E8DF005478C1 /* bensound-littleidea.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-littleidea.mp3"; sourceTree = "<group>"; };
+		2028E82B24219460005478C1 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		2028E82D242194A4005478C1 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		2029C0D023BAB2BB0095C059 /* MathCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MathCard.swift; path = ../MathCard.swift; sourceTree = "<group>"; };
 		2029C0D223BAB3770095C059 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2029C0D823BCFEC70095C059 /* Woosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Woosh.wav; sourceTree = "<group>"; };
@@ -136,6 +152,9 @@
 		202C883A219993A4008FDBF5 /* Sound Files */ = {
 			isa = PBXGroup;
 			children = (
+				2028E7A52416E8DE005478C1 /* bensound-cute.mp3 */,
+				2028E7A62416E8DF005478C1 /* bensound-littleidea.mp3 */,
+				2028E7A42416E8DA005478C1 /* bensound-ukulele.mp3 */,
 				2029C0DA23BCFF4C0095C059 /* Cheering.wav */,
 				2029C0D823BCFEC70095C059 /* Woosh.wav */,
 				209269E42194B79E00C5A341 /* Click.wav */,
@@ -160,6 +179,7 @@
 				2043014523B57BC7006CB5F6 /* EasyMathVC+panGest.swift */,
 				2043014723B6B080006CB5F6 /* EasyMathVC+Layout.swift */,
 				20D663B423DD0E390020F5AC /* EasyMathVC+Hardmode.swift */,
+				2028E79924108CD0005478C1 /* EasyMathVC+UpdateLevel.swift */,
 			);
 			path = "Basic Math";
 			sourceTree = "<group>";
@@ -296,17 +316,21 @@
 		20F73D58229700B4008A8071 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2028E82B24219460005478C1 /* Score.swift */,
+				2028E82D242194A4005478C1 /* List.swift */,
+				2028E7A22416C30A005478C1 /* MusicPlayer.swift */,
 				2023F4892405BA670062B301 /* SoundManager.swift */,
-				2023F43E23FDEC8D0062B301 /* AudioPlayer.swift */,
+				2028E79724108BE1005478C1 /* UpdateLevel.swift */,
 				20F73D482293F364008A8071 /* Calculator.swift */,
-				20E4D32222FF9BF1005D2364 /* MemoryCard.swift */,
 				2080589B2328C7C8005D53E1 /* NumberRandomizer.swift */,
+				2028E79B241329D6005478C1 /* ValidNumber.swift */,
 				20F884102344D39B004E02D5 /* GameCard.swift */,
 				20F8840E2344D292004E02D5 /* CardDeck.swift */,
 				20F8841A234699AC004E02D5 /* CardPlayer.swift */,
-				2029C0DC23BF8D8A0095C059 /* MatchingCard.swift */,
 				2043015723B983B1006CB5F6 /* CardGenerator.swift */,
 				2029C0D223BAB3770095C059 /* Card.swift */,
+				2029C0DC23BF8D8A0095C059 /* MatchingCard.swift */,
+				20E4D32222FF9BF1005D2364 /* MemoryCard.swift */,
 				20623CCA23F31E6200983780 /* PuzzleGame */,
 				20D663B623E246900020F5AC /* BasicMath */,
 			);
@@ -399,11 +423,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				20F7069222FBA98300FE0183 /* EasyMath.storyboard in Resources */,
+				2028E7A92416E8DF005478C1 /* bensound-littleidea.mp3 in Resources */,
 				202CC8D022A082E30038E852 /* TestLab.storyboard in Resources */,
 				2029C0D923BCFEC70095C059 /* Woosh.wav in Resources */,
 				209269E52194B79F00C5A341 /* Click.wav in Resources */,
 				2029C0DB23BCFF4C0095C059 /* Cheering.wav in Resources */,
+				2028E7A82416E8DF005478C1 /* bensound-cute.mp3 in Resources */,
 				202CC8CD22A070320038E852 /* Settings.storyboard in Resources */,
+				2028E7A72416E8DF005478C1 /* bensound-ukulele.mp3 in Resources */,
 				20F8841D2346A2C0004E02D5 /* PuzzleGame.storyboard in Resources */,
 				20A8BA29218DD1AF003FEA75 /* LaunchScreen.storyboard in Resources */,
 				2043015223B97E7D006CB5F6 /* MatchingGame.storyboard in Resources */,
@@ -431,6 +458,7 @@
 				20F88415234512D1004E02D5 /* CardGameVC.swift in Sources */,
 				2029C0D323BAB3770095C059 /* Card.swift in Sources */,
 				2043014623B57BC7006CB5F6 /* EasyMathVC+panGest.swift in Sources */,
+				2028E79A24108CD0005478C1 /* EasyMathVC+UpdateLevel.swift in Sources */,
 				20F7069622FCE83C00FE0183 /* Extension+Colors.swift in Sources */,
 				20F73D4B22940437008A8071 /* Extension+UIView.swift in Sources */,
 				20F73D492293F364008A8071 /* Calculator.swift in Sources */,
@@ -441,8 +469,11 @@
 				20C19EEF2304935D0009242D /* Extension+Int.swift in Sources */,
 				20F88425234733CF004E02D5 /* PuzzleGameVC+CollectionView.swift in Sources */,
 				20F884112344D39B004E02D5 /* GameCard.swift in Sources */,
+				2028E82E242194A4005478C1 /* List.swift in Sources */,
 				2043015423B982E8006CB5F6 /* MatchingGameVC+CVDelegate.swift in Sources */,
+				2028E7A32416C30B005478C1 /* MusicPlayer.swift in Sources */,
 				2043015823B983B1006CB5F6 /* CardGenerator.swift in Sources */,
+				2028E79C241329D7005478C1 /* ValidNumber.swift in Sources */,
 				2043015A23B984B2006CB5F6 /* MatchingGameCell.swift in Sources */,
 				2043014823B6B080006CB5F6 /* EasyMathVC+Layout.swift in Sources */,
 				2080589C2328C7C9005D53E1 /* NumberRandomizer.swift in Sources */,
@@ -452,10 +483,11 @@
 				20A8BA1F218DD1AE003FEA75 /* AppDelegate.swift in Sources */,
 				20F8840D2343E2AF004E02D5 /* StartVC.swift in Sources */,
 				20CAC09721F0BA20007E3B35 /* MakeViewAppearViewController.swift in Sources */,
+				2028E82C24219460005478C1 /* Score.swift in Sources */,
 				2029C0DD23BF8D8A0095C059 /* MatchingCard.swift in Sources */,
 				20CA723923E393F7007AE7EA /* CardPosition.swift in Sources */,
 				20F7069422FBA9AD00FE0183 /* EasyMathVC.swift in Sources */,
-				2023F43F23FDEC8D0062B301 /* AudioPlayer.swift in Sources */,
+				2028E79824108BE1005478C1 /* UpdateLevel.swift in Sources */,
 				20623CD223F31F5000983780 /* Puzzle.swift in Sources */,
 				20D362B821A75E8900931C6C /* TestViewController.swift in Sources */,
 				20623CCE23F31E9D00983780 /* PuzzlePiece.swift in Sources */,

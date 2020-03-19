@@ -14,9 +14,10 @@ extension EasyMathVC {
   
     @objc func didTapView(sender: UITapGestureRecognizer) {
 
+        print("TAPPING")
         guard let cardView = sender.view else { return }
         
-        soundManager?.playSound(soundName: "Woosh")
+        SoundManager.shared.playSound(soundName: "Woosh")
         cardView.flipView(duration: 0.3)
         
         if playableCardViews.contains(cardView) {
@@ -52,7 +53,6 @@ extension EasyMathVC {
     }
     
     
-    
     // Handles different gesture recognizer states
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
         
@@ -61,13 +61,14 @@ extension EasyMathVC {
         switch sender.state {
             
         case .began, .changed:
-            changeAnswerViewImage(displayWrongAnswer: false)
             moveView(currentView: handledCard, sender: sender)
         case .ended:
             if let index = equationCards?.answerViewIndex, handledCard.frame.intersects(equationCardViews[index].frame) {
                 validateChosenAnswer(currentView: handledCard, answerView: equationCardViews[index])
             } else {
-                returnCards()
+                print("HERE?!?!?!")
+                returnCard(cardView: handledCard)
+                //returnCards()
             }
         default:
             break
@@ -75,6 +76,13 @@ extension EasyMathVC {
     }
     
     
+    
+    
+    @objc func tappedMuteBtn() {
+        
+        MusicPlayer.shared.isPlaying ? MusicPlayer.shared.stopBackgroundMusic() : MusicPlayer.shared.resumeBackgroundMusic()
+        //MusicPlayer.shared.stopBackgroundMusic()
+    }
 }
 
 

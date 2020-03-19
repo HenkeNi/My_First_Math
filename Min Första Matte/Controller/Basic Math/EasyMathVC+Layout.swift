@@ -83,32 +83,30 @@ extension EasyMathVC {
     
         
     
+    
     // Change between question mark and x (wrong answer)
      // rename: toogleAnswerViewImgOrWrongImg
     func changeAnswerViewImage(displayWrongAnswer: Bool) {
 
-        if let index = equationCards?.answerViewIndex {
+        guard let index = equationCards?.answerViewIndex else { return }
             
             let answerViewImage = equationCardImages[index]
-            answerViewImage.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
-    }
+            
+            if displayWrongAnswer {
+                answerViewImage.image = UIImage(named: "WrongAnswer")
+
+                DispatchQueue(label: "serial").asyncAfter(deadline: DispatchTime.now() + 1.0) {
+                    DispatchQueue.main.async {
+                        answerViewImage.image = UIImage(named: "NumberQuestion")
+                    }
+                }
+            } else {
+                answerViewImage.image = UIImage(named: "NumberQuestion")
+            }
+            
         
-                    
-//        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: DispatchTime.now() + 1) {
-//
-//            DispatchQueue.main.async {
-//                answerViewImage.image = UIImage(named: "NumberQuestion")
-//            }
-//        }
      }
-    
-    
-//    func changeAnswerViewImage(displayWrongAnswer: Bool) {
-//
-//        for (index, image) in equationCardImages.enumerated() where index == getAnswerViewIndex() {
-//            image.image = displayWrongAnswer ? UIImage(named: "WrongAnswer") : UIImage(named: "NumberQuestion")
-//        }
-//    }
+
 
     
     // RENAME IMAges   "NumberMultiplication"  Number\(mathMode.rawValue)

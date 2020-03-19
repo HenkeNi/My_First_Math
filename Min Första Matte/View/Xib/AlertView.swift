@@ -9,15 +9,17 @@
 import UIKit
 
 class AlertView: UIView {
-    
-    static let instance = AlertView()
-    
+        
     @IBOutlet var parentView: UIView!
     @IBOutlet weak var alertView: UIView!
     @IBOutlet weak var checkImage: UIImageView!
     @IBOutlet weak var titelLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var doneBtn: UIButton!
+    
+    static let instance = AlertView()
+//    var delegate: UpdateLevel?
+//    var listener: EasyMathVC?
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,8 +66,16 @@ class AlertView: UIView {
     
     
     @IBAction func onClickDone(_ sender: Any) {
-        parentView.removeFromSuperview()
+        
+//        listener = EasyMathVC()
+//        self.delegate = listener
+//        delegate?.updateLevel()
+//        self.delegate = nil
+        
         let name = NSNotification.Name(rawValue: nxtLvlNotificationKey)
         NotificationCenter.default.post(name: name, object: nil)
+        
+        parentView.removeFromSuperview()
+
     }
 }

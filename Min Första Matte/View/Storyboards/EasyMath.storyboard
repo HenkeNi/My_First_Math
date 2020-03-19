@@ -321,6 +321,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hand Copy 2" translatesAutoresizingMaskIntoConstraints="NO" id="Vns-qM-Hjc">
+                                <rect key="frame" x="1087" y="268" width="87" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.83137254901960778" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -392,6 +396,7 @@
                         <outlet property="progressBarView" destination="rXP-Fd-slp" id="bsG-zO-LXL"/>
                         <outlet property="progressBarWidth" destination="Bs5-eI-JY0" id="ApY-FT-FnC"/>
                         <outlet property="scoreLabel" destination="SWy-7T-omr" id="eU6-9H-d97"/>
+                        <outlet property="soundManagerImage" destination="Vns-qM-Hjc" id="yvH-LV-NqO"/>
                         <outlet property="timerLabel" destination="fax-ho-xEr" id="J6v-5b-whc"/>
                         <outletCollection property="operatorCardViews" destination="e6M-f9-ssU" collectionClass="NSMutableArray" id="BdM-KG-OgT"/>
                         <outletCollection property="operatorCardViews" destination="Koa-9Y-1mc" collectionClass="NSMutableArray" id="4Yx-x4-w72"/>
@@ -454,6 +459,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Hand Copy 2" width="42" height="39"/>
         <image name="Number1" width="180" height="180"/>
         <image name="Number2" width="180" height="180"/>
         <image name="Number3" width="180" height="180"/>

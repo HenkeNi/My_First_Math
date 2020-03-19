@@ -10,8 +10,8 @@ import Foundation
 
 class MathCard: Card {
 
+    @ValidNumber var number: Int
     var position: CardPosition?
-    var number: Int
     var isFlipped = false
     var isAnswerView = false
 

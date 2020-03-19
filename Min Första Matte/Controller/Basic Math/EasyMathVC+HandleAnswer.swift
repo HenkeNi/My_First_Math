@@ -18,14 +18,14 @@ extension EasyMathVC {
         placeCardInAnswerView(currentView: currentView, answerView: answerView)
 
         // If dragged card (number) is the same as equation card (answerView/number)
-        handleAnswer(answerCorrect:  playableCards[currentView.tag - 1].number == equationCards[index].number)
+        handleAnswer(answerCorrect:  playableCards[currentView.tag - 1].number == equationCards[index].number, currentView: currentView)
     }
 
     
     
     
     
-    func handleAnswer(answerCorrect: Bool) {
+    func handleAnswer(answerCorrect: Bool, currentView: UIView) {
          
         disableCardInteractions(views: playableCardViews, shouldDisable: true)
         disableCardInteractions(views: equationCardViews, shouldDisable: true)
@@ -35,7 +35,7 @@ extension EasyMathVC {
 //        } else {
 //
 //        }
-        answerCorrect ? answerIsCorrect() : answerIsIncorrect()
+        answerCorrect ? answerIsCorrect() : answerIsIncorrect(cardView: currentView)
         
          let progressBarUpdate = updateProgressBar(isRightAnswer: answerCorrect)
         setProgressBarColor(isRightAnswer: answerCorrect)
@@ -92,20 +92,26 @@ extension EasyMathVC {
 //        perform(#selector(answerIsIncorrect2), with: nil, afterDelay: 0.75)
 //    }
     
-    @objc func answerIsIncorrect() {
+    func answerIsIncorrect(cardView: UIView) {
         
-        let serialQueue = DispatchQueue(label: "customQueue")
+        //let serialQueue = DispatchQueue(label: "customQueue")
         
-        serialQueue.asyncAfter(deadline: DispatchTime.now() + 0.75) {
+        DispatchQueue(label: "serial").asyncAfter(deadline: DispatchTime.now() + 0.75) {
+            
+        
+        //serialQueue.asyncAfter(deadline: DispatchTime.now() + 0.75) {
             
         //DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 0.75) {
             
             DispatchQueue.main.async {
                 
         //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
-            self.returnCards() // FIX ONLY RESET CURRENT CARD
-            self.changeAnswerViewImage(displayWrongAnswer: true)
+                
+                self.returnCard(cardView: cardView)
+                //self.returnCards() // FIX ONLY RESET CURRENT CARD
+                self.changeAnswerViewImage(displayWrongAnswer: true)
                 self.disableCardInteractions(views: self.playableCardViews, shouldDisable: false)
+                self.disableCardInteractions(views: self.equationCardViews, shouldDisable: false)
             
 //                let serial2Queue = DispatchQueue(label: "otherCustomQueue")
 //                serial2Queue.asyncAfter(deadline: DispatchTime.now() + 1) {
@@ -145,9 +151,9 @@ extension EasyMathVC {
                  // Increase lvl!
                  //difficultyValue += 1
                 currentDifficulty = updateDifficulty(difficulty: currentDifficulty.rawValue + 1)
-                soundManager?.playSound(soundName: "Cheering")
+                //MusicPlayer.shared.playSoundEffect(soundEffect: "Cheering", songFormat: "wav")
+                SoundManager.shared.playSound(soundName: "Cheering")
 
-                 //playSound(soundName: "Cheering")
                 hardModeEnabled ? refillHalfProgress() : resetProgress()
              }
          }
@@ -177,7 +183,7 @@ extension EasyMathVC {
     
     func placeCardInAnswerView(currentView: UIView, answerView: UIView) {
         
-        soundManager?.playSound(soundName: "Click")
+        SoundManager.shared.playSound(soundName: "Click")
         
         //playSound(soundName: "Click")
                

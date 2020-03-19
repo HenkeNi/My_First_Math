@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Equatable???
+//TODO: GÖR Equatable!?!?!?!
 class MatchingCard {
     
     var number: Int

@@ -11,11 +11,31 @@ import AVFoundation
 
 class SoundManager {
     
-    var audioPlayer: AVAudioPlayer
-  
-    init() {
-        self.audioPlayer = AVAudioPlayer()
+    static let shared = SoundManager()
+    var audioPlayer: AVAudioPlayer?
+    
+    func startBackgroundMusic() {
+            
+        if let bundle = Bundle.main.path(forResource: "Click", ofType: "wav") {
+            let backgroundMusic = NSURL(fileURLWithPath: bundle)
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: backgroundMusic as URL)
+                guard let audioPlayer = audioPlayer else { return }
+                audioPlayer.numberOfLoops = -1
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
+            } catch {
+                print(error)
+            }
+        }
     }
+    
+    
+    //var audioPlayer: AVAudioPlayer
+  
+//    init() {
+//        self.audioPlayer = AVAudioPlayer()
+//    }
     
     func playSound(soundName: String) {
         
@@ -29,7 +49,7 @@ class SoundManager {
         } catch {
             print("No sound was heard")
         }
-        audioPlayer.play()
+        audioPlayer?.play()
     }
     
 }

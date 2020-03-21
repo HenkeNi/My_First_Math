@@ -18,12 +18,13 @@ class MatchingGameCell: UICollectionViewCell {
     }
     
     func setCardImage(card: MatchingCard) {
-        cardImage.image = UIImage(named: card.getImageName)
+        cardImage.image = UIImage(named: card.imageName)
     }
     
     func flipCard(card: MatchingCard) {
-        card.flipCard(cardView: cardView)
-        setCardImage(card: card)
+        cardView.flipView(duration: 0.3)
+        //card.flipCard(cardView: cardView)
+        //setCardImage(card: card)
     }
     
     func removeCard(card: MatchingCard) {

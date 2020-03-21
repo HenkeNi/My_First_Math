@@ -99,6 +99,8 @@ class MatchingGameVC: UIViewController {
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                 cell.flipCard(card: card)
+                card.isFlipped = false
+                cell.setCardImage(card: card)
                 self.tapCardIsPossible = true
             }
         }

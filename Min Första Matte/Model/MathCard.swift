@@ -13,26 +13,25 @@ class MathCard: Card {
     @ValidNumber var number: Int
     var position: CardPosition?
     var isFlipped = false
-    var isAnswerView = false
+    //var isAnswerView = false
 
-    var labelText: String {
-        return number.spellOutNumber()
-    }
+//    var labelText: String {
+//        return number.spellOutNumber()
+//    }
        
     var imageName: String {
-        let imgName = isFlipped ? "Number\(number)Back" : "Number\(number)"
-        return !isAnswerView ? imgName : "NumberQuestion"
+        return isFlipped ? "Number\(number)Back" : "Number\(number)"
+        //let imgName = isFlipped ? "Number\(number)Back" : "Number\(number)"
+       // return !isAnswerView ? imgName : "NumberQuestion"
     }
     
     init(number: Int = 0) {
         self.number = number
     }
     
-    
     deinit {
         print("MathCard will be deallocated")
     }
-    
     
 }
 

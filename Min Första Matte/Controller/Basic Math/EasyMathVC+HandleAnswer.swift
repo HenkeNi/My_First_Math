@@ -18,7 +18,7 @@ extension EasyMathVC {
         placeCardInAnswerView(currentView: currentView, answerView: answerView)
 
         // If dragged card (number) is the same as equation card (answerView/number)
-        handleAnswer(answerCorrect:  playableCards[currentView.tag - 1].number == equationCards[index].number, currentView: currentView)
+        handleAnswer(answerCorrect:  playableCards[currentView.tag - 1]?.number == equationCards[index]?.number, currentView: currentView)
     }
 
     

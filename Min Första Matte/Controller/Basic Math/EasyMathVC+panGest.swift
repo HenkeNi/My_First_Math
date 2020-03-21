@@ -28,9 +28,9 @@ extension EasyMathVC {
         }
     }
     
-    func updateFlippedCard(cards: [MathCard]?, index: Int, cardImages: [UIImageView]) {
+    func updateFlippedCard<T: Card>(cards: [T]?, index: Int, cardImages: [UIImageView]) {
         
-        guard let cards = cards else { return }
+        guard var cards = cards else { return }
         cards[index].isFlipped.toggle()
         setCardImages(cards: cards, cardImages: cardImages)
         
@@ -86,3 +86,11 @@ extension EasyMathVC {
 }
 
 
+
+//func updateFlippedCard(cards: [MathCard]?, index: Int, cardImages: [UIImageView]) {
+//
+//    guard let cards = cards else { return }
+//    cards[index].isFlipped.toggle()
+//    setCardImages(cards: cards, cardImages: cardImages)
+//
+//}

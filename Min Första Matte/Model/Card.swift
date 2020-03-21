@@ -16,3 +16,10 @@ protocol Card {
     var labelText: String { get }
 }
 
+extension Card {
+    
+    var labelText: String {
+        return number.spellOutNumber()
+    }
+    
+}

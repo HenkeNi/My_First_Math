@@ -62,6 +62,7 @@ import AVFoundation
 // Maybe implement: CardViews will automatically flip back after being flipped (after small delay)??
 // Maybe implement: lvl where you drag up two cards either next to each other (2&1 + 2 = 5 ) or like (? + ? = 5) || (5 + ? = ?) etc.
 
+// Progressbar -standalone class?
 
 
 // FÖRSÖK ANVÄNDA:
@@ -69,8 +70,6 @@ import AVFoundation
 // Nil coalescing operator (optionalA ?? defaultValue)
 // TODO: Alert Rutan berättar när man kommit till ny nivå! -> KAnske, knapp man måste trycka först innan man går vidare?? Kanske fyverkerieffekter
 // Använd structs istället för klassen
-// Försök använda; Generics, Closures, Computed Properties, map, filter.....
-// Generic cardClass?
 // Läggga views, imageVeiws etc. i klassen?
 
 
@@ -114,8 +113,11 @@ class EasyMathVC: UIViewController {
     
     typealias tapGesture = UITapGestureRecognizer
     
-    var equationCards: MathCards?
-    var playableCards: MathCards?
+    var equationCards: Cards<EquationCard>?
+    var playableCards: Cards<MathCard>?
+    //var equationCards: MathCards?
+    //var playableCards: MathCards?
+    
     var currentDifficulty = Difficulty.easy
     var mathMode = CalculationMode.addition
     var hardModeEnabled: Bool = false // RENAME: COMPETITIVE MODE?? Competition , Make Enum (two cases)
@@ -136,8 +138,19 @@ class EasyMathVC: UIViewController {
         calculator = Calculator()
         //soundManager = SoundManager()
         numberRandomizer = NumberRandomizer()
-        playableCards = MathCards(amount: 5)
-        equationCards = MathCards(amount: 3)
+        
+        playableCards = Cards()
+        //playableCards?.cards = addCards(amount: 5)
+        addCards(cards: playableCards!, amount: 5)
+        
+        
+        equationCards = Cards()
+        //equationCards?.cards = addCards(amount: 3)
+        addEquationCards(cards: equationCards!, amount: 3)
+        //addCards(cards: equationCards!, amount: 3)
+        
+        //playableCards = MathCards(amount: 5)
+        //equationCards = MathCards(amount: 3)
 
         playableCardViews.forEach { $0.addGestureRecognizer(tapGesture(target: self, action: #selector(didTapView))) }
         equationCardViews.forEach { $0.addGestureRecognizer(tapGesture(target: self, action: #selector(didTapView))) }
@@ -172,6 +185,43 @@ class EasyMathVC: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         removeInstances()
+    }
+    
+    
+    
+//    func addCards(to cards: Cards<<#T: Card#>>, amount: Int) {
+//
+//    }
+//
+//
+//    func addCards<T: Card>(to cards: [T], amount: Int) {
+//
+//        cards.addCard(T)
+//
+//    }
+    
+//    func addCards(amount: Int) -> [MathCard] {
+//        return Array(repeating: MathCard(), count: amount)
+//    }
+    
+    
+    // Functional programming (returnera funktion?) || returnera array av MathCards?
+//    func addCards<T: Cards>(cards: [T], amount: Int) {
+//        for _ in 1...amount {
+//            cards.addCard(card: T)
+//        }
+//    }
+    
+    func addEquationCards(cards: Cards<EquationCard>, amount: Int) {
+        for _ in 1...amount {
+                 cards.addCard(card: EquationCard())
+        }
+    }
+    
+    func addCards(cards: Cards<MathCard>, amount: Int) {
+        for _ in 1...amount {
+            cards.addCard(card: MathCard())
+        }
     }
     
     
@@ -219,8 +269,11 @@ class EasyMathVC: UIViewController {
     
     func updateEquationCards() {
         
-        if let cards = equationCards?.cards {
-            flipCardsBack(cards: cards, cardViews: equationCardViews)
+        // TODO FILTER AWAY isANswerView Card!!!!!ASDA
+         if let cards = equationCards?.cards {
+            
+            
+            flipCardsBack(cards: cards.filter{!$0.isAnswerView}, cardViews: equationCardViews)
             setNewEquationNumbers()
             setCardLabels(cards: cards, cardLabels: equationCardLabels)
             newCardTransitionFlip(cardViews: equationCardViews)
@@ -260,7 +313,7 @@ class EasyMathVC: UIViewController {
       func setPlayableCardsNumber() {
           
         for (index, n) in getPlayableCardNumbers().enumerated() {
-            playableCards?[index].number = n
+            playableCards?[index]?.number = n
         }
       }
     
@@ -348,7 +401,7 @@ class EasyMathVC: UIViewController {
     
       // Increase or decrease difficulty base on input
       func updateDifficulty(difficulty: Int) -> Difficulty {
-          
+                  
           switch difficulty {
           case 1:
               return .easy
@@ -406,13 +459,20 @@ class EasyMathVC: UIViewController {
     
     
     // TODO: kolla närmare om den kan kombineras med någon annan funktion
-    func flipCardsBack(cards: [MathCard], cardViews: [UIView]) {
+    func flipCardsBack<T: Card>(cards: [T], cardViews: [UIView]) {
         
-        for (index, card) in cards.enumerated() where card.isFlipped && !card.isAnswerView {
+        for (index, card) in cards.enumerated() where card.isFlipped {
 
             cardViews[index].flipView(duration: 0.6)
+            var card = card
             card.isFlipped = false
         }
+        
+//        for (index, card) in cards.enumerated() where card.isFlipped && !card.isAnswerView {
+//
+//                 cardViews[index].flipView(duration: 0.6)
+//                 card.isFlipped = false
+//        }
     }
     
     
@@ -422,7 +482,7 @@ class EasyMathVC: UIViewController {
     
     func returnCard(cardView: UIView) {
         
-        guard let cardPosition = playableCards?[cardView.tag - 1].position else { return }
+        guard let cardPosition = playableCards?[cardView.tag - 1]?.position else { return }
         cardView.returnToPosition(position: cardPosition)
         
         //let view: Int = playableCardViews.filter { $0 == cardView }
@@ -439,7 +499,7 @@ class EasyMathVC: UIViewController {
 
         playableCardViews.enumerated().forEach({ (index, view) in
             
-            if let playableCardPosition = playableCards?[index].position {
+            if let playableCardPosition = playableCards?[index]?.position {
                 view.returnToPosition(position: playableCardPosition)
             }
         })
@@ -493,4 +553,12 @@ class EasyMathVC: UIViewController {
 
 
     
-  
+//
+//func flipCardsBack(cards: [MathCard], cardViews: [UIView]) {
+//
+//    for (index, card) in cards.enumerated() where card.isFlipped && !card.isAnswerView {
+//
+//        cardViews[index].flipView(duration: 0.6)
+//        card.isFlipped = false
+//    }
+//}

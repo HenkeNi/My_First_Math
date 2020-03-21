@@ -63,7 +63,7 @@ extension EasyMathVC {
     
     
     // TOOD: Set nil/Black om card.isAnswerView = true?
-    func setCardImages(cards: [MathCard], cardImages: [UIImageView]) {
+    func setCardImages<T: Card>(cards: [T], cardImages: [UIImageView]) {
 
         sortOutletCollections()
     
@@ -74,11 +74,16 @@ extension EasyMathVC {
     
     
      // TEST; lade till where !cards[index].isAnserView
-    func setCardLabels(cards: [MathCard], cardLabels: [UILabel]) {
+    func setCardLabels<T: Card>(cards: [T], cardLabels: [UILabel]) {
         
-        for (index, label) in cardLabels.enumerated() where !cards[index].isAnswerView {
-            label.text = cards[index].labelText
+        for (index, label) in cardLabels.enumerated() {
+                   label.text = cards[index].labelText
         }
+        
+//        for (index, label) in cardLabels.enumerated() where !cards[index].isAnswerView {
+//            label.text = cards[index].labelText
+//        }
+        
     }
     
         
@@ -159,7 +164,28 @@ extension EasyMathVC {
 
 
 
-
-
+//
+//    func setCardImages(cards: [MathCard], cardImages: [UIImageView]) {
+//
+//        sortOutletCollections()
+//
+//        for (index, cardImage) in cardImages.enumerated() where cardImage.tag == index + 1 {
+//            cardImage.image = UIImage(named: cards[index].imageName)
+//        }
+//    }
+//
+//
+//     // TEST; lade till where !cards[index].isAnserView
+//    func setCardLabels(cards: [MathCard], cardLabels: [UILabel]) {
+//
+//        for (index, label) in cardLabels.enumerated() {
+//                   label.text = cards[index].labelText
+//        }
+//
+////        for (index, label) in cardLabels.enumerated() where !cards[index].isAnswerView {
+////            label.text = cards[index].labelText
+////        }
+//
+//    }
 
 

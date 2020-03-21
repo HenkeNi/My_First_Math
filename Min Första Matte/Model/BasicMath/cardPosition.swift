@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CardPosition {
+struct CardPosition {
     
     var xPosition: Double
     var yPosition: Double
@@ -18,8 +18,6 @@ class CardPosition {
         self.yPosition = yPosition
     }
     
-    deinit {
-        print("CardPosition will be deallocated")
-    }
+
     
 }

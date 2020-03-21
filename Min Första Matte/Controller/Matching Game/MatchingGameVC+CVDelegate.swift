@@ -15,9 +15,13 @@ extension MatchingGameVC: UICollectionViewDelegate {
 
         let cell = collectionView.cellForItem(at: indexPath) as! MatchingGameCell
         let card = cards[indexPath.row]
-
+        
         if tapCardIsPossible && !card.isFlipped {
             cell.flipCard(card: card)
+            
+            cards[indexPath.row].isFlipped = true
+            cell.setCardImage(card: cards[indexPath.row])
+            
             
             trackFlippedCards(card: card)
         }

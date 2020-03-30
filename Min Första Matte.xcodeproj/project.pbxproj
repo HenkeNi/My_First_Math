@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2023F48A2405BA680062B301 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2023F4892405BA670062B301 /* SoundManager.swift */; };
 		2028E79824108BE1005478C1 /* UpdateLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028E79724108BE1005478C1 /* UpdateLevel.swift */; };
-		2028E79A24108CD0005478C1 /* EasyMathVC+UpdateLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028E79924108CD0005478C1 /* EasyMathVC+UpdateLevel.swift */; };
 		2028E79C241329D7005478C1 /* ValidNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028E79B241329D6005478C1 /* ValidNumber.swift */; };
 		2028E7A32416C30B005478C1 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028E7A22416C30A005478C1 /* MusicPlayer.swift */; };
 		2028E7A72416E8DF005478C1 /* bensound-ukulele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2028E7A42416E8DA005478C1 /* bensound-ukulele.mp3 */; };
@@ -25,7 +24,6 @@
 		202CC8CD22A070320038E852 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202CC8CC22A070320038E852 /* Settings.storyboard */; };
 		202CC8D022A082E30038E852 /* TestLab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202CC8CF22A082E30038E852 /* TestLab.storyboard */; };
 		2043014623B57BC7006CB5F6 /* EasyMathVC+panGest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043014523B57BC7006CB5F6 /* EasyMathVC+panGest.swift */; };
-		2043014823B6B080006CB5F6 /* EasyMathVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043014723B6B080006CB5F6 /* EasyMathVC+Layout.swift */; };
 		2043014E23B97E40006CB5F6 /* MatchingGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043014D23B97E40006CB5F6 /* MatchingGameVC.swift */; };
 		2043015223B97E7D006CB5F6 /* MatchingGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2043015123B97E7D006CB5F6 /* MatchingGame.storyboard */; };
 		2043015423B982E8006CB5F6 /* MatchingGameVC+CVDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043015323B982E8006CB5F6 /* MatchingGameVC+CVDelegate.swift */; };
@@ -48,6 +46,10 @@
 		20CA723923E393F7007AE7EA /* CardPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA723823E393F7007AE7EA /* CardPosition.swift */; };
 		20CA723D23E60A01007AE7EA /* Extension+StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA723C23E60A01007AE7EA /* Extension+StringProtocol.swift */; };
 		20CAC09721F0BA20007E3B35 /* MakeViewAppearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAC09621F0BA20007E3B35 /* MakeViewAppearViewController.swift */; };
+		20CDFC13242E9062006DF8B1 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CDFC12242E9061006DF8B1 /* ProgressBar.swift */; };
+		20CDFC15242EBDCC006DF8B1 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CDFC14242EBDCC006DF8B1 /* ProgressBarView.swift */; };
+		20CDFC17242EBDF3006DF8B1 /* ProgressBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20CDFC16242EBDF3006DF8B1 /* ProgressBarView.xib */; };
+		20CDFC3624315570006DF8B1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CDFC3524315570006DF8B1 /* CardView.swift */; };
 		20D362B821A75E8900931C6C /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D362B721A75E8900931C6C /* TestViewController.swift */; };
 		20D362BA21A9EF5800931C6C /* AdditionIntermediateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */; };
 		20D663B523DD0E3A0020F5AC /* EasyMathVC+Hardmode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D663B423DD0E390020F5AC /* EasyMathVC+Hardmode.swift */; };
@@ -75,7 +77,6 @@
 /* Begin PBXFileReference section */
 		2023F4892405BA670062B301 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		2028E79724108BE1005478C1 /* UpdateLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLevel.swift; sourceTree = "<group>"; };
-		2028E79924108CD0005478C1 /* EasyMathVC+UpdateLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+UpdateLevel.swift"; sourceTree = "<group>"; };
 		2028E79B241329D6005478C1 /* ValidNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidNumber.swift; sourceTree = "<group>"; };
 		2028E7A22416C30A005478C1 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		2028E7A42416E8DA005478C1 /* bensound-ukulele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-ukulele.mp3"; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 		202CC8CC22A070320038E852 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		202CC8CF22A082E30038E852 /* TestLab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestLab.storyboard; sourceTree = "<group>"; };
 		2043014523B57BC7006CB5F6 /* EasyMathVC+panGest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+panGest.swift"; sourceTree = "<group>"; };
-		2043014723B6B080006CB5F6 /* EasyMathVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+Layout.swift"; sourceTree = "<group>"; };
 		2043014D23B97E40006CB5F6 /* MatchingGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingGameVC.swift; sourceTree = "<group>"; };
 		2043015123B97E7D006CB5F6 /* MatchingGame.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MatchingGame.storyboard; sourceTree = "<group>"; };
 		2043015323B982E8006CB5F6 /* MatchingGameVC+CVDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchingGameVC+CVDelegate.swift"; sourceTree = "<group>"; };
@@ -116,6 +116,10 @@
 		20CA723823E393F7007AE7EA /* CardPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardPosition.swift; path = BasicMath/CardPosition.swift; sourceTree = "<group>"; };
 		20CA723C23E60A01007AE7EA /* Extension+StringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+StringProtocol.swift"; sourceTree = "<group>"; };
 		20CAC09621F0BA20007E3B35 /* MakeViewAppearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeViewAppearViewController.swift; sourceTree = "<group>"; };
+		20CDFC12242E9061006DF8B1 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		20CDFC14242EBDCC006DF8B1 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		20CDFC16242EBDF3006DF8B1 /* ProgressBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBarView.xib; sourceTree = "<group>"; };
+		20CDFC3524315570006DF8B1 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		20D362B721A75E8900931C6C /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		20D362B921A9EF5800931C6C /* AdditionIntermediateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdditionIntermediateVC.swift; path = ../Controller/AdditionIntermediateVC.swift; sourceTree = "<group>"; };
 		20D663B423DD0E390020F5AC /* EasyMathVC+Hardmode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyMathVC+Hardmode.swift"; sourceTree = "<group>"; };
@@ -179,9 +183,7 @@
 				20F7069322FBA9AD00FE0183 /* EasyMathVC.swift */,
 				20B88F0423C4CE540079B576 /* EasyMathVC+HandleAnswer.swift */,
 				2043014523B57BC7006CB5F6 /* EasyMathVC+panGest.swift */,
-				2043014723B6B080006CB5F6 /* EasyMathVC+Layout.swift */,
 				20D663B423DD0E390020F5AC /* EasyMathVC+Hardmode.swift */,
-				2028E79924108CD0005478C1 /* EasyMathVC+UpdateLevel.swift */,
 			);
 			path = "Basic Math";
 			sourceTree = "<group>";
@@ -266,7 +268,9 @@
 			isa = PBXGroup;
 			children = (
 				20C19EF32305929B0009242D /* AlertView.xib */,
+				20CDFC16242EBDF3006DF8B1 /* ProgressBarView.xib */,
 				20C19EF52305D5D10009242D /* AlertView.swift */,
+				20CDFC14242EBDCC006DF8B1 /* ProgressBarView.swift */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -335,6 +339,8 @@
 		20F73D59229700B9008A8071 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				20CDFC3524315570006DF8B1 /* CardView.swift */,
+				20CDFC12242E9061006DF8B1 /* ProgressBar.swift */,
 				20E4D32C230136A5005D2364 /* Cells */,
 				20C19EF02304C4DD0009242D /* Extensions */,
 				20F2709022A06C4800917EBF /* Storyboards */,
@@ -431,6 +437,7 @@
 				2043015223B97E7D006CB5F6 /* MatchingGame.storyboard in Resources */,
 				20C19EF42305929B0009242D /* AlertView.xib in Resources */,
 				20F88413234511C2004E02D5 /* CardGame.storyboard in Resources */,
+				20CDFC17242EBDF3006DF8B1 /* ProgressBarView.xib in Resources */,
 				20A8BA26218DD1AF003FEA75 /* Assets.xcassets in Resources */,
 				20A8BA24218DD1AE003FEA75 /* Main.storyboard in Resources */,
 			);
@@ -453,7 +460,6 @@
 				20F88415234512D1004E02D5 /* CardGameVC.swift in Sources */,
 				2029C0D323BAB3770095C059 /* Card.swift in Sources */,
 				2043014623B57BC7006CB5F6 /* EasyMathVC+panGest.swift in Sources */,
-				2028E79A24108CD0005478C1 /* EasyMathVC+UpdateLevel.swift in Sources */,
 				20F7069622FCE83C00FE0183 /* Extension+Colors.swift in Sources */,
 				20F73D4B22940437008A8071 /* Extension+UIView.swift in Sources */,
 				20F73D492293F364008A8071 /* Calculator.swift in Sources */,
@@ -470,7 +476,6 @@
 				2028E79C241329D7005478C1 /* ValidNumber.swift in Sources */,
 				20D6B1702426C2B10078A8E1 /* Equation.swift in Sources */,
 				2043015A23B984B2006CB5F6 /* MatchingGameCell.swift in Sources */,
-				2043014823B6B080006CB5F6 /* EasyMathVC+Layout.swift in Sources */,
 				2080589C2328C7C9005D53E1 /* NumberRandomizer.swift in Sources */,
 				20CA723D23E60A01007AE7EA /* Extension+StringProtocol.swift in Sources */,
 				20EB47BB23A1AF8B00124FC7 /* PanGestVC.swift in Sources */,
@@ -481,14 +486,17 @@
 				2029C0DD23BF8D8A0095C059 /* MatchingCard.swift in Sources */,
 				20D6B16E2426BE890078A8E1 /* EquationCard.swift in Sources */,
 				20CA723923E393F7007AE7EA /* CardPosition.swift in Sources */,
+				20CDFC15242EBDCC006DF8B1 /* ProgressBarView.swift in Sources */,
 				20F7069422FBA9AD00FE0183 /* EasyMathVC.swift in Sources */,
 				20D6B16C24265AF30078A8E1 /* Cards.swift in Sources */,
+				20CDFC13242E9062006DF8B1 /* ProgressBar.swift in Sources */,
 				2028E79824108BE1005478C1 /* UpdateLevel.swift in Sources */,
 				20623CD223F31F5000983780 /* Puzzle.swift in Sources */,
 				20D362B821A75E8900931C6C /* TestViewController.swift in Sources */,
 				20623CCE23F31E9D00983780 /* PuzzlePiece.swift in Sources */,
 				2029C0D123BAB2BB0095C059 /* MathCard.swift in Sources */,
 				208DECFE23BAAD6300F9D214 /* MatchingGameVC+CVFlowLayout.swift in Sources */,
+				20CDFC3624315570006DF8B1 /* CardView.swift in Sources */,
 				20F8841F2346A309004E02D5 /* PuzzleGameVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

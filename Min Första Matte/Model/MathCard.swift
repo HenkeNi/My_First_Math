@@ -11,26 +11,15 @@ import Foundation
 class MathCard: Card {
 
     @ValidNumber var number: Int
-    var position: CardPosition?
+    var position: CardPosition? // TODO: LÄGG I CARDVIEW ISTÄLLET
     var isFlipped = false
-    //var isAnswerView = false
-
-//    var labelText: String {
-//        return number.spellOutNumber()
-//    }
        
     var imageName: String {
         return isFlipped ? "Number\(number)Back" : "Number\(number)"
-        //let imgName = isFlipped ? "Number\(number)Back" : "Number\(number)"
-       // return !isAnswerView ? imgName : "NumberQuestion"
     }
     
     init(number: Int = 0) {
         self.number = number
-    }
-    
-    deinit {
-        print("MathCard will be deallocated")
     }
     
 }

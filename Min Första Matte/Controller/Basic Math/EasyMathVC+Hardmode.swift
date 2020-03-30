@@ -8,29 +8,37 @@
 
 import UIKit
 
+// MAKe a class?
 extension EasyMathVC {
     
     
     // enableHardmode
        func setupHardmodeConfigurations() {
-           refillHalfProgress()
+           //refillHalfProgress()
            createTimeInterval()
            timerLabel.isHidden = false
        }
-    
+    func updateHardmodeScore(isCorrectAnswer: Bool) {
+         
+         if isCorrectAnswer {
+             score += currentDifficulty.rawValue * 5
+         } else {
+             score -= currentDifficulty.rawValue * 2
+         }
+     }
     
     @objc func progressBarSlowDecrease() {
          
         let decreaseSpeed: CGFloat = CGFloat(currentDifficulty.rawValue) * 0.025
         print("dec speed \(decreaseSpeed)")
-        progressBarWidth.constant = EasyMathVC.decreaseProgress(progressBarWidth.constant, progressBarContainer.frame.width, decreaseSpeed)
+        //progressBarWidth.constant = EasyMathVC.decreaseProgress(progressBarWidth.constant, progressBarContainer.frame.width, decreaseSpeed)
          //        progressBarWidth.constant = EasyMathVC.slowDecreaseProgress(progressBarWidth.constant, progressBarContainer.frame.width, 0.1) // 5 for smoother but harder to check for 0
          
          UIView.animate(withDuration: 1) {
              self.view.layoutIfNeeded()
          }
          
-         checkForNoProgressBar()
+         //checkForNoProgressBar()
      }
      
      // TODO: STOP TIMER, put Timer in the top var timer: Timer?
@@ -55,28 +63,15 @@ extension EasyMathVC {
         print("Your score was \(score)")
     }
     
-    
     func decreaseDifficulty() {
-          currentDifficulty = updateDifficulty(difficulty: currentDifficulty.rawValue - 1)
-          //setupNextEquation()
-          updateAnswerView()
-          updateEquationCards()
-          updatePlayableCards()
-          //setPlayableCardsNumber()
-          newCardTransitionFlip(cardViews: playableCardViews)
-        
-        if let playableCards = playableCards?.cards {
-            setCardImages(cards: playableCards, cardImages: playableCardImages)
-        }
-          returnCards()
-          refillHalfProgress()
-      }
-      
-      
-      func checkForNoProgressBar() {
-          
-          if progressBarWidth.constant.rounded() <= 0 && currentDifficulty.rawValue > 1 {
-              decreaseDifficulty()
+              currentDifficulty = updateDifficulty(difficulty: currentDifficulty.rawValue - 1)
           }
-      }
+      
+      
+//      func checkForNoProgressBar() {
+//
+//          if progressBarWidth.constant.rounded() <= 0 && currentDifficulty.rawValue > 1 {
+//              decreaseDifficulty()
+//          }
+//      }
 }

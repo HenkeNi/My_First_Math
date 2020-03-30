@@ -14,7 +14,6 @@ extension EasyMathVC {
   
     @objc func didTapView(sender: UITapGestureRecognizer) {
 
-        print("TAPPING")
         guard let cardView = sender.view else { return }
         
         SoundManager.shared.playSound(soundName: "Woosh")
@@ -66,9 +65,8 @@ extension EasyMathVC {
             if let index = equationCards?.answerViewIndex, handledCard.frame.intersects(equationCardViews[index].frame) {
                 validateChosenAnswer(currentView: handledCard, answerView: equationCardViews[index])
             } else {
-                print("HERE?!?!?!")
-                returnCard(cardView: handledCard)
-                //returnCards()
+                //returnCard(cardView: handledCard)
+                returnCards()
             }
         default:
             break

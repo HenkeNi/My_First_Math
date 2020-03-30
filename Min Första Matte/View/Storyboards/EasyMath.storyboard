@@ -278,33 +278,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="run-8I-PBr">
                                 <rect key="frame" x="20" y="750" width="1154" height="48"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVg-lZ-pxf">
-                                        <rect key="frame" x="5" y="5" width="1144" height="38"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rXP-Fd-slp">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="38"/>
-                                                <color key="backgroundColor" red="0.33725490200000002" green="0.78823529410000004" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" id="Bs5-eI-JY0"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="rXP-Fd-slp" firstAttribute="top" secondItem="XVg-lZ-pxf" secondAttribute="top" id="UBQ-nx-v2S"/>
-                                            <constraint firstItem="rXP-Fd-slp" firstAttribute="leading" secondItem="XVg-lZ-pxf" secondAttribute="leading" id="mit-MN-Nf3"/>
-                                            <constraint firstAttribute="bottom" secondItem="rXP-Fd-slp" secondAttribute="bottom" id="snD-qg-cUF"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="XVg-lZ-pxf" firstAttribute="top" secondItem="run-8I-PBr" secondAttribute="top" constant="5" id="9Ro-bd-lLc"/>
-                                    <constraint firstItem="XVg-lZ-pxf" firstAttribute="leading" secondItem="run-8I-PBr" secondAttribute="leading" constant="5" id="ITQ-Co-LU0"/>
-                                    <constraint firstAttribute="trailing" secondItem="XVg-lZ-pxf" secondAttribute="trailing" constant="5" id="XPR-yO-KAK"/>
-                                    <constraint firstAttribute="bottom" secondItem="XVg-lZ-pxf" secondAttribute="bottom" constant="5" id="YLg-pp-uwJ"/>
-                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWy-7T-omr">
                                 <rect key="frame" x="540" y="752" width="114" height="40"/>
@@ -321,7 +295,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hand Copy 2" translatesAutoresizingMaskIntoConstraints="NO" id="Vns-qM-Hjc">
+                            <imageView hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hand Copy 2" translatesAutoresizingMaskIntoConstraints="NO" id="Vns-qM-Hjc">
                                 <rect key="frame" x="1087" y="268" width="87" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -392,9 +366,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="progressBarContainer" destination="XVg-lZ-pxf" id="4Sw-tw-Rka"/>
-                        <outlet property="progressBarView" destination="rXP-Fd-slp" id="bsG-zO-LXL"/>
-                        <outlet property="progressBarWidth" destination="Bs5-eI-JY0" id="ApY-FT-FnC"/>
                         <outlet property="scoreLabel" destination="SWy-7T-omr" id="eU6-9H-d97"/>
                         <outlet property="soundManagerImage" destination="Vns-qM-Hjc" id="yvH-LV-NqO"/>
                         <outlet property="timerLabel" destination="fax-ho-xEr" id="J6v-5b-whc"/>

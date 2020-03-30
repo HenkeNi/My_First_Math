@@ -33,9 +33,9 @@ class AlertView: UIView {
     }
     
     private func commonInit() {
-        checkImage.roundedCorners(myRadius: 2, borderWith: nil, myColor: .black)
+        checkImage.roundedCorners(myRadius: 2, borderWidth: nil, myColor: .black)
         
-        alertView.roundedCorners(myRadius: 10, borderWith: nil, myColor: nil)
+        alertView.roundedCorners(myRadius: 10, borderWidth: nil, myColor: nil)
         
         parentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         parentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

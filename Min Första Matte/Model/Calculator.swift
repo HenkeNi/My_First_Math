@@ -13,8 +13,9 @@ enum CalculationMode: String {
     case subtraction = "Subtraction"
     case multiplication = "Multiplication"
     case division = "Division"
-    
+
 }
+
 
 class Calculator {
     

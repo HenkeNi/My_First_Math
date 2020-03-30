@@ -9,83 +9,19 @@
 import UIKit
 import AVFoundation
 
-// ADD Animations!, card shkaing etc.
-// TESTA SKAPA EN DELAYTIMER, tar in antal sekunder samt en completion handler!
 
-
-// Completion handler istället för delay?
-// CARD SHADOWS plus rounded corners?
-
-// LÄGG TILL MÅLAR BOK - fyll i siffror... Kunna använda sina egna siffror?!
-
-// WrongImage, aningen ha numberQuestion bakom eller ha två bilder (vissa båda) - Vill kunna se frågetecknet bakom krysset....
-
-// SCORE KLASS?
-
-// TODO: REPLACE DISPATCHQUEUE DELAY WIH A CUSTOM ANIMATION?? (STARTS AFTER 2 Seconds) -> Completion Handler (enable Card interaction)
- 
-
-// Disable movemnet equationcards (inte kunna snurra på dem!! efter rätt svar (tills knappen trycks))
-// låt baren gå upp i toppen innan den går ner till 0
-
-// Ingen popup med knapp?! Istället en popup som vissar rätt eller fel! Bara popup med knapp när man klarat lvl
-
-// Update score - vid fel svar... (vid hardMode updatera scorelabel efter kortet åkt tillbaka..)
-// Return card funktionen kallas på för tidigt när man updaterar scoreLabel eller timeLabel
-
-// HARDMODE:
-// End condition: efter timers slut får man se sin poäng (samt highscore lista??) -> välja gå tillbaka eller börja om
-
-
-// pairable protocol med?
-
-
-
-
-// Lägg en summerize function i MathCars eller protocol till Cards?? Räknar ihop talen (skicka in räknesätt)?!?!? TÄnka på - använda det till att hjälpa till vid uträkningar alt. se om något tal i imp lvl stämmer
-
-// Score/Highscore
-// TODO: Fixa highscore (olika för dem olika räknesätten) -> Fixa speciell view för highscores!
-// fixa score (mer beroende på svårighets grad)
-
-// SCORE BARA FÖR HARDMODE???
-// TODO: highscore lista!, en för hardCore en för vanligt!
-
-
-// End Condition: Efter Impossible -> Alert (Du har klarat spelet: 1. Gå tillbaka 2. Fortsätt spela)
-
-// I MathCards lägg funktioner för uträkningar??
-// I MathCard klassen lägg till om addision, div etc... som property?
-
-// KANSKE: FÖR MULTIplication: ENDAST HA RANDOMERADE NUMMER? istället för 1...5 eller 6...10!
-
-// Maybe implement: CardViews will automatically flip back after being flipped (after small delay)??
-// Maybe implement: lvl where you drag up two cards either next to each other (2&1 + 2 = 5 ) or like (? + ? = 5) || (5 + ? = ?) etc.
-
-// Progressbar -standalone class?
-
-
-// FÖRSÖK ANVÄNDA:
-// for-case & if-case
-// Nil coalescing operator (optionalA ?? defaultValue)
-// TODO: Alert Rutan berättar när man kommit till ny nivå! -> KAnske, knapp man måste trycka först innan man går vidare?? Kanske fyverkerieffekter
-// Använd structs istället för klassen
-// Läggga views, imageVeiws etc. i klassen?
-
-
+// TODO: EGEN FIL FÖR CONSTANTER
 let nxtLvlNotificationKey = "co.HenrikJangefelt.nxtLvl"
 
+// TODO: StackView för CardView? 
 
 // TODO: RENAME: BasicMathVC? || EquationsVC || MathEquationsVC
 class EasyMathVC: UIViewController {
     
-    @IBOutlet weak var progressBarContainer: UIView!
-    @IBOutlet weak var progressBarView: UIView!
-    @IBOutlet weak var progressBarWidth: NSLayoutConstraint!
-
     @IBOutlet var operatorCardViews: [UIView]! // UIViews; Math operator + Equal sign
     @IBOutlet var operatorCardImages: [UIImageView]!
     
+    // TODO: Create a cardView class (subview of UIView)??
     @IBOutlet var equationCardViews: [UIView]! // UIViews; Numbers in equation + View for Answer
     @IBOutlet var equationCardImages: [UIImageView]!
     @IBOutlet var equationCardLabels: [UILabel]!
@@ -96,8 +32,8 @@ class EasyMathVC: UIViewController {
     
     @IBOutlet weak var scoreLabel: UILabel! // Gör i kod?
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var soundManagerImage: UIImageView! // TODO: Settings?
     
-    @IBOutlet weak var soundManagerImage: UIImageView!
     enum Difficulty: Int, CaseIterable {
         case easy = 1
         case medium
@@ -115,15 +51,15 @@ class EasyMathVC: UIViewController {
     
     var equationCards: Cards<EquationCard>?
     var playableCards: Cards<MathCard>?
-    //var equationCards: MathCards?
-    //var playableCards: MathCards?
-    
     var currentDifficulty = Difficulty.easy
     var mathMode = CalculationMode.addition
+    
+    
     var hardModeEnabled: Bool = false // RENAME: COMPETITIVE MODE?? Competition , Make Enum (two cases)
     //var soundManager: SoundManager?
     var calculator: Calculator?
     var numberRandomizer: NumberRandomizer?
+    var progressBar: ProgressBar?
     var score = 0 {
         didSet {
             scoreLabel.text = "\(score)"
@@ -140,17 +76,10 @@ class EasyMathVC: UIViewController {
         numberRandomizer = NumberRandomizer()
         
         playableCards = Cards()
-        //playableCards?.cards = addCards(amount: 5)
-        addCards(cards: playableCards!, amount: 5)
-        
-        
         equationCards = Cards()
-        //equationCards?.cards = addCards(amount: 3)
-        addEquationCards(cards: equationCards!, amount: 3)
-        //addCards(cards: equationCards!, amount: 3)
-        
-        //playableCards = MathCards(amount: 5)
-        //equationCards = MathCards(amount: 3)
+        playableCards?.cards = [MathCard(), MathCard(), MathCard(), MathCard(), MathCard()]
+        equationCards?.cards = [EquationCard(), EquationCard(), EquationCard()]
+   
 
         playableCardViews.forEach { $0.addGestureRecognizer(tapGesture(target: self, action: #selector(didTapView))) }
         equationCardViews.forEach { $0.addGestureRecognizer(tapGesture(target: self, action: #selector(didTapView))) }
@@ -161,14 +90,17 @@ class EasyMathVC: UIViewController {
         createObserver()
         
         if hardModeEnabled { setupHardmodeConfigurations() }
+        
+        createProgressBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        setOperatorImages(mathMode: mathMode)
-        playableCardViews.forEach { $0.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray) }
-        equationCardViews.forEach { $0.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray) }
-        operatorCardViews.forEach { $0.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray) }
+        operatorCardImages[0].image = UIImage(named: mathMode.rawValue)
+        
+        playableCardViews.forEach { $0.roundedCorners(borderWidth: 5, myColor: .darkGray) }
+        equationCardViews.forEach { $0.roundedCorners(borderWidth: 5, myColor: .darkGray) }
+        operatorCardViews.forEach { $0.roundedCorners(borderWidth: 5, myColor: .darkGray) }
         sortOutletCollections()
         
         title = mathMode.rawValue // Sets title based on CalculationMode enum
@@ -176,11 +108,21 @@ class EasyMathVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
 
-        MusicPlayer.shared.startBackgroundMusic(forResource: "bensound-ukulele", songFormat: "mp3")
+       // MusicPlayer.shared.startBackgroundMusic(forResource: "bensound-ukulele", songFormat: "mp3")
         
         if let playableCards = playableCards?.cards {
             saveViewsPosition(views: playableCardViews, cards: playableCards) // Saves the original position of the bottom cards
         }
+        
+        
+        let card = CardView(frame: CGRect(x: 10,
+                                          y: 10,
+                                          width: 200,
+                                          height: 200),
+                                          imgName: "Number1",
+                                          labelText: "One")
+        view.addSubview(card)
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -189,42 +131,37 @@ class EasyMathVC: UIViewController {
     
     
     
-//    func addCards(to cards: Cards<<#T: Card#>>, amount: Int) {
-//
-//    }
-//
-//
-//    func addCards<T: Card>(to cards: [T], amount: Int) {
-//
-//        cards.addCard(T)
-//
-//    }
-    
-//    func addCards(amount: Int) -> [MathCard] {
-//        return Array(repeating: MathCard(), count: amount)
-//    }
+    func createProgressBar() {
+        let width = Int(view.frame.size.width - 100)
+        let height = Int(view.frame.size.height / 20)
+        let xPosition = 50
+        let yPosition = Int(view.frame.size.height) - (height + 20)
+        
+        progressBar = ProgressBar(frame: CGRect(x: xPosition, y: yPosition, width: width, height: height))
+        
+        if let progressBar = progressBar {
+            view.addSubview(progressBar)
+        }
+    }
     
     
-    // Functional programming (returnera funktion?) || returnera array av MathCards?
-//    func addCards<T: Cards>(cards: [T], amount: Int) {
+    
+    // TODO: REMOVE / COMBINE?!
+//    func addMathCards(cards: Cards<MathCard>, amount: Int) {
 //        for _ in 1...amount {
-//            cards.addCard(card: T)
+//            cards.addCard(card: MathCard())
+//        }
+//    }
+//
+//    func addEquationCards(cards: Cards<EquationCard>, amount : Int) {
+//        for _ in 1...amount {
+//            cards.addCard(card: EquationCard())
 //        }
 //    }
     
-    func addEquationCards(cards: Cards<EquationCard>, amount: Int) {
-        for _ in 1...amount {
-                 cards.addCard(card: EquationCard())
-        }
-    }
     
-    func addCards(cards: Cards<MathCard>, amount: Int) {
-        for _ in 1...amount {
-            cards.addCard(card: MathCard())
-        }
-    }
-    
-    
+
+  
     func sortOutletCollections() {
         playableCardViews.sort  { $0.tag < $1.tag }
         playableCardImages.sort { $0.tag < $1.tag }
@@ -254,11 +191,16 @@ class EasyMathVC: UIViewController {
         updateAnswerView()
         updatePlayableCards()
         updateEquationCards()
+
         returnCards()
         disableCardInteractions(views: playableCardViews, shouldDisable: false)
         disableCardInteractions(views: equationCardViews, shouldDisable: false)
         //updateScoreLabel()
     }
+    
+    
+    
+    
     
     
     func updateAnswerView() {
@@ -296,8 +238,11 @@ class EasyMathVC: UIViewController {
     // randomAnswerViewIndex prevents flip if progressbar is first above 0 then 0 after wrong answer..
     func flipNewPlayableCards() {
         //if randomAnswerViewIndex != nil && progressBarWidth.constant == 0 || currentDifficulty == .impossible {
+        guard let progressBar = progressBar else {
+            return
+        }
         
-        if progressBarWidth.constant == 0 || currentDifficulty == .impossible || mathMode == .multiplication || mathMode == .division {
+        if progressBar.progressIsFull || currentDifficulty == .impossible || mathMode == .multiplication || mathMode == .division {
             newCardTransitionFlip(cardViews: playableCardViews)
         }
 //        if randomAnswerViewIndex == nil && progressBarWidth.constant == 0 || currentDifficulty == .impossible {
@@ -306,16 +251,21 @@ class EasyMathVC: UIViewController {
     }
    
     
+    
+//    func createCardView() -> UIView {
+//        
+//    }
+  
 
     
     // TODO: GÖR I KLASSEN ISTÄLLET???
      // Sets correct number of playableCards based on level
-      func setPlayableCardsNumber() {
+    func setPlayableCardsNumber() {
           
-        for (index, n) in getPlayableCardNumbers().enumerated() {
-            playableCards?[index]?.number = n
+        for (index, number) in getPlayableCardNumbers().enumerated() {
+            playableCards?[index] = MathCard(number: number)
         }
-      }
+    }
     
     
     // LÄGG I KLASSEN???
@@ -340,6 +290,77 @@ class EasyMathVC: UIViewController {
     }
     
     
+  
+    
+    
+   // SUbclass of UIImageview??!?
+    func displayWrongAnswerImage() {
+        guard let index = equationCards?.answerViewIndex else { return }
+              
+              let answerView = equationCardViews[index]
+              let wrongImage = UIImageView(frame: CGRect(x: 0,
+                                                         y: 0,
+                                                         width: answerView.frame.size.width,
+                                                         height: answerView.frame.size.height))
+              wrongImage.image = UIImage(named: "WrongAnswer")
+              answerView.addSubview(wrongImage)
+        hideWrongAnswerImage(wrongImage: wrongImage)
+    }
+    
+    
+    // TODO: Keyframes?? Låt gå en stund innan de fadas bort...
+    func hideWrongAnswerImage(wrongImage: UIImageView) {
+        
+        UIView.animate(withDuration: 1.2, animations: {
+            wrongImage.alpha = 0
+        }) { (finished: Bool) in
+            print("FINISHED!")
+            wrongImage.removeFromSuperview()
+        }
+        
+    }
+    
+    
+    
+    func placeCardInAnswerView(currentView: UIView, answerView: UIView) {
+         
+         SoundManager.shared.playSound(soundName: "Click")
+                        
+         UIView.animate(withDuration: 0.2) {
+             currentView.center = answerView.center // Position the draggedCard in the answerView
+         }
+     }
+    
+    
+    
+    // TODO: Make score class!
+    func updateNormalScore() {
+        
+        score += currentDifficulty.rawValue * 5
+    }
+    
+    
+    
+    // TODO : FIX difficulty increase (remove function?)
+    // TODO: SPlit in two functions??
+     func checkProgress() {
+         
+        guard let progressBar = progressBar else { return }
+        
+        // If progressBar is "full"
+        if progressBar.progressIsFull {
+            
+            // If not highest level
+            if currentDifficulty.rawValue < Difficulty.allCases.count {
+                
+                // Increase lvl!
+               currentDifficulty = updateDifficulty(difficulty: currentDifficulty.rawValue + 1)
+               //MusicPlayer.shared.playSoundEffect(soundEffect: "Cheering", songFormat: "wav")
+               SoundManager.shared.playSound(soundName: "Cheering")
+            }
+        }
+     }
+    
 
     
     func getRandomizedEquationNumbers() -> [Int]? {
@@ -350,6 +371,88 @@ class EasyMathVC: UIViewController {
             
         return numberRandomizer.randomizeNumbers(playableCards: numbers, answerIndex: index, arithmetic: mathMode)
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func answerIsCorrect() {
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            
+            self.hardModeEnabled ? self.updateNextLevel() : AlertView.instance.showAlert(title: "Correct!", message: "That is the rigth number!!", alertType: .success)
+        }
+    
+        print("Score: \(score)")
+    }
+    
+    
+    
+      func handleAnswer(answerCorrect: Bool, currentView: UIView) {
+             
+            disableCardInteractions(views: playableCardViews, shouldDisable: true)
+            disableCardInteractions(views: equationCardViews, shouldDisable: true)
+             
+            answerCorrect ? answerIsCorrect() : answerIsIncorrect(cardView: currentView)
+            
+            let newValue = answerCorrect ? self.progressBar?.increaseProgress(amount: 100.0) : self.progressBar?.decreaseProgress(amount: 100.0)
+
+    //        UIView.animate(withDuration: 1.2) {
+    //            self.view.layoutIfNeeded()
+    //
+    //        }
+             checkProgress()
+                     
+             UIView.animate(withDuration: 1) {
+                 self.view.layoutIfNeeded()
+             }
+         }
+    
+    
+    
+    func answerIsIncorrect(cardView: UIView) {
+         
+                 
+         DispatchQueue(label: "serial").asyncAfter(deadline: DispatchTime.now() + 0.75) {
+             
+             DispatchQueue.main.async {
+                                 
+                 //self.returnCard(cardView: cardView)
+                 self.returnCards() // FIX ONLY RESET CURRENT CARD?
+                 self.displayWrongAnswerImage()
+                 self.disableCardInteractions(views: self.playableCardViews, shouldDisable: false)
+                 self.disableCardInteractions(views: self.equationCardViews, shouldDisable: false)
+             }
+         }
+         
+         UIView.animate(withDuration: 1) {
+             self.view.layoutIfNeeded()
+             //self.scoreLabel.text = "Score: \(self.score)"
+         }
+     }
+    
+    
+    
+    // Check if dragged card is the correct one
+      func validateChosenAnswer(currentView: UIView, answerView: UIView) {
+
+          guard let playableCards = playableCards, let equationCards = equationCards, let index = equationCards.answerViewIndex else { return }
+
+          placeCardInAnswerView(currentView: currentView, answerView: answerView)
+
+          // If dragged card (number) is the same as equation card (answerView/number)
+          handleAnswer(answerCorrect:  playableCards[currentView.tag - 1]?.number == equationCards[index]?.number, currentView: currentView)
+      }
+    
+    
+    
+    
     
 
 
@@ -449,6 +552,38 @@ class EasyMathVC: UIViewController {
     }
     
     
+       // TEST; lade till where !cards[index].isAnserView
+        func setCardLabels<T: Card>(cards: [T], cardLabels: [UILabel]) {
+            
+            for (index, label) in cardLabels.enumerated() {
+                label.text = cards[index].labelText
+            }
+            
+    //        for (index, label) in cardLabels.enumerated() where !cards[index].isAnswerView {
+    //            label.text = cards[index].labelText
+    //        }
+            
+        }
+    
+    
+    
+
+    
+    
+        // TOOD: Set nil/Black om card.isAnswerView = true?
+        func setCardImages<T: Card>(cards: [T], cardImages: [UIImageView]) {
+
+            sortOutletCollections()
+        
+            for (index, cardImage) in cardImages.enumerated() where cardImage.tag == index + 1 {
+                cardImage.image = UIImage(named: cards[index].imageName)
+            }
+        }
+        
+        
+  
+    
+    
     // Flips cards (not answerView) when their numbers changes to new values (new image)
     func newCardTransitionFlip(cardViews: [UIView]) {
         
@@ -477,47 +612,28 @@ class EasyMathVC: UIViewController {
     
     
     
-    // Resets the cardViews to their original position
-    // returnPlayableCardViewsPosition
     
-    func returnCard(cardView: UIView) {
-        
-        guard let cardPosition = playableCards?[cardView.tag - 1]?.position else { return }
-        cardView.returnToPosition(position: cardPosition)
-        
-        //let view: Int = playableCardViews.filter { $0 == cardView }
-        
-        
-//        for (index, view) in playableCardViews.enumerated() {
-//            if cardView == view {
-//                cardView.returnToPosition(position: playableCards?[index].position)
-//            }
-//        }
-    }
     
+    // TODO: Lägg logik för return och save i CardView
     func returnCards() {
-
-        playableCardViews.enumerated().forEach({ (index, view) in
-            
-            if let playableCardPosition = playableCards?[index]?.position {
-                view.returnToPosition(position: playableCardPosition)
-            }
-        })
-    }
     
+            playableCardViews.enumerated().forEach({ (index, view) in
+    
+                if let playableCardPosition = playableCards?[index]?.position {
+                    view.returnToPosition(position: playableCardPosition)
+                }
+            })
+        }
+
+    
+
     // Saves original position for cards
     // Put in extension of UIView (save view position??)
     func saveViewsPosition(views: [UIView], cards: [MathCard]) {
-                
-         
-        for view in views.enumerated() {
-            cards[view.offset].position = CardPosition(xPosition: Double(view.element.center.x), yPosition: Double(view.element.center.y))
+                        
+        for (index, view) in views.enumerated() {
+            cards[index].position = CardPosition(xPosition: Double(view.center.x), yPosition: Double(view.center.y))
         }
-        
-//        for (index, view) in views.enumerated() {
-//
-//            cards[index].position = CardPosition(xPosition: Double(view.center.x), yPosition: Double(view.center.y))
-//        }
     }
     
     
@@ -525,6 +641,7 @@ class EasyMathVC: UIViewController {
     func disableCardInteractions(views: [UIView], shouldDisable: Bool) {
         views.forEach { $0.isUserInteractionEnabled = shouldDisable ? false : true }
     }
+    
     
     func removeInstances() {
         NotificationCenter.default.removeObserver(self)
@@ -536,9 +653,11 @@ class EasyMathVC: UIViewController {
         equationCards = nil
     }
     
+    
     deinit {
         print("EasyMathVC was deallocated")
     }
+    
     
     @IBAction func goBackPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -562,3 +681,37 @@ class EasyMathVC: UIViewController {
 //        card.isFlipped = false
 //    }
 //}
+
+
+
+
+
+
+
+ // func returnCard(cardView: UIView) {
+//
+//        guard let cardPosition = playableCards?[cardView.tag - 1]?.position else { return }
+//        cardView.returnToPosition(position: cardPosition)
+//
+//        //let view: Int = playableCardViews.filter { $0 == cardView }
+//
+////        for (index, view) in playableCardViews.enumerated() {
+////            if cardView == view {
+////                cardView.returnToPosition(position: playableCards?[index].position)
+////            }
+////        }
+//    }
+
+
+
+//
+
+  
+//    // Resets the cardViews to their original position
+//    func resetCardView(views: UIView..., positions: [CardPosition]) {
+//        views.enumerated().forEach { (index, view) in
+//            view.returnToPosition(position: positions[index]) }
+//    }
+// func resetCardView(view: UIView, position: CardPosition) {
+////        view.returnToPosition(position: position[index])
+////    }

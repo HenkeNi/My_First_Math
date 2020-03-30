@@ -11,13 +11,13 @@ import UIKit
 extension UIView {
     
     
-    func roundedCorners(myRadius : CGFloat, borderWith: CGFloat?, myColor : UIColor?) {
+    func roundedCorners(myRadius: CGFloat = 20, borderWidth: CGFloat?, myColor: UIColor?) {
         
         self.layer.cornerRadius = self.frame.size.height/myRadius
         //.clipsToBounds = true
         self.layer.masksToBounds = true
        
-        if let border = borderWith {
+        if let border = borderWidth {
             self.layer.borderWidth = 2
         }
         
@@ -49,9 +49,10 @@ extension UIView {
             self.center.y = CGFloat(position.yPosition)
             
         }, completion: nil)
-        
-        
     }
+    
+   
+   
     
     
 }

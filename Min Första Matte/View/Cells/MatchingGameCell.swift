@@ -14,7 +14,7 @@ class MatchingGameCell: UICollectionViewCell {
     @IBOutlet weak var cardImage: UIImageView!
     
     func customizeCardView() {
-        cardView.roundedCorners(myRadius: 20, borderWith: 5, myColor: .darkGray)
+        cardView.roundedCorners(myRadius: 20, borderWidth: 5, myColor: .darkGray)
     }
     
     func setCardImage(card: MatchingCard) {
